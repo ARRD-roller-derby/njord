@@ -20,9 +20,9 @@ export default function Home() {
 
 export async function getServerSideProps({req}) {
   const 
-    providers = await getProviders(),
     session = await getSession({ req });
 
+    console.log('-------------------',session)
   if (!session) {
     return {
       redirect: { destination: "/login" },
@@ -30,6 +30,6 @@ export async function getServerSideProps({req}) {
   }
 
   return {
-    props: { providers },
+    props: {  },
   }
 }

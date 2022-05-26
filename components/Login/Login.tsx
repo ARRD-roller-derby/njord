@@ -7,7 +7,7 @@ import Image from 'next/image';
 export default function Login() {
   const [email, setEmail] = useState('');
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
     if (!email) {
       toast.error('Il faut renseigner un email valide.');
@@ -15,7 +15,6 @@ export default function Login() {
       signIn('email', { email });
     }
   }
-
   return (
     <form className={classes.container} onSubmit={handleSubmit}>
       <Image src="/logo.svg" alt="logo arrd" width={50} height={50} />
