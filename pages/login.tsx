@@ -17,8 +17,7 @@ export async function getServerSideProps({req}) {
       redirect: { destination: "/" },
     };
   }
-
   return {
-    props: {  },
+    props: { start:true  },
   }
 }
