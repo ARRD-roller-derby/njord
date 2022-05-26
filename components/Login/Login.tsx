@@ -16,7 +16,7 @@ export default function Login() {
     }
   }
   return (
-    <form className={classes.container} onSubmit={handleSubmit}>
+    <form className={classes.container}  onSubmit={(e) => handleSubmit(e)}>
       <Image src="/logo.svg" alt="logo arrd" width={50} height={50} />
       <h1>{'Njörd'}</h1>
       <input
@@ -25,7 +25,7 @@ export default function Login() {
         placeholder="email"
         onChange={(e) => setEmail(e.target.value)}
       />
-      <button type="submit">Se connecter</button>
+      <button>Se connecter</button>
     </form>
   );
 }
