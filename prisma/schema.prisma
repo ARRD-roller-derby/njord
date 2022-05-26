@@ -1,0 +1,516 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+enum Pronoun {
+  ELLE
+  IL
+  IEL
+}
+
+model User {
+  id                String    @id @default(cuid())
+  name              String?
+  lastName          String?
+  email             String?   @unique
+  emailVerified     DateTime? @map("email_verified")
+  emailVisibility   Boolean   @default(false)
+  phone             String?   @unique @db.VarChar(255)
+  phoneVisibility   Boolean   @default(false)
+  addressVisibility Boolean   @default(false)
+  lat               Float?
+  lon               Float?
+  numLicence        String?
+  pronoun           Pronoun   @default(IEL)
+  birthDate         DateTime?
+  notificationPush  Boolean   @default(true)
+  notificationEmail Boolean   @default(false)
+  numRoster         String?
+  derbyName         String?
+  avatar            String?   @db.LongText
+  mst               Boolean   @default(false)
+  msp               Boolean   @default(false)
+  wallet            Int       @default(100)
+  updatedAt         DateTime  @updatedAt
+  createdAt         DateTime  @default(now()) @db.Timestamp(6)
+
+  leagues               UserOnLeague[]
+  allergies             UserOnAllergy[]
+  notifications         Notification[]
+  events                UserOnEvent[]
+  objects               Object[]
+  addresses             UserOnAddress[]
+  profiles              UserOnProfile[]
+  carpools              UserOnCarpooling[]
+  carpoolsOwner         Carpooling[]
+  bonuses               UserOnBonus[]
+  absences              AbsenceOnUser[]
+  skills                UserOnSkill[]
+  notificationUserTypes NotificationUserType[]
+  positions             PositionOnUser[]
+  accounts              Account[]
+  sessions              Session[]
+
+  @@map("users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+enum TypeOfPosition {
+  TRACK
+  NSO
+  SO
+}
+
+model Position {
+  id          Int              @id @default(autoincrement())
+  name        String
+  description String?          @db.LongText
+  video       String?          @db.LongText
+  type        TypeOfPosition
+  users       PositionOnUser[]
+}
+
+model PositionOnUser {
+  userId     String // relation scalar field (used in the `@relation` attribute above)
+  positionId Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+  score      Int
+
+  user     User     @relation(fields: [userId], references: [id])
+  position Position @relation(fields: [positionId], references: [id])
+  @@id([userId, positionId])
+}
+
+model Bonus {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique @db.VarChar(255)
+  description String?  @db.LongText
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now()) @db.Timestamp(6)
+
+  users UserOnBonus[]
+
+}
+
+model Absence {
+  id          Int      @id @default(autoincrement())
+  description String?  @db.LongText
+  begin       DateTime
+  end         DateTime
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now()) @db.Timestamp(6)
+
+  users AbsenceOnUser[]
+}
+
+model AbsenceOnUser {
+  absenceId  Int // relation scalar field (used in the `@relation` attribute above)
+  userId     String // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  abscence Absence @relation(fields: [absenceId], references: [id])
+  user     User    @relation(fields: [userId], references: [id])
+
+  @@id([absenceId, userId])
+}
+
+model UserOnBonus {
+  bonusId    Int // relation scalar field (used in the `@relation` attribute above)
+  userId     String // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  league Bonus @relation(fields: [bonusId], references: [id])
+  user   User  @relation(fields: [userId], references: [id])
+  @@id([bonusId, userId])
+}
+
+model League {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique @db.VarChar(255)
+  city      String
+  owner     Boolean  @default(false) // for owner of APP (en see ext ou int)
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+
+  users UserOnLeague[]
+}
+
+model UserOnLeague {
+  leagueId   Int // relation scalar field (used in the `@relation` attribute above)
+  userId     String // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  league League @relation(fields: [leagueId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
+  @@id([leagueId, userId])
+}
+
+model Profile {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique @db.VarChar(255)
+  avatar    String?  @db.LongText
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+
+  users UserOnProfile[]
+}
+
+model UserOnProfile {
+  profileId  Int // relation scalar field (used in the `@relation` attribute above)
+  userId     String // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  profile Profile @relation(fields: [profileId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+  @@id([profileId, userId])
+}
+
+model Allergy {
+  id        Int      @id @default(autoincrement())
+  aliment   String   @unique @db.VarChar(255)
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+
+  users UserOnAllergy[]
+}
+
+model UserOnAllergy {
+  allergyId  Int // relation scalar field (used in the `@relation` attribute above)
+  userId     String // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  allergy Allergy @relation(fields: [allergyId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+  @@id([allergyId, userId])
+}
+
+enum StatusNotification {
+  READ
+  UNREAD
+}
+
+enum PriorityNotification {
+  LOW
+  NORMAL
+  HIGH
+}
+
+model Notification {
+  id        Int                  @id @default(autoincrement())
+  subject   String               @db.VarChar(255)
+  message   String               @db.LongText
+  link      String?              @db.LongText
+  type      String               @db.VarChar(255)
+  priority  PriorityNotification @default(LOW)
+  status    StatusNotification   @default(UNREAD)
+  updatedAt DateTime             @updatedAt
+  createdAt DateTime             @default(now()) @db.Timestamp(6)
+
+  eventId            Int?
+  userId             String
+  notificationTypeId Int
+  user               User             @relation(fields: [userId], references: [id])
+  event              Event?           @relation(fields: [eventId], references: [id])
+  notificationType   NotificationType @relation(fields: [notificationTypeId], references: [id])
+}
+
+model NotificationType {
+  id                    Int                    @id @default(autoincrement())
+  name                  String
+  updatedAt             DateTime               @updatedAt
+  createdAt             DateTime               @default(now()) @db.Timestamp(6)
+  notifications         Notification[]
+  notificationUserTypes NotificationUserType[]
+}
+
+model NotificationUserType {
+  id        Int      @id @default(autoincrement())
+  active    Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+
+  userId             String
+  notificationTypeId Int
+  user               User             @relation(fields: [userId], references: [id])
+  notificationType   NotificationType @relation(fields: [notificationTypeId], references: [id])
+}
+
+enum EventGender {
+  ELLE
+  IL
+  IEL
+  ALL
+}
+
+enum EventVisibility {
+  INTERNAL
+  EXTERNAL
+}
+
+enum EventType {
+  TRAINING
+  MATCH
+  BOOTCAMP
+  AG
+  EVENT
+  OTHER
+  ONLINE
+}
+
+enum EventStatut {
+  DRAFT
+  PUBLISH
+  CANCEL
+}
+
+model Event {
+  id          Int             @id @default(autoincrement())
+  start       DateTime
+  end         DateTime
+  name        String          @db.VarChar(255)
+  description String?         @db.LongText
+  gender      EventGender     @default(ALL)
+  type        EventType       @default(TRAINING)
+  visibility  EventVisibility @default(INTERNAL)
+  status      EventStatut     @default(DRAFT)
+  link        String?         @db.LongText
+  address     String?         @db.LongText
+  city        String?         @db.LongText
+  zipcode     String?         @db.VarChar(255)
+  lat         Float?
+  long        Float?
+  mst         Boolean         @default(false)
+  msp         Boolean         @default(false)
+  cancel      Boolean         @default(false)
+  updatedAt   DateTime        @updatedAt
+  createdAt   DateTime        @default(now()) @db.Timestamp(6)
+
+  users         UserOnEvent[]
+  adresses      EventOnAddress[]
+  objects       ObjectOnEvent[]
+  notifications Notification[]
+  carpools      Carpooling[]
+}
+
+enum AddressType {
+  PERSONNAL
+  MEETPOINT
+  STADIUM
+  TRAINING
+  OTHER
+}
+
+model Address {
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(255)
+  description String? @db.LongText
+
+  address   String      @db.LongText
+  city      String      @db.LongText
+  zipcode   String      @db.VarChar(255)
+  lat       Float?
+  lon       Float?
+  type      AddressType @default(OTHER)
+  updatedAt DateTime    @updatedAt
+  createdAt DateTime    @default(now()) @db.Timestamp(6)
+
+  events   EventOnAddress[]
+  users    UserOnAddress[]
+  objects  Object[]
+  carpools Carpooling[]
+}
+
+model EventOnAddress {
+  addressId  Int // relation scalar field (used in the `@relation` attribute above)
+  eventId    Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  address Address @relation(fields: [addressId], references: [id])
+  event   Event   @relation(fields: [eventId], references: [id])
+  @@id([addressId, eventId])
+}
+
+model UserOnAddress {
+  addressId Int // relation scalar field (used in the `@relation` attribute above)
+  userId    String // relation scalar field (used in the `@relation` attribute above)
+
+  assignedAt DateTime @default(now())
+  address    Address  @relation(fields: [addressId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+  @@id([addressId, userId])
+}
+
+// objet des entrainements, du club
+model Object {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(255)
+  description String?  @db.LongText
+  image       String   @db.LongText
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now()) @db.Timestamp(6)
+
+  events    ObjectOnEvent[]
+  address   Address         @relation(fields: [addressId], references: [id])
+  addressId Int
+  user      User            @relation(fields: [userId], references: [id])
+  userId    String
+}
+
+model ObjectOnEvent {
+  objectId Int
+  eventId  Int
+
+  object Object @relation(fields: [objectId], references: [id])
+  event  Event  @relation(fields: [eventId], references: [id])
+  @@id([objectId, eventId])
+}
+
+enum PresenceType {
+  SKATE
+  NOSKATE
+  REF
+  NSO
+  VISITOR
+  ABSENT_CONFIRM
+  ABSENT
+}
+
+model UserOnEvent {
+  eventId    Int // relation scalar field (used in the `@relation` attribute above)
+  userId     String // relation scalar field (used in the `@relation` attribute above)
+  type       PresenceType @default(ABSENT)
+  assignedAt DateTime     @default(now())
+
+  user  User   @relation(fields: [userId], references: [id])
+  event Event? @relation(fields: [eventId], references: [id])
+  @@id([eventId, userId])
+}
+
+model Carpooling {
+  id        Int      @id @default(autoincrement())
+  updatedAt DateTime @updatedAt
+  places    Int
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+
+  event      Event              @relation(fields: [eventId], references: [id])
+  address    Address            @relation(fields: [addressId], references: [id])
+  owner      User               @relation(fields: [ownerId], references: [id])
+  passengers UserOnCarpooling[]
+  ownerId    String
+  eventId    Int
+  addressId  Int
+}
+
+model UserOnCarpooling {
+  carpoolingId Int // relation scalar field (used in the `@relation` attribute above)
+  userId       String // relation scalar field (used in the `@relation` attribute above)
+  type         PresenceType @default(SKATE)
+  assignedAt   DateTime     @default(now())
+
+  user       User        @relation(fields: [userId], references: [id])
+  carpooling Carpooling? @relation(fields: [carpoolingId], references: [id])
+  @@id([carpoolingId, userId])
+}
+
+model Skill {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String   @db.LongText
+  level       Int      @default(1)
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now()) @db.Timestamp(6)
+
+  users UserOnSkill[]
+}
+
+model UserOnSkill {
+  skillId    Int
+  userId     String
+  userLevel  Int      @default(0) //acquis, non acquis... 
+  assignedAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id])
+  skill Skill @relation(fields: [skillId], references: [id])
+  @@id([skillId, userId])
+}
+
+model Workout {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String   @db.LongText
+  repeat      Int      @default(20) //seconds
+  rest        Int      @default(20) // seconds
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now()) @db.Timestamp(6)
+
+  exercices ExerciceOnWorkout[]
+}
+
+model Exercice {
+  id          Int      @id @default(autoincrement())
+  name        String
+  img         String?  @db.LongText
+  video       String?  @db.LongText
+  description String   @db.LongText
+  level       Int      @default(1)
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now()) @db.Timestamp(6)
+
+  workouts ExerciceOnWorkout[]
+}
+
+model ExerciceOnWorkout {
+  exerciceId Int
+  workoutId  Int
+  assignedAt DateTime @default(now())
+
+  exercice Exercice @relation(fields: [exerciceId], references: [id])
+  workout  Workout  @relation(fields: [workoutId], references: [id])
+  @@id([workoutId, exerciceId])
+}
