@@ -1,35 +1,29 @@
-
-import Head from 'next/head'
-import Image from 'next/image'
-import LoginButton from '../components/loginButton/loginButton'
-import styles from '../styles/Home.module.css'
-import { getProviders, getSession, signIn, useSession } from "next-auth/react"
+import Head from 'next/head';
+import { getSession } from 'next-auth/react';
+import AuthentificatedLayout from '../Layouts/Authentificated/Authentificated';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <AuthentificatedLayout>
       <Head>
-        <title>Njörd  | ARRD</title>
+        <title>Njörd | ARRD</title>
         <meta name="description" content="Roller Derby" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <LoginButton/>
-    </div>
-  )
+      <p>...</p>
+    </AuthentificatedLayout>
+  );
 }
 
-export async function getServerSideProps({req}) {
-  const 
-    session = await getSession({ req });
-
-    console.log('-------------------',session)
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
   if (!session) {
     return {
-      redirect: { destination: "/login" },
+      redirect: { destination: '/login' },
     };
   }
 
   return {
-    props: {  },
-  }
+    props: {},
+  };
 }
