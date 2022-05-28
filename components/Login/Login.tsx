@@ -7,12 +7,13 @@ import Image from 'next/image';
 export default function Login() {
   const [email, setEmail] = useState('');
 
-  function handleSubmit(e: React.SyntheticEvent) {
+  async function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
     if (!email) {
       toast.error('Il faut renseigner un email valide.');
     } else {
-      signIn('email', { email });
+
+      await signIn('email', { email });
     }
   }
   return (

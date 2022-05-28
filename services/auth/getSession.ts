@@ -13,7 +13,6 @@ export default async function getSessionWithProfile({ session, token, user }){
       leagues:true,
     }
   })
-  console.log(session)
   session.user = userForSession
   return session
 }
