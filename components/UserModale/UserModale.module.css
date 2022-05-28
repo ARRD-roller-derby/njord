@@ -1,0 +1,76 @@
+.container {
+  position: fixed;
+  right: 12px;
+  background: var(--color-bg-light);
+  border: 1px solid var(--color-bg-accent);
+  padding: 20px 35px;
+  border-radius: 10px;
+  max-width: 400px;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  z-index: 3;
+}
+.avatar {
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  border: 2px solid
+    hsl(
+      var(--color-princ-hue),
+      var(--color-princ-sat),
+      var(--color-princ-light)
+    );
+}
+.containerAvatar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 2px solid
+    hsla(
+      var(--color-second-hue),
+      var(--color-second-sat),
+      var(--color-second-light)
+    );
+}
+.name {
+  color: hsl(
+    var(--color-second-hue),
+    var(--color-second-sat),
+    var(--color-second-light)
+  );
+}
+.email {
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.deco {
+  color: var(--color-link);
+  transition: 200ms ease-in-out;
+  cursor:pointer;
+}
+
+.deco:hover {
+  color: white
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    right: 20px;
+    left: 20px;
+    max-width: inherit;
+  }
+}

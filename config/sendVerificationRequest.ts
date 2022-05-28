@@ -17,7 +17,7 @@ export default async function sendVerificationRequest({
 }
 
 // Email HTML body
-function html({ url, host, email }: Record<"url" | "host" | "email", string>) {
+function html({ url, email }: Record<"url" | "host" | "email", string>) {
   const escapedEmail = `${email.replace(/\./g, "&#8203;.")}`
 
   const backgroundColor = "#18191a"
@@ -52,7 +52,8 @@ function html({ url, host, email }: Record<"url" | "host" | "email", string>) {
               bgcolor="${buttonBackgroundColor}">
               <a 
                 href="${url}" 
-                target="_blank"
+                target="_self"
+                ref="opener"
                 style="
                   font-size: 18px;
                   font-family: Helvetica, Arial, sans-serif;
