@@ -1,6 +1,5 @@
 import {prisma} from '../../db/db';
 export default async function getSessionWithProfile({ session, token, user }){
-  //TODO inject in session profiles... 
   if(token && session){
     session.accessToken = token.accessToken
   }
@@ -9,8 +8,15 @@ export default async function getSessionWithProfile({ session, token, user }){
       id:user.id
     },
     include:{
-      profiles:true,
-      leagues:true,
+      profiles:{
+        select:{
+          profile:true
+        }
+      },
+      leagues:{select: {
+        league: true,
+      },
+    }
     }
   })
   session.user = userForSession

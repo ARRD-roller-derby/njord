@@ -8,7 +8,7 @@ export interface profile {
 
 export enum ProfilesName {
   bureau = "bureau",
-  coach = "coash",
+  coach = "coach",
   dev= "développeur",
   com = "communication",
   membre="membre",

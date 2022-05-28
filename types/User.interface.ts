@@ -5,7 +5,7 @@ import { profile } from "./Profile.interface";
 import { Pronoun } from "./Pronoun.enum";
 
 export interface User {
-  id?: number;
+  id?: string;
   email: string;
   avatar?: string;
   name: string;

@@ -285,7 +285,6 @@ enum EventGender {
   ELLE
   IL
   IEL
-  ALL
 }
 
 enum EventVisibility {

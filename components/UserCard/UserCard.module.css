@@ -1,0 +1,84 @@
+.container {
+  background: var(--color-bg-light-extra);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: auto 2fr;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 200ms ease-in-out;
+}
+
+.container:hover {
+  border: 1px solid var(--color-arrd);
+}
+
+.avatarContainer {
+  position: relative;
+  display: flex;
+  padding: 10px;
+  width: 75px;
+}
+.avatarContainer:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 10px 0 0 10px;
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
+  background: var(--color-arrd);
+}
+
+.avatar {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  color: var(--color-txt-light);
+  justify-content: space-between;
+}
+
+.nameContainer {
+  border-bottom: 1px solid var(--color-bg-light-subtitle);
+}
+.name::first-letter,
+.lastname,
+.derbyName::first-letter {
+  text-transform: uppercase;
+}
+
+.derbynameContainer {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 0.8em;
+  color: var(--color-txt);
+}
+
+.icon {
+  color: var(--color-tierce);
+}
+
+.leagues {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--color-bg-light-subtitle);
+  font-size: 0.8em;
+  justify-content: center;
+  color: var(--color-tierce);
+}
+
+.league:after {
+  content: ", ";
+}
+
+.league:last-of-type::after {
+  content: "";
+}

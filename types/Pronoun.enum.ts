@@ -1,5 +1,5 @@
 export enum Pronoun {
-  ELLE,
-  IL,
-  IEL,
+  ELLE = 'ELLE',
+  IL = "IL",
+  IEL =  'ELLE'
 }
