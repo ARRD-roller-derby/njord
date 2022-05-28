@@ -11,7 +11,7 @@ export default function Members(){
   console.log(data)
 
   return <div className={classes.container}>
-    {loading && <LoaderWheel/>}
+    {loading && <div className={classes.loading}><LoaderWheel/></div>}
     {data && <div className={classes.users}>
       {data?.users.map((user: User)=> <UserCard key={user.id} user={user} />)}
       </div>

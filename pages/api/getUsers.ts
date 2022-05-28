@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from "next-auth/react"
 import { ProfilesName } from '../../types/Profile.interface';
 import { ProfilAccess } from '../../utils/ProfilAccess';
+import { prisma } from '../../db/db';
 
 export default async function getUsers(req: NextApiRequest, res: NextApiResponse){
 
