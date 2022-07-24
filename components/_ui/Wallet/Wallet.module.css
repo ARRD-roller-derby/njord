@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  gap: 5px;
+}
+
+.count {
+  color: var(--color-tierce);
+  font-weight: bold;
+}

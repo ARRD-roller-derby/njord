@@ -1,0 +1,31 @@
+.hamburger {
+  cursor: pointer;
+  height: 25px;
+  width: 35px;
+  z-index: 60;
+  position: relative;
+}
+
+.bar {
+  background: var(--color-arrd);
+  border-radius: 50px;
+  height: 4px;
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+
+.bar:nth-child(1) {
+  left: 0;
+  top: 0;
+}
+
+.bar:nth-child(2) {
+  right: 20%;
+  top: 10px;
+}
+
+.bar:nth-child(3) {
+  right: 40%;
+  top: 20px;
+}

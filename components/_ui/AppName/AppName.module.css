@@ -1,0 +1,13 @@
+.title {
+  font-family: AmaticSC, cursive;
+  color: var(--color-arrd);
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+}
+
+.title:hover {
+  color: var(--color-arrd);
+  text-decoration: underline;
+}

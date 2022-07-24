@@ -1,0 +1,135 @@
+.border_wheel,
+.inside_wheel,
+.inside_wheel:before,
+.screw:before,
+.wheel,
+.wheel:before,
+.whole_wheel,
+.whole_wheel:after,
+.whole_wheel:before {
+  border-radius: 50%;
+}
+
+.border_wheel,
+.inside_wheel,
+.inside_wheel:before,
+.screw,
+.screw:before,
+.wheel:before,
+.whole_wheel,
+.whole_wheel:after,
+.whole_wheel:before {
+  position: absolute;
+}
+
+.wheel {
+  background: #000;
+  border: 1px solid #585858;
+  height: 50px;
+  position: relative;
+  width: 50px;
+}
+
+.wheel:before {
+  animation: wheel_roll 1s linear infinite;
+  background: rgba(255, 255, 255, 0.5);
+  bottom: 1%;
+  clip-path: ellipse(50% 42% at 50% 50%);
+  content: "";
+  left: 1%;
+  right: 1%;
+  top: 1%;
+}
+
+.border_wheel {
+  background: #d4d402;
+  bottom: 5%;
+  left: 5%;
+  right: 5%;
+  top: 5%;
+}
+
+.inside_wheel {
+  align-items: center;
+  background: #b02209;
+  bottom: 10%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  left: 10%;
+  right: 10%;
+  top: 10%;
+}
+
+.inside_wheel:before {
+  animation: wheel_roll 0.3s linear infinite;
+  background: rgba(255, 255, 255, 0.2);
+  bottom: 2%;
+  clip-path: ellipse(50% 26% at 50% 50%);
+  content: "";
+  left: 2%;
+  right: 2%;
+  top: 2%;
+}
+
+.whole_wheel {
+  background: #911c07;
+  bottom: 15%;
+  left: 15%;
+  right: 15%;
+  top: 15%;
+}
+
+.whole_wheel:after {
+  animation: wheel_roll 0.2s linear infinite;
+  background: #7a1907;
+  bottom: 20%;
+  clip-path: ellipse(50% 46% at 50% 50%);
+  content: "";
+  left: 20%;
+  right: 20%;
+  top: 20%;
+}
+
+.whole_wheel:before {
+  animation: wheel_roll 0.2s linear infinite;
+  background: rgba(255, 255, 255, 0.05);
+  bottom: 10%;
+  clip-path: ellipse(50% 46% at 50% 50%);
+  content: "";
+  left: 10%;
+  right: 10%;
+  top: 10%;
+}
+
+.screw {
+  background: #b8b8b8;
+  bottom: 35%;
+  clip-path: polygon(
+    left 35% right 35% top 35% 50% 0,
+    90% 20%,
+    100% 60%,
+    75% 100%,
+    25% 100%,
+    0 60%,
+    10% 20%
+  );
+}
+
+.screw:before {
+  background: rgba(255, 255, 255, 0.5);
+  bottom: 20%;
+  content: "";
+  left: 20%;
+  right: 20%;
+  top: 20%;
+}
+
+@keyframes wheel_roll {
+  from {
+    transform: rotate(180deg) translateZ(0);
+  }
+  to {
+    transform: rotate(360deg) translateZ(0);
+  }
+}

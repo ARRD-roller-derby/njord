@@ -1,0 +1,10 @@
+.container {
+  border: 1px solid var(--color-bg-light);
+  padding: 10px;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 300px;
+  text-align: center;
+}
