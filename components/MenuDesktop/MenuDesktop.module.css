@@ -1,0 +1,31 @@
+.container {
+  padding: 10px;
+  height: 100%;
+  transition: 300ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  background: var(--color-bg);
+}
+
+.link {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 12px;
+  position: relative;
+}
+
+.link[data-current='true']::before{
+  content:'';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-tierce);
+  bottom: -3px;
+  left: calc(50% - 2px)
+}
+
+

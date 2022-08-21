@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  align-items:center ;
+}
+
+.box {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 5px;
+  color: var(--color-tierce);
+  font-size: 12px;
+}
+
+.action:not(:last-child):nth-child(1n+0)::after{
+  content:'-';
+  margin-left: 5px;
+}
+

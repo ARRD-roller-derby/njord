@@ -1,0 +1,35 @@
+.container {
+    height: calc(100% - 20px);
+    position: relative;
+}
+
+.box {
+    position: absolute;
+    top:15px;
+    right:0;
+    left:0;
+    bottom: 0;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search > div {
+    max-width: 350px;
+}
+
+.users {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    display: flex;
+    gap:15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5px;
+  
+}

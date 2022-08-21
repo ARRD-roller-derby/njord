@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 500px;
+  transition: 200ms ease-in-out;
+  overflow-y: auto;
+  max-height: 80vh;
+  padding: 0 5px;
+  box-sizing: border-box;
+
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+  position: sticky;
+  padding-bottom: 5px;
+  background: var(--color-bg-dark);
+  top:-5px;
+  z-index: 5;
+}
+
+.title:hover {
+  color: var(--color-second);
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+    .container {
+      width: 100%;
+    }
+  }
+  

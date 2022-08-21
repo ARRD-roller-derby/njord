@@ -1,0 +1,13 @@
+.container{
+  position: relative;
+  border-bottom: 2px solid transparent;
+  transition: 200ms ease-in-out;
+}
+
+.container[data-active='true']{
+  border-bottom: 2px solid var(--color-tierce);
+}
+
+.bell {
+  cursor: pointer;
+}

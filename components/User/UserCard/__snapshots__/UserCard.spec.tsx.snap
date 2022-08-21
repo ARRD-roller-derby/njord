@@ -1,0 +1,59 @@
+// Vitest Snapshot v1
+
+exports[`<UserCard /> > Check snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="_container_r7wl2_1"
+  >
+    <div
+      class="_avatarContainer_r7wl2_17"
+    >
+      <div
+        class="_avatar_r7wl2_17"
+      >
+        <div
+          class="_avatar_1yrdp_1"
+        >
+          <span
+            style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+          >
+            <span
+              style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 100% 0px 0px 0px;"
+            />
+            <img
+              alt="avatar"
+              data-nimg="responsive"
+              decoding="async"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+            />
+            <noscript />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="_identity_r7wl2_43"
+    >
+      <div
+        class="_nameContainer_r7wl2_52"
+      >
+        <span
+          class="_name_r7wl2_52"
+        >
+          name
+        </span>
+         
+        <span
+          class="_lastname_r7wl2_57"
+        >
+          lastname
+        </span>
+      </div>
+      <div
+        class="_teams_r7wl2_74"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

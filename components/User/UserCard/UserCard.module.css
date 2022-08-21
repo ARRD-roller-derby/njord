@@ -1,0 +1,81 @@
+.container {
+  background: var(--color-bg-light-extra);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: auto 2fr;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 200ms ease-in-out;
+  overflow: hidden;
+  flex-basis: 350px;
+}
+
+.container:hover {
+  border: 1px solid var(--color-arrd);
+}
+
+.avatarContainer {
+  position: relative;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  width: 70px;
+  padding: 8px 0 8px 10px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  z-index: 2;
+}
+
+.avatarContainer:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: calc(50% - 5px);
+  left: 0;
+  bottom: 0;
+  border-radius: 10px 0 0 10px;
+  background: var(--color-arrd);
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 5px;
+  color: var(--color-txt-light);
+  justify-content: space-between;
+}
+
+.nameContainer {
+  font-size: 12px;
+}
+
+.name::first-letter,
+.lastname,
+.derbyName::first-letter {
+  text-transform: uppercase;
+}
+
+.derbynameContainer {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--color-txt);
+}
+
+.icon {
+  color: var(--color-tierce);
+}
+
+.teams {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  font-size: 10px;
+  justify-content: left;
+  color: var(--color-tierce);
+}

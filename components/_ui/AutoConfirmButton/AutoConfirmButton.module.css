@@ -1,0 +1,11 @@
+.container {
+  position: relative;
+}
+
+.confirm {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  background: var(--color-second);
+}

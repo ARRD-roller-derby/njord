@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox {
+  --checkbox-box: 15px;
+  height: var(--checkbox-box);
+  width: var(--checkbox-box);
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-light);
+  position: relative;
+}
+
+.checkbox:before {
+  position: absolute;
+  content:"";
+  top: 50%;
+  right: 2px;
+  left: 2px;
+  bottom: 50%;
+  border-radius: 2px;
+  background: var(--color-arrd);
+  transition: 200ms ease-in-out;
+}
+
+.checkbox[data-checked='true']:before {
+  top: 2px;
+  bottom: 2px;
+}
+
+.container:hover .checkbox:before {
+  transform: scale(1.2);
+}
+
+.label::first-letter {
+  text-transform: uppercase;
+}

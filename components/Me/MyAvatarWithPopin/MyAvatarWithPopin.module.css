@@ -1,0 +1,23 @@
+.container {
+  position: relative;
+  z-index: 100;
+}
+
+.sub {
+  color: var(--color-arrd);
+  font-family: sans-serif;
+  font-size: 0.6em;
+}
+
+.avatar {
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--color-arrd);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  overflow: hidden;
+  width: 40px;
+}

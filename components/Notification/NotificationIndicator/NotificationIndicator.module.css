@@ -1,0 +1,11 @@
+.count {
+  background: var(--color-arrd);
+  color: white;
+  padding: 0 5px;
+  border-radius: 50px;
+  font-size: 12px;
+  position: absolute;
+  top: -20%;
+  right: -5px;
+  cursor: pointer;
+}

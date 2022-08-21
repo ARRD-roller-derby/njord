@@ -1,0 +1,41 @@
+.container {
+  height: 100%;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.alert {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-txt-error);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 500px;
+  align-items: center;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  text-align: center;
+}
+
+.shortName {
+  color: var(--color-tierce);
+}
+
+.users {
+  position: sticky;
+  top: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.name {
+  font-size: 0.95em;
+}
