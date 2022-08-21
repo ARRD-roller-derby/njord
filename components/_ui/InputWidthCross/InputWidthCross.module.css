@@ -1,0 +1,75 @@
+.container {
+  position: relative;
+  font-size: 0.9em;
+  outline: 0;
+  width: 100%;
+  transition: 0.2s ease-in-out;
+  background: var(--color-bg);
+  color: var(--color-txt);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.container:hover {
+  color: var(--color-txt-light);
+}
+
+.cross {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.cross[data-disabled='true'] {
+  opacity: 0.3;
+}
+
+.cross:after,
+.cross:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-arrd);
+  top: calc(50% - 2px);
+  border-radius: 5px;
+}
+
+.cross:before {
+  transform: rotate(45deg);
+}
+
+.cross:after {
+  transform: rotate(135deg);
+}
+
+.cross:hover {
+  transform: rotate(90deg);
+}
+
+.input {
+  outline: 0;
+  border: none;
+  padding: 11px;
+  font-size: 0.9em;
+  background: 0 0;
+  color: var(--color-txt);
+  outline: none;
+}
+
+.input:focus {
+  color: var(--color-txt-light);
+  border: none;
+}
+
+@media screen and (max-width: 500px) {
+  .input {
+    padding: 11px 5px;
+    width: 100%;
+  }
+}

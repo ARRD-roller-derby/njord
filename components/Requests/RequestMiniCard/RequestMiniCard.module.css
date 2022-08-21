@@ -1,0 +1,43 @@
+.container {
+  padding: 8px 5px;
+  background: var(--color-bg);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--color-bg-dark);
+  padding: 10px;
+
+}
+
+.delete {
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.date {
+  font-size: 0.8em;
+  text-align: right;
+}
+
+.text {
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.buttons button {
+  padding: 7px;
+}
+
+.accept {
+  background: var(--color-arrd);
+}
+
+.refused {
+  background: var(--color-txt-error);
+}

@@ -1,0 +1,7 @@
+.link {
+  display: flex;
+  flex-direction: column;
+  font-size: 8px;
+  align-items: center;
+  gap: 3px;
+}

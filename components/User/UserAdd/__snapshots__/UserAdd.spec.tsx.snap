@@ -1,0 +1,11 @@
+// Vitest Snapshot v1
+
+exports[`<UserAdd /> > Check snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <button>
+      Ajouter un utilisateur
+    </button>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,5 @@
+.count {
+  color: var(--color-tierce);
+  font-weight: bold;
+  font-size: 12px;
+}

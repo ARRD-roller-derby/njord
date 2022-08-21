@@ -1,0 +1,28 @@
+.container {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.modale {
+  background: var(--color-bg);
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px;
+}
+
+.close {
+  justify-self: end;
+  align-self: flex-end;
+}

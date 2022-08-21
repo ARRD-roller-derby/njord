@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.container > div {
+  width: 600px;
+}
+
+@media screen and (max-width: 620px) {
+  .container > div {
+    width: inherit;
+  }
+}

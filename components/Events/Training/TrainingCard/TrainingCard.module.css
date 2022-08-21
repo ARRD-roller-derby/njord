@@ -1,0 +1,64 @@
+.container {
+    background: var(--color-bg-light-extra);
+    border-radius: 10px;
+    display: flex;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: 200ms ease-in-out;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 5px;
+    flex-basis: 350px;
+    padding:10px;
+  }
+  
+  .container:hover {
+    border: 1px solid var(--color-arrd);
+  }
+
+  .containerDate {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .date {
+    text-transform: uppercase;
+    gap: 10px;
+    color: var(--color-tierce);
+  }
+
+  .relativeDate {
+    font-size: .6em;
+  }
+
+  .hour {
+    font-size: .8em;
+    color:var(--color-link)
+  }
+
+  .address {
+    font-size: .65em;
+
+  }
+
+  .require {
+    font-size: .8em;
+    color: var(--color-txt-error)
+  }
+
+  .labelRequire {
+    color:var(--color-txt)
+  }
+
+  .labelPresence {
+    font-size: .8em;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+  }
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
