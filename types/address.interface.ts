@@ -10,4 +10,5 @@ export interface addressInterface {
   street: string
   label: string
   type: addressType
+  updatedAt: Date
 }

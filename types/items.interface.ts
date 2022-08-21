@@ -6,9 +6,13 @@ export interface ItemInterface {
   picture_url?: string
   ownerType: 'user' | 'league'
   owner: String
-  localization: {
-    type: 'user' | 'place'
-    id: string
-    name: string
-  }
+  localization: LocalizationItemInterface
+  updatedAt: Date
+}
+
+export interface LocalizationItemInterface {
+  type: 'user' | 'place'
+  id: string
+  name: string
+  updatedAt: Date
 }

@@ -28,7 +28,7 @@ export default function useDBSync<T>(
         },
         { toastId: 'synchro' }
       )
-
+      
       if (JSON.stringify(resData) === JSON.stringify(data)) return
       await indexDB[dbField].clear()
 

@@ -4,6 +4,7 @@ export default function useLocalState<T>(initialState: T, nameOfState: string):{
   localState: T,
   setLocalState:Function,
 } {
+
   const ls = (): T => {
       if (typeof window !== 'undefined') {
         return JSON.parse(localStorage.getItem(nameOfState))
@@ -11,7 +12,7 @@ export default function useLocalState<T>(initialState: T, nameOfState: string):{
         return initialState
       }
     },
-    [state, setState] = useState<T>(ls())
+    [state, setState] = useState<T>(ls()|| initialState)
 
   function setLocalState(newState: T) {
     setState(newState)
