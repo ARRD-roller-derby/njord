@@ -1,6 +1,6 @@
 import { Schema, model, models } from 'mongoose'
 import { AttendeesEventInterface, EventInterface } from '../types/Event.interface';
-import Address from './adresses.model';
+import { adressSchema } from './adresses.model';
 
 const attendees = new Schema<AttendeesEventInterface>({
   id: String,
@@ -11,6 +11,7 @@ const attendees = new Schema<AttendeesEventInterface>({
 const eventSchema = new Schema<EventInterface>({
   start: Date,
   end: Date,
+  leagueId:String,
   hourStart:String,
   hourEnd:String,
   description: String,
@@ -24,7 +25,7 @@ const eventSchema = new Schema<EventInterface>({
   requirements:[String],
   attendees:[attendees],
   events:[String],
-  address: Address,
+  address: adressSchema,
 })
 
 const Event = models.events || model('events', eventSchema)

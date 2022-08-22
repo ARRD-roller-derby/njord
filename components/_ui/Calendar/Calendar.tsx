@@ -1,7 +1,14 @@
+import { EventInterface } from '../../../types/Event.interface'
 import CalendarView from './CalendarView'
 import useCalendar from './useCalendar'
-export default function Calendar() {
-  const useProps = useCalendar()
 
-  return <CalendarView {...useProps} />
+interface Props {
+  readonly refetch: Function
+  readonly events: Array<EventInterface>
+  readonly setBetween: Function 
+}
+export default function Calendar(props:Props) {
+  const useProps = useCalendar(props)
+
+  return <CalendarView events={props.events} {...useProps} />
 }

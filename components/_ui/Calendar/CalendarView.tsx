@@ -1,6 +1,7 @@
 import classes from './Calendar.module.css'
 import { CalDayInterface } from '../../../types/CalDay.interface'
 import dayjs from 'dayjs'
+import { EventInterface } from '../../../types/Event.interface'
 
 interface props {
   readonly cal: Array<any>
@@ -10,6 +11,7 @@ interface props {
   readonly previousMonth: Function
   readonly isMobile: boolean
   readonly isAdmin: boolean
+  readonly events: Array<EventInterface>
 }
 export default function CalendarView({
   cal,
@@ -18,6 +20,7 @@ export default function CalendarView({
   currentMonth,
   previousMonth,
   isMobile,
+  events,
   isAdmin
 }: props) {
   return (

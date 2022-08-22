@@ -485,8 +485,6 @@ label::first-letter {
   transition: opacity 300ms, transform 300ms;
 }
 
-
-
 .shutterSmall-enter {
   opacity: 0;
   transform: translateY(100%);

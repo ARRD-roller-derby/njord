@@ -4,6 +4,7 @@ export interface EventInterface {
   _id: string
   start: Date
   end: Date
+  leagueId:string
   hourStart: string
   hourEnd: string
   description: string

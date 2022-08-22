@@ -3,11 +3,16 @@ import dayjs from 'dayjs'
 import useIsMobile from '../../_hooks/useIsMobile'
 import useLocalState from '../../_hooks/useLocalState'
 import { CalDayInterface } from '../../../types/CalDay.interface'
-import { useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react'
+import { EventInterface } from '../../../types/Event.interface'
+interface Props {
+  readonly refetch: Function
+  readonly setBetween: Function
+  readonly events: Array<EventInterface>
+}
 
-export default function useCalendar() {
-  const 
-    {data:session}= useSession(),
+export default function useCalendar({ setBetween, events }: Props) {
+  const { data: session } = useSession(),
     { localState, setLocalState } = useLocalState<{
       year: number
       month: any
@@ -18,15 +23,12 @@ export default function useCalendar() {
       },
       'njord_yearMonth'
     ),
-    [cal, setCal] = useState<
-      Array<CalDayInterface>
-    >([]),
+    [cal, setCal] = useState<Array<CalDayInterface>>([]),
     [currentMonth, setCurrentMonth] = useState<string>(''),
     isMobile = useIsMobile()
 
   function createCalendar() {
-    const 
-      thisMonth = dayjs().month(localState.month),
+    const thisMonth = dayjs().month(localState.month),
       firstDay = dayjs(thisMonth).add(localState.year, 'year').startOf('month'),
       lastDay = dayjs(thisMonth).add(localState.year, 'year').endOf('month'),
       firstCalDay = firstDay.subtract(
@@ -34,12 +36,13 @@ export default function useCalendar() {
         'day'
       ),
       lastCalDay = lastDay.add(
-        lastDay.day() === 0 ? 0 : 7- lastDay.day(),
+        lastDay.day() === 0 ? 0 : 7 - lastDay.day(),
         'day'
       ),
       numOfDay = lastCalDay.diff(firstCalDay, 'day'),
       generateCal = []
 
+    setBetween([firstCalDay.toISOString(), lastCalDay.toISOString()])
 
     for (let i = 0; i < numOfDay + 1; i++) {
       const day = firstCalDay.add(i, 'day')
@@ -57,7 +60,7 @@ export default function useCalendar() {
         .format('MMMM YYYY')
     )
     //sometimes, one day add
-    setCal(generateCal.slice(0,35))
+    setCal(generateCal.slice(0, 35))
   }
 
   function nextMonth() {
@@ -97,6 +100,22 @@ export default function useCalendar() {
     }
   }, [localState])
 
+  useEffect(() => {
+    if (events) {
+      const newCal = [...cal]
+      setCal(
+        newCal.map((day) => ({
+          ...day,
+          events: events.filter(
+            (event) =>
+              dayjs(event.start).format('DD-MM-YY') ===
+              day.date.format('DD-MM-YY')
+          ),
+        }))
+      )
+    }
+  }, [events])
+
   return {
     cal,
     currentMonthNum: localState?.month,
@@ -104,6 +123,8 @@ export default function useCalendar() {
     previousMonth,
     currentMonth,
     isMobile,
-    isAdmin:session?.user?.profiles.find((profile:string)=> profile.match(/bureau|coach|com|fest/))
+    isAdmin: session?.user?.profiles.find((profile: string) =>
+      profile.match(/bureau|coach|com|fest/)
+    ),
   }
 }

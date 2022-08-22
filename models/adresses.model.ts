@@ -1,7 +1,7 @@
 import { Schema, model, models } from 'mongoose'
 import { addressInterface } from '../types/address.interface'
 
-const adressSchema = new Schema<addressInterface>({
+export const adressSchema = new Schema<addressInterface>({
     lat: Number,
     lon: Number,
     label: String,
