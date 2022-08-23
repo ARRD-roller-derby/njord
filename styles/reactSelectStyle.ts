@@ -7,7 +7,7 @@ const reactSelectStyle = {
       cursor: 'pointer',
       margin: '3px',
       width: 'calc(100% - 6px)',
-      padding: 20,
+      padding:5,
       zIndex: 10,
     }
   },
@@ -66,6 +66,7 @@ const reactSelectStyle = {
     background: 'var(--color-arrd)',
     color: 'white',
     fontSize: '12px',
+    padding: '5px'
   }),
   multiValueLabel: (provided: any) => ({
     ...provided,

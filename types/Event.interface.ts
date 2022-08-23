@@ -1,4 +1,5 @@
 import { addressInterface } from './address.interface'
+import { EventType } from './EventType.enum';
 
 export interface EventInterface {
   _id: string
@@ -13,13 +14,14 @@ export interface EventInterface {
   cancel: boolean
   guests: Array<string>
   leaguesGuest: Array<string>
-  type: string
+  type: EventType
   items: Array<string>
   requirements: Array<string>
   attendees: Array<AttendeesEventInterface>
   address: addressInterface
   events: Array<string>
   updatedAt: Date
+  versus?:[string,string]
 }
 
 export interface AttendeesEventInterface {

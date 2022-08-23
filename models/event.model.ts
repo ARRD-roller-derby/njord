@@ -26,6 +26,7 @@ const eventSchema = new Schema<EventInterface>({
   attendees:[attendees],
   events:[String],
   address: adressSchema,
+  versus:[String]
 })
 
 const Event = models.events || model('events', eventSchema)

@@ -2,6 +2,7 @@ import classes from './Calendar.module.css'
 import { CalDayInterface } from '../../../types/CalDay.interface'
 import CalendarDay from '../CalendarDay/CalendarDay'
 import { EventInterface } from '../../../types/Event.interface'
+import EventCreateForm from '../../Events/EventCreateForm/EventCreateForm'
 
 interface props {
   readonly cal: Array<any>
@@ -12,8 +13,10 @@ interface props {
   readonly isMobile: boolean
   readonly isAdmin: boolean
   readonly setPopin: Function
-  readonly popin: EventInterface|null
+  readonly refetch: Function
+  readonly popin: EventInterface | 'create' | null
 }
+
 export default function CalendarView({
   cal,
   currentMonthNum,
@@ -23,18 +26,14 @@ export default function CalendarView({
   isMobile,
   isAdmin,
   setPopin,
-  popin
+  refetch,
+  popin,
 }: props) {
-
-  //TODO
-
-  /**
-   * la popin peut être create, ou un shutter si events dedans, donc 2 conditions
-   * ou type comme condition
-   */
   return (
     <div className={classes.container}>
-      {/** AJOUTER LA MODALE */}
+      {typeof popin === 'string' && popin === 'create' && (
+        <EventCreateForm onClose={() => setPopin(null)} refetch={refetch}/>
+      )}
       <h1 className={classes.title}>{currentMonth}</h1>
       <div className={classes.calendar} data-ismobile={isMobile}>
         {[
@@ -51,12 +50,17 @@ export default function CalendarView({
           </div>
         ))}
         {cal.map((day: CalDayInterface) => (
-          <CalendarDay day={day} setPopin={setPopin} currentMonthNum={currentMonthNum} key={day.day.toString()}/>
+          <CalendarDay
+            day={day}
+            setPopin={setPopin}
+            currentMonthNum={currentMonthNum}
+            key={day.day.toString()}
+          />
         ))}
       </div>
       <div className={classes.buttons}>
         <button onClick={() => previousMonth()}>précedent</button>
-        {isAdmin && <button onClick={() => console.log('this button is a component')}>+</button>}
+        {isAdmin && <button onClick={() => setPopin('create')}>+</button>}
         <button onClick={() => nextMonth()}>suivant</button>
       </div>
     </div>

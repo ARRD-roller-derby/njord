@@ -11,5 +11,5 @@ interface Props {
 export default function Calendar(props:Props) {
   const useProps = useCalendar(props)
 
-  return <CalendarView {...useProps} />
+  return <CalendarView {...props} {...useProps} />
 }

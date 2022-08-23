@@ -29,9 +29,9 @@ export default function useCalendar({ setBetween, events }: Props) {
     isMobile = useIsMobile()
 
   function createCalendar() {
-    const thisMonth = dayjs().month(localState.month),
-      firstDay = dayjs(thisMonth).add(localState.year, 'year').startOf('month'),
-      lastDay = dayjs(thisMonth).add(localState.year, 'year').endOf('month'),
+    const thisMonth = dayjs().month(localState.month || dayjs(dayjs().month())),
+      firstDay = dayjs(thisMonth).add(localState.year || 0, 'year').startOf('month'),
+      lastDay = dayjs(thisMonth).add(localState.year || 0, 'year').endOf('month'),
       firstCalDay = firstDay.subtract(
         firstDay.day() === 0 ? 0 : firstDay.day() - 1,
         'day'
