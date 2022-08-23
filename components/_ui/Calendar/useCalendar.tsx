@@ -24,6 +24,7 @@ export default function useCalendar({ setBetween, events }: Props) {
       'njord_yearMonth'
     ),
     [cal, setCal] = useState<Array<CalDayInterface>>([]),
+    [popin,setPopin] = useState<EventInterface|'create'|null>(null),
     [currentMonth, setCurrentMonth] = useState<string>(''),
     isMobile = useIsMobile()
 
@@ -121,6 +122,8 @@ export default function useCalendar({ setBetween, events }: Props) {
     currentMonthNum: localState?.month,
     nextMonth,
     previousMonth,
+    popin,
+    setPopin,
     currentMonth,
     isMobile,
     isAdmin: session?.user?.profiles.find((profile: string) =>

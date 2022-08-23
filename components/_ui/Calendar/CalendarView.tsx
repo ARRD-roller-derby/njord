@@ -1,6 +1,6 @@
 import classes from './Calendar.module.css'
 import { CalDayInterface } from '../../../types/CalDay.interface'
-import dayjs from 'dayjs'
+import CalendarDay from '../CalendarDay/CalendarDay'
 import { EventInterface } from '../../../types/Event.interface'
 
 interface props {
@@ -11,7 +11,8 @@ interface props {
   readonly previousMonth: Function
   readonly isMobile: boolean
   readonly isAdmin: boolean
-  readonly events: Array<EventInterface>
+  readonly setPopin: Function
+  readonly popin: EventInterface|null
 }
 export default function CalendarView({
   cal,
@@ -20,11 +21,20 @@ export default function CalendarView({
   currentMonth,
   previousMonth,
   isMobile,
-  events,
-  isAdmin
+  isAdmin,
+  setPopin,
+  popin
 }: props) {
+
+  //TODO
+
+  /**
+   * la popin peut être create, ou un shutter si events dedans, donc 2 conditions
+   * ou type comme condition
+   */
   return (
     <div className={classes.container}>
+      {/** AJOUTER LA MODALE */}
       <h1 className={classes.title}>{currentMonth}</h1>
       <div className={classes.calendar} data-ismobile={isMobile}>
         {[
@@ -41,20 +51,7 @@ export default function CalendarView({
           </div>
         ))}
         {cal.map((day: CalDayInterface) => (
-          <div
-            key={day.date.format('LL')}
-            className={classes.day}
-            data-currentmonth={day.month === currentMonthNum}
-          >
-            <div
-              className={classes.dayNum}
-              data-today={
-                day.date.format('DD-MM-YY') == dayjs().format('DD-MM-YY')
-              }
-            >
-              {day.date.format('D')}
-            </div>
-          </div>
+          <CalendarDay day={day} setPopin={setPopin} currentMonthNum={currentMonthNum} key={day.day.toString()}/>
         ))}
       </div>
       <div className={classes.buttons}>

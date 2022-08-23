@@ -7,8 +7,9 @@ interface Props {
   readonly events: Array<EventInterface>
   readonly setBetween: Function 
 }
+
 export default function Calendar(props:Props) {
   const useProps = useCalendar(props)
 
-  return <CalendarView events={props.events} {...useProps} />
+  return <CalendarView {...useProps} />
 }
