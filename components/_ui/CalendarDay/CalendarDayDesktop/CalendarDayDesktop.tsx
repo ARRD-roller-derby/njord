@@ -19,6 +19,7 @@ export default function CalendarDayDesktop({
     <div
       className={classes.day}
       data-currentmonth={day.month === currentMonthNum}
+      onClick={()=>setPopin(day.date)}
     >
       <div
         className={classes.dayNum}

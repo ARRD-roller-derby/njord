@@ -10,10 +10,12 @@ const localization = new Schema<LocalizationItemInterface>({
 const itemSchema = new Schema<ItemInterface>({
   name: String,
   picture_url: String,
-  owner: String,
+  ownerId: String,
   ownerType: String,
   localization,
 })
+
+itemSchema.index({name: 'text'})
 
 const Item = models.items || model('items', itemSchema)
 
@@ -26,5 +28,7 @@ localization.pre('save', function (next) {
   this.updatedAt = new Date()
   next()
 })
+
+Item.createIndexes()
 
 export default Item

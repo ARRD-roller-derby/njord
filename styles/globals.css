@@ -283,6 +283,7 @@ input {
   transition: 200ms ease-in-out;
   outline: none;
   font-size: 14px;
+  box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.25);
 }
 
 input:focus {

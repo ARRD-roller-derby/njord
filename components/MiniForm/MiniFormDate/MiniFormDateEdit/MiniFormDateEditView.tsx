@@ -1,6 +1,5 @@
 import classes from './MiniFormDateEdit.module.css'
 import DatePicker from "react-datepicker";
-
 interface props {
   readonly value: Date
   readonly setValue: Function
@@ -15,6 +14,8 @@ export default function MiniFormDateEditView({
       <DatePicker
         selected={value}
         showYearDropdown
+        locale="fr"
+        dateFormat="dd/MM/yyyy"
         yearDropdownItemNumber={15}
         scrollableYearDropdown
         onChange={(select)=>setValue(select)}

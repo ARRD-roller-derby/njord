@@ -8,5 +8,6 @@ export const pageTitle = {
   "/profile": "Mon profile",
   "/notifications": "Notifications",
   "/teams": "Mes équipes",
-  "/adresses": "Mes adresses"
+  "/adresses": "Mes adresses",
+  "/stuff": "Inventaire"
 }

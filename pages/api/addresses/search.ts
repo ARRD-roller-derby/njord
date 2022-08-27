@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { bano } from '../../../datasources/bano'
 import validator from 'validator';
+import Address from '../../../models/adresses.model';
 
 interface result {
   address:string;
@@ -17,18 +18,42 @@ export default async function searchAddress(req: NextApiRequest, res: NextApiRes
 
   if (!session) return res.status(403).send('non autorisé')
 
-  if(!req.body.search)return res.status(400).send('aucun critère de recherche')
-  
-  const {data} = await bano.get(validator.escape(req.body.search))
+  if(!req.body.search && !req.body.withSaveAddresses)return res.status(400).send('aucun critère de recherche')
+
+  if(!req.body.search && req.body.withSaveAddresses){
+    return res.json(await Address.find({
+      ownerId: session.user._id,
+      $limit: 8
+    }));
+  }
+
+  const search = validator.escape(req.body.search)
+  const response = [];
+  if(req.body.withSaveAddresses){
+    const myAdresses = await Address.find({
+      ownerId: session.user._id,
+      $text:{
+        $search:search
+      },
+      $limit: 5
+    })
+    response.push(...myAdresses);
+  }
+
+  const {data} = await bano.get(search)
 
   if(!data && data?.features) return res.json(data)
 
-  res.json(data.features.map(({properties,geometry}):result => ({
-      address: properties.name,
-      zipcode: properties.postcode,
-      lat: geometry?.coordinates.at(),
-      lon: geometry?.coordinates.at(-1),
-      city: properties.city,
-      importance: properties.importance
-    })).sort((a:result,b:result)=> b.importance - a.importance))
+  const banoAddresses = data.features.map(({properties,geometry}):result => ({
+    address: properties.name,
+    zipcode: properties.postcode,
+    lat: geometry?.coordinates.at(),
+    lon: geometry?.coordinates.at(-1),
+    city: properties.city,
+    importance: properties.importance
+  })).sort((a:result,b:result)=> b.importance - a.importance)
+
+  response.push(...banoAddresses);
+
+  res.json(response);
 }

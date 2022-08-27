@@ -1,12 +1,7 @@
 import { UserInterface } from '../../../types/User.interface'
 import MiniForm from '../../MiniForm/MiniForm/MiniForm'
-import LabeledBlock from '../../_ui/LabeledBlock/LabeledBlock'
 import MiniFormStringEdit from '../../MiniForm/MiniFormString/MiniFormStringEdit/MiniFormStringEdit'
 import MiniFormStringRead from '../../MiniForm/MiniFormString/MiniFormStringRead/MiniFormStringRead'
-import MiniFormSelect from '../../MiniForm/MiniFormSelect/MiniFormSelect'
-import { Pronoun } from '../../../types/Pronoun.enum'
-import MiniFormDateRead from '../../MiniForm/MiniFormDate/MiniFormDateRead/MiniFormDateRead';
-import MiniFormDateEdit from '../../MiniForm/MiniFormDate/MiniFormDateEdit/MiniFormDate'
 
 interface props {
   readonly user: UserInterface

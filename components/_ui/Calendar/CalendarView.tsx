@@ -3,6 +3,7 @@ import { CalDayInterface } from '../../../types/CalDay.interface'
 import CalendarDay from '../CalendarDay/CalendarDay'
 import { EventInterface } from '../../../types/Event.interface'
 import EventCreateForm from '../../Events/EventCreateForm/EventCreateForm'
+import dayjs from 'dayjs';
 
 interface props {
   readonly cal: Array<any>
@@ -14,7 +15,7 @@ interface props {
   readonly isAdmin: boolean
   readonly setPopin: Function
   readonly refetch: Function
-  readonly popin: EventInterface | 'create' | null
+  readonly popin: string | null
 }
 
 export default function CalendarView({
@@ -31,8 +32,8 @@ export default function CalendarView({
 }: props) {
   return (
     <div className={classes.container}>
-      {typeof popin === 'string' && popin === 'create' && (
-        <EventCreateForm onClose={() => setPopin(null)} refetch={refetch}/>
+      {popin && (
+        <EventCreateForm defaultDate={popin} onClose={() => setPopin(null)} refetch={refetch}/>
       )}
       <h1 className={classes.title}>{currentMonth}</h1>
       <div className={classes.calendar} data-ismobile={isMobile}>
@@ -54,13 +55,13 @@ export default function CalendarView({
             day={day}
             setPopin={setPopin}
             currentMonthNum={currentMonthNum}
-            key={day.day.toString()}
+            key={day.date.toString()}
           />
         ))}
       </div>
       <div className={classes.buttons}>
         <button onClick={() => previousMonth()}>précedent</button>
-        {isAdmin && <button onClick={() => setPopin('create')}>+</button>}
+        {isAdmin && <button onClick={() => setPopin(new Date())}>+</button>}
         <button onClick={() => nextMonth()}>suivant</button>
       </div>
     </div>

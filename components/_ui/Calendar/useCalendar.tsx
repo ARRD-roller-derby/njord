@@ -24,7 +24,7 @@ export default function useCalendar({ setBetween, events }: Props) {
       'njord_yearMonth'
     ),
     [cal, setCal] = useState<Array<CalDayInterface>>([]),
-    [popin,setPopin] = useState<EventInterface|'create'|null>(null),
+    [popin,setPopin] = useState<string|null>(null),
     [currentMonth, setCurrentMonth] = useState<string>(''),
     isMobile = useIsMobile()
 

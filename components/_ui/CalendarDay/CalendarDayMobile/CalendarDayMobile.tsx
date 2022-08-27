@@ -13,6 +13,7 @@ export default function CalendarDayMobile({ currentMonthNum, day,setPopin }: pro
     <div
       className={classes.day}
       data-currentmonth={day.month === currentMonthNum}
+      onClick={day.events.length === 0 ?()=>setPopin(day.date):()=>console.log('ouvre un SHUTTER avec les events')}
     >
       <div
         className={classes.dayNum}

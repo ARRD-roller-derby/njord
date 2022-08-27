@@ -37,7 +37,6 @@ const reactSelectStyle = {
     color: `var(${state.hover ? '--color-arrd-light' : '--color-arrd'})`,
     padding: '0 5px',
     cursor: 'pointer',
-    zIndex: 10,
   }),
   valueContainer: (provided: any, state: any) => ({
     ...provided,
@@ -56,7 +55,7 @@ const reactSelectStyle = {
     margin: '0',
     padding: '0',
     background: 'black',
-    zIndex: 200,
+    zIndex: 500,
     fontSize: '13px',
     borderRadius: '3px',
     border: 'none',

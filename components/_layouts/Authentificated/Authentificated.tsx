@@ -17,7 +17,7 @@ export default function AuthentificatedLayout({ children, title }: props) {
   const { isMobile, session } = useAuthentificated()
 
   return session ? (
-    <div className={classes.container}>
+    <div className={classes.container} data-color-mode="dark">
       <Head>
         <title>{title && `${title} |`}Njörd</title>
         <meta name="description" content="Conçu par le ARRD" />

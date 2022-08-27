@@ -1,0 +1,35 @@
+// Vitest Snapshot v1
+
+exports[`<MiniFormAddressRead /> > Check snapshot 1`] = `
+<DocumentFragment>
+  <span
+    class="_empty_xerbv_1"
+  >
+    (vide)
+  </span>
+</DocumentFragment>
+`;
+
+exports[`<MiniFormAddressRead /> > Check snapshot with value 1`] = `
+<DocumentFragment>
+  <div
+    class="_container_xerbv_5"
+  >
+    <div
+      class="my address"
+    >
+      my address
+    </div>
+    <div
+      class="Rue du crime"
+    >
+      Rue du crime
+    </div>
+    <div
+      class="Gotham City"
+    >
+      010101 - Rue du crime
+    </div>
+  </div>
+</DocumentFragment>
+`;
