@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import Error from '../../types/error.interface'
+import LoaderWheel from '../_ui/LoaderWheel/LoaderWheel'
 
 
 export default function useFetch<T>(
@@ -23,9 +24,12 @@ export default function useFetch<T>(
       const { data: responseData } = await toast.promise(
         axios.post('/api/' + url, newBody || body),
         {
-          pending: 'chargement',
-          success: 'OK 👌',
-          error: 'Un problème est survenue !',
+          pending: {render:<LoaderWheel/>},
+          error: {
+            render({data}){
+              return data?.response?.data || data.message
+            }
+          }
         },
         { toastId: url }
       )

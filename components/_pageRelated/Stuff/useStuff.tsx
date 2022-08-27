@@ -1,4 +1,3 @@
-import { addressInterface } from '../../../types/address.interface'
 import useSilentDBSync from '../../_hooks/useSilentDBSync'
 import { useState } from 'react'
 import { ItemInterface } from '../../../types/items.interface'
@@ -23,7 +22,7 @@ export default function useStuff() {
     items,
     loading,
     reSync,
-    openPopin: (item: addressInterface) => setItemForPopin(item),
+    openPopin: setItemForPopin,
     closePopin: () => setItemForPopin(undefined),
     itemForPopin,
   }

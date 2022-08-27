@@ -5,8 +5,15 @@
   align-items: center;
 }
 
-.addresses {
+.items {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+}
+
+@media screen and (max-width: 500px){
+  .items{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+  }
 }

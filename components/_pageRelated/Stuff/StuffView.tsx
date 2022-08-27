@@ -4,6 +4,8 @@ import PageActions from '../../_ui/PageActions/PageActions'
 import LoaderWheel from '../../_ui/LoaderWheel/LoaderWheel'
 import { ItemInterface } from '../../../types/items.interface'
 import AddItemButton from '../../Item/AddItemButton/AddItemButton'
+import ItemCard from '../../_ui/ItemCard/ItemCard'
+import ItemPopin from '../../Item/ItemPopin/ItemPopin'
 
 interface props {
   readonly items: Array<ItemInterface>
@@ -24,13 +26,15 @@ export default function StuffView({
 }: props) {
   return (
     <AuthentificatedLayout>
+      <ItemPopin item={itemForPopin} setClose={closePopin} reSync={reSync}/>
       <PageActions>
         <AddItemButton reSync={reSync}/>
       </PageActions>
       <div className={classes.container}>
         {loading && <LoaderWheel />}
-        <div className={classes.addresses}>
+        <div className={classes.items}>
           {items && items.length === 0 && <div>Aucun objet.</div>}
+          {(!loading && items) && items.map((item)=><ItemCard  openPopin={openPopin} key={item.name} item={item}/>)}
         </div>
       </div>
     </AuthentificatedLayout>

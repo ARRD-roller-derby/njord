@@ -6,8 +6,9 @@ import {
 import useMiniForm from './useMiniForm';
 import MiniFormView from './MiniFormView';
 
-interface props {
+interface Props {
   readonly user: UserInterface
+  readonly model:any
   readonly field: string
   readonly uri: string
   readonly label?: string
@@ -15,29 +16,13 @@ interface props {
   readonly onlyAdmin?: boolean
   readonly editField: ReactElement
   readonly readField: ReactElement
-  readonly profiles?: Array<string>
+  readonly profiles?: boolean | Array<string>
 }
 
-export default function MiniForm({
-  user,
-  field,
-  label,
-  uri,
-  reSync,
-  onlyAdmin,
-  profiles,
-  editField,
-  readField,
-}: props) {
+export default function MiniForm(props: Props) {
   
-  const useProps = useMiniForm({  user,
-    field,
-    uri,
-    profiles,
-    reSync,
-    onlyAdmin}),
-    props = {...useProps,user,label,editField,readField}
+  const useProps = useMiniForm(props);
 
-  return <MiniFormView {...props}/>
+  return <MiniFormView {...props} {...useProps}/>
 }
 

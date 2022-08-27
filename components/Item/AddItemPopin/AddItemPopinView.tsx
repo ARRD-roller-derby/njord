@@ -3,7 +3,7 @@ import FullscreenModale from '../../_ui/FullscreenModale/FullscreenModale'
 import LabeledBlock from '../../_ui/LabeledBlock/LabeledBlock'
 import ReactSelect from 'react-select'
 import reactSelectStyle from '../../../styles/reactSelectStyle'
-import { ItemOnwerType } from '../../../types/items.interface';
+import { ItemOwnerType } from '../../../types/items.interface';
 
 interface Props {
   readonly closePopin: Function
@@ -39,17 +39,17 @@ export default function AddItemPopinView({
               styles={reactSelectStyle}
               defaultValue={{
                 label: 'moi',
-                value: ItemOnwerType.user,
+                value: ItemOwnerType.user,
               }}
               onChange={(choice)=>setType(choice.value)}
               options={[
                 {
                   label: 'moi',
-                  value: ItemOnwerType.user,
+                  value: ItemOwnerType.user,
                 },
                 {
                   label: 'ma league',
-                  value: ItemOnwerType.league
+                  value: ItemOwnerType.league
                 },
               ]}
             />

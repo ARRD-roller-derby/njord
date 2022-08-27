@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: var(--color-bg-dark);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  flex-basis: 150px;
+  cursor: pointer;
+  justify-content: flex-end;
+}
+
+.name {
+  font-size: 16px;
+  color: var(--color-tierce);
+  text-align: center;
+}
+
+.owner {
+  text-align: center;
+}
+
+.name::first-letter {
+  text-transform: uppercase;
+}
+
+
+.localization {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}

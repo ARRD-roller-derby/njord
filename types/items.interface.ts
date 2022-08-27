@@ -4,7 +4,7 @@ export interface ItemInterface {
   _id: Types.ObjectId
   name: string
   picture_url?: string
-  ownerType: ItemOnwerType
+  ownerType: ItemOwnerType
   ownerId: String
   localization: LocalizationItemInterface
   updatedAt: Date
@@ -17,7 +17,7 @@ export interface LocalizationItemInterface {
   updatedAt: Date
 }
 
-export enum ItemOnwerType {
+export enum ItemOwnerType {
   user='user',
   league='league'
 }

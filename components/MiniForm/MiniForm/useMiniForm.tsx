@@ -4,15 +4,17 @@ import { useState, useEffect, SyntheticEvent, useMemo } from 'react';
 import usePost from '../../_hooks/usePost'
 
 interface props {
+  readonly model: any
   readonly user: UserInterface
   readonly field: string
   readonly uri: string
   readonly reSync: Function
   readonly onlyAdmin?: boolean
-  readonly profiles: Array<String>
+  readonly profiles?: boolean | Array<String>
 }
 
 export default function useMiniForm({
+  model,
   user,
   field,
   uri,
@@ -20,28 +22,29 @@ export default function useMiniForm({
   onlyAdmin,
   profiles,
 }: props) {
-  const [value, setValue] = useState<string>(user[field]),
+  const [value, setValue] = useState<string>(model[field]),
     [editMode, setEditMode] = useState<boolean>(false),
     { post, error, data } = usePost(uri),
     // si !onlyAdmin, l'user peut, sinon,faut avoir le profil. (en dehors d'admin, faut être de la même league)
-    canIMakeThis = useCanIMakeThis(user._id, profiles, onlyAdmin),
+    canIMakeThis = useCanIMakeThis(user._id, profiles || false, onlyAdmin),
     valueForRead = useMemo(()=>{ field.split('.').reduce((acc, key) => acc?.[key], { ...user })
     },[user]);
 
   function handleSubmit(e: SyntheticEvent) {
     e.preventDefault()
     setEditMode(false)
-    post({ userId: user._id, field, value })
+    //userId is relicat, use id for other model
+    post({ userId: model._id, field, value,id:model._id })
   }
 
   function handleReset() {
-    setValue(user[field])
+    setValue(model[field])
     setEditMode(false)
   }
 
   useEffect(() => {
     if (error) {
-      setValue(user[field])
+      setValue(model[field])
     }
   }, [error])
 

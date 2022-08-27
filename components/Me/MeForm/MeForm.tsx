@@ -13,6 +13,7 @@ export default function MeForm({ user, reSync, uri }: props) {
     <>
       <MiniForm
         label="prénom"
+        model={user}
         user={user}
         field="name"
         uri={uri}
@@ -22,6 +23,7 @@ export default function MeForm({ user, reSync, uri }: props) {
       />
       <MiniForm
         label="nom"
+        model={user}
         user={user}
         field="lastname"
         uri={uri}

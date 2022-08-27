@@ -33,7 +33,6 @@ export default function UserPopinView({ user, uri, close, reSync }: props) {
               />
             </h1>
           </Link>
-
           <UserBlockIndentity user={user} uri={uri} reSync={reSync} />
           <UserBlockContact user={user} uri={uri} reSync={reSync} />
           <UserBlockDerby user={user} uri={uri} reSync={reSync} />

@@ -24,7 +24,11 @@ export default function useDBSync<T>(
         axios.post('/api/' + url, newBody || body),
         {
           pending: 'Synchronisation',
-          error: 'Un problème est survenue !',
+          error: {
+            render({data}){
+              return data?.response?.data || data.message
+            }
+          }
         },
         { toastId: 'synchro' }
       )

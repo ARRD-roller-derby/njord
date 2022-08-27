@@ -13,6 +13,9 @@ export default async function items(req: NextApiRequest, res: NextApiResponse) {
       ownerId: session.user._id
     },
     {
+      ownerId: session.user?.league?.id
+    },
+    {
       'localization.type':'user',
       'localization.id':session.user._id,
     }

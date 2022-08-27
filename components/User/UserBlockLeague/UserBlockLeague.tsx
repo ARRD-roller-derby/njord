@@ -17,6 +17,7 @@ export default function UserBlockLeague({ user, reSync, uri }: props) {
       <MiniForm
         onlyAdmin
         label="League"
+        model={user}
         user={user}
         field="league"
         uri={uri}
@@ -28,6 +29,7 @@ export default function UserBlockLeague({ user, reSync, uri }: props) {
         onlyAdmin
         profiles={['bureau']}
         label="profils"
+        model={user}
         user={user}
         field="profiles"
         uri={uri}

@@ -18,6 +18,7 @@ export default function UserBlockIndentity({ user, reSync, uri }: props) {
     <LabeledBlock title="identité">
       <MiniForm
         label="prénom"
+        model={user}
         user={user}
         field="name"
         uri={uri}
@@ -27,6 +28,7 @@ export default function UserBlockIndentity({ user, reSync, uri }: props) {
       />
       <MiniForm
         label="nom"
+        model={user}
         user={user}
         field="lastname"
         uri={uri}
@@ -36,6 +38,7 @@ export default function UserBlockIndentity({ user, reSync, uri }: props) {
       />
       <MiniForm
         label="pronom"
+        model={user}
         user={user}
         field="pronoun"
         uri={uri}
@@ -53,6 +56,7 @@ export default function UserBlockIndentity({ user, reSync, uri }: props) {
       />
       <MiniForm
         label="Date de naissance"
+        model={user}
         user={user}
         field="birthDate"
         uri={uri}
