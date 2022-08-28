@@ -11,6 +11,7 @@ const attendees = new Schema<AttendeesEventInterface>({
 const eventSchema = new Schema<EventInterface>({
   start: Date,
   end: Date,
+  title:String,
   leagueId:String,
   hourStart:String,
   hourEnd:String,

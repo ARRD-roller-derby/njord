@@ -71,7 +71,7 @@ export default async function sendLeagueRequest(
     requestedUsers.map((user) => ({
       userId: user._id,
       value: {
-        name:myName,
+        name:userNameRender(user),
         shortName: session.user.league.shortName,
         leagueId: session.user.league.id,
         subType: requestType.league_join,

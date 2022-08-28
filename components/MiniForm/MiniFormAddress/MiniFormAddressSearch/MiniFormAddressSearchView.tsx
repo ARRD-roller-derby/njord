@@ -35,7 +35,7 @@ export default function MiniFormAddressSearchView({
           {addresses.map((address: any) => (
             <div
               onClick={() => handleSelect(address)}
-              key={address.address + address.importance}
+              key={address._id || address.address + address.importance}
               className={classes.address}
             >
               <div className={classes.label}>{address?.label}</div>

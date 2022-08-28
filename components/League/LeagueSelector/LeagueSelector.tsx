@@ -17,6 +17,7 @@ export default function LeagueSelector({onSelect}:props) {
     noOptionsMessage: () => 'Aucune league trouvée',
     placeholder: 'Leagues...',
     onChange,
+    loadingMessage:()=>'Chargement',
     loadOptions:options,
   }
 

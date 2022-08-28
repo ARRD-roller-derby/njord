@@ -298,72 +298,32 @@ exports[`<Home /> > Check snapshot 1`] = `
         <div
           class="_container_k6biv_1"
         >
-          <h2>
-            chips
-          </h2>
           <div
-            class="_events_k6biv_7"
+            class="_container_1najf_1"
           >
             <div
-              class="_container_y01uo_1"
+              class="_noResult_1najf_8"
             >
               <div
-                class="_containerDate_y01uo_19"
+                class="_wheel_1ukrt_5"
               >
                 <div
-                  class="_date_y01uo_26"
+                  class="_border_wheel_1ukrt_1"
                 >
-                  12 août 2022
+                  <div
+                    class="_inside_wheel_1ukrt_2"
+                  >
+                    <div
+                      class="_whole_wheel_1ukrt_7"
+                    />
+                    <div
+                      class="_screw_1ukrt_4"
+                    />
+                  </div>
                 </div>
-                <div
-                  class="_relativeDate_y01uo_32"
-                >
-                  dans 5 jours
-                </div>
-              </div>
-              <div
-                class="_hour_y01uo_36"
-              >
-                de 17:00 à 19:30
-              </div>
-              <div
-                class="_address_y01uo_41"
-              >
-                5, rue Ernest Danet, 76150 Maromme
-              </div>
-              <div
-                class="_require_y01uo_46"
-              >
-                <span
-                  class="_labelRequire_y01uo_51"
-                >
-                  Requis: 
-                </span>
-                2 maillots
-              </div>
-              <div
-                class="_labelPresence_y01uo_55"
-              >
-                Je serais:
-              </div>
-              <div
-                class="_actions_y01uo_59"
-              >
-                <button>
-                  Absent
-                </button>
-                <button>
-                  NSO/SO
-                </button>
-                <button>
-                  Sur Patins
-                </button>
               </div>
             </div>
           </div>
-          <p>
-            Message si aucun event
-          </p>
         </div>
       </div>
     </main>

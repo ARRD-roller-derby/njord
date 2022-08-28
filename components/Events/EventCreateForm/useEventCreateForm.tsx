@@ -1,24 +1,25 @@
-import { useState } from 'react';
-import dayjs from 'dayjs';
+import { useState,useEffect } from 'react';
 import { EventType } from '../../../types/EventType.enum';
+import usePost from '../../_hooks/usePost';
 interface Props {
   readonly onClose: Function
   readonly refetch: Function
   readonly defaultDate: string
 }
 
-export default function useEventCreateForm({refetch,defaultDate}:Props){
-  const [event,setEvent] = useState<any>({
+export default function useEventCreateForm({refetch,onClose,defaultDate}:Props){
+  const 
+  {data,loading,post} = usePost('event/create'),
+  [event,setEvent] = useState<any>({
     type:EventType.training,
     startDate: defaultDate,
-    endDate: defaultDate
+    endDate: defaultDate,
+    visibility:'league',
+    items:[]
   })
 
-  //TODO ATTENTION, le event, contient les labels/values, c'est par un eventTYpe
-
-  //TODO effacer le endDate si pas besoin
   function setKey(key:string,value:any){
-    setEvent((prevState)=>{
+    setEvent((prevState:any)=>{
       const newState = {...prevState}
       newState[key] = value
       if(key === 'hourStart' && !newState.hourEnd ){
@@ -28,6 +29,12 @@ export default function useEventCreateForm({refetch,defaultDate}:Props){
     })
   }
 
-  console.log(event)
-  return {event,setKey}
+  useEffect(()=>{
+    if(data){
+      refetch()
+      onClose()
+    }
+  },[data])
+
+  return {event,setKey,loading,onSubmit:()=>post(event)}
 }

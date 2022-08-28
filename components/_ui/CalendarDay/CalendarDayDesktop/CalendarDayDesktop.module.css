@@ -18,7 +18,7 @@
   min-height: 80px;
 }
 
-.calendar .dayNum {
+.dayNum {
   background: black;
   font-size: 12px;
   padding: 3px;
@@ -28,4 +28,21 @@
 .dayNum[data-today='true'] {
   background: var(--color-arrd);
   color: white;
+}
+
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.event {
+  background: var(--color-second);
+  font-size: 10px;
+  text-align: center;
+  cursor: pointer
+}
+
+.event::first-letter {
+  text-transform: uppercase;
 }

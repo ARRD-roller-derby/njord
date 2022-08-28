@@ -5,7 +5,7 @@ import { MongoDb } from '../../../db/mongo.connect'
 import validator from 'validator'
 import Event from '../../../models/event.model'
 
-export default async function events(req: NextApiRequest, res: NextApiResponse) {
+export default async function eventsNext(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
   if (!session) return res.status(403).send('non autorisé')
 
@@ -13,13 +13,9 @@ export default async function events(req: NextApiRequest, res: NextApiResponse) 
 
   const OR = []
 
-  const betweenValue = req.body?.between
-      ? req.body.between
-      : [dayjs().toISOString(), dayjs().add(1, 'month').toISOString()],
-    between = {
+  const between = {
       start: {
-        $gte: validator.escape(betweenValue.at(0)),
-        $lte: validator.escape(betweenValue.at(-1)),
+        $gte: dayjs().set('hour',0).toISOString()
       },
     }
 
@@ -32,5 +28,5 @@ export default async function events(req: NextApiRequest, res: NextApiResponse) 
     )
   }
 
-  res.json(await Event.find({OR}))
+  res.json(await Event.find({OR}).sort({start: 1}).limit(10))
 }

@@ -66,7 +66,6 @@ export default function ItemPopinView({
             }
             readField={<ItemRenderType />}
           />
-          
           <ItemDeleteButton item={item} reSync={reSync} setClose={setClose}/>
         </div>
       )}

@@ -338,389 +338,494 @@ exports[`<Calendar /> > Check snapshot 1`] = `
               dimanche
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 1
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 2
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 3
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 4
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 5
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 6
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="true"
               >
                 7
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 8
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 9
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 10
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 11
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 12
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 13
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 14
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 15
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 16
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 17
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 18
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 19
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 20
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 21
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 22
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 23
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 24
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 25
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 26
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 27
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 28
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 29
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 30
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 31
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 1
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 2
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 3
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
             <div
-              class="_day_cib0g_2"
+              class="_day_4aq5m_2"
               data-currentmonth="false"
             >
               <div
-                class="_dayNum_cib0g_21"
+                class="_dayNum_4aq5m_21"
                 data-today="false"
               >
                 4
               </div>
+              <div
+                class="_events_4aq5m_33"
+              />
             </div>
           </div>
           <div

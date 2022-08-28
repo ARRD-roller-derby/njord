@@ -1,27 +1,29 @@
 import classes from './TrainingCard.module.css'
 import dayjs from 'dayjs'
+import { EventInterface } from '../../../../types/Event.interface'
 
-export default function TrainingCard({ training }) {
+interface props {
+  readonly training: EventInterface
+}
+
+export default function TrainingCard({ training }:props) {
   return (
     <div className={classes.container}>
       <div className={classes.containerDate}>
-        <div className={classes.date}>{dayjs(training.date).format('LL')}</div>
+        <div className={classes.date}>{dayjs(training.start).format('LL')}</div>
         <div className={classes.relativeDate}>
-          {dayjs(training.date).from(dayjs())}
+          {dayjs(training.start).from(dayjs())}
         </div>
       </div>
       <div className={classes.hour}>
-        de {training.startHour} à {training.endHour}
+        de {training.hourStart} à {training.hourEnd}
       </div>
-      <div className={classes.address}>5, rue Ernest Danet, 76150 Maromme</div>
-      <div className={classes.require}>
-        <span className={classes.labelRequire}>Requis{': '}</span>2 maillots
-      </div>
-      <div className={classes.labelPresence}>Je serais{':'}</div>
+      {training.address && <div className={classes.address}>{training.address.street}{', '}{training.address.zipcode} {training.address.city}</div>
+      }
+      <div className={classes.labelPresence}>Je serai{':'}</div>
       <div className={classes.actions}>
-        <button>Absent</button>
-        <button>NSO/SO</button>
-        <button>Sur Patins</button>
+      <button>Absent</button>
+        <button>Présent</button>
       </div>
     </div>
   )

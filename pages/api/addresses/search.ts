@@ -34,9 +34,8 @@ export default async function searchAddress(req: NextApiRequest, res: NextApiRes
       ownerId: session.user._id,
       $text:{
         $search:search
-      },
-      $limit: 5
-    })
+      }
+    }).limit(3)
     response.push(...myAdresses);
   }
 

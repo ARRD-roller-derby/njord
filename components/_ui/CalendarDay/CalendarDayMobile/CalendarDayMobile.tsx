@@ -6,14 +6,24 @@ interface props {
   readonly day: CalDayInterface
   readonly currentMonthNum: number
   readonly setPopin: Function
+  readonly isAdmin: boolean
 }
 
-export default function CalendarDayMobile({ currentMonthNum, day,setPopin }: props) {
+export default function CalendarDayMobile({
+  currentMonthNum,
+  day,
+  setPopin,
+  isAdmin,
+}: props) {
   return (
     <div
       className={classes.day}
       data-currentmonth={day.month === currentMonthNum}
-      onClick={day.events.length === 0 ?()=>setPopin(day.date):()=>console.log('ouvre un SHUTTER avec les events')}
+      onClick={
+        day.events.length === 0
+          ? () => setPopin(isAdmin ? day.date : undefined)
+          : () => console.log('ouvre un SHUTTER avec les events')
+      }
     >
       <div
         className={classes.dayNum}
@@ -21,6 +31,9 @@ export default function CalendarDayMobile({ currentMonthNum, day,setPopin }: pro
       >
         {day.date.format('D')}
       </div>
+      {day.events.length > 0 && (
+        <div className={classes.events}>{day.events.length}</div>
+      )}
     </div>
   )
 }

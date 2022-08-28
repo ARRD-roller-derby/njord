@@ -53,6 +53,7 @@ export default function CalendarView({
         {cal.map((day: CalDayInterface) => (
           <CalendarDay
             day={day}
+            isAdmin={isAdmin}
             setPopin={setPopin}
             currentMonthNum={currentMonthNum}
             key={day.date.toString()}

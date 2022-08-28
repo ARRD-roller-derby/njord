@@ -52,6 +52,7 @@ export default function UserBlockDerby({ user, reSync, uri }: props) {
         field="msp"
         uri={uri}
         reSync={reSync}
+        profiles={['bureau','coach']}
         editField={<MiniFormCheckboxEdit />}
         readField={<MiniFormChechboxRead />}
         onlyAdmin
@@ -63,6 +64,7 @@ export default function UserBlockDerby({ user, reSync, uri }: props) {
         field="mst"
         uri={uri}
         reSync={reSync}
+        profiles={['bureau','coach']}
         editField={<MiniFormCheckboxEdit />}
         readField={<MiniFormChechboxRead />}
         onlyAdmin

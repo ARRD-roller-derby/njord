@@ -16,7 +16,7 @@ export default function MiniFormDateEditView({
         showYearDropdown
         locale="fr"
         dateFormat="dd/MM/yyyy"
-        yearDropdownItemNumber={15}
+        yearDropdownItemNumber={50}
         scrollableYearDropdown
         onChange={(select)=>setValue(select)}
         popperClassName="datepicker"
