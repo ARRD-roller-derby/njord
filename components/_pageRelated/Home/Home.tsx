@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <AuthentificatedLayout>
       <div className={classes.container}>
-      <EventsNext/>
+      <EventsNext id='nextTraining'/>
       </div>
     </AuthentificatedLayout>
   );

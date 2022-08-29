@@ -15,7 +15,7 @@ export default async function eventsNext(req: NextApiRequest, res: NextApiRespon
 
   const between = {
       start: {
-        $gte: dayjs().set('hour',0).toISOString()
+        $gt: dayjs().set('hour',0).toISOString()
       },
     }
 
