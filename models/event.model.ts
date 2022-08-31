@@ -2,10 +2,11 @@ import { Schema, model, models } from 'mongoose'
 import { AttendeesEventInterface, EventInterface } from '../types/Event.interface';
 import { adressSchema } from './adresses.model';
 
-const attendees = new Schema<AttendeesEventInterface>({
-  id: String,
+const attendeesSchema = new Schema<AttendeesEventInterface>({
+  userId: String,
   type: String,
-  isPresent: Boolean
+  isPresent: Boolean,
+  updatedAt:Date
 });
 
 const eventSchema = new Schema<EventInterface>({
@@ -24,20 +25,23 @@ const eventSchema = new Schema<EventInterface>({
   leaguesGuest: [String],
   items:[String],
   requirements:[String],
-  attendees:[attendees],
+  attendees:[attendeesSchema],
   events:[String],
   address: adressSchema,
-  versus:[String]
+  versus:[String],
+  updatedAt: Date
 })
 
 const Event = models.events || model('events', eventSchema)
+
+export const Attendee = models.attendees || model('attendees', attendeesSchema)
 
 eventSchema.pre('save', function (next) {
   this.updatedAt = new Date()
   next()
 })
 
-attendees.pre('save', function (next) {
+attendeesSchema.pre('save', function (next) {
   this.updatedAt = new Date()
   next()
 })

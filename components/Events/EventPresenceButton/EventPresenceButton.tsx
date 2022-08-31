@@ -4,7 +4,7 @@ import { EventInterface } from '../../../types/Event.interface';
 
 interface Props {
   readonly event:EventInterface
-  readonly typePresence: 'absent'|'present'
+  readonly reSync: Function
 }
 export default function EventPresenceButton(props:Props){
   const useProps = useEventPresenceButton(props)

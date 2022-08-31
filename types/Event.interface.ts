@@ -26,7 +26,7 @@ export interface EventInterface {
 }
 
 export interface AttendeesEventInterface {
-  id: string
+  userId: string
   type: string
   updatedAt: Date
   isPresent: boolean

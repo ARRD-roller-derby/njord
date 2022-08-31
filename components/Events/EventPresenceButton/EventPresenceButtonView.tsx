@@ -1,12 +1,12 @@
-import { EventInterface } from '../../../types/Event.interface';
 import classes from './EventPresenceButton.module.css';
 
 interface Props {
-  readonly event:EventInterface
-  readonly typePresence: 'absent'|'present'
+  readonly handleSubmit: Function
+  readonly type:boolean
 }
 
-export default function EventPresenceButtonView({typePresence}:Props){
+export default function EventPresenceButtonView({handleSubmit,type}:Props){
 
-  return <button className={classes.button}>{typePresence === 'absent' ? 'absent':'présent'}</button>
+  //TODO une checkbox
+  return <div className={classes.button} onClick={()=>handleSubmit()}>{type ? 'oui':'non'}</div>
 }

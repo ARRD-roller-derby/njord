@@ -2,7 +2,6 @@ import dayjs from 'dayjs'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
-import validator from 'validator'
 import Event from '../../../models/event.model'
 
 export default async function eventsNext(req: NextApiRequest, res: NextApiResponse) {
@@ -15,8 +14,10 @@ export default async function eventsNext(req: NextApiRequest, res: NextApiRespon
 
   const between = {
       start: {
-        $gt: dayjs().set('hour',0).toISOString()
+        $gt: dayjs().format('YYYY-MM-DD'),
+        $lt: dayjs().add(1,'month').format('YYYY-MM-DD')
       },
+
     }
 
   OR.push({between,guests:session.user._id})
@@ -28,5 +29,5 @@ export default async function eventsNext(req: NextApiRequest, res: NextApiRespon
     )
   }
 
-  res.json(await Event.find({OR}).sort({start: 1}).limit(10))
+  res.json(await Event.find({$or:OR}).populate('attendees').sort({start:1}))
 }
