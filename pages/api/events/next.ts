@@ -28,6 +28,6 @@ export default async function eventsNext(req: NextApiRequest, res: NextApiRespon
       {between,leagueId: session.user?.league.id}
     )
   }
-
+  
   res.json(await Event.find({$or:OR}).populate('attendees').sort({start:1}))
 }

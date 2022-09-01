@@ -299,10 +299,13 @@ exports[`<Home /> > Check snapshot 1`] = `
           class="_container_k6biv_1"
         >
           <div
-            class="_container_1najf_1"
+            class="_container_1geaq_1"
           >
             <div
-              class="_noResult_1najf_8"
+              class="_filter_1geaq_15"
+            />
+            <div
+              class="_noResult_1geaq_8"
             >
               <div
                 class="_wheel_1ukrt_5"

@@ -16,7 +16,6 @@ export default function useEventPresenceButton({event,reSync}:Props){
   
     function changeType(){
     const myPresence = event.attendees?.find(attendee =>session.user._id === attendee.userId );
-    console.log(myPresence?.isPresent)
     if(myPresence){
       setType(myPresence?.isPresent)
     }else {
@@ -31,7 +30,9 @@ export default function useEventPresenceButton({event,reSync}:Props){
   }
 
   useEffect(()=>{
-    changeType()
+    if(event){
+      changeType()
+    }
   },[event])
 
   useEffect(()=>{
@@ -40,5 +41,5 @@ export default function useEventPresenceButton({event,reSync}:Props){
     }
   },[data])
 
-  return {handleSubmit,type}
+  return {handleSubmit,type,loading}
 }

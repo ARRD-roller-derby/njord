@@ -1,0 +1,15 @@
+.container {
+  display:flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.type {
+  border: 1px solid var(--color-txt);
+  padding: 8px 15px;
+
+}
+
+.container[data-type='training'] .type {
+  border: 1px solid var(--color-arrd);
+}

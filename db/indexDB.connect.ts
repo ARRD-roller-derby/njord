@@ -8,7 +8,7 @@ class MySubClassedDexie extends Dexie {
 
   constructor() {
     super('njord')
-    this.version(7).stores({
+    this.version(10).stores({
       users: '++_id,_id,email,name,lastname,mst,msp,profiles,numRoster,derbyName,pronoun,numLicence',
       leagues:'++id,_id,name,city,id_association,shortName,resume,zipCode',
       notifications: '++id,_id,text,userId,type,value,state',

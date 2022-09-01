@@ -1,3 +1,43 @@
 .button {
-  font-size: 18px
+  font-size: 20px;
+  display: flex;
+  gap: 15px;
+  margin: 10px;
+  border:1px solid var(--color-arrd);
+  padding: 5px;
+  border-radius: 5px;
+  position: relative;
+  background: var(--color-bg-dark);
+  transition: 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.button[data-presence="non"] {
+  border:1px solid var(--color-second);
+}
+
+.button[data-loading="true"] {
+  opacity: .5;
+}
+
+
+.button:before {
+  content:attr(data-presence);
+  position: absolute;
+  background: var(--color-second);
+
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  top: -5px;
+  bottom: -5px;
+  width: calc(50% + 5px);
+  left:50%;
+  border-radius: 5px;
+  transition: 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.button[data-presence="oui"]:before {
+  left:-5px;
+  background: var(--color-arrd);
 }

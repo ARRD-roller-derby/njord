@@ -18,6 +18,7 @@ export default function useSilentDBSync<T>(
     try {
       const { data: resData } = await axios.post("/api/" + url, newBody || body);
       if (JSON.stringify(resData) !== JSON.stringify(data) || resData.length === 0) {
+
         const tableAsValues = await indexDB[dbField].count();
 
         if (tableAsValues > 0) {

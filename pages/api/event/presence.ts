@@ -3,9 +3,8 @@ import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
 import validator from 'validator'
 import { pusher } from '../../../services/pusher/pusher'
-import { EventType } from '../../../types/EventType.enum'
 import User from '../../../models/user.model'
-import Event, { Attendee } from '../../../models/event.model'
+import Event from '../../../models/event.model'
 import { AttendeesEventInterface } from '../../../types/Event.interface'
 
 export default async function presence(
@@ -30,8 +29,14 @@ export default async function presence(
 
   const event = await Event.findOne({
     $or: [
-      { _id: validator.escape(req.body.eventId),leaguesGuest: session.user?.league.id },
-      { _id: validator.escape(req.body.eventId),leagueId: session.user?.league.id },
+      {
+        _id: validator.escape(req.body.eventId),
+        leaguesGuest: session.user?.league.id,
+      },
+      {
+        _id: validator.escape(req.body.eventId),
+        leagueId: session.user?.league.id,
+      },
     ],
   })
 
@@ -45,12 +50,18 @@ export default async function presence(
   )
 
   if (myPresence) {
-    event.attendees.id(myPresence._id).remove()
+    await event.attendees.id(myPresence._id).remove()
+  } else {
+    //ADD TO WALLET FOR THE FIRST 
+    const user = await User.findById(session.user._id)
+    user.wallet += 50
+    await user.save()
+    pusher.trigger(user._id + '-notification', 'message', { type: 'wallet' })
   }
 
   event.attendees.push({
     userId: session.user._id.toString(),
-    isPresent:isPresent,
+    isPresent: isPresent ? true : false,
     updatedAt: new Date(),
   })
 
