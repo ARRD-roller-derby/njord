@@ -28,6 +28,21 @@
   color: var(--color-second);
 }
 
+.label {
+  color: var(--color-tierce);
+  white-space: nowrap;
+}
+
+.label::first-letter {
+  text-transform: uppercase;
+}
+
+.localization {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 @media screen and (max-width: 550px) {
   .container {
     width: 350px;

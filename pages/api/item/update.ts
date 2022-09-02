@@ -4,6 +4,8 @@ import { MongoDb } from '../../../db/mongo.connect'
 import validator from 'validator'
 import Item from '../../../models/item.model'
 import { ItemOwnerType } from '../../../types/items.interface'
+import User from '../../../models/user.model'
+import { pusher } from '../../../services/pusher/pusher'
 
 export default async function itemUpdate(
   req: NextApiRequest,
@@ -35,6 +37,18 @@ export default async function itemUpdate(
   item[req.body.field] = validator.escape(req.body.value)
 
   await item.save()
+
+  if(session.user?.league?.id && item.ownerType === ItemOwnerType.league){
+    const users = await User.find({ 'league.id' : session.user.league.id})
+
+    users.forEach((user) => {
+      pusher.trigger(user._id + '-notification', 'message', {
+        type: 'item',
+        id: item._id,
+      })
+    })
+  }
+
 
   res.send('Objet mise à jour')
 }

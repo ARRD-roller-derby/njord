@@ -13,7 +13,7 @@ interface props {
 export default function ItemCard({ item,openPopin }: props) {
   return (
     <div className={classes.container} onClick={()=>openPopin(item)}>
-      <div className={classes.name}>{item.name}</div>
+      <div className={classes.nameContainer}>
       <div className={classes.owner}>
         {item.ownerType === ItemOwnerType.user ? (
           <Image src={IdCardSvg} width={15} height={15} alt="marqueur" />
@@ -21,9 +21,11 @@ export default function ItemCard({ item,openPopin }: props) {
           <Image src={FlagSvg} width={15} height={15} alt="marqueur" />
         )}
       </div>
+      <div className={classes.name}>{item.name}</div>
+      </div>
       <div className={classes.localization}>
         <Image src={MarkSvg} width={15} height={15} alt="marqueur" />
-        <div className="fdz">{item.localization.name}</div>
+        <div className={classes.localizationName}>{item.localization.name}</div>
       </div>
     </div>
   )

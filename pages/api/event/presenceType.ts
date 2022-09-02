@@ -14,12 +14,7 @@ export default async function presenceType(
   const session = await getSession({ req })
 
   if (!session) return res.status(403).send('non autorisé')
-  if (
-    !session.user?.profiles.find((profile: string) =>
-      profile.match(/bureau|coach|com|fest/)
-    )
-  )
-    return res.status(403).send('non autorisé')
+  
   await MongoDb()
 
   if (!req.body.eventId)

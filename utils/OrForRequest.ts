@@ -41,5 +41,10 @@ export default async function OrForRequest(session: any): Promise<Array<any>> {
     userId:session.user._id
   })
 
+  OR.push({
+    type: requestType.item,
+    'value.userId':session.user._id
+  })
+
   return OR
 }

@@ -7,6 +7,7 @@ import validator from 'validator'
 import answerLeagueForUser from '../../../services/request/answerLeagueForUser'
 import answerUserForLeague from '../../../services/request/answerUserForLeague'
 import userNameRender from '../../../utils/userNameRender'
+import answerItem from '../../../services/request/answerItem'
 
 export default async function requestAnswer(
   req: NextApiRequest,
@@ -25,6 +26,11 @@ export default async function requestAnswer(
     name = userNameRender(session.user)
 
   if (!request) return res.status(404).send("Cette demande n'existe plus")
+
+  // ITEM REQUEST
+  if (request.type === requestType.item) {
+    await answerItem(res, request, session, token, answer)
+  }
 
   // LEAGUE REQUEST
   if (request.type === requestType.league_join) {

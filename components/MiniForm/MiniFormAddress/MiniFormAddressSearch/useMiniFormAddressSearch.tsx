@@ -27,8 +27,8 @@ export default function useMiniFormAddressSearch(setValue: Function,withSaveAddr
 
   function handleSelect(address: any) {
     setStopSearch(true)
-    setValue(address);
-    setSearch(`${address.street || address.address}, ${address.zipcode} ${address.city}`)
+    setValue(address)
+    setSearch(`${address.street || address.address || ''}, ${address.zipcode} ${address.city}`)
     setAddresses([])
   }
 

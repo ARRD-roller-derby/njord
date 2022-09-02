@@ -6,19 +6,27 @@
   padding: 10px;
   border-radius: 5px;
   font-size: 12px;
-  flex-basis: 150px;
+  flex-basis: 250px;
   cursor: pointer;
   justify-content: flex-end;
 }
 
+.nameContainer {
+  display: flex;
+  align-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
 .name {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--color-tierce);
   text-align: center;
 }
 
 .owner {
   text-align: center;
+  line-height: 0;
 }
 
 .name::first-letter {

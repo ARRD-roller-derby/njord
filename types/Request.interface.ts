@@ -10,7 +10,9 @@ export interface RequestInterface {
   value: {
     shortName?:string
     leagueId?:string
+    itemId?:string
     subType?:requestType
+    userId?:string
     league?: string
     email?:string
     name?:string
