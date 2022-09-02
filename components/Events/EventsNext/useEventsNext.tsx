@@ -34,7 +34,7 @@ export default function useEventsNext(id: string) {
           acc.splice(index, 1, newSelect)
         }
         return acc
-      }, [])
+      }, []).sort((a, b) => b.start - a.start)
     }, [eventsDb]),
     [currentType, setCurrentType] = useState<{ label: string; value: string }>(),
     events = useMemo(() => eventsDb ? eventsDb.filter((event) => event.type === currentType?.value): undefined

@@ -19,7 +19,7 @@ export default function useEventPresenceType({ event, reSync }: Props) {
   function onChange(choice: { label: string; value: string }) {
     if (!loading) {
       setValue(choice)
-      post({ type: choice.value })
+      post({ type: choice.value, eventId:event._id })
     }
   }
 

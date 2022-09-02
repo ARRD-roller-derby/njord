@@ -24,7 +24,7 @@ const reactSelectStyle = {
     color: 'var(--color-txt-light)',
   }),
   indicatorSeparator: () => ({
-    width: '2px',
+    width: '0',
     height: '60%',
     background: 'var(--color-arrd)',
   }),
