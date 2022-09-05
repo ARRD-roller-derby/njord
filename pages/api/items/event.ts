@@ -5,6 +5,7 @@ import validator from 'validator'
 import Event from '../../../models/event.model'
 import Item from '../../../models/item.model'
 import { ItemInterface, ItemLocalizationType } from '../../../types/items.interface'
+import { AttendeeInterface } from '../../../types/attendee.interface'
 
 export default async function event(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -24,13 +25,13 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
       {_id:id,leagueId: session.user?.league.id}
     )
   }
-  const {address,attendees,items:eventItems} = await Event.findOne({$or:OR}).populate('attendees')
+  const {address,attendees,items:eventItems} = await Event.findOne({$or:OR}).populate('attendees items')
   const items = await Item.find({_id:{$in:eventItems}})
 
+
   function isHere(item:ItemInterface){
-    console.log(address)
     if(item.localization.type === ItemLocalizationType.user ){
-      return !!attendees.find((id:string)=>id === item.localization.id)
+      return !!attendees.find((attendee:AttendeeInterface)=>attendee.userId === item.localization.id)
     }
     if(item.localization.type === ItemLocalizationType.place ){
       const addr= `${address.street || address.address || ''}, ${address.zipcode} ${address.city}`
