@@ -31,8 +31,8 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
 
   //TODO requierement à traiter plus tard
   const event = {
-    start: startDay.toString(),
-    end: endDay.toString(),
+    start: startDay.format('YYYY-MM-DD')+'T00:00:00.000+00:00',
+    end: endDay.format('YYYY-MM-DD')+'T00:00:00.000+00:00',
     title: req.body.title  ? validator.escape(req.body.title):undefined,
     leagueId:session.user.league.id,
     hourStart:validator.escape(req.body.hourStart),

@@ -56,6 +56,10 @@
   font-size: 15px;
 }
 
+.dayString {
+  font-size: 10px;
+}
+
 .date {
   display: flex;
   flex-direction: column;

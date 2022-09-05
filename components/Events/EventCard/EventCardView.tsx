@@ -42,6 +42,9 @@ export default function EventCardView({
         {event.cancel && <div className={classes.cancel}>Annulé</div>}
         <div className={classes.containerDate}>
           <div className={classes.date} onClick={() => setShutter(event)}>
+            <div className={classes.dayString}>
+              {dayjs(event.start).format('dddd')}
+            </div>
             <div className={classes.day}>{dayjs(event.start).format('DD')}</div>
             <div className={classes.month}>
               {dayjs(event.start).format('MMMM')}
