@@ -61,7 +61,7 @@ export default function EventCardView({
         </div>
         {event.address && (
           <div className={classes.address}>
-            {event.address.street}
+            {event.address.address || event.address.street}
             {', '}
             {event.address.zipcode} {event.address.city}
           </div>
