@@ -29,7 +29,7 @@ export default function UsersWithFiltersView({
 }: props) {
   return (
     <>
-      <UserPopin setClose={closePopin} user={popin} reSync={reSync} url={url} />
+      <UserPopin setClose={closePopin} user={popin} reSync={reSync} url={url}/>
       <div className={classes.container}>
         <div className={classes.search}>
           <InputWidthCross
@@ -44,7 +44,7 @@ export default function UsersWithFiltersView({
               {users.map((user: UserInterface) => (
                 <UserCard user={user} key={user._id} openPopin={openPopin} url={url} />
               ))}
-              {users.length === 0 && <UserLeagueRequest/>}
+              {users.length === 0 && <UserLeagueRequest value={search}/>}
             </div>
           </div>
         </div>
