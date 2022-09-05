@@ -44,9 +44,12 @@ export default function EventShutterView({
                 height={20}
                 alt="icon link"
               />
+                       
             </h1>
+   
           </Link>
           <div className={classes.box}>
+         
             <Tabs>
               <Tab field="détails">
                 <EventDetailsTab
@@ -77,6 +80,7 @@ export default function EventShutterView({
             </Tabs>
           </div>
           <div className={classes.buttons}>
+          {event.cancel && <div className={classes.cancel}>Annulé</div>}
             {user.profiles.length > 0 && (
               <>
                 <EventDeleteButton

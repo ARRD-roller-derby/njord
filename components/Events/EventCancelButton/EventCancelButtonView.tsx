@@ -9,8 +9,8 @@ export default function EventCancelButtonView({ deleteEvent, loading }: Props) {
   return (
     <AutoConfirmButton
       loading={loading}
-      textConfirm="Êtes-vous sûr ?"
-      text="Annuler cette événnement"
+      textConfirm="confirmer"
+      text="Annuler cette événement"
       onClick={() => deleteEvent()}
     />
   )

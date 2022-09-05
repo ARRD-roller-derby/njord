@@ -38,7 +38,7 @@ export default function EventCardView({
         setClose={() => setShutter(null)}
         url={`/`}
       />
-      <div className={classes.container} data-ismobile={isMobileDevice}>
+      <div className={classes.container} data-ismobile={isMobileDevice} data-cancel={event.cancel}>
         {event.cancel && <div className={classes.cancel}>Annulé</div>}
         <div className={classes.containerDate}>
           <div className={classes.date} onClick={() => setShutter(event)}>
@@ -69,10 +69,10 @@ export default function EventCardView({
             {event.address.zipcode} {event.address.city}
           </div>
         )}
-        <div className={classes.actions}>
+        { !event.cancel && <div className={classes.actions}>
           <EventPresenceType event={event} reSync={reSync} />
           <EventPresenceButton event={event} reSync={reSync} />
-        </div>
+        </div> }
       </div>
     </>
   )
