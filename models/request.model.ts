@@ -4,6 +4,8 @@ import { RequestInterface } from '../types/Request.interface'
 const valueSchema = new Schema({
   shortName:String,
   leagueId:String,
+  itemId: String,
+  userId: String,
   name:String,
   league: String,
   subType: String,

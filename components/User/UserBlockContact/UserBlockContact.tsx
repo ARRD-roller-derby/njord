@@ -16,6 +16,7 @@ export default function UserBlockContact({ user, reSync, uri }: props) {
     <LabeledBlock title="coordonées">
       <MiniForm
         label="email"
+        model={user}
         user={user}
         field="email"
         uri={uri}
@@ -25,6 +26,7 @@ export default function UserBlockContact({ user, reSync, uri }: props) {
       />
       <MiniForm
         label="mobile"
+        model={user}
         user={user}
         field="phone"
         uri={uri}

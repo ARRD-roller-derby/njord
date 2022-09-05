@@ -283,10 +283,11 @@ input {
   transition: 200ms ease-in-out;
   outline: none;
   font-size: 14px;
+  box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.05);
 }
 
 input:focus {
-  box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 -3px 0 rgba(255, 255, 255, 0.1);
 }
 
 
@@ -485,11 +486,9 @@ label::first-letter {
   transition: opacity 300ms, transform 300ms;
 }
 
-
-
 .shutterSmall-enter {
   opacity: 0;
-  transform: translateY(100%);
+  transform: translateY(10%);
 }
 
 .shutterSmall-enter-active {
@@ -504,6 +503,54 @@ label::first-letter {
 
 .shutterSmall-exit-active {
   opacity: 0;
-  transform: translateY(100%);
+  transform: translateX(10%);
   transition: opacity 300ms, transform 300ms;
+}
+
+.aside-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.aside-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.aside-exit {
+  opacity: 1;
+}
+
+.aside-exit-active {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 300ms, transform 300ms;
+}
+
+
+.tab-enter {
+  opacity: 0;
+  transform: translateX(10%);
+
+}
+
+.tab-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+
+}
+
+.tab-exit {
+  opacity: 1;
+  position: relative;
+
+}
+
+.tab-exit-active {
+  opacity: 0;
+  transform: translateX(-10%);
+  transition: opacity 200ms, transform 200ms;
+  position: absolute;
 }

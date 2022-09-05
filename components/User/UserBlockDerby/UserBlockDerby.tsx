@@ -16,6 +16,7 @@ export default function UserBlockDerby({ user, reSync, uri }: props) {
     <LabeledBlock title="Derby">
       <MiniForm
         label="n° de licence"
+        model={user}
         user={user}
         field="numLicence"
         uri={uri}
@@ -25,6 +26,7 @@ export default function UserBlockDerby({ user, reSync, uri }: props) {
       />
       <MiniForm
         label="derby name"
+        model={user}
         user={user}
         field="derbyName"
         uri={uri}
@@ -35,6 +37,7 @@ export default function UserBlockDerby({ user, reSync, uri }: props) {
 
       <MiniForm
         label="n° roster"
+        model={user}
         user={user}
         field="numRoster"
         uri={uri}
@@ -44,20 +47,24 @@ export default function UserBlockDerby({ user, reSync, uri }: props) {
       />
       <MiniForm
         label="MSP"
+        model={user}
         user={user}
         field="msp"
         uri={uri}
         reSync={reSync}
+        profiles={['bureau','coach']}
         editField={<MiniFormCheckboxEdit />}
         readField={<MiniFormChechboxRead />}
         onlyAdmin
       />
       <MiniForm
         label="MST"
+        model={user}
         user={user}
         field="mst"
         uri={uri}
         reSync={reSync}
+        profiles={['bureau','coach']}
         editField={<MiniFormCheckboxEdit />}
         readField={<MiniFormChechboxRead />}
         onlyAdmin

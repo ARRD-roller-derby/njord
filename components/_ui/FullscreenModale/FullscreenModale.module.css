@@ -10,6 +10,7 @@
   right: 0;
   top: 0;
   z-index: 100;
+
 }
 
 .modale {
@@ -20,6 +21,7 @@
   flex-direction: column;
   gap: 10px;
   margin: 15px;
+  max-height: 90vh;
 }
 
 .close {

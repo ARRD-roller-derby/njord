@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function useAddAddress() {
+export default function useAddAddressButton() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return {

@@ -41,6 +41,4 @@ export default async function updateField(
     typeof value === 'string' ? validator.escape(value) : value
   await userToEdit.save()
   res.send(userToEdit)
-
-  res.send('Mise à jour effectuée')
 }

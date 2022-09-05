@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 export default function useCanIMakeThis(
   id: string,
-  profiles: undefined | Array<String>,
+  profiles: boolean | Array<String>,
   onlyProfile?: boolean
 ):boolean {
   const { data: session } = useSession(),
@@ -11,19 +11,21 @@ export default function useCanIMakeThis(
 
   function authMe() {
     if (session.isAdmin) return setyouCan(true)
-
     //User can edit your field, admin can't. But i can't if onlyAdmin
     if (id === session.user._id && !onlyProfile) return setyouCan(true)
 
-    //league can update field
-    if (profiles)
+    //All profile
+    if(typeof profiles === 'boolean' && profiles === true && session.user.profiles.length > 0){
+      return setyouCan(true)
+    }
+
+    if (Array.isArray(profiles) )
       return setyouCan(
         !!session.user.profiles.find(
-          (profile: string) => !!profiles.find((it: string) => it === profile)
+          (profile: string) => !!profiles.includes(profile)
         )
       )
 
-    // I am admin
     return setyouCan(false)
   }
 

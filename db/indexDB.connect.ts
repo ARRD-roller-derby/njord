@@ -8,15 +8,18 @@ class MySubClassedDexie extends Dexie {
 
   constructor() {
     super('njord')
-    this.version(5).stores({
+    this.version(11).stores({
       users: '++_id,_id,email,name,lastname,mst,msp,profiles,numRoster,derbyName,pronoun,numLicence',
       leagues:'++id,_id,name,city,id_association,shortName,resume,zipCode',
       notifications: '++id,_id,text,userId,type,value,state',
       requests: '++id,type,token',
+      events: '++id,_id,type,title',
       addresses: '++id,label,city,isHome,isStadium',
+      items: '++_id,_id,name,owner',
     })
   }
 }
+
 const idb = new MySubClassedDexie()
 
 declare global {

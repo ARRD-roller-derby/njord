@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import Error from '../../types/error.interface';
+import LoaderWheel from '../_ui/LoaderWheel/LoaderWheel';
 
 interface Fetch {
   readonly loading: boolean;
@@ -24,9 +25,18 @@ export default function usePost(url:string):Fetch {
           body
         ),
         {
-          pending: 'En cours...',
-          success: 'OK ! 👌',
-          error: 'Un problème est survenue !'
+          pending: {render:<LoaderWheel/>},
+          success:{
+            render({data}){
+              return data.data && typeof data.data === 'string' ? data.data: 'OK ! 👌'
+            }
+          } ,
+          error: {
+            render({data}){
+
+              return data?.response?.data || data.message
+            }
+          }
         },
         {toastId: url}
       )

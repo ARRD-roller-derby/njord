@@ -13,7 +13,6 @@ export default function FullscreenModale({ children, setClose }: props) {
         <div className={classes.close} onClick={() => setClose()}>
           <div className="close" />
         </div>
-
         {children}
       </div>
     </div>

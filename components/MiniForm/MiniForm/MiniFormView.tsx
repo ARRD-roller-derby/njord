@@ -16,6 +16,7 @@ interface props {
   readonly reset: Function
   readonly canIMakeThis: boolean
   readonly openEditMode: Function
+  readonly column?:boolean
 }
 
 export default function MiniFormView({
@@ -30,11 +31,11 @@ export default function MiniFormView({
   reset,
   canIMakeThis,
   openEditMode,
+  column
 }: props) {
   return (
-    <div className={classes.container} data-edit={editMode}>
+    <div className={classes.container} data-edit={editMode} data-column={column}>
       {label && <div className={classes.label}>{label}</div>}
-
       <div className={classes.field}>
         {editMode ? (
           <form

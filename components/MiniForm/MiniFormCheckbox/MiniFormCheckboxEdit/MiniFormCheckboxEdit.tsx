@@ -1,7 +1,7 @@
 import classes from './MiniFormCheckboxEdit.module.css'
 
 interface props {
-  readonly value?: string
+  readonly value?: string|boolean
   readonly setValue?: Function
   readonly label?: string
 }

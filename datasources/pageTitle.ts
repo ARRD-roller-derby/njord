@@ -4,9 +4,11 @@ export const pageTitle = {
   "/league": "Ma league",
   "/users": "Utilisateurs",
   "/users/[id]": "Utilisateur",
+  "/event/[id]": "événement",
   "/calendrier": "Calendrier",
   "/profile": "Mon profile",
   "/notifications": "Notifications",
   "/teams": "Mes équipes",
-  "/adresses": "Mes adresses"
+  "/adresses": "Mes adresses",
+  "/stuff": "Inventaire"
 }

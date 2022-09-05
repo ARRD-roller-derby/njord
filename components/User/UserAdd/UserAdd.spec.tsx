@@ -2,17 +2,11 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { render, cleanup, renderHook, act } from '@testing-library/react'
 import UserAdd from './UserAdd'
 import useUserAdd from './useUserAdd'
+import { simpleUser } from '../../../__MOCK__/simpleUser'
 
 describe('<UserAdd />', () => {
   afterEach(cleanup)
 
-  const mockUser = {
-    _id: 'id',
-    email: 'on@ok.fr',
-    name: 'name',
-    lastname: 'lastname',
-    leagues: ['league', 'league 2'],
-  }
   it('Check snapshot', () => {
     const { asFragment } = render(
       <UserAdd defaultValue="test@test.fr" openPopin={vi.fn} reSync={vi.fn} />
@@ -34,7 +28,7 @@ describe('<UserAdd />', () => {
     
     //check if openPopin is called
     act(() => {
-      result.current.handleClose(mockUser)
+      result.current.handleClose(simpleUser)
     })
     expect(triggerOpenPopin).toBeCalled()
     expect(result.current.isOpen).toBeFalsy()

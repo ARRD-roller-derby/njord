@@ -39,12 +39,14 @@ export default function AddressPopinView({
           <div className={classes.city}>
             {address.zipcode} - {address.city}
           </div>
-          <AutoConfirmButton
-            text="supprimer cette adresse"
-            textConfirm="êtes-vous sûr de vouloir supprimer cette adresse ?"
-            loading={loading}
-            onClick={()=>deleteAddress(address)}
-          />
+          <div className={classes.delete}>
+            <AutoConfirmButton
+              text="supprimer cette adresse"
+              textConfirm="êtes-vous sûr de vouloir supprimer cette adresse ?"
+              loading={loading}
+              onClick={()=>deleteAddress(address)}
+            />
+          </div>
         </div>
       )}
     </ShutterModale>

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import Error from '../../types/error.interface'
 
-
 export default function useFetch<T>(
   url: string,
   body: object = {}
@@ -23,9 +22,12 @@ export default function useFetch<T>(
       const { data: responseData } = await toast.promise(
         axios.post('/api/' + url, newBody || body),
         {
-          pending: 'chargement',
-          success: 'OK 👌',
-          error: 'Un problème est survenue !',
+          pending: {render:<p>{'chargement...'}</p>},
+          error: {
+            render({data}){
+              return data?.response?.data || data.message
+            }
+          }
         },
         { toastId: url }
       )

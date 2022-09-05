@@ -31,4 +31,10 @@ export const MenuLinks: Array<MenuLinksInterface> = [
     title: 'Mes adresses',
     icon: '/icons/map.svg',
   },
+  {
+    href: '/stuff',
+    title: 'Mon inventaire',
+    icon: '/icons/warehouse.svg',
+  },
 ]
+

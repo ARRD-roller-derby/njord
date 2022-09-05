@@ -2,8 +2,9 @@
 const 
 withPWA = require('next-pwa'),
 withTM = require('next-transpile-modules')(['@pusher/push-notifications-web']);
+const removeImports = require('next-remove-imports')();
 
-module.exports = withPWA(withTM({
+module.exports = withPWA(withTM(removeImports({
   reactStrictMode: true,
   swcMinify: false,
   pwa: {
@@ -15,4 +16,4 @@ module.exports = withPWA(withTM({
     fallbacks: {
     }
   }
-}));
+})));

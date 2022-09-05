@@ -1,0 +1,11 @@
+.container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.container[data-inprogress='true']{
+  opacity: .5;
+}

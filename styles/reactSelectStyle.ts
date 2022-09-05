@@ -7,7 +7,7 @@ const reactSelectStyle = {
       cursor: 'pointer',
       margin: '3px',
       width: 'calc(100% - 6px)',
-      padding: 20,
+      padding:5,
       zIndex: 10,
     }
   },
@@ -24,7 +24,7 @@ const reactSelectStyle = {
     color: 'var(--color-txt-light)',
   }),
   indicatorSeparator: () => ({
-    width: '2px',
+    width: '0',
     height: '60%',
     background: 'var(--color-arrd)',
   }),
@@ -37,7 +37,6 @@ const reactSelectStyle = {
     color: `var(${state.hover ? '--color-arrd-light' : '--color-arrd'})`,
     padding: '0 5px',
     cursor: 'pointer',
-    zIndex: 10,
   }),
   valueContainer: (provided: any, state: any) => ({
     ...provided,
@@ -56,7 +55,7 @@ const reactSelectStyle = {
     margin: '0',
     padding: '0',
     background: 'black',
-    zIndex: 200,
+    zIndex: 500,
     fontSize: '13px',
     borderRadius: '3px',
     border: 'none',
@@ -66,6 +65,7 @@ const reactSelectStyle = {
     background: 'var(--color-arrd)',
     color: 'white',
     fontSize: '12px',
+    padding: '5px'
   }),
   multiValueLabel: (provided: any) => ({
     ...provided,

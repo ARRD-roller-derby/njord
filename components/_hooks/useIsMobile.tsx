@@ -1,9 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import useLocalState from './useLocalState'
 
-export default function useIsMobile():boolean {
-  const [isMobile, setIsMobile] = useState(false)
+
+export default function useIsMobile(): boolean {
+  const { localState, setLocalState } = useLocalState<{ isMobile: boolean }>(
+    { isMobile: true },
+    'njord_device'
+  )
+
   function handleResize() {
-    setIsMobile(window.innerWidth <= 600 ? true : false)
+    setLocalState({ isMobile: window.innerWidth <= 600 ? true : false })
   }
 
   useEffect(() => {
@@ -11,5 +17,5 @@ export default function useIsMobile():boolean {
     handleResize()
   }, [])
 
-  return isMobile
+  return typeof window !== "undefined" ?  localState.isMobile : false
 }

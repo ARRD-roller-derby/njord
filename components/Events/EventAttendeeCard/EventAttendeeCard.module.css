@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  gap: 10px;
+  background: var(--color-bg-light);
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.type {
+  background: var(--color-arrd);
+  color:white;
+  padding:3px;
+  border-radius: 3px;
+  align-items: center;
+}

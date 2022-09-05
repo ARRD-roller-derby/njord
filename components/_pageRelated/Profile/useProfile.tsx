@@ -18,7 +18,7 @@ export default function useProfile() {
     const myProfile = await indexDB.users
       .where({ _id: session.user._id })
       .first()
-    setMe(myProfile)
+    if(myProfile) setMe(myProfile)
   }
 
   return { uri, me, setMe, reSync }

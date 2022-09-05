@@ -1,7 +1,10 @@
 import AuthentificatedLayout from '../../_layouts/Authentificated/Authentificated';
-export default function CalendarView(){
+import Calendar from '../../Calendar/Calendar';
+import useCalendar from './useCalendar';
 
+export default function CalendarView(){
+  const props = useCalendar();
   return <AuthentificatedLayout>
-    Calendrier
+    <Calendar {...props}/>
   </AuthentificatedLayout>
 }

@@ -1,0 +1,53 @@
+
+.day {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.day[data-currentmonth='false'] {
+  opacity: 0.5;
+}
+
+.dayNum {
+  background: black;
+  font-size: 12px;
+  padding: 3px;
+  text-align: right;
+}
+
+.dayNum[data-today='true']  {
+  background: var(--color-arrd);
+  color: white;
+}
+
+.dayNum {
+  background: var(--color-second);
+  position: relative;
+  font-size: 15px;
+  padding: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.events {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  top: -4px;
+  right: -3px;
+  background: var(--color-arrd);
+  color: white;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}

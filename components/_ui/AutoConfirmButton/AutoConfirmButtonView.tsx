@@ -20,10 +20,10 @@ export default function AutoConfirmButtonView({
 }: props) {
   const ref = useRef(null)
   return (
-    <button className={classes.container} disabled={loading}>
-      <div className={classes.button} onClick={() => clickAction()}>
+    <div className={classes.container} >
+      <button className={classes.button} onClick={() => clickAction()} disabled={loading}>
         {buttonText}
-      </div>
+      </button>
       <CSSTransition
         nodeRef={ref}
         in={showconfirm}
@@ -32,10 +32,10 @@ export default function AutoConfirmButtonView({
         unmountOnExit
         mountOnEnter
       >
-        <button  ref={ref} className={classes.confirm} onClick={() => submit()}>
-          {textConfirm}
-        </button>
+        <div  ref={ref} className={classes.confirm} onClick={() => submit()} >
+          <button disabled={loading}>{textConfirm}</button>
+        </div>
       </CSSTransition>
-    </button>
+    </div>
   )
 }

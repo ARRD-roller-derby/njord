@@ -17,7 +17,7 @@ export default function usePusher(channelName: string) {
     if(channelName){
       
       const channel = pusher.subscribe(channelName)
-
+  
       channel.bind('message', 
       (data: {type:requestType,value:any, toast?: {message:string,url:string}}) => {
         if(data.toast){

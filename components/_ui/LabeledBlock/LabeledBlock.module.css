@@ -19,8 +19,9 @@
   font-size: 1em;
   position: relative;
   padding: 0 5px;
-  z-index: 1;
+  z-index: 0;
   text-shadow: 0 0 5px black;
+
 }
 
 .title:after,
