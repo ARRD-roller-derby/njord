@@ -1,0 +1,23 @@
+// Vitest Snapshot v1
+
+exports[`<MiniFormDate /> > Check snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="_input_1l1qv_1"
+  >
+    <div
+      class="react-datepicker-wrapper"
+    >
+      <div
+        class="react-datepicker__input-container"
+      >
+        <input
+          class=""
+          type="text"
+          value="31/12/2021"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

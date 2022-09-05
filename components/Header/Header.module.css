@@ -1,0 +1,11 @@
+.header {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.appName {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}

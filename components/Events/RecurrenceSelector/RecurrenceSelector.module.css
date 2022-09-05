@@ -1,0 +1,25 @@
+.recurrence {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input {
+  width: 100%;
+  max-width: inherit;
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5px;
+  align-items: center;
+}
+
+.select {
+  min-width: 150px;
+}
+
+.all {
+  font-size: 12px;
+}

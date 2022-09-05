@@ -1,0 +1,9 @@
+// Vitest Snapshot v1
+
+exports[`<LeagueRequest /> > Check snapshot 1`] = `
+<DocumentFragment>
+  <button>
+    Rejoindre une league
+  </button>
+</DocumentFragment>
+`;

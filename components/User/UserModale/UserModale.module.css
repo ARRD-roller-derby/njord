@@ -1,0 +1,14 @@
+.name {
+  color: var(--color-arrd);
+}
+
+.email {
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.deco {
+  cursor: pointer;
+  font-size: .8em;
+  color: var(--color-arrd);
+}

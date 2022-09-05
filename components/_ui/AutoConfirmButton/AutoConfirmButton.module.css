@@ -1,0 +1,17 @@
+.container {
+  position: relative;
+}
+
+.confirm{
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+  display: flex;
+  right: 0;
+  justify-content: center;
+}
+
+.confirm > button{
+  white-space: nowrap;
+  background: var(--color-second);
+}

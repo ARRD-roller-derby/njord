@@ -1,0 +1,118 @@
+.container {
+  --size-container: 20px;
+  --size-container-space: 6px;
+  --size-container-space-container: calc(
+    var(--size-container) + var(--size-container-space)
+  );
+  position: relative;
+  width: var(--size-container-space-container);
+  height: var(--size-container-space-container);
+  cursor:pointer;
+  border: 2px solid transparent;
+  transition: 300ms ease-in-out;
+}
+
+.square {
+  --size-square: calc(var(--size-container) / 2 );
+  position:absolute;
+  width: var(--size-square);
+  height: var(--size-square);
+  border: 2px solid var(--color-arrd);
+  transition: 200ms ease-in-out;
+  
+}
+
+.square[data-position*='N']{
+  top: 0;
+}
+
+.square[data-position*='S']{
+  bottom: 0;
+}
+
+.square[data-position*='O']{
+  left: 0;
+}
+
+.square[data-position*='E']{
+  right
+  : 0;
+}
+
+.square:before {
+  transition:400ms ease-in-out;
+}
+
+/**--- HOVER ---**/
+
+.container[data-isopen="true"]:hover {
+  transform: rotate(180deg);
+}
+
+.container:hover .square {
+  border-radius: 3px
+}
+
+.container:hover .square[data-position='NO']{
+  transform: translate(-1px,-1px);
+}
+
+.container:hover .square[data-position='NE']{
+  transform: translate(1px,-1px);
+}
+
+.container:hover .square[data-position='SO']{
+  transform: translate(-1px,1px);
+}
+
+.container:hover .square[data-position='SE']{
+  transform: translate(1px,1px);
+}
+
+/**--- OPEN ---**/
+
+.container[data-isopen="true"] {
+  border: 2px solid var(--color-arrd);
+  border-radius: 50%;
+}
+
+.container[data-isopen="true"] .square {
+  border-color: transparent;
+  border-radius: 50%;
+}
+
+.container[data-isopen="true"] .square:before {
+  content:'';
+  position:absolute;
+  left:-4px;
+  right:-4px;
+  height:2px;
+  background:var(--color-arrd);
+  top: calc(50% - 1px);
+}
+
+.container[data-isopen="true"] .square[data-position='NO']:before,
+.container[data-isopen="true"] .square[data-position='SE']:before{
+  transform: rotate(45deg);
+}
+
+.container[data-isopen="true"] .square[data-position='NE']:before,
+.container[data-isopen="true"] .square[data-position='SO']:before{
+  transform: rotate(-45deg);
+}
+
+.container[data-isopen="true"] .square[data-position='NO'] {
+  transform: translate(8px,8px);
+}
+
+.container[data-isopen="true"] .square[data-position='NE'] {
+  transform: translate(-8px,8px);
+}
+
+.container[data-isopen="true"] .square[data-position='SO'] {
+  transform: translate(8px,-8px);
+}
+
+.container[data-isopen="true"] .square[data-position='SE'] {
+  transform: translate(-8px,-8px);
+}

@@ -1,0 +1,11 @@
+// Vitest Snapshot v1
+
+exports[`<ErrorMsg /> > Check snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="_container_sm64p_1"
+  >
+    erreur
+  </div>
+</DocumentFragment>
+`;

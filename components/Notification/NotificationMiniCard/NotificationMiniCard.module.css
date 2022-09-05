@@ -1,0 +1,33 @@
+.container {
+  padding: 8px 5px;
+  background: var(--color-bg);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: var(--color-bg-dark);
+  padding: 10px;
+}
+
+.container[data-loading='true']{
+  opacity: .5;
+  filter: blur(2px);
+}
+
+.container[data-read='true']{
+  opacity: .5;
+}
+
+.delete {
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.date {
+  font-size: .8em;
+  text-align: right;
+}
+
+.text {
+  cursor: pointer;
+}
