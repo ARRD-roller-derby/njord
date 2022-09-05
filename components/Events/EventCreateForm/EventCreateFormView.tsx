@@ -105,6 +105,7 @@ export default function EventCreateFormView({ onClose, event, setKey,loading,onS
                 value: 'public',
               }
             ]}
+            menuPlacement='top'
             onChange={(choice) => setKey('visibility', choice.value)}
           />
         </LabeledBlock>
