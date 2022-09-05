@@ -29,12 +29,12 @@ export default async function requestAnswer(
 
   // ITEM REQUEST
   if (request.type === requestType.item) {
-    await answerItem(res, request, session, token, answer)
+    return await answerItem(res, request, session, token, answer)
   }
 
   // LEAGUE REQUEST
   if (request.type === requestType.league_join) {
-    await answerLeagueForUser(res, name, request, session, token, answer)
+    return await answerLeagueForUser(res, name, request, session, token, answer)
   }
 
   // LEAGUE INVITE USER
@@ -43,7 +43,7 @@ export default async function requestAnswer(
     request.value?.subType === requestType.league_join
   ) {
     
-    await answerUserForLeague(res,request,session,token,answer)
+    return await answerUserForLeague(res,request,session,token,answer)
   }
   res.send('OK')
 }
