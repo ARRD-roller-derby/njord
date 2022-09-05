@@ -17,7 +17,7 @@ export default async function itemUpdate(
   if (!req.body.field) return res.status(400).send('Il manque le champ')
 
   await MongoDb()
-  const item = await Item.findById(req.body.id)
+  const item = await Item.findById(validator.escape(req.body.id))
 
   if (!item) return res.status(404).send('Objet non trouvé')
 
