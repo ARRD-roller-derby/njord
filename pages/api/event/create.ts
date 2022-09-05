@@ -23,8 +23,8 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
   if (!req.body.address && req.body.type !== EventType.online) return res.status(400).send('Il manque une adresse')
 
   const 
-    endDate = dayjs(req.body.endDate).set('hour',12).set('minute',0).set('second',0),
-    startDate = dayjs(req.body.startDate).set('hour',12).set('minute',0).set('second',0),
+    endDate = dayjs(req.body.endDate),
+    startDate = dayjs(req.body.startDate),
     startDay = endDate.diff(startDate,'day') < 0 ? endDate:startDate,
     endDay = endDate.diff(startDate,'day') < 0 ? startDate:endDate,
     recurrenceId = uuidv4()
