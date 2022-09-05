@@ -54,7 +54,7 @@ export default function EventDetailsTab({ event, uri, reSync, user }: props) {
           )}
                     {event.address?.city && (
             <div className={classes.address}>
-              {`${event.address.street || ''}, ${event.address.zipcode} ${
+              {`${event.address.address || event.address.street || ''}, ${event.address.zipcode} ${
                 event.address.city
               }`}
             </div>
