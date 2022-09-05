@@ -14,12 +14,12 @@ export default function useEventAttendeesTab({eventId,eventType}:Props){
     counts = useMemo(()=>{
       if(!attendees) return []
       return attendees.filter(attendee=>attendee.isPresent).reduce((acc,value)=> {
-        const isExist = acc.find(old=>old?.type === value?.type)
+        const isExist = acc.find(old=>old.type === searchType(value))
+  
         if(isExist){
-          const index = acc.findIndex(old=>old.type === value?.type)
-          acc.splice(index,1,{...isExist,count:isExist.count++})
+          const index = acc.findIndex(old=>old.type === isExist.type)
+          acc.splice(index,1,{...isExist,count:isExist.count +1})
         }else {
-       
           acc.push({
             type:searchType(value),
             count:1

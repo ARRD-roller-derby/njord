@@ -1,7 +1,10 @@
 import UserLeagueRequestView from "./UserLeagueRequestView";
 import useLeagueRequest from './useUserLeagueRequest';
 
-export default function UserLeagueRequest(){
-  const props = useLeagueRequest();
-  return <UserLeagueRequestView {...props}/>
+interface Props {
+  readonly value?:string
+}
+export default function UserLeagueRequest(props:Props){
+  const useProps = useLeagueRequest();
+  return <UserLeagueRequestView {...props} {...useProps}/>
 }

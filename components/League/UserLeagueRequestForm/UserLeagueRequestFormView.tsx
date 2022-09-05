@@ -15,7 +15,7 @@ export default function UserLeagueRequestFormView({ onSelect, submit,loading }: 
     <form className={classes.container} onSubmit={(e)=>submit(e)}>
       <FlexCol>
         <label>Rechercher un utilisateur</label>
-        <EmailSelector onSelect={onSelect} />
+        <EmailSelector onSelect={onSelect}/>
         <Info>
           <p>
             {"L'utilisateur recevra un mail l'invitant à rejoindre la league."}

@@ -36,8 +36,11 @@ export default function useEventsNext(id: string) {
         return acc
       }, []).sort((a, b) => b.start - a.start)
     }, [eventsDb]),
-    [currentType, setCurrentType] = useState<{ label: string; value: string }>(),
-    events = useMemo(() => eventsDb ? eventsDb.filter((event) => event.type === currentType?.value): undefined
+    [currentType, setCurrentType] = useState<{ label: string; value: string }>({label:'tous',value:'tous'}),
+    events = useMemo(() => eventsDb ? eventsDb.filter((event) => {
+      if(currentType.value === 'tous') return true
+      return event.type === currentType?.value
+    }): undefined
     , [currentType,eventsDb])
 
   useEffect(() => {
