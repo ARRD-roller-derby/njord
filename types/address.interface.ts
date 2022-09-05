@@ -7,6 +7,7 @@ export interface addressInterface {
   lon: number
   city: string
   zipcode: string
+  address?:string
   street: string
   label: string
   type: addressType

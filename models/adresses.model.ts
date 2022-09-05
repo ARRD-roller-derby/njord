@@ -7,6 +7,7 @@ export const adressSchema = new Schema<addressInterface>({
   label: String,
   ownerId: String,
   city: String,
+  address:String,
   zipcode: String,
   street: String,
   type: String,
