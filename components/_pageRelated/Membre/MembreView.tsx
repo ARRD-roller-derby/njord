@@ -21,7 +21,7 @@ export default function MembreView({ user, reSync, uri }: props) {
         <UserBlockContact user={user} uri={uri} reSync={reSync} />
         <UserBlockDerby user={user} uri={uri} reSync={reSync} />
         <UserBlockLeague user={user} uri={uri} reSync={reSync} />
-        </div>:<>user unknwo</>}
+        </div>:<>Utilisateur inconnu</>}
 
       </div>
     </AuthentificatedLayout>

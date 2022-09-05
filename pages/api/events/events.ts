@@ -23,12 +23,12 @@ export default async function events(req: NextApiRequest, res: NextApiResponse) 
       },
     }
 
-  OR.push({between,guests:session.user._id})
+  OR.push({...between,guests:session.user._id})
 
   if (session.user?.league.id) {
     OR.push(
-      {between,leaguesGuest: session.user?.league.id},
-      {between,leagueId: session.user?.league.id}
+      {...between,leaguesGuest: session.user?.league.id},
+      {...between,leagueId: session.user?.league.id}
     )
   }
 

@@ -2,8 +2,6 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import Error from '../../types/error.interface'
-import LoaderWheel from '../_ui/LoaderWheel/LoaderWheel'
-
 
 export default function useFetch<T>(
   url: string,
@@ -24,7 +22,7 @@ export default function useFetch<T>(
       const { data: responseData } = await toast.promise(
         axios.post('/api/' + url, newBody || body),
         {
-          pending: {render:<LoaderWheel/>},
+          pending: {render:<p>{'chargement...'}</p>},
           error: {
             render({data}){
               return data?.response?.data || data.message

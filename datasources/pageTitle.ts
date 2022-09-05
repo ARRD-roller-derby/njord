@@ -4,6 +4,7 @@ export const pageTitle = {
   "/league": "Ma league",
   "/users": "Utilisateurs",
   "/users/[id]": "Utilisateur",
+  "/event/[id]": "événement",
   "/calendrier": "Calendrier",
   "/profile": "Mon profile",
   "/notifications": "Notifications",

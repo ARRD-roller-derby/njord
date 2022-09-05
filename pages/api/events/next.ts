@@ -20,14 +20,14 @@ export default async function eventsNext(req: NextApiRequest, res: NextApiRespon
 
     }
 
-  OR.push({between,guests:session.user._id})
+  OR.push({...between,guests:session.user._id})
 
   if (session.user?.league.id) {
     OR.push(
-      {between,leaguesGuest: session.user?.league.id},
-      {between,leagueId: session.user?.league.id}
+      {...between,leaguesGuest: session.user?.league.id},
+      {...between,leagueId: session.user?.league.id}
     )
   }
   
-  res.json(await Event.find({$or:OR}).populate('attendees').sort({start:1}))
+  res.json(await Event.find({$or:OR}).sort({start:1}))
 }

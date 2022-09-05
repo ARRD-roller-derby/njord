@@ -10,6 +10,10 @@ export interface ItemInterface {
   updatedAt: Date
 }
 
+export interface ItemWithHereInterface extends ItemInterface{
+  isHere:boolean
+}
+
 export interface LocalizationItemInterface {
   type: 'user' | 'place'
   id: string

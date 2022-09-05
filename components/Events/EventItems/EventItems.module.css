@@ -1,0 +1,39 @@
+.container {
+  display: grid;
+  grid-template-rows: 1fr;
+  gap: 10px;
+  height: 100%;
+}
+
+.loader {
+  display: flex;
+  flex-direction:column;
+  gap: 10px;
+  align-items: center;
+}
+
+.box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.items {
+  position: absolute;
+  top:0;
+  left:0;
+  bottom: 0;
+  right: 0;
+  padding: 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  overflow-y: auto;
+  align-content: flex-start;
+}
+
+@media screen and (max-width: 500px){
+  .items{
+    justify-content: center;
+  }
+}

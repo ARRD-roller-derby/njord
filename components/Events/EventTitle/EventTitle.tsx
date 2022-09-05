@@ -4,10 +4,11 @@ import classes from './EventTitle.module.css'
 
 interface Props {
   readonly event: EventInterface
+  readonly onClick: Function
 }
-export default function EventTitle({event}:Props){
+export default function EventTitle({event,onClick}:Props){
 
-  return  <div className={classes.container} data-type={event.type}>
+  return  <div className={classes.container} data-type={event.type} onClick={()=>onClick()}>
     <div className={classes.type}>{eventTitleRender(event)}</div>
   </div>
 }

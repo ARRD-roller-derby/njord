@@ -2,13 +2,13 @@ import classes from './Stuff.module.css'
 import AuthentificatedLayout from '../../_layouts/Authentificated/Authentificated'
 import PageActions from '../../_ui/PageActions/PageActions'
 import LoaderWheel from '../../_ui/LoaderWheel/LoaderWheel'
-import { ItemInterface } from '../../../types/items.interface'
+import { ItemInterface, ItemWithHereInterface } from '../../../types/items.interface'
 import AddItemButton from '../../Item/AddItemButton/AddItemButton'
 import ItemCard from '../../_ui/ItemCard/ItemCard'
 import ItemPopin from '../../Item/ItemPopin/ItemPopin'
 
 interface props {
-  readonly items: Array<ItemInterface>
+  readonly items: Array<ItemWithHereInterface>
   readonly itemForPopin: ItemInterface
   readonly loading: boolean
   readonly reSync: Function

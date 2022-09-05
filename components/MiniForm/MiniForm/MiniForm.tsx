@@ -17,6 +17,7 @@ interface Props {
   readonly editField: ReactElement
   readonly readField: ReactElement
   readonly profiles?: boolean | Array<string>
+  readonly column?:boolean
 }
 
 export default function MiniForm(props: Props) {

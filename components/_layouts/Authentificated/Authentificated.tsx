@@ -2,19 +2,23 @@ import classes from './Authentificated.module.css'
 import Head from 'next/head'
 import { ReactNode } from 'react'
 import { ToastContainer } from 'react-toastify'
-import MenuDesktop from '../../MenuDesktop/MenuDesktop'
 import Header from '../../Header/Header'
 import useAuthentificated from './useAuthentificated'
-import MenuMobile from '../../MenuMobile/MenuMobile'
 import GiveYourName from '../../GiveYourName/GiveYourName'
+import dynamic from 'next/dynamic'
 
+//For Dev, if SSR, with localstorage bool for detect device, you failed hydrate
+const Menu = dynamic(
+  () => import('../../Menu/Menu'),
+  {ssr: false}
+)
 interface props {
   readonly children: ReactNode
   readonly title?: string
 }
 
 export default function AuthentificatedLayout({ children, title }: props) {
-  const { isMobile, session } = useAuthentificated()
+  const  { session } = useAuthentificated()
 
   return session ? (
     <div className={classes.container} data-color-mode="dark">
@@ -43,7 +47,7 @@ export default function AuthentificatedLayout({ children, title }: props) {
       </header>
 
       <div className={classes.menu}>
-        {isMobile ? <MenuMobile/> : <MenuDesktop />}
+        <Menu/>
       </div>
       <main className={classes.main}>
           <div className={classes.box}>{children}</div>

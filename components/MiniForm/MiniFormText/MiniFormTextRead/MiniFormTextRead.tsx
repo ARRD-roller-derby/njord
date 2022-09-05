@@ -1,10 +1,19 @@
+import ReactMarkdown from 'react-markdown'
 import classes from './MiniFormTextRead.module.css'
+import validator from 'validator';
 
 interface props {
   readonly value?: string
 }
 
-//TODO ajouter le Markdown reader
 export default function MiniFormTextRead({ value }: props) {
-  return <>{value || <span className={classes.empty}>{'(vide)'}</span>}</>
+  return (
+    <div className={classes.container}>
+      {value ? (
+        <ReactMarkdown>{validator.unescape(value)}</ReactMarkdown>
+      ) : (
+        <div className={classes.empty}>{'(vide)'}</div>
+      )}
+    </div>
+  )
 }

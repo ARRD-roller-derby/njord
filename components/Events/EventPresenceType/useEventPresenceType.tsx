@@ -27,7 +27,7 @@ export default function useEventPresenceType({ event, reSync }: Props) {
     const myPresence = event.attendees?.find(
       (attendee) => session.user._id === attendee.userId
     )
-    if (!myPresence) return setShow(false)
+    if (!myPresence || !myPresence.isPresent) return setShow(false)
 
     if (myPresence?.type)
       setValue({ label: myPresence.type, value: myPresence?.type })

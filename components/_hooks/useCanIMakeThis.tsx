@@ -11,7 +11,6 @@ export default function useCanIMakeThis(
 
   function authMe() {
     if (session.isAdmin) return setyouCan(true)
-
     //User can edit your field, admin can't. But i can't if onlyAdmin
     if (id === session.user._id && !onlyProfile) return setyouCan(true)
 
@@ -27,7 +26,6 @@ export default function useCanIMakeThis(
         )
       )
 
-    // I am admin
     return setyouCan(false)
   }
 

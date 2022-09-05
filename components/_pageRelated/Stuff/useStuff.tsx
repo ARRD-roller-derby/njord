@@ -1,6 +1,6 @@
 import useSilentDBSync from '../../_hooks/useSilentDBSync'
 import { useContext, useEffect, useState } from 'react'
-import { ItemInterface } from '../../../types/items.interface'
+import { ItemInterface, ItemWithHereInterface } from '../../../types/items.interface'
 import { PusherContext } from '../../../stores/pusher.store'
 
 export default function useStuff() {
@@ -8,7 +8,7 @@ export default function useStuff() {
       data: items,
       loading,
       reSync,
-    } = useSilentDBSync<Array<ItemInterface>>(
+    } = useSilentDBSync<Array<ItemWithHereInterface>>(
       'items/items',
       'items',
       {

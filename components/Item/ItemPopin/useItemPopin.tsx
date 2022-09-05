@@ -8,7 +8,6 @@ export default function useItemPopin(item: ItemInterface) {
   return {
     user: session.user,
     uri,
-    
     isMyItem:
       item?.ownerType === ItemOwnerType.league
         ? session?.user?.profiles.length > 0

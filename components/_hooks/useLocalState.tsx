@@ -7,12 +7,13 @@ export default function useLocalState<T>(initialState: T, nameOfState: string):{
 
   const ls = (): T => {
       if (typeof window !== 'undefined') {
-        return JSON.parse(localStorage.getItem(nameOfState))
+        const ls = localStorage.getItem(nameOfState)
+        return ls ? JSON.parse(ls):initialState
       } else {
         return initialState
       }
     },
-    [state, setState] = useState<T>(ls()|| initialState)
+    [state, setState] = useState<T>(ls())
 
   function setLocalState(newState: T) {
     setState(newState)
