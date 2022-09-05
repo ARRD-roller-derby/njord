@@ -2,12 +2,22 @@ import dayjs from 'dayjs'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 import validator from 'validator'
 import { pusher } from '../../../services/pusher/pusher'
 import { EventType } from '../../../types/EventType.enum'
-import User from '../../../models/user.model';
-import Event from '../../../models/event.model';
+import User from '../../../models/user.model'
+import Event from '../../../models/event.model'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
+import timezone from 'dayjs/plugin/timezone'
+import fr from 'dayjs/locale/fr'
+dayjs.extend(relativeTime)
+dayjs.extend(localizedFormat)
+dayjs.extend(timezone)
+dayjs.locale(fr)
+dayjs.tz.guess()
+dayjs.tz.setDefault("Europe/Paris")
 
 export default async function event(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
