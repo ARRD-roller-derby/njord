@@ -24,9 +24,12 @@ export default function useEventPresenceType({ event, reSync }: Props) {
   }
 
   function handleOptions() {
+ 
     const myPresence = event.attendees?.find(
       (attendee) => session.user._id === attendee.userId
     )
+
+
     if (!myPresence || !myPresence.isPresent) return setShow(false)
 
     if (myPresence?.type)
