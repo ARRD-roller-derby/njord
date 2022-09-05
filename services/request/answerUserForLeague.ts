@@ -81,6 +81,5 @@ export default async function answerUserForLeague(  res: NextApiResponse,
       type: requestType.league_join,
     })
 
-    res.send('ok')
-
+    return res.send('Réponse envoyé')
 }
