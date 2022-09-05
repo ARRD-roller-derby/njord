@@ -58,7 +58,7 @@ export default async function deposit(
 
     await item.save()
 
-  res.send("Vous avez déposé l'objet")
+  return res.send("Vous avez déposé l'objet")
 
 
 
