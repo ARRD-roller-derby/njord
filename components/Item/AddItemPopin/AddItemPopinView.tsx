@@ -31,9 +31,7 @@ export default function AddItemPopinView({
     <FullscreenModale setClose={() => closePopin()}>
       <>
         <h3>Ajouter un objet</h3>
-
         <div className={classes.container}>
-          <p>Proprio seulement pour profile</p>
           <LabeledBlock title="propriétaire">
             <ReactSelect
               styles={reactSelectStyle}
