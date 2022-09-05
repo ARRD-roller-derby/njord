@@ -8,16 +8,6 @@ import { pusher } from '../../../services/pusher/pusher'
 import { EventType } from '../../../types/EventType.enum'
 import User from '../../../models/user.model'
 import Event from '../../../models/event.model'
-import relativeTime from 'dayjs/plugin/relativeTime'
-import localizedFormat from 'dayjs/plugin/localizedFormat'
-import timezone from 'dayjs/plugin/timezone'
-import fr from 'dayjs/locale/fr'
-dayjs.extend(relativeTime)
-dayjs.extend(localizedFormat)
-dayjs.extend(timezone)
-dayjs.locale(fr)
-dayjs.tz.guess()
-dayjs.tz.setDefault("Europe/Paris")
 
 export default async function event(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -33,16 +23,14 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
   if (!req.body.address && req.body.type !== EventType.online) return res.status(400).send('Il manque une adresse')
 
   const 
-    endDate = dayjs(req.body.endDate),
-    startDate = dayjs(req.body.startDate),
-    startDay = endDate.diff(startDate,'day') < 0 ? endDate:startDate,
-    endDay = endDate.diff(startDate,'day') < 0 ? startDate:endDate,
+    startDay = dayjs(validator.escape(req.body.start)),
+    endDay = dayjs(validator.escape(req.body.end || req.body.start)),
     recurrenceId = uuidv4()
 
   //TODO requierement à traiter plus tard
   const event = {
-    start: startDay.format('YYYY-MM-DD')+'T00:00:00.000+00:00',
-    end: endDay.format('YYYY-MM-DD')+'T00:00:00.000+00:00',
+    start: startDay,
+    end: endDay,
     title: req.body.title  ? validator.escape(req.body.title):undefined,
     leagueId:session.user.league.id,
     hourStart:validator.escape(req.body.hourStart),

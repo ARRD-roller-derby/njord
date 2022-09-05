@@ -10,6 +10,7 @@
   padding:10px;
   position:relative;
   overflow: hidden;
+  justify-content: space-between;
 }
 
 .cancel {

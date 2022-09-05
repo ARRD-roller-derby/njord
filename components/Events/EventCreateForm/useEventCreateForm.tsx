@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { useState,useEffect } from 'react';
 import { EventType } from '../../../types/EventType.enum';
 import usePost from '../../_hooks/usePost';
@@ -36,5 +37,15 @@ export default function useEventCreateForm({refetch,onClose,defaultDate}:Props){
     }
   },[data])
 
-  return {event,setKey,loading,onSubmit:()=>post(event)}
+  function onSubmit(){
+    const newEvent:any = {...event},
+    endDate = dayjs(event.endDate),
+    startDate = dayjs(event.startDate)
+
+    newEvent.start = endDate.diff(startDate,'day') < 0 ? endDate:startDate,
+    newEvent.end = endDate.diff(startDate,'day') < 0 ? startDate:endDate
+    post(newEvent)
+  }
+
+  return {event,setKey,loading,onSubmit}
 }

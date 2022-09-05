@@ -3,8 +3,6 @@ import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
 import User from '../../../models/user.model'
 import validator from 'validator'
-import banLeague from '../../../services/league/ban'
-import updateProfiles from '../../../services/league/updateProfiles'
 import Event from '../../../models/event.model'
 
 export default async function updateField(
