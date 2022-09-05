@@ -30,10 +30,5 @@
   gap: 15px;
   overflow-y: auto;
   align-content: flex-start;
-}
-
-@media screen and (max-width: 500px){
-  .items{
-    justify-content: center;
-  }
+  justify-content: center;
 }
