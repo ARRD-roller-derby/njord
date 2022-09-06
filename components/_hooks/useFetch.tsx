@@ -29,7 +29,7 @@ export default function useFetch<T>(
             }
           }
         },
-        { toastId: url }
+        { toastId: "fetch" }
       )
       setData(responseData)
     } catch (e) {
@@ -39,7 +39,8 @@ export default function useFetch<T>(
   }
 
   useEffect(() => {
-    handleFetch()
+    //timeout for prevent preload page
+    setTimeout(()=>handleFetch(),100)
   }, [])
 
   return {

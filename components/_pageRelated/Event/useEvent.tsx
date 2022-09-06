@@ -6,6 +6,6 @@ export default function useEvent(id:string) {
   const { data: session } = useSession(),
     { data: event,refetch } = useFetch<EventInterface>('event/event', {id}),
     uri = '/event/updateField'
-
+    
   return { reSync:refetch, event, uri,user:session?.user }
 }

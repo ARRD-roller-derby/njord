@@ -6,7 +6,7 @@ import Bold from '../../_ui/Bold/Bold'
 import dayjs from 'dayjs'
 
 interface Props {
-  readonly feature: FeatureInterface | 'no required' | boolean
+  readonly feature: FeatureInterface | boolean
   readonly buy: Function
   readonly cost: number
   readonly loading: boolean
@@ -34,8 +34,7 @@ export default function EventAttendessBuyView({
           />
         </>
       )}
-      {feature !== 'no required' &&
-        typeof feature !== 'boolean' &&
+      {typeof feature !== 'boolean' &&
         feature?.exp && (
           <div className={classes.exp}>
             expire dans {dayjs(feature.exp).diff(dayjs(), 'hour')}h

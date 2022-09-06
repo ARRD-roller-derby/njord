@@ -14,14 +14,13 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
     OR = [],
     id= validator.escape(req.body.id)
 
-  OR.push({_id:id,guests:session.user._id})
+  OR.push({_id:id,guests:session.user._id},{type:'public'})
 
-  if (session.user?.league.id) {
+  if (session.user?.league?.id) {
     OR.push(
       {_id:id,leaguesGuest: session.user?.league.id},
       {_id:id,leagueId: session.user?.league.id}
     )
   }
-  
   res.json(await Event.findOne({$or:OR}))
 }

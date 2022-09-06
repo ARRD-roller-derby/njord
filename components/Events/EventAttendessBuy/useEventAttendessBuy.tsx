@@ -10,14 +10,14 @@ interface Props {
 
 export default function useEventAttendessBuy({reSync}:Props){
   const 
-    {data:feature,fetch} = useSilentFetch<FeatureInterface|'no required'|boolean>('feature/attendees'),
+    {data:feature,fetch} = useSilentFetch<FeatureInterface|boolean>('feature/attendees'),
     {name, cost} = availableFeatures.find(availableFeature => availableFeature.name === 'attendees_for_day'),
     {data:purchase,loading,post} = usePost('/feature/buy')
 
   useEffect(()=>{
     if(purchase){
-      fetch()
       reSync()
+      fetch()
     }
   },[purchase])
 

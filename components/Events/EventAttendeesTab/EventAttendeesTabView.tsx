@@ -1,9 +1,7 @@
 import classes from './EventAttendeesTab.module.css'
-import { UserInterface } from '../../../types/User.interface'
 import EventAttendessBuy from '../EventAttendessBuy/EventAttendessBuy'
 import EventAttendeeCard from '../EventAttendeeCard/EventAttendeeCard'
 import { AttendeeInterface } from '../../../types/attendee.interface'
-import { EventInterface } from '../../../types/Event.interface'
 
 interface Props {
   readonly refetch: Function
