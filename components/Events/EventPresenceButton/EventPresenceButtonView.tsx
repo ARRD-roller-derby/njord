@@ -1,20 +1,26 @@
-import classes from './EventPresenceButton.module.css';
+import { EventInterface } from '../../../types/Event.interface'
+import classes from './EventPresenceButton.module.css'
 
 interface Props {
   readonly handleSubmit: Function
-  readonly type:boolean
+  readonly event: EventInterface
   readonly loading: boolean
 }
 
-export default function EventPresenceButtonView({handleSubmit,type,loading}:Props){
-
-  //TODO une checkbox
-  return <div className={classes.button} onClick={()=>handleSubmit()} data-presence={type ? 'oui':'non'} data-loading={loading}>
-    <div className={classes.yes}>
-      oui
+export default function EventPresenceButtonView({
+  handleSubmit,
+  event,
+  loading,
+}: Props) {
+  return (
+    <div
+      className={classes.button}
+      onClick={() => handleSubmit()}
+      data-presence={event?.presence?.isPresent ? 'oui' : 'non'}
+      data-loading={loading}
+    >
+      <div className={classes.yes}>oui</div>
+      <div className={classes.non}>non</div>
     </div>
-    <div className={classes.non}>
-      non
-    </div>
-  </div>
+  )
 }
