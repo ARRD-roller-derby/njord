@@ -121,5 +121,5 @@ export default async function answerLeagueForUser(
     
   }
 
-  return res.send('Vous avez refusé la requête.')
+  return res.send('Vous avez accepté la requête.')
 }
