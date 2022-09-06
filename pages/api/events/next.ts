@@ -14,7 +14,7 @@ export default async function eventsNext(req: NextApiRequest, res: NextApiRespon
 
   const between = {
       start: {
-        $gte: dayjs().subtract('1',day) .format('YYYY-MM-DD'),
+        $gte: dayjs().subtract(1,'day') .format('YYYY-MM-DD'),
         $lt: dayjs().add(1,'month').format('YYYY-MM-DD')
       },
 
