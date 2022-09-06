@@ -8,3 +8,10 @@
 .loading {
   text-align: center;
 } 
+
+.exp {
+  width: 100%;
+  text-align: right;
+  font-size: 12px;
+  font-style: italic;
+}

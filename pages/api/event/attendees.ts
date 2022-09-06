@@ -21,7 +21,7 @@ export default async function attendees(
     name: { $regex: /attendees/i },
   })
 
-  const noProfiles = session.user.profiles.length === 0
+  const noProfiles = !session.user?.profiles.find((profile:string)=>profile.match(/bureau|coach|dev/))
 
   if ((!feature && noProfiles) || (!feature?.exp && noProfiles))
     return res.send([])

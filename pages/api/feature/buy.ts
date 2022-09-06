@@ -38,7 +38,7 @@ export default async function attendees(req: NextApiRequest, res: NextApiRespons
     updatedAt: new Date(),
     
   }
-  if(feature.exp) createBody.exp = dayjs().add(feature.exp.delay,feature.exp.scale).toDate()
+  if(feature.exp) createBody.exp = dayjs().add(feature.exp.delay,feature.exp.scale).add(2,'hour').toDate()
 
   await Feature.create(createBody)
   user.wallet -= feature.cost
