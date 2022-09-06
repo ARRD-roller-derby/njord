@@ -22,6 +22,12 @@ export interface EventInterface {
   address: addressInterface
   events: Array<string>
   updatedAt: Date
+  presence?: {
+    isPresent:boolean
+    userId:string
+    type:string
+    updatedAt:Date
+  }
   versus?:[string,string]
 }
 

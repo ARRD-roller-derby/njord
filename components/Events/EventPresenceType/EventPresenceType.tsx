@@ -9,5 +9,5 @@ interface Props {
 export default function EventPresenceType(props:Props){
   const useProps = useEventPresenceType(props)
 
-  return <EventPresenceTypeView {...useProps}/>
+  return <EventPresenceTypeView {...props} {...useProps}/>
 }

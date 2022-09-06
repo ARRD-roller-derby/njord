@@ -19,7 +19,6 @@
   opacity: .5;
 }
 
-
 .button:before {
   content:attr(data-presence);
   position: absolute;

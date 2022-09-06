@@ -2,19 +2,18 @@ import { useRef } from 'react'
 import ReactSelect from 'react-select'
 import { CSSTransition } from 'react-transition-group'
 import reactSelectStyle from '../../../styles/reactSelectStyle'
+import { EventInterface } from '../../../types/Event.interface'
 
 interface props {
+  readonly event: EventInterface
   readonly options: Array<{ label: string; value: string }>
-  readonly value: { label: string; value: string }
   readonly onChange: Function
-  readonly show: boolean
 }
 
 export default function EventPresenceTypeView({
   options,
-  value,
   onChange,
-  show,
+  event,
 }: props) {
   const ref = useRef(null)
 
@@ -22,7 +21,7 @@ export default function EventPresenceTypeView({
     <div ref={ref}>
       <CSSTransition
         nodeRef={ref}
-        in={show && options?.length > 0}
+        in={event?.presence.isPresent && options?.length > 0}
         timeout={300}
         classNames="fade"
         unmountOnExit
@@ -32,7 +31,7 @@ export default function EventPresenceTypeView({
           menuPlacement="top"
           styles={reactSelectStyle}
           options={options}
-          value={value}
+          value={{ label: event.presence.type, value: event.presence.type }}
           onChange={(choice) => onChange(choice)}
         />
       </CSSTransition>
