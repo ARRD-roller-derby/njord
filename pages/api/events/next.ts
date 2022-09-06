@@ -20,9 +20,9 @@ export default async function eventsNext(req: NextApiRequest, res: NextApiRespon
 
     }
 
-  OR.push({...between,guests:session.user._id})
+  OR.push({...between,guests:session.user._id},{...between,visibility:'public'})
 
-  if (session.user?.league.id) {
+  if (session.user?.league?.id) {
     OR.push(
       {...between,leaguesGuest: session.user?.league.id},
       {...between,leagueId: session.user?.league.id}
