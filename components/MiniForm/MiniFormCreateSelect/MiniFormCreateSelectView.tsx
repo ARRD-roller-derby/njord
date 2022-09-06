@@ -13,6 +13,7 @@ export default function MiniFormCreateSelectView({
   setValue,
   isMulti,
   options,
+
 }: props) {
   return (
     <div className={classes.input}>
@@ -20,6 +21,7 @@ export default function MiniFormCreateSelectView({
         autoFocus
         isMulti={isMulti}
         options={options}
+        menuPlacement='top'
         styles={reactSelectStyle}
         className={classes.input}
         value={value}

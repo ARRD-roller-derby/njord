@@ -11,6 +11,7 @@ export default async function attendees(req: NextApiRequest, res: NextApiRespons
   await MongoDb()
   const feature = await Feature.findOne({
     name:{$regex:/attendees/i },
+    userId: session.user._id
   })
 
   if(session.user.profiles.length > 0) return res.send('no required')
@@ -18,7 +19,5 @@ export default async function attendees(req: NextApiRequest, res: NextApiRespons
   if(!feature?.exp) return res.send(feature)
 
   const isExpired = dayjs().diff(feature.exp.delay, feature.exp.scale)
-
-  console.log(dayjs().diff(feature.exp.delay, feature.exp.scale))
   res.send(isExpired ? false:feature)
 }
