@@ -50,7 +50,7 @@ export default function EventShutterView({
           <div className={classes.box}>
             <Tabs>
               <Tab field="détails">
-                <EventDetailsTab event={event} />
+                <EventDetailsTab event={event} reSync={reSync}/>
               </Tab>
               <Tab field="participants">
                 <EventAttendeesTab eventId={event._id} eventType={event.type} />
