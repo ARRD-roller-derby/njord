@@ -1,7 +1,8 @@
 import classes from './Info.module.css'
+import { ReactElement } from 'react';
 
 interface props {
-  readonly children: string | JSX.Element | Array<JSX.Element>
+  readonly children: any
 }
 
 export default function Info({ children }: props) {

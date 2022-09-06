@@ -4,6 +4,7 @@
   background: var(--color-bg-light);
   padding: 10px;
   justify-content: space-between;
+  align-items: center;
 }
 
 .type {
