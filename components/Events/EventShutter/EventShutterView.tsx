@@ -44,30 +44,23 @@ export default function EventShutterView({
                 height={20}
                 alt="icon link"
               />
-                       
             </h1>
    
           </Link>
           <div className={classes.box}>
-         
             <Tabs>
               <Tab field="détails">
-                <EventDetailsTab
-                  event={event}
-                  reSync={reSync}
-                  user={user}
-                  uri={uri}
-                />
+                <EventDetailsTab event={event} />
               </Tab>
               <Tab field="participants">
                 <EventAttendeesTab eventId={event._id} eventType={event.type} />
               </Tab>
-              {event.items.length > 0 && (
+              {event?.items?.length > 0 && (
                 <Tab field="objets">
                   <EventItems eventId={event._id} />
                 </Tab>
               )}
-              {user && user.profiles.length > 0 && (
+              {user && user.profiles?.length > 0 && (
                 <Tab field="modifier">
                   <EventUpdateTab
                     event={event}
@@ -81,7 +74,7 @@ export default function EventShutterView({
           </div>
           <div className={classes.buttons}>
           {event.cancel && <div className={classes.cancel}>Annulé</div>}
-            {user.profiles.length > 0 && (
+            {user.profiles?.length > 0 && (
               <>
                 <EventDeleteButton
                   eventId={event._id}

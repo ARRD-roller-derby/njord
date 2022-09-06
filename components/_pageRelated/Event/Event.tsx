@@ -7,6 +7,5 @@ interface props {
 
 export default function Event({id}:props) {
   const props = useEvent(id);
-
   return <EventView {...props}/>
 }
