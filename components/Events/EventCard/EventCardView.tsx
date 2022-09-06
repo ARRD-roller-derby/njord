@@ -59,9 +59,9 @@ export default function EventCardView({
           {event.hourStart} {"-"} {event.hourEnd}
         </div>
         <EventTitle event={event} onClick={() => setShutter(event)} />
-        <div className={classes.map}>
+        {(event.address && event?.address?.lat) && <div className={classes.map}>
           <MapForCard lat={event.address.lat} lon={event.address.lon} />
-        </div>
+        </div> }
         {event.address && (
           <div className={classes.address}>
             {event.address.address || event.address.street}
