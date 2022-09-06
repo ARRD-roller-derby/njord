@@ -15,8 +15,12 @@ export default async function updateProfiles(
 
   userToEdit.profiles = profiles.map((profile) => validator.escape(profile))
   await userToEdit.save()
-  const isBureau = userToEdit.profiles.find((profile:string) => profile === 'bureau'),
-    isallreadyAdmin = leagueToEdit.admins.find((id:string) => id === userToEdit._id)
+  const isBureau = userToEdit.profiles.find(
+      (profile: string) => profile === 'bureau'
+    ),
+    isallreadyAdmin = leagueToEdit.admins.find(
+      (id: string) => id === userToEdit._id
+    )
 
   if (isBureau && !isallreadyAdmin) {
     leagueToEdit.admins.push(userToEdit._id)
@@ -25,7 +29,7 @@ export default async function updateProfiles(
 
   if (!isBureau && isallreadyAdmin) {
     leagueToEdit.admins = leagueToEdit.admins.filter(
-      (id:string) => id !== userToEdit._id
+      (id: string) => id !== userToEdit._id
     )
     await leagueToEdit.save()
   }

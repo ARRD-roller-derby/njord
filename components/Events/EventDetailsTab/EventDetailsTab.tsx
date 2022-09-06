@@ -4,17 +4,20 @@ import classes from './EventDetailsTab.module.css'
 import dayjs from 'dayjs'
 import validator from 'validator'
 import dynamic from 'next/dynamic'
+import EventPresenceType from '../EventPresenceType/EventPresenceType'
+import EventPresenceButton from '../EventPresenceButton/EventPresenceButton'
 
 const MapForCard = dynamic(
   () => import('../../_ui/Map/MapForCard/MapForCard'),
-  {ssr: false}
+  { ssr: false }
 )
 
 interface props {
   readonly event: EventInterface
+  readonly reSync: Function
 }
 
-export default function EventDetailsTab({ event }: props) {
+export default function EventDetailsTab({ event, reSync }: props) {
   return (
     <div className={classes.container}>
       <div className={classes.day}>
@@ -32,6 +35,12 @@ export default function EventDetailsTab({ event }: props) {
       </div>
       <div className={classes.box}>
         <div className={classes.main}>
+          {!event.cancel && (
+            <div className={classes.actions}>
+              <EventPresenceType event={event} reSync={reSync} />
+              <EventPresenceButton event={event} reSync={reSync} />
+            </div>
+          )}
           <div className={classes.details}>
             <ReactMarkdown>
               {validator.unescape(event?.description || '')}

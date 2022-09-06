@@ -3,6 +3,7 @@ import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
 import validator from 'validator'
 import Event from '../../../models/event.model'
+import eventWithPresence from '../../../utils/eventWithPresence'
 
 export default async function event(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -22,5 +23,6 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
       {_id:id,leagueId: session.user?.league.id}
     )
   }
-  res.json(await Event.findOne({$or:OR}))
+  
+  res.json(eventWithPresence(session.user._id, await Event.findOne({$or:OR})))
 }

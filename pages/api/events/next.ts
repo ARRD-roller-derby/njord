@@ -5,6 +5,7 @@ import { MongoDb } from '../../../db/mongo.connect'
 import Event from '../../../models/event.model'
 import searchTypeOfPresence from '../../../utils/searchTypeOfPresence'
 import { AttendeeInterface } from '../../../types/attendee.interface'
+import eventWithPresence from '../../../utils/eventWithPresence'
 
 export default async function eventsNext(
   req: NextApiRequest,
@@ -35,26 +36,10 @@ export default async function eventsNext(
       { ...between, leagueId: session.user?.league.id }
     )
   }
+
   const events = await Event.find({ $or: OR }).sort({ start: 1 }),
     eventsWithPresence = events.map((event) => {
-      const newEvent = { ...event._doc }
-      const myPresence = newEvent.attendees.find(
-        (attendee:AttendeeInterface) => attendee.userId === session.user._id
-      )
-      if (myPresence) {
-        newEvent.presence = {
-          ...myPresence._doc,
-          type: searchTypeOfPresence(myPresence, event.type),
-        }
-      } else {
-        newEvent.presence = {
-          isPresent:false
-        }
-      }
-
-      delete newEvent.attendees
-
-      return newEvent
+     return eventWithPresence(session.user._id,event)
     })
 
   res.json(eventsWithPresence)

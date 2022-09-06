@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function CalendarDayDesktop(props: Props) {
-  const useProps = useCalendarDayDesktop()
+  const useProps = useCalendarDayDesktop(props?.day)
 
   return <CalendarDayDesktopView {...props} {...useProps}/>
 }

@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function EventCard(props:Props){
-  const useProps = useEventCard()
+  const useProps = useEventCard(props.event)
 
   return <EventCardView {...props} {...useProps}/>
 

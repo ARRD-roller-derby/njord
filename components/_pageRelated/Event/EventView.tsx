@@ -22,7 +22,7 @@ export default function EventView({ event, user, reSync, uri }: props) {
       {(event && user) && <div className={classes.container}>
         <Tabs>
           <Tab field="détails">
-            <EventDetailsTab event={event} />
+            <EventDetailsTab event={event} reSync={reSync}/>
           </Tab>
           <Tab field="participants">
             <EventAttendeesTab eventId={event._id} eventType={event.type}/>
