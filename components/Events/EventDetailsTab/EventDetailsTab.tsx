@@ -20,6 +20,7 @@ interface props {
 export default function EventDetailsTab({ event, reSync }: props) {
   return (
     <div className={classes.container}>
+      <div className={classes.date}>
       <div className={classes.day}>
         {event?.type.match(/training|match|scrimmage|AG/) ? (
           dayjs(event.start).format('LL')
@@ -33,14 +34,10 @@ export default function EventDetailsTab({ event, reSync }: props) {
       <div className={classes.hour}>
         {event?.hourStart} {'-'} {event?.hourEnd}
       </div>
+      </div>
       <div className={classes.box}>
         <div className={classes.main}>
-          {!event.cancel && (
-            <div className={classes.actions}>
-              <EventPresenceType event={event} reSync={reSync} />
-              <EventPresenceButton event={event} reSync={reSync} />
-            </div>
-          )}
+
           <div className={classes.details}>
             <ReactMarkdown>
               {validator.unescape(event?.description || '')}
@@ -60,6 +57,14 @@ export default function EventDetailsTab({ event, reSync }: props) {
               } ${event.address.city}`}
             </div>
           )}
+       
+            <div className={classes.actions}>
+            {!event.cancel && (<>
+              <EventPresenceType event={event} reSync={reSync} />
+              <EventPresenceButton event={event} reSync={reSync} />
+              </> )}
+            </div>
+    
         </div>
       </div>
     </div>

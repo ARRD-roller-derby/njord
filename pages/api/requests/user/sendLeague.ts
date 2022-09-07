@@ -36,8 +36,6 @@ export default async function sendLeagueRequest(
     .filter((email: string) => validator.isEmail(email))
     .map((email: string) => validator.escape(email))
 
-  console.log(cleanEmails)
-
   const existsUsers = await User.find({
     email: {
       $in: cleanEmails,
