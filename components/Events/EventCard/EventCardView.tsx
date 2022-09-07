@@ -6,13 +6,8 @@ import EventPresenceButton from '../EventPresenceButton/EventPresenceButton'
 import EventTitle from '../EventTitle/EventTitle'
 import EventPresenceType from '../EventPresenceType/EventPresenceType'
 import EventShutter from '../EventShutter/EventShutter'
-
-const MapForCard = dynamic(
-  () => import('../../_ui/Map/MapForCard/MapForCard'),
-  {
-    ssr: false,
-  }
-)
+import validator from 'validator'
+import ReactMarkdown from 'react-markdown'
 
 interface props {
   readonly event: EventInterface
@@ -54,32 +49,40 @@ export default function EventCardView({
               {dayjs(event.start).format('MMMM')}
             </div>
           </div>
-          <div className={classes.relativeDate}>
-            {dayjs(
-              dayjs(event.start).format('YYYY-MM-DD') +
-                'T' +
-                event.hourStart +
-                ':00.000'
-            ).from(dayjs())}
+          <div className={classes.times}>
+            <div className={classes.relativeDate}>
+              {dayjs(
+                dayjs(event.start).format('YYYY-MM-DD') +
+                  'T' +
+                  event.hourStart +
+                  ':00.000'
+              ).from(dayjs())}
+            </div>
+            <div className={classes.hour}>
+              {event.hourStart} {'-'} {event.hourEnd}
+            </div>
           </div>
         </div>
 
-        <div className={classes.hour}>
-          {event.hourStart} {'-'} {event.hourEnd}
+        <div className={classes.type}>
+          <EventTitle event={event} onClick={() => setShutter(event)} />
         </div>
-        <EventTitle event={event} onClick={() => setShutter(event)} />
-        {event.address && event?.address?.lat && (
-          <div className={classes.map}>
-            <MapForCard lat={event.address.lat} lon={event.address.lon} />
-          </div>
-        )}
-        {event.address && (
-          <div className={classes.address}>
-            {event.address.address || event.address.street}
-            {', '}
-            {event.address.zipcode} {event.address.city}
-          </div>
-        )}
+        <div className={classes.description}>
+          <ReactMarkdown>
+            {validator.unescape(event?.description || '')}
+          </ReactMarkdown>
+        </div>
+
+        <div className={classes.address}>
+          {event.address && (
+            <>
+              {event.address.address || event.address.street}
+              {', '}
+              {event.address.zipcode} {event.address.city}
+            </>
+          )}
+        </div>
+
         {!event.cancel && (
           <div className={classes.actions}>
             <EventPresenceType event={event} reSync={reSync} />
