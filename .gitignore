@@ -38,3 +38,5 @@ yarn-error.log*
 /playwright/.cache/
 
 .env
+
+public/service-worker.js.map
