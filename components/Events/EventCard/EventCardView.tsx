@@ -38,7 +38,11 @@ export default function EventCardView({
         setClose={() => setShutter(null)}
         url={`/`}
       />
-      <div className={classes.container} data-ismobile={isMobileDevice} data-cancel={event.cancel}>
+      <div
+        className={classes.container}
+        data-ismobile={isMobileDevice}
+        data-cancel={event.cancel}
+      >
         {event.cancel && <div className={classes.cancel}>Annulé</div>}
         <div className={classes.containerDate}>
           <div className={classes.date} onClick={() => setShutter(event)}>
@@ -51,17 +55,24 @@ export default function EventCardView({
             </div>
           </div>
           <div className={classes.relativeDate}>
-            {dayjs(event.start).from(dayjs())}
+            {dayjs(
+              dayjs(event.start).format('YYYY-MM-DD') +
+                'T' +
+                event.hourStart +
+                ':00.000'
+            ).from(dayjs())}
           </div>
         </div>
 
         <div className={classes.hour}>
-          {event.hourStart} {"-"} {event.hourEnd}
+          {event.hourStart} {'-'} {event.hourEnd}
         </div>
         <EventTitle event={event} onClick={() => setShutter(event)} />
-        {(event.address && event?.address?.lat) && <div className={classes.map}>
-          <MapForCard lat={event.address.lat} lon={event.address.lon} />
-        </div> }
+        {event.address && event?.address?.lat && (
+          <div className={classes.map}>
+            <MapForCard lat={event.address.lat} lon={event.address.lon} />
+          </div>
+        )}
         {event.address && (
           <div className={classes.address}>
             {event.address.address || event.address.street}
@@ -69,10 +80,12 @@ export default function EventCardView({
             {event.address.zipcode} {event.address.city}
           </div>
         )}
-        { !event.cancel && <div className={classes.actions}>
-          <EventPresenceType event={event} reSync={reSync} />
-          <EventPresenceButton event={event} reSync={reSync} />
-        </div> }
+        {!event.cancel && (
+          <div className={classes.actions}>
+            <EventPresenceType event={event} reSync={reSync} />
+            <EventPresenceButton event={event} reSync={reSync} />
+          </div>
+        )}
       </div>
     </>
   )
