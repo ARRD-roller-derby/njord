@@ -19,6 +19,7 @@ export default async function attendees(
 
   const feature = await Feature.findOne({
     name: { $regex: /attendees/i },
+    userId: session.user._id
   })
 
   const noProfiles = !session.user?.profiles.find((profile:string)=>profile.match(/bureau|coach|dev/))
