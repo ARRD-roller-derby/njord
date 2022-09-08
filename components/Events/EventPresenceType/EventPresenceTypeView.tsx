@@ -21,7 +21,7 @@ export default function EventPresenceTypeView({
     <div ref={ref}>
       <CSSTransition
         nodeRef={ref}
-        in={event?.presence.isPresent && options?.length > 0}
+        in={event?.presence?.isPresent && options?.length > 0}
         timeout={300}
         classNames="fade"
         unmountOnExit

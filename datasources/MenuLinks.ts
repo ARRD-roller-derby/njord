@@ -22,11 +22,6 @@ export const MenuLinks: Array<MenuLinksInterface> = [
     icon: '/icons/flag-pennant.svg',
   },
   {
-    href: '/teams',
-    title: 'Mes équipes',
-    icon: '/icons/teams.svg',
-  },
-  {
     href: '/adresses',
     title: 'Mes adresses',
     icon: '/icons/map.svg',

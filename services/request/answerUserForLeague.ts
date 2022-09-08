@@ -1,10 +1,10 @@
 import { answerRequest } from "../../types/answerRequest.enum"
-import { NextApiResponse } from 'next';
-import { requestType } from "../../types/requestType.enum";
-import jwt from 'jsonwebtoken';
-import League from "../../models/league.model";
-import User from "../../models/user.model";
-import Notification from "../../models/notification.model";
+import { NextApiResponse } from 'next'
+import { requestType } from "../../types/requestType.enum"
+import jwt from 'jsonwebtoken'
+import League from "../../models/league.model"
+import User from "../../models/user.model"
+import Notification from "../../models/notification.model"
 import { pusher } from '../../services/pusher/pusher'
 
 export default async function answerUserForLeague(  res: NextApiResponse,
