@@ -86,5 +86,5 @@ export default async function answerItem(
 
   await request.delete()
 
-  return res.send('Vous avez refusé la requête.')
+  return res.send(answer === answerRequest.refused ?'Vous avez refusé la requête.' : 'Vous avez accepté la requête.')
 }
