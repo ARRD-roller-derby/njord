@@ -4,10 +4,10 @@ import { MongoDb } from '../../../db/mongo.connect'
 import User from '../../../models/user.model'
 import S3 from '../../../utils/bucket'
 import { v4 as uuidv4 } from 'uuid'
-import { createCanvas, Image } from 'canvas'
 import { availableFeatures } from '../../../datasources/availableFeatures'
 import { pusher } from '../../../services/pusher/pusher'
 import { AvailableFeatureInterface } from '../../../types/feature.interface';
+import fs from 'fs'
 
 export default async function buyAvatar(
   req: NextApiRequest,
@@ -19,22 +19,14 @@ export default async function buyAvatar(
   if (!req.body.img || typeof req?.body.img !== 'string')
     return res.status(400).send("Il manque l'image encodée")
 
-  const s3 = new S3(),
-    size = 80,
-    canvas = createCanvas(size, size),
-    context = canvas.getContext('2d'),
-    img = new Image()
-
-  img.onload = () => context.drawImage(img, 0, 0, size, size)
-  img.onerror = () => res.status(400).send("Un problème avec l'image")
-  img.src = req.body.img
+  const s3 = new S3();
 
   await MongoDb()
   const me = await User.findById(session.user._id)
-  console.log('-----',me)
+  
   const link = await s3.sendImage(
     'avatar',
-    canvas.createPNGStream(),
+    req.body.img,
     uuidv4(),
     'avatar'
   )

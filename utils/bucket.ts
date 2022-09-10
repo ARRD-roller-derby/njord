@@ -32,14 +32,15 @@ export default class S3 {
     try {
       const link = `${folder}/${fileName}.png`;
       const Bucket= await this.findOrCreateBucket();
-
+      const buf = new Buffer(imageStream.replace(/^data:image\/\w+;base64,/, ""),'base64')
       await this.s3Client.send(
         new PutObjectCommand({
           Bucket,
           ACL: "public-read",
           Key: link,
           ContentType: "image/png",
-          Body: imageStream,
+          ContentEncoding: 'base64',
+          Body:  buf,
           Tagging: "njord=" + tag,
         })
       );
