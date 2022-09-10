@@ -9,5 +9,10 @@ export const availableFeatures:Array<AvailableFeatureInterface> = [
       delay:1,
       scale:"day"
     }
+  },
+  {
+    name:'avatar_change',
+    cost:325,
+    description:"La modification vous coûtera 325 Dr."
   }
 ]

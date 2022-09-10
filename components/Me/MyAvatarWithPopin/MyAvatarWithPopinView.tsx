@@ -9,14 +9,12 @@ interface props {
   readonly close: Function
   readonly setShow: Function
   readonly show: boolean
-  readonly avatarUrl: string
 }
 
 export default function MyAvatarWithPopinView({
   close,
   setShow,
   show,
-  avatarUrl,
 }: props) {
   const ref = useRef(null)
 
@@ -31,7 +29,7 @@ export default function MyAvatarWithPopinView({
         {show ? (
           <Image src={Xmark} alt="croix" width={20} height={20} data-testid="avatar-cross"/>
         ) : (
-          <MyAvatar url={avatarUrl} />
+          <MyAvatar />
         )}
       </div>
       <UserModale parentRef={ref} setShow={close} show={show} />

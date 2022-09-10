@@ -20,5 +20,5 @@ export default function useMembre(id:string) {
     setUser(userDb)
   }
 
-  return { reSync, user, uri }
+  return { reSync, user, uri,isMe: user ? session.user._id === user?._id:false }
 }

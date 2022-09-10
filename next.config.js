@@ -7,6 +7,9 @@ const removeImports = require('next-remove-imports')();
 module.exports = withPWA(withTM(removeImports({
   reactStrictMode: true,
   swcMinify: false,
+  images: {
+    domains: [`${process.env.S3_BUCKET}.${process.env.S3_DOMAIN}`],
+  },
   pwa: {
     dest: 'public',
     register: true,
