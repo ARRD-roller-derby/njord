@@ -7,6 +7,7 @@ import UserBlockContact from '../../User/UserBlockContact/UserBlockContact';
 import UserBlockDerby from '../../User/UserBlockDerby/UserBlockDerby';
 import UserBlockLeague from '../../User/UserBlockLeague/UserBlockLeague';
 import LeagueRequest from '../../League/LeagueRequest/LeagueRequest';
+import UserChangeAvatarButton from '../../User/UserChangeAvatarButton/UserChangeAvatarButton';
 
 interface props {
   readonly uri:string
@@ -18,6 +19,7 @@ export default function ProfileView({uri,me,reSync}:props){
   return <AuthentificatedLayout>
      {me ? <div className={classes.container}>
       <div className={classes.box}>
+      <UserChangeAvatarButton reSync={reSync}/>
       <UserBlockIndentity  reSync={reSync} user={me} uri={uri}/>
       <UserBlockContact reSync={reSync} user={me} uri={uri}/>
       <UserBlockDerby reSync={reSync} user={me} uri={uri}/>

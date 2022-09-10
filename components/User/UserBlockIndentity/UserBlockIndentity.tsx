@@ -7,6 +7,7 @@ import MiniFormSelect from '../../MiniForm/MiniFormSelect/MiniFormSelect'
 import { Pronoun } from '../../../types/Pronoun.enum'
 import MiniFormDateRead from '../../MiniForm/MiniFormDate/MiniFormDateRead/MiniFormDateRead';
 import MiniFormDateEdit from '../../MiniForm/MiniFormDate/MiniFormDateEdit/MiniFormDateEdit'
+import UserChangeAvatarButton from '../UserChangeAvatarButton/UserChangeAvatarButton'
 
 interface props {
   readonly user: UserInterface

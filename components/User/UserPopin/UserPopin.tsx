@@ -10,8 +10,8 @@ interface props {
 }
 
 export default function UserPopin({ user, setClose, reSync,url }: props) {
-  const { close, uri } = useUserPopin(setClose,url),
-    props = { close, uri, reSync, user, setClose }
+  const { close, uri,isMe } = useUserPopin(setClose,url,user),
+    props = { close, uri, reSync, user, setClose,isMe }
 
   return <UserPopinView {...props} />
 }

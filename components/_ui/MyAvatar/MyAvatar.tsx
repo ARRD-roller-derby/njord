@@ -1,19 +1,12 @@
-import Image from "next/image";
+import MyAvatarView from './MyAvatarView'
+import useMyAvatar from './useMyAvatar'
 
-interface props {
-    readonly size?:number
-    readonly url:string
+interface Props {
+  readonly size?: number
 }
 
-export default function MyAvatar({size=30, url}:props) {
+export default function MyAvatar(props: Props) {
+  const useProps = useMyAvatar()
 
-  return (
-    <Image
-      src={url || "/static/images/profile.webp"}
-      width={size}
-      height={size}
-      alt={url || "profil"}
-    />
-  );
+  return <MyAvatarView {...props} {...useProps} />
 }
-

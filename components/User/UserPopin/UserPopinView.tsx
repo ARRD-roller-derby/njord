@@ -8,6 +8,7 @@ import UserBlockContact from '../UserBlockContact/UserBlockContact'
 import UserBlockDerby from '../UserBlockDerby/UserBlockDerby'
 import ShutterModale from '../../_ui/ShutterModale/ShutterModale'
 import UserBlockLeague from '../UserBlockLeague/UserBlockLeague'
+import UserChangeAvatarButton from '../UserChangeAvatarButton/UserChangeAvatarButton'
 
 interface props {
   readonly user: UserInterface
@@ -15,9 +16,10 @@ interface props {
   readonly reSync: Function
   readonly close: Function
   readonly uri: string
+  readonly isMe: boolean
 }
 
-export default function UserPopinView({ user, uri, close, reSync }: props) {
+export default function UserPopinView({ user,isMe, uri, close, reSync }: props) {
   return (
     <ShutterModale setClose={close} show={!!user}>
       {user && (
@@ -33,6 +35,7 @@ export default function UserPopinView({ user, uri, close, reSync }: props) {
               />
             </h1>
           </Link>
+          {isMe && <UserChangeAvatarButton reSync={reSync}/>}
           <UserBlockIndentity user={user} uri={uri} reSync={reSync} />
           <UserBlockContact user={user} uri={uri} reSync={reSync} />
           <UserBlockDerby user={user} uri={uri} reSync={reSync} />
