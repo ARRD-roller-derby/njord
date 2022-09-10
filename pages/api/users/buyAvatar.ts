@@ -30,8 +30,8 @@ export default async function buyAvatar(
   img.src = req.body.img
 
   await MongoDb()
-  const me = await User.findById(session.user._id, {wallet: 1 })
-
+  const me = await User.findById(session.user._id)
+  console.log('-----',me)
   const link = await s3.sendImage(
     'avatar',
     canvas.createPNGStream(),
@@ -47,8 +47,7 @@ export default async function buyAvatar(
   const newWallet = me.wallet - avatarFeat.cost
 
   if(me.wallet <0) return res.status(400).send("Vous n'avais pas assez de Dragons (Dr.) pour modifier votre avatar.")
-
-  console.log(avatarFeat)
+  
   me.avatar = link
   me.wallet = newWallet
   await me.save()
