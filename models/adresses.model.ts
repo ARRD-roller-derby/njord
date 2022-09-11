@@ -18,8 +18,7 @@ adressSchema.index({
   label: 'text',
   city: 'text',
   street: 'text',
-  zipcode: 'text',
-  address: 'text'
+  zipcode: 'text'
 })
 
 const Address = models.adresses || model('adresses', adressSchema)
