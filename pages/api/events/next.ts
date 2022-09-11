@@ -20,7 +20,7 @@ export default async function eventsNext(
 
   const between = {
     start: {
-      $gte: dayjs().format('YYYY-MM-DD'),
+      $gte: dayjs().subtract(18, 'hour').format('YYYY-MM-DD'),
       $lt: dayjs().add(1, 'month').format('YYYY-MM-DD'),
     },
   }
