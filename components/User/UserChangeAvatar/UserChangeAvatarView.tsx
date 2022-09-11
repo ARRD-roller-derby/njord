@@ -31,6 +31,7 @@ export default function UserChangeAvatarView({
         <div className={classes.img}>
           <Cropper
             src={preview}
+            style={{ height: 350, width: "100%" }}
             initialAspectRatio={1 / 1}
             aspectRatio={1 / 1}
             guides={false}
