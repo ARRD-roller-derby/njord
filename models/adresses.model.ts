@@ -6,11 +6,12 @@ export const adressSchema = new Schema<addressInterface>({
   lon: Number,
   label: String,
   ownerId: String,
+  address: String,
   city: String,
-  address:String,
   zipcode: String,
   street: String,
   type: String,
+  updatedAt:Date
 })
 
 adressSchema.index({
@@ -18,6 +19,7 @@ adressSchema.index({
   city: 'text',
   street: 'text',
   zipcode: 'text',
+  address: 'text'
 })
 
 const Address = models.adresses || model('adresses', adressSchema)

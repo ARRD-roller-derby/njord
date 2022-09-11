@@ -3,8 +3,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
 import Event from '../../../models/event.model'
-import searchTypeOfPresence from '../../../utils/searchTypeOfPresence'
-import { AttendeeInterface } from '../../../types/attendee.interface'
 import eventWithPresence from '../../../utils/eventWithPresence'
 
 export default async function eventsNext(

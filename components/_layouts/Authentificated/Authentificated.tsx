@@ -50,7 +50,7 @@ export default function AuthentificatedLayout({ children, title }: props) {
         <div className={classes.box}>
           {session
             ? children
-            : 'Il semble que votre connexion soit défaillante.'}
+            :<button onClick={()=>window.location.reload()}>Recharger</button>}
         </div>
       </main>
     </div>
