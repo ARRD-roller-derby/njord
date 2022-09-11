@@ -69,7 +69,7 @@ export default function ArticleCreatePopinView({
           </button>
           <SubmitButton
             onClick={() => onSubmit()}
-            text="Créer l'événement"
+            text="Créer la news"
             loading={loading}
           />
         </div>
