@@ -9,6 +9,7 @@ import UserBlockDerby from '../UserBlockDerby/UserBlockDerby'
 import ShutterModale from '../../_ui/ShutterModale/ShutterModale'
 import UserBlockLeague from '../UserBlockLeague/UserBlockLeague'
 import UserChangeAvatarButton from '../UserChangeAvatarButton/UserChangeAvatarButton'
+import Avatar from '../../_ui/Avatar/Avatar'
 
 interface props {
   readonly user: UserInterface
@@ -19,7 +20,13 @@ interface props {
   readonly isMe: boolean
 }
 
-export default function UserPopinView({ user,isMe, uri, close, reSync }: props) {
+export default function UserPopinView({
+  user,
+  isMe,
+  uri,
+  close,
+  reSync,
+}: props) {
   return (
     <ShutterModale setClose={close} show={!!user}>
       {user && (
@@ -35,7 +42,15 @@ export default function UserPopinView({ user,isMe, uri, close, reSync }: props) 
               />
             </h1>
           </Link>
-          {isMe && <UserChangeAvatarButton reSync={reSync}/>}
+          {isMe ? (
+            <UserChangeAvatarButton reSync={reSync} />
+          ) : (
+            <div className={classes.avatarContainer}>
+              <div className={classes.avatar}>
+              <Avatar src={user.avatar} size={50} />
+              </div>
+            </div>
+          )}
           <UserBlockIndentity user={user} uri={uri} reSync={reSync} />
           <UserBlockContact user={user} uri={uri} reSync={reSync} />
           <UserBlockDerby user={user} uri={uri} reSync={reSync} />

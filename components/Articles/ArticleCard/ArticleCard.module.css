@@ -1,0 +1,36 @@
+.container {
+  background: var(--color-bg-dark);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding:10px;
+  overflow: hidden;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.author {
+  font-weight: bold;
+  color:var(--color-arrd);
+  text-transform: uppercase;
+}
+
+.date {
+  color: var(--color-tierce);
+  font-size: 12px;
+}
+
+.content {
+  font-size: 15px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}

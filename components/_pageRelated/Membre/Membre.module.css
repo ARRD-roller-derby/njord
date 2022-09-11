@@ -14,6 +14,16 @@
   width: 500px;
 }
 
+.avatarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  width: 50px;
+}
+
 @media screen and (max-width: 530px) {
   .user {
     width: 100%;

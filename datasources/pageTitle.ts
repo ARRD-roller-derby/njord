@@ -10,5 +10,6 @@ export const pageTitle = {
   "/notifications": "Notifications",
   "/teams": "Mes équipes",
   "/adresses": "Mes adresses",
-  "/stuff": "Inventaire"
+  "/stuff": "Inventaire",
+  "/news":"News"
 }

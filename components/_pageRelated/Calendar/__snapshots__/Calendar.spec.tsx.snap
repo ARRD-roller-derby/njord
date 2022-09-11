@@ -88,10 +88,10 @@ exports[`<Calendar /> > Check snapshot 1`] = `
             </span>
           </a>
           <div
-            class="_container_1cugo_1"
+            class="_container_1dfbn_1"
           >
             <div
-              class="_avatar_1cugo_12"
+              class="_avatar_1dfbn_12"
               data-ignore="true"
               data-testid="avatar"
             >

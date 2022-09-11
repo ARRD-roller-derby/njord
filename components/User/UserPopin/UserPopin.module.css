@@ -28,6 +28,16 @@
   color: var(--color-second);
 }
 
+.avatarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  width: 50px;
+}
+
 @media screen and (max-width: 550px) {
   .container {
     width: 350px;
