@@ -55,7 +55,7 @@ export default function useUsersFilter(
     return count
   }
   return {
-    filteredUsers: users ? users.filter(filterUser) : [],
+    filteredUsers: users ? users.filter(filterUser).sort((a,b)=> a.name.localeCompare(b.name)) : [],
     search,
     setSearch,
   }

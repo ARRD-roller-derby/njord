@@ -3,6 +3,7 @@ import { PusherContext } from '../../../stores/pusher.store'
 import { EventInterface } from '../../../types/Event.interface'
 import useSilentDBSync from '../../_hooks/useSilentDBSync'
 import eventTitleRender from '../../../utils/eventTitleRender'
+import dayjs from 'dayjs';
 
 export default function useEventsNext(id: string) {
   const {
@@ -60,7 +61,7 @@ export default function useEventsNext(id: string) {
 
   return {
     id,
-    events,
+    events: events?.sort((a:any,b:any)=> a.start -  b.start ),
     loading,
     currentType,
     setCurrentType,
