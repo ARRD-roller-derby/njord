@@ -1,4 +1,5 @@
 import { EventInterface } from "../../../types/Event.interface"
+import Factory from "../../_layouts/Factory/Factory"
 import EventCardView from "./EventCardView"
 import useEventCard from "./useEventCard"
 
@@ -7,9 +8,5 @@ interface Props {
   readonly reSync: Function
 }
 
-export default function EventCard(props:Props){
-  const useProps = useEventCard(props.event)
-
-  return <EventCardView {...props} {...useProps}/>
-
-}
+const EventCard = Factory<Props>(useEventCard,EventCardView)
+export default EventCard

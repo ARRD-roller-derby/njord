@@ -14,7 +14,9 @@ export default defineConfig({
       './setupFiles/indexDB.mock.ts',
       './setupFiles/modules.mock.ts',
       './setupFiles/date.mock.ts',
-      './setupFiles/server.ts'
+      './setupFiles/server.ts',
+      '/setupFiles/setEnvVars'
+    
     ],
     coverage: {
       reporter: ['text','html'],

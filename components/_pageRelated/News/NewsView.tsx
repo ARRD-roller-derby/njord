@@ -15,13 +15,7 @@ interface props {
 }
 
 export default function NewsView({ news, loading, reSync, canPublish }: props) {
-  //TODO
 
-  /**
-   * Popin de création
-   * liste des news
-   * bouton de fetch (avec page.) pour pagination
-   */
   return (
     <AuthentificatedLayout>
       <PageActions>

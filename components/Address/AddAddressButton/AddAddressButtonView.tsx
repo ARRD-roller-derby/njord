@@ -8,7 +8,6 @@ interface props {
   readonly reSync:Function
 }
 export default function AddAddressButtonView({isOpen,openPopin,reSync,closePopin}:props) {
-
   return <>
   <button onClick={()=>openPopin()}>Ajouter une adresse</button>
   {isOpen && <AddAddressPopin closePopin={closePopin} reSync={reSync}/>}

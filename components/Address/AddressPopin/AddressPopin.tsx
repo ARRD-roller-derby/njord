@@ -1,23 +1,14 @@
 import { addressInterface } from '../../../types/address.interface'
+import Factory from '../../_layouts/Factory/Factory'
 import AddressPopinView from './AddressPopinView'
 import useAddressPopin from './useAddressPopin'
 
-interface props {
+interface Props {
   readonly address: addressInterface
   readonly setClose: Function
   readonly reSync: Function
   readonly url: string
 }
 
-export default function AddressPopin({
-  address,
-  setClose,
-  reSync,
-  url,
-}: props) {
-  const useProps = useAddressPopin(setClose, url, reSync)
-
-  return (
-    <AddressPopinView address={address} setClose={setClose} {...useProps} />
-  )
-}
+const AddressPopin = Factory<Props>(useAddressPopin,AddressPopinView)
+export default AddressPopin

@@ -7,6 +7,7 @@ interface Props {
 }
 
 export default function useEventAttendeeCard({ user, eventType }: Props) {
+
   const [type, setType] = useState<string>()
 
   function paramType() {
@@ -20,5 +21,5 @@ export default function useEventAttendeeCard({ user, eventType }: Props) {
     if (user) paramType()
   }, [user])
 
-  return { type }
+  return { user,type }
 }

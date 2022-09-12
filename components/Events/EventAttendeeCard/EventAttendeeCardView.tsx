@@ -2,7 +2,6 @@ import { AttendeeInterface } from '../../../types/attendee.interface'
 import Avatar from '../../_ui/Avatar/Avatar'
 import classes from './EventAttendeeCard.module.css'
 
-
 interface Props {
 readonly user: AttendeeInterface
 readonly type?: string
