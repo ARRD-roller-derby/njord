@@ -1,5 +1,4 @@
 import { vi } from 'vitest';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 
 vi.mock('next/router', () => ({
   useRouter: vi.fn(() => ({
@@ -26,6 +25,16 @@ vi.mock('next-auth/react', () => ({
     },
     actual: {},
   })),
+  getSession: vi.fn(() => ({
+
+      user: {
+        _id: 'id',
+        email: 'test@test.test',
+        profiles:[]
+      },
+
+    actual: {},
+  })),
 }))
 
 vi.mock('pusher-js', () => ({
@@ -44,5 +53,3 @@ vi.mock('dayjs', () => {
 
   default: dayjs
 }})
-
-mongod = await MongoMemoryServer.create({ binary: { version: '8.9.1' } });

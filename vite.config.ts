@@ -15,7 +15,7 @@ export default defineConfig({
       './setupFiles/modules.mock.ts',
       './setupFiles/date.mock.ts',
       './setupFiles/server.ts',
-      '/setupFiles/setEnvVars'
+      '/setupFiles/mongo-memory-server.ts'
     
     ],
     coverage: {

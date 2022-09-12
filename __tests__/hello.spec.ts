@@ -1,44 +1,39 @@
-import { MongoClient } from "mongodb";
-import { it, expect ,beforeAll, afterAll } from "vitest";
-import { setup, teardown } from "vitest-mongodb";
+import { MongoClient } from 'mongodb'
+import { it, expect } from 'vitest'
+import { createMocks } from 'node-mocks-http'
+import handleItems from '../pages/api/items/items'
+import { MongoDb } from '../db/mongo.connect'
+import Item from '../models/item.model'
 
 describe('HELLO', () => {
+
   beforeAll(async () => {
-    await setup();
-  });
-  
-  afterAll(async () => {
-    await teardown();
-  });
+    await MongoDb()
+    await Item.create({
+      name: 'test',
+      ownerType: 'user',
+      ownerId: 'id',
+      localization: {
+        type: 'user',
+        id: 'id',
+        name: 'user mock',
+      },
+    })
+  })
 
-  it("connects to mongodb", () => {
-    expect(async () => {
-      const client = new MongoClient(globalThis.__MONGO_URI__);
-      try {
-        const db = client.db("test");
-        await db.command({ ping: 1 });
-      } finally {
-        await client.close();
-      }
-    }).not.toThrow();
-  });
+  afterAll(async ()=>{
+    await MongoDb()
+    await Item.deleteMany()
+  })
+  
+  it('inserts and reads a document', async () => {
+    const { req, res } = createMocks({
+      method: 'GET',
+    })
 
-  it("inserts and reads a document", async () => {
-    const client = new MongoClient(globalThis.__MONGO_URI__);
-    await client.connect();
-    const db = client.db("test");
-    const users = db.collection("users");
-    await users.insertOne({ username: "test123", password: "test123" });
-    const user = await users.findOne({ username: "test123" });
-    await client.close();
-  
-    expect(user).toHaveProperty("username");
-    expect(user).toHaveProperty("password");
-    expect(user?.username).toBe("test123");
-    expect(user?.password).toBe("test123");
-  });
-  
+    await handleItems(req, res)
+
+    expect(res._getStatusCode()).toBe(200)
+    expect(JSON.parse(res._getData()).length).toEqual(1)
+  })
 })
-
-
-
