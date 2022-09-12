@@ -13,7 +13,6 @@ vi.mock('next/link', () => ({
   },
 }))
 
-
 vi.mock('next-auth/react', () => ({
   useSession: vi.fn(() => ({
     data: {

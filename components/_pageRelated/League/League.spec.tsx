@@ -14,10 +14,7 @@ describe('<League />', () => {
     }),
     rest.post('/api/leagues/leagues', (_req, res, ctx) => {
       return res(ctx.status(200), ctx.json([]))
-    }),
-    rest.post('/api/leagues/users', (_req, res, ctx) => {
-      return res(ctx.status(200), ctx.json([]))
-    }),
+    })
   );
 
   it('Check snapshot', async () => {

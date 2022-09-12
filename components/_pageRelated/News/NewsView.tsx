@@ -25,8 +25,8 @@ export default function NewsView({ news, loading, reSync, canPublish }: props) {
         {loading && <LoaderWheel />}
         <div className={classes.items}>
           {news && news.length === 0 && <div>Aucune news.</div>}
-          {!loading &&
-            news &&
+          {(!loading &&
+            news )&&
             news.map((article) => (
               <ArticleCard
                 key={article._id}

@@ -8,6 +8,7 @@ import { server } from '../../../setupFiles/server'
 
 describe('<Calendar />', () => {
   afterEach(cleanup)
+  
   server.use(
     rest.post('/api/events/events', (_req, res, ctx) => {
       return res(ctx.status(200), ctx.json([]))

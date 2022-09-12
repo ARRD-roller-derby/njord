@@ -6,7 +6,7 @@ export const server = setupServer(...handlers)
 
 beforeAll(() => {
   // Enable the mocking in tests.
-  server.listen()
+  server.listen({ onUnhandledRequest: 'warn'})
 })
 
 afterEach(() => {

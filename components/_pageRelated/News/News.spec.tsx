@@ -10,7 +10,7 @@ describe('<News />', () => {
   afterEach(cleanup)
   server.use(
     rest.post('/api/news/news', (_req, res, ctx) => {
-      return res(ctx.status(200), ctx.json([]))
+      return res(ctx.status(200), ctx.json({articles:[],totalPage:0,page:1}))
     })
   );
 
@@ -20,8 +20,6 @@ describe('<News />', () => {
         <News/>
       </PusherContext.Provider>
     )
-
-    expect(await screen.findByText("Aucune news.")).toBeInTheDocument()
     expect(asFragment()).toMatchSnapshot()
   })
 })
