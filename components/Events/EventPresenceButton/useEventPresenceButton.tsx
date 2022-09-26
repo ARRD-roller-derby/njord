@@ -1,19 +1,17 @@
-import { useEffect } from 'react'
 import usePost from '../../_hooks/usePost'
 import { Props, useProps } from './EventPresenceButton.type'
 import { EventInterface } from '../../../types/Event.interface'
 
-const useEventPresenceButton = ({
-  event,
-  setEvent,
-}: Props): useProps => {
-  const { error, loading, post } = usePost('event/presence')
+const useEventPresenceButton = ({ event, setEvent }: Props): useProps => {
+  const { loading, post } = usePost('event/presence')
 
   function handleSubmit() {
     if (!loading) {
-      const presence = getPresence(event)
-      setEvent({ ...event, ...presence })
-      post({ type: presence, eventId: event._id })
+      const presence = { ...event?.presence },
+        newPresence = !event?.presence?.isPresent
+      presence.isPresent = newPresence
+      setEvent({ ...event, presence: { ...presence } })
+      post({ type: newPresence, eventId: event._id })
     }
   }
 
@@ -24,12 +22,6 @@ const useEventPresenceButton = ({
 
     return { presence }
   }
-
-  useEffect(() => {
-    if (error) {
-      setEvent({ ...event, ...getPresence(event) })
-    }
-  }, [error])
 
   return { handleSubmit, loading, presence: event.presence?.isPresent }
 }
