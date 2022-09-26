@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import useFetch from '../../_hooks/useFetch'
 import { useSession } from 'next-auth/react'
 import { ArticleInterface } from '../../../types/article.interface'
 import { useProps } from './News.type'
+import { PusherContext } from '../../../stores/pusher.store'
 
 const useNews = ():useProps => {
   const { data, loading, refetch } = useFetch<{
@@ -10,6 +11,7 @@ const useNews = ():useProps => {
       totalPage: number
       articles: Array<ArticleInterface>
     }>('news/news'),
+    [triggerRefresh] = useContext(PusherContext),
     { data: session } = useSession(),
     [currentPage, _setCurrentPage] = useState<number>(1)
 
@@ -18,6 +20,12 @@ const useNews = ():useProps => {
       refetch({ page: data?.page ? data.page + 1 : 0 })
     }
   }
+
+  useEffect(() => {
+    if (triggerRefresh && triggerRefresh?.type === 'news') {
+      refetch()
+    }
+  }, [triggerRefresh])
 
   return {
     news: data?.articles,

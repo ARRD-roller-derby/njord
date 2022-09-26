@@ -3,7 +3,6 @@ import { PusherContext } from '../../../stores/pusher.store'
 import { EventInterface } from '../../../types/Event.interface'
 import useSilentDBSync from '../../_hooks/useSilentDBSync'
 import eventTitleRender from '../../../utils/eventTitleRender'
-import dayjs from 'dayjs';
 
 export default function useEventsNext(id: string) {
   const {
