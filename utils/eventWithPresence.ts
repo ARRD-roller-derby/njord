@@ -20,7 +20,7 @@ export default function eventWithPresence(
       isPresent: false,
     }
   }
-
+  
   delete newEvent.attendees
 
   return newEvent
