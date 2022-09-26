@@ -15,7 +15,7 @@ export default async function news(req: NextApiRequest, res: NextApiResponse) {
   ]
 
   res.json({
-    articles: await Article.find({$or:OR}).limit(20).sort({ updatedAt: -1 }),
+    articles: await Article.find({$or:OR}).limit(30).sort({ updatedAt: -1 }),
     page: 1,
     totalPage: 10
   })

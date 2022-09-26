@@ -3,6 +3,8 @@ import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
 import validator from 'validator';
 import Article from '../../../models/article.model';
+import User from '../../../models/user.model';
+import { pusher } from '../../../services/pusher/pusher'
 
 export default async function deleteNews(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -17,5 +19,13 @@ export default async function deleteNews(req: NextApiRequest, res: NextApiRespon
   if(!iHaveGoodProfile) return res.status(403).send('non autorisé')
   await article.delete()
   
+  const users = await User.find({ 'league.id': session.user.league.id })
+
+  users.forEach((user) => {
+    pusher.trigger(user._id + '-notification', 'message', {
+      type: 'news',
+    })
+  })
+
   res.send('News supprimée !')
 }
