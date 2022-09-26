@@ -19,8 +19,7 @@ export default async function cancelEvent(req: NextApiRequest, res: NextApiRespo
  
   eventToCancel.cancel = true
   await eventToCancel.save()
-
-  console.log(eventToCancel.attendees)
+  
   await Notification.create(eventToCancel.attendees.map((attendee:{userId:string})=>({
     userId: attendee.userId,
     type: 'event',

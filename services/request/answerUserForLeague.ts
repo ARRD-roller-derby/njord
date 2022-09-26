@@ -33,7 +33,6 @@ export default async function answerUserForLeague(  res: NextApiResponse,
     const notifText = `${value.name} a  ${
       answer === answerRequest.accept ? 'accepté' : 'refusé'
     } votre invitation à rejoindre la league`
-    console.log('L', admins)
 
 
     if (answer === answerRequest.accept) {

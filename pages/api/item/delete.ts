@@ -14,7 +14,6 @@ export default async function itemDelete(
   if (!session) return res.status(403).send('non autorisé')
 
   await MongoDb()
-  console.log(req.body)
   const item = await Item.findById(validator.escape(req.body._id))
 
   if (!item) return res.status(404).send('Objet non trouvé')
