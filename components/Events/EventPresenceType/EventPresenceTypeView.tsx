@@ -2,7 +2,8 @@ import { useRef } from 'react'
 import ReactSelect from 'react-select'
 import { CSSTransition } from 'react-transition-group'
 import reactSelectStyle from '../../../styles/reactSelectStyle'
-import { Props, useProps } from './EventPresenceType.type';
+import { Props, useProps } from './EventPresenceType.type'
+import { eventTypeSelectData } from './eventTypeSelectData'
 
 const EventPresenceTypeView = ({
   options,
@@ -25,8 +26,12 @@ const EventPresenceTypeView = ({
           menuPlacement="top"
           styles={reactSelectStyle}
           options={options}
-          value={{ label: event.presence.type, value: event.presence.type }}
-          onChange={(choice) => onChange(choice)}
+          value={
+            event.presence.type
+              ? { label: event.presence.type, value: event.presence.type }
+              : eventTypeSelectData.at(0)
+          }
+          onChange={(choice:{label:string,value:string}) => onChange(choice)}
         />
       </CSSTransition>
     </div>
