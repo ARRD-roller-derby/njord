@@ -3,6 +3,8 @@ import classes from './NotificationMiniCard.module.css'
 import dayjs from 'dayjs'
 import Cross from '../../../public/icons/xmark.svg'
 import Image from 'next/image'
+import validator from 'validator';
+import ReactMarkdown from 'react-markdown'
 
 interface props {
   readonly notification: NotificationInterface
@@ -27,7 +29,7 @@ export default function NotificationMiniCardView({
         <Image src={Cross} width={10} height={10} alt="supprimer" />
       </div>
       <div className={classes.text} onClick={() => seePage()}>
-        {notification.text}
+      <ReactMarkdown>{validator.unescape(notification.text)}</ReactMarkdown>
       </div>
 
       <div className={classes.date}>
