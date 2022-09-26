@@ -2,7 +2,7 @@ import { afterEach,describe,expect, it, vi } from 'vitest'
 import { cleanup } from '@testing-library/react'
 import News from './News'
 import { PusherContext } from '../../../stores/pusher.store'
-import { render, screen } from '../../../utils/test-utils'
+import { render } from '../../../utils/test-utils'
 import { rest } from 'msw'
 import { server } from '../../../setupFiles/server'
 

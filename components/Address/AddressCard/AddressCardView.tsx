@@ -1,11 +1,6 @@
 import classes from './AddressCard.module.css'
-import { addressInterface } from '../../../types/address.interface'
 import dynamic from 'next/dynamic'
-
-interface props {
-  readonly address: addressInterface
-  readonly openShutter: Function
-}
+import { Props } from './AddressCard.type'
 
 const MapForCard = dynamic(
   () => import('../../_ui/Map/MapForCard/MapForCard'),
@@ -14,7 +9,7 @@ const MapForCard = dynamic(
   }
 )
 
-export default function AddressCardView({ address,openShutter }: props) {
+const AddressCardView = ({ address,openShutter }: Props) => {
   return (
     <div className={classes.container}>
       <div className={classes.map}>
@@ -30,3 +25,5 @@ export default function AddressCardView({ address,openShutter }: props) {
     </div>
   )
 }
+
+export default AddressCardView

@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { useProps } from './AddAddressButton.type'
 
-export default function useAddAddressButton() {
+const useAddAddressButton = (): useProps => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return {
@@ -9,3 +10,5 @@ export default function useAddAddressButton() {
     closePopin: () => setIsOpen(false),
   }
 }
+
+export default useAddAddressButton

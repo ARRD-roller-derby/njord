@@ -1,21 +1,18 @@
-import { EventInterface } from '../../../types/Event.interface'
 import { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
 import { eventTypeSelectData } from './eventTypeSelectData'
 import usePost from '../../_hooks/usePost'
+import { Props, useProps} from './EventPresenceType.type'
 
-interface Props {
-  readonly event: EventInterface
-  readonly reSync: Function
-}
-
-export default function useEventPresenceType({ event, reSync }: Props) {
+const useEventPresenceType = ({ event,setEvent }: Props):useProps => {
   const [options, setOptions] =
       useState<Array<{ label: string; value: string }>>(),
-    { loading, data, post } = usePost('event/presenceType')
+    { loading, post } = usePost('event/presenceType')
 
   function onChange(choice: { label: string; value: string }) {
     if (!loading) {
+      const newPresence = {...event.presence}
+      newPresence.type = choice.value
+      setEvent({...event,presence: {...newPresence}})
       post({ type: choice.value, eventId: event._id })
     }
   }
@@ -35,9 +32,7 @@ export default function useEventPresenceType({ event, reSync }: Props) {
     handleOptions()
   }, [event])
 
-  useEffect(() => {
-    if (data) reSync()
-  }, [data])
-
   return { onChange, options,loading }
 }
+
+export default useEventPresenceType

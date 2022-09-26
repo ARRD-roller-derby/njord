@@ -1,8 +1,8 @@
 import classes from './AddressPopin.module.css'
 import ShutterModale from '../../_ui/ShutterModale/ShutterModale'
-import { addressInterface } from '../../../types/address.interface'
 import dynamic from 'next/dynamic'
 import AutoConfirmButton from '../../_ui/AutoConfirmButton/AutoConfirmButton'
+import { useProps ,Props} from './AddressPopin.type'
 
 const MapForCard = dynamic(
   () => import('../../_ui/Map/MapForCard/MapForCard'),
@@ -11,20 +11,12 @@ const MapForCard = dynamic(
   }
 )
 
-interface props {
-  readonly address: addressInterface
-  readonly setClose: Function
-  readonly close: Function
-  readonly deleteAddress: Function
-  readonly loading: boolean
-}
-
 export default function AddressPopinView({
   address,
   close,
   deleteAddress,
   loading
-}: props) {
+}: Props & useProps) {
   return (
     <ShutterModale setClose={close} show={!!address}>
       {address && (

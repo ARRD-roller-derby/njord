@@ -2,15 +2,14 @@ import classes from './AddAddressPopin.module.css'
 import MiniFormAddressEdit from '../../MiniForm/MiniFormAddress/MiniFormAddressEdit/MiniFormAddressEdit'
 import FullscreenModale from '../../_ui/FullscreenModale/FullscreenModale'
 import LabeledBlock from '../../_ui/LabeledBlock/LabeledBlock'
+import { Props, useProps } from './AddAddressPopin.type'
 
-interface Props {
-  readonly closePopin: Function
-  readonly setAddress: Function
-  readonly submit: Function
-  readonly loading:boolean
-}
-
-export default function AddAddressPopinView({ closePopin, submit,setAddress,loading }: Props) {
+const AddAddressPopinView = ({
+  closePopin,
+  submit,
+  setAddress,
+  loading,
+}: Props & useProps) => {
   return (
     <FullscreenModale setClose={() => closePopin()}>
       <LabeledBlock title="Ajouter une adresse">
@@ -25,10 +24,14 @@ export default function AddAddressPopinView({ closePopin, submit,setAddress,load
             >
               annuler
             </button>
-            <button disabled={loading} type="submit" onClick={()=>submit()}>ajouter</button>
+            <button disabled={loading} type="submit" onClick={() => submit()}>
+              ajouter
+            </button>
           </div>
         </div>
       </LabeledBlock>
     </FullscreenModale>
   )
 }
+
+export default AddAddressPopinView

@@ -1,20 +1,17 @@
-import useIsMobileDevice from "../../_hooks/useIsMobileDevice"
-import { useEffect, useState } from 'react';
-import { EventInterface } from "../../../types/Event.interface";
+import useIsMobileDevice from '../../_hooks/useIsMobileDevice'
+import { useEffect, useState } from 'react'
+import { EventInterface } from '../../../types/Event.interface'
+import { Props, useProps } from './EventCard.type'
 
-interface Props {
-  readonly event: EventInterface
-  readonly reSync: Function
+const useEventCard = ({ event }: Props): useProps => {
+  const isMobileDevice = useIsMobileDevice(),
+    [shutter, setShutter] = useState<EventInterface | null>(null)
+
+  useEffect(() => {
+    if (shutter) setShutter(event)
+  }, [event])
+
+  return { isMobileDevice, shutter, setShutter }
 }
 
-export default function useEventCard({event,reSync}:Props){
-  const 
-    isMobileDevice = useIsMobileDevice(),
-    [shutter,setShutter] = useState<EventInterface|null>(null)
-    
-    useEffect(()=>{
-      if(shutter) setShutter(event)
-    },[event])
-
-  return {isMobileDevice,shutter,setShutter,event,reSync}
-}
+export default useEventCard

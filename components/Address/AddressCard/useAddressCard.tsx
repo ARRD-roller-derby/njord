@@ -1,3 +1,5 @@
-export default function useAddressCard(){
+const useAddressCard = ()=> {
   return {}
 }
+
+export default useAddressCard

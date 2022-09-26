@@ -9,7 +9,7 @@ import EventCard from '../EventCard/EventCard'
 interface props {
   readonly events: Array<EventInterface>
   readonly loading: boolean
-  readonly reSync: Function
+  readonly reSync: ()=>void
   readonly id: string
   readonly setCurrentType: Function
   readonly currentType: { label: string; value: string }

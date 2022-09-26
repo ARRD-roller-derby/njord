@@ -1,9 +1,11 @@
 import { useState,useEffect } from "react"
 import usePost from "../../_hooks/usePost"
+import { Props } from "./AddAddressPopin.type";
+import { addressInterface } from '../../../types/address.interface';
 
-export default function useAddAddressPopin(reSync:Function, closePopin: Function){
+const useAddAddressPopin = ({reSync, closePopin}:Props) => {
   const 
-    [address,setAddress ] = useState(),
+    [address,setAddress ] = useState<addressInterface>(),
     {data,post,loading} = usePost('address/add')
 
   function submit(){
@@ -19,3 +21,5 @@ export default function useAddAddressPopin(reSync:Function, closePopin: Function
 
   return {address,setAddress,submit,loading}
 }
+
+export default useAddAddressPopin

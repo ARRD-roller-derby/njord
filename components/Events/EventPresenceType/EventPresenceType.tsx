@@ -1,13 +1,8 @@
-import { EventInterface } from "../../../types/Event.interface";
+import Factory from "../../_layouts/Factory/Factory";
+import { Props, useProps } from "./EventPresenceType.type";
 import EventPresenceTypeView from "./EventPresenceTypeView";
 import useEventPresenceType from './useEventPresenceType';
 
-interface Props {
-  readonly event:EventInterface
-  readonly reSync:Function
-}
-export default function EventPresenceType(props:Props){
-  const useProps = useEventPresenceType(props)
+const EventPresenceType = Factory<Props,useProps>(useEventPresenceType,EventPresenceTypeView)
 
-  return <EventPresenceTypeView {...props} {...useProps}/>
-}
+export default EventPresenceType

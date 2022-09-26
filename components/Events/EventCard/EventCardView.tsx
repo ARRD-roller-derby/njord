@@ -1,32 +1,21 @@
 import dayjs from 'dayjs'
 import classes from './EventCard.module.css'
-import dynamic from 'next/dynamic'
-import { EventInterface } from '../../../types/Event.interface'
-import EventPresenceButton from '../EventPresenceButton/EventPresenceButton'
 import EventTitle from '../EventTitle/EventTitle'
-import EventPresenceType from '../EventPresenceType/EventPresenceType'
 import EventShutter from '../EventShutter/EventShutter'
 import validator from 'validator'
 import ReactMarkdown from 'react-markdown'
+import EventPresence from '../EventPresence/EventPresence'
+import { Props, useProps } from './EventCard.type'
 
-interface props {
-  readonly event: EventInterface
-  readonly isMobileDevice?: boolean
-  readonly reSync: Function
-  readonly shutter: EventInterface
-  readonly setShutter: Function
-}
-
-export default function EventCardView({
+const EventCardView = ({
   event,
   isMobileDevice,
   reSync,
   setShutter,
   shutter,
-}: props) {
+}: useProps & Props) => {
   return (
     <>
-      {' '}
       <EventShutter
         event={shutter}
         reSync={reSync}
@@ -85,11 +74,12 @@ export default function EventCardView({
 
         {!event.cancel && (
           <div className={classes.actions}>
-            <EventPresenceType event={event} reSync={reSync} />
-            <EventPresenceButton event={event} reSync={reSync} />
+            <EventPresence event={event} />
           </div>
         )}
       </div>
     </>
   )
 }
+
+export default EventCardView

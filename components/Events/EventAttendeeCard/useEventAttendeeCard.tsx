@@ -1,12 +1,7 @@
-import { AttendeeInterface } from '../../../types/attendee.interface'
 import { useEffect, useState } from 'react'
+import { Props } from './EventAttendeeCard.type'
 
-interface Props {
-  readonly user: AttendeeInterface
-  readonly eventType: string
-}
-
-export default function useEventAttendeeCard({ user, eventType }: Props) {
+const useEventAttendeeCard = ({ user, eventType }: Props) => {
 
   const [type, setType] = useState<string>()
 
@@ -23,3 +18,5 @@ export default function useEventAttendeeCard({ user, eventType }: Props) {
 
   return { user,type }
 }
+
+export default useEventAttendeeCard

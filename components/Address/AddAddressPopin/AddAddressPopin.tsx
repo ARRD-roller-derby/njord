@@ -1,11 +1,7 @@
 import Factory from '../../_layouts/Factory/Factory';
+import { Props,useProps } from './AddAddressPopin.type';
 import AddAddressPopinView from './AddAddressPopinView';
 import useAddAddressPopin from './useAddAddressPopin';
 
-interface Props {
-  readonly reSync:Function
-  readonly closePopin: Function
-}
-
-const AddAddressPopin = Factory<Props>(useAddAddressPopin,AddAddressPopinView)
+const AddAddressPopin = Factory<Props,useProps>(useAddAddressPopin,AddAddressPopinView)
 export default AddAddressPopin
