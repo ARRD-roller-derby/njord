@@ -1,12 +1,8 @@
+import Factory from "../../_layouts/Factory/Factory"
+import { Props, useProps } from "./AddArticleButton.type"
 import AddArticleButtonView from "./AddArticleButtonView"
 import useAddArticleButton from "./useAddArticleButton"
 
-interface Props {
-  readonly reSync:Function
-}
+const AddArticleButton = Factory<Props,useProps>(useAddArticleButton,AddArticleButtonView)
 
-export default function AddArticleButton(props:Props){
-  const useProps = useAddArticleButton()
-
-  return <AddArticleButtonView {...props} {...useProps}/>
-}
+export default AddArticleButton

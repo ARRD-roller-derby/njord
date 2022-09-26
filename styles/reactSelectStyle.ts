@@ -20,6 +20,7 @@ const reactSelectStyle = {
   input: (provided, _state) => ({
     ...provided,
     fontSize: '15px',
+    minWidth: '50px',
     boxShadow: 'inset 0 -2px 0 rgba(255,255,255, 0.05)',
     color: 'var(--color-txt-light)',
   }),

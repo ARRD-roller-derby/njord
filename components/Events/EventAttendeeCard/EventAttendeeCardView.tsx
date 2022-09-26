@@ -1,14 +1,8 @@
-import { AttendeeInterface } from '../../../types/attendee.interface'
 import Avatar from '../../_ui/Avatar/Avatar'
 import classes from './EventAttendeeCard.module.css'
+import { Props, useProps } from './EventAttendeeCard.type'
 
-
-interface Props {
-readonly user: AttendeeInterface
-readonly type?: string
-
-}
-export default function EventAttendeeCardView({user,type}:Props){
+const EventAttendeeCardView = ({user,type}:Props & useProps) => {
 
   return <div className={classes.container}>
             <div className={classes.avatar}>
@@ -18,3 +12,5 @@ export default function EventAttendeeCardView({user,type}:Props){
     {type && <div className={classes.type}>{type}</div>}
   </div>
 }
+
+export default EventAttendeeCardView

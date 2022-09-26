@@ -10,6 +10,11 @@
     "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage"
   },
+  "config": {
+    "mongodbMemoryServer": {
+      "downloadUrl": "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian10-6.0.0.tgz"
+    }
+  },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.168.0",
     "@next-auth/mongodb-adapter": "^1.0.4",
@@ -66,9 +71,11 @@
     "msw": "^0.44.2",
     "next-remove-imports": "^1.0.7",
     "next-transpile-modules": "^9.0.0",
+    "node-mocks-http": "^1.11.0",
     "pusher-js-mock": "^0.3.8",
     "ts-node": "^10.8.0",
     "typescript": "^4.7.2",
-    "vitest": "^0.20.3"
+    "vitest": "^0.20.3",
+    "vitest-mongodb": "^0.0.3"
   }
 }

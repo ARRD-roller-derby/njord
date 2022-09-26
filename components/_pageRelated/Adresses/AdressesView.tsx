@@ -8,12 +8,12 @@ import AddressCard from '../../Address/AddressCard/AddressCard'
 import AddressPopin from '../../Address/AddressPopin/AddressPopin'
 
 interface props {
-  readonly addresses: Array<addressInterface>
-  readonly addressForPopin: addressInterface
-  readonly loading: boolean
-  readonly reSync: Function
-  readonly closePopin: Function
-  readonly openPopin: Function
+  addresses: Array<addressInterface>
+  addressForPopin: addressInterface
+  loading: boolean
+  reSync: ()=>void
+  closePopin: ()=>void
+  openPopin: (address: addressInterface)=>void
 }
 export default function AdressesView({
   addresses,

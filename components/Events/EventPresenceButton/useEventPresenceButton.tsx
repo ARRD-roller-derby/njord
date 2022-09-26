@@ -1,25 +1,37 @@
-import { EventInterface } from '../../../types/Event.interface'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import usePost from '../../_hooks/usePost'
+import { Props, useProps } from './EventPresenceButton.type'
+import { EventInterface } from '../../../types/Event.interface'
 
-interface Props {
-  readonly event: EventInterface
-  readonly reSync: Function
-}
-export default function useEventPresenceButton({ event, reSync }: Props) {
-  const { data, loading, post } = usePost('event/presence')
+const useEventPresenceButton = ({
+  event,
+  setEvent,
+}: Props): useProps => {
+  const { error, loading, post } = usePost('event/presence')
 
   function handleSubmit() {
     if (!loading) {
-      post({ type: !event?.presence?.isPresent,eventId:event._id })
+      const presence = getPresence(event)
+      setEvent({ ...event, ...presence })
+      post({ type: presence, eventId: event._id })
     }
   }
 
-  useEffect(() => {
-    if (data) {
-      reSync()
-    }
-  }, [data])
+  function getPresence(ev: EventInterface): Pick<EventInterface, 'presence'> {
+    const presence = { ...ev.presence },
+      newPresence = !ev?.presence?.isPresent
+    presence.isPresent = newPresence
 
-  return { handleSubmit, loading }
+    return { presence }
+  }
+
+  useEffect(() => {
+    if (!error) {
+      setEvent({ ...event, ...getPresence(event) })
+    }
+  }, [error])
+
+  return { handleSubmit, loading, presence: event?.presence?.isPresent }
 }
+
+export default useEventPresenceButton

@@ -7,10 +7,10 @@ export default function useFetch<T>(
   url: string,
   body: object = {}
 ): {
-  readonly loading: boolean
-  readonly error: Error
-  readonly data: T
-  readonly refetch: Function
+  loading: boolean
+  error: Error
+  data: T
+  refetch: (body?:Object)=>void
 } {
   const [data, setData] = useState<T>(),
     [error, setError] = useState<Error>(),

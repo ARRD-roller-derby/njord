@@ -1,22 +1,16 @@
-import { EventInterface } from '../../../types/Event.interface'
 import classes from './EventPresenceButton.module.css'
+import { Props, useProps } from './EventPresenceButton.type'
 
-interface Props {
-  readonly handleSubmit: Function
-  readonly event: EventInterface
-  readonly loading: boolean
-}
-
-export default function EventPresenceButtonView({
+const EventPresenceButtonView = ({
   handleSubmit,
-  event,
+  presence,
   loading,
-}: Props) {
+}: Props & useProps) => {
   return (
     <div
       className={classes.button}
       onClick={() => handleSubmit()}
-      data-presence={event?.presence?.isPresent ? 'oui' : 'non'}
+      data-presence={presence ? 'oui' : 'non'}
       data-loading={loading}
     >
       <div className={classes.yes}>oui</div>
@@ -24,3 +18,5 @@ export default function EventPresenceButtonView({
     </div>
   )
 }
+
+export default EventPresenceButtonView

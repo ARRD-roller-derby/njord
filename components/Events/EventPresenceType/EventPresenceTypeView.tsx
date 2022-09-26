@@ -2,19 +2,13 @@ import { useRef } from 'react'
 import ReactSelect from 'react-select'
 import { CSSTransition } from 'react-transition-group'
 import reactSelectStyle from '../../../styles/reactSelectStyle'
-import { EventInterface } from '../../../types/Event.interface'
+import { Props, useProps } from './EventPresenceType.type';
 
-interface props {
-  readonly event: EventInterface
-  readonly options: Array<{ label: string; value: string }>
-  readonly onChange: Function
-}
-
-export default function EventPresenceTypeView({
+const EventPresenceTypeView = ({
   options,
   onChange,
   event,
-}: props) {
+}: Props & useProps) => {
   const ref = useRef(null)
 
   return (
@@ -38,3 +32,5 @@ export default function EventPresenceTypeView({
     </div>
   )
 }
+
+export default EventPresenceTypeView

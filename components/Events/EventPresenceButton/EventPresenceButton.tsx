@@ -1,13 +1,11 @@
-import EventPresenceButtonView from "./EventPresenceButtonView";
-import useEventPresenceButton from "./useEventPresenceButton";
-import { EventInterface } from '../../../types/Event.interface';
+import EventPresenceButtonView from './EventPresenceButtonView'
+import useEventPresenceButton from './useEventPresenceButton'
+import Factory from '../../_layouts/Factory/Factory'
+import { Props, useProps } from './EventPresenceButton.type'
 
-interface Props {
-  readonly event:EventInterface
-  readonly reSync: Function
-}
-export default function EventPresenceButton(props:Props){
-  const useProps = useEventPresenceButton(props)
+const EventPresenceButton = Factory<Props, useProps>(
+  useEventPresenceButton,
+  EventPresenceButtonView
+)
 
-  return <EventPresenceButtonView {...props} {...useProps}/>
-}
+export default EventPresenceButton

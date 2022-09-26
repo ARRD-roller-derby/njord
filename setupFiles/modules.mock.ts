@@ -13,7 +13,6 @@ vi.mock('next/link', () => ({
   },
 }))
 
-
 vi.mock('next-auth/react', () => ({
   useSession: vi.fn(() => ({
     data: {
@@ -23,6 +22,16 @@ vi.mock('next-auth/react', () => ({
         profiles:[]
       },
     },
+    actual: {},
+  })),
+  getSession: vi.fn(() => ({
+
+      user: {
+        _id: 'id',
+        email: 'test@test.test',
+        profiles:[]
+      },
+
     actual: {},
   })),
 }))

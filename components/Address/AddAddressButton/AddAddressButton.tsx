@@ -1,12 +1,7 @@
+import Factory from "../../_layouts/Factory/Factory"
 import AddAddressButtonView from "./AddAddressButtonView"
 import useAddAddressButton from "./useAddAddressButton"
+import { Props,useProps } from './AddAddressButton.type';
 
-interface Props {
-  readonly reSync:Function
-}
-
-export default function AddAddressButton(props:Props){
-  const useProps = useAddAddressButton()
-
-  return <AddAddressButtonView {...props} {...useProps}/>
-}
+const AddAddressButton = Factory<Props,useProps>(useAddAddressButton,AddAddressButtonView)
+export default AddAddressButton

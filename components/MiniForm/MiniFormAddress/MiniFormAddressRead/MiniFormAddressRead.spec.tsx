@@ -10,7 +10,6 @@ describe('<MiniFormAddressRead />', () => {
   it('Check snapshot', async () => {
     const {asFragment } = render(<MiniFormAddressRead/>
     )
-
     expect(await screen.findByText("(vide)")).toBeInTheDocument()
     expect(asFragment()).toMatchSnapshot()
   })

@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router'
 import usePost from '../../_hooks/usePost';
 import {useEffect} from 'react';
+import { Props, useProps } from './AddressPopin.type';
+import { addressInterface } from '../../../types/address.interface';
 
-export default function useAddressPopin(setClose: Function,url:string='/users',reSync:Function) {
+export default function useAddressPopin({setClose,url='/users',reSync}:Props):useProps {
   const router = useRouter(),
   {data,loading,post}= usePost('/address/delete')
 
@@ -18,5 +20,5 @@ export default function useAddressPopin(setClose: Function,url:string='/users',r
     }
   },[data])
 
-  return { close: handleClose,deleteAddress:(address:any)=>post(address) ,loading}
+  return { close: handleClose,deleteAddress:(address:addressInterface)=>post(address) ,loading}
 }

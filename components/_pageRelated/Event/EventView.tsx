@@ -19,7 +19,7 @@ interface props {
 export default function EventView({ event, user, reSync, uri }: props) {
   return (
     <AuthentificatedLayout>
-      {(event && user) && <div className={classes.container}>
+      {(event && user) ? <div className={classes.container}>
         <Tabs>
           <Tab field="détails">
             <EventDetailsTab event={event} reSync={reSync}/>
@@ -43,7 +43,7 @@ export default function EventView({ event, user, reSync, uri }: props) {
             </Tab>
           )}
         </Tabs>
-      </div> }
+      </div>: <></> }
     </AuthentificatedLayout>
   )
 }

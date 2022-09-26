@@ -1,12 +1,7 @@
 import ArticleCreatePopin from '../ArticleCreatePopin/ArticleCreatePopin';
+import { useProps,Props } from './AddArticleButton.type';
 
-interface props {
-  readonly isOpen: boolean
-  readonly openPopin: Function
-  readonly closePopin: Function
-  readonly reSync:Function
-}
-export default function AddArticleButtonView({isOpen,openPopin,reSync,closePopin}:props) {
+export default function AddArticleButtonView({isOpen,openPopin,reSync,closePopin}:useProps & Props) {
 
   return <>
   <button onClick={()=>openPopin()}>Ajouter une news</button>

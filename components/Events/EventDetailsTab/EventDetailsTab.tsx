@@ -4,8 +4,7 @@ import classes from './EventDetailsTab.module.css'
 import dayjs from 'dayjs'
 import validator from 'validator'
 import dynamic from 'next/dynamic'
-import EventPresenceType from '../EventPresenceType/EventPresenceType'
-import EventPresenceButton from '../EventPresenceButton/EventPresenceButton'
+import EventPresence from '../EventPresence/EventPresence';
 
 const MapForCard = dynamic(
   () => import('../../_ui/Map/MapForCard/MapForCard'),
@@ -60,8 +59,7 @@ export default function EventDetailsTab({ event, reSync }: props) {
        
             <div className={classes.actions}>
             {!event.cancel && (<>
-              <EventPresenceType event={event} reSync={reSync} />
-              <EventPresenceButton event={event} reSync={reSync} />
+              <EventPresence event={event} />
               </> )}
             </div>
     

@@ -49,4 +49,11 @@ export const handlers = [
       lastname:'lastname'
     }))
   }),
+  rest.get('https://entreprise.data.gouv.fr/api/rna/v1/full_text/*', (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json([]))
+  }),
+  rest.get('https://api-adresse.data.gouv.fr/search', (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json([]))
+  }),
 ]
+

@@ -10,11 +10,13 @@ export default defineConfig({
     environment: 'jsdom',
     globals:true,
     setupFiles: [
+      './setupFiles/server.ts',
       './setupFiles/extend.ts',
       './setupFiles/indexDB.mock.ts',
       './setupFiles/modules.mock.ts',
       './setupFiles/date.mock.ts',
-      './setupFiles/server.ts'
+      '/setupFiles/mongo-memory-server.ts'
+    
     ],
     coverage: {
       reporter: ['text','html'],
