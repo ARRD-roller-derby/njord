@@ -8,7 +8,6 @@
   height: 80vh;
   padding: 0 15px;
   box-sizing: border-box;
-
 }
 
 .title {
@@ -22,6 +21,17 @@
   background: var(--color-bg-dark);
   top:-5px;
   z-index: 5;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.img img {
+  border-radius: 10px;
 }
 
 .title:hover {

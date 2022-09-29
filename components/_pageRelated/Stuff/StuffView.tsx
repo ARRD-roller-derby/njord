@@ -11,8 +11,8 @@ interface props {
   readonly items: Array<ItemWithHereInterface>
   readonly itemForPopin: ItemInterface
   readonly loading: boolean
-  readonly reSync: Function
-  readonly closePopin: Function
+  readonly reSync: ()=>void
+  readonly closePopin: ()=>void
   readonly openPopin: Function
 }
 

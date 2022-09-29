@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from 'uuid'
 import { availableFeatures } from '../../../datasources/availableFeatures'
 import { pusher } from '../../../services/pusher/pusher'
 import { AvailableFeatureInterface } from '../../../types/feature.interface';
-import fs from 'fs'
 
 export default async function buyAvatar(
   req: NextApiRequest,
@@ -47,5 +46,5 @@ export default async function buyAvatar(
   pusher.trigger(me._id + '-notification', 'message', { type: 'wallet' })
   pusher.trigger(me._id + '-notification', 'message', { type: 'avatar' })
 
-  res.json('Merci pour votre achat !')
+  res.send('Merci pour votre achat !')
 }

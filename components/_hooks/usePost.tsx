@@ -16,7 +16,7 @@ export default function usePost(url:string):Fetch {
     [error, setError] = useState<Error>(),
     [loading, setLoading] = useState<boolean>(false);
 
-  async function post(body:Object) {
+  async function post(body:Object,returnMsg?:string) {
     setLoading(true);
     try {
       const { data: resData } = await toast.promise(
@@ -28,6 +28,7 @@ export default function usePost(url:string):Fetch {
           pending: {render:<LoaderWheel/>},
           success:{
             render({data}){
+              if(returnMsg) return returnMsg
               return data.data && typeof data.data === 'string' ? data.data: 'OK ! 👌'
             }
           } ,

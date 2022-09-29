@@ -8,8 +8,8 @@ interface Props {
   readonly items: Array<ItemWithHereInterface>
   readonly itemForPopin: ItemWithHereInterface
   readonly loading: boolean
-  readonly reSync: Function
-  readonly closePopin: Function
+  readonly reSync: (body?: Object)=>void
+  readonly closePopin: ()=>void
   readonly openPopin: Function
 }
 

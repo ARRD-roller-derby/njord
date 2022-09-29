@@ -1,26 +1,18 @@
 import classes from './ItemPopin.module.css'
 import ShutterModale from '../../_ui/ShutterModale/ShutterModale'
-import { ItemInterface, ItemOwnerType } from '../../../types/items.interface';
 import MiniForm from '../../MiniForm/MiniForm/MiniForm'
 import MiniFormStringEdit from '../../MiniForm/MiniFormString/MiniFormStringEdit/MiniFormStringEdit'
 import MiniFormStringRead from '../../MiniForm/MiniFormString/MiniFormStringRead/MiniFormStringRead'
 import MiniFormSelect from '../../MiniForm/MiniFormSelect/MiniFormSelect'
-import { UserInterface } from '../../../types/User.interface'
-import ItemDeleteButton from '../ItemDeleteButton/ItemDeleteButton';
-import ItemRenderType from '../ItemRenderType/ItemRenderType';
-import ItemRecoveryButton from '../ItemRecoveryButton/ItemRecoveryButton';
-import Image from 'next/image';
+import ItemDeleteButton from '../ItemDeleteButton/ItemDeleteButton'
+import ItemRenderType from '../ItemRenderType/ItemRenderType'
+import ItemRecoveryButton from '../ItemRecoveryButton/ItemRecoveryButton'
+import Image from 'next/image'
 import MarkSvg from '../../../public/icons/marker.svg'
-import ItemDepositButton from '../ItemDepositButton/ItemDepositButton';
-
-interface props {
-  readonly item: ItemInterface
-  readonly reSync: Function
-  readonly setClose: Function
-  readonly user: UserInterface
-  readonly uri: string
-  readonly isMyItem:boolean
-}
+import ItemDepositButton from '../ItemDepositButton/ItemDepositButton'
+import { Props, useProps } from './ItemPopin.type'
+import { ItemOwnerType } from '../../../types/items.interface'
+import ItemThumbButton from '../ItemThumbButton/ItemThumbButton'
 
 export default function ItemPopinView({
   item,
@@ -28,8 +20,8 @@ export default function ItemPopinView({
   user,
   uri,
   reSync,
-  isMyItem
-}: props) {
+  isMyItem,
+}: Props & useProps) {
   return (
     <ShutterModale setClose={setClose} show={!!item}>
       {item && (
@@ -37,6 +29,17 @@ export default function ItemPopinView({
           <h1 className={classes.title}>
             <div>Objet</div>
           </h1>
+          {item.picture_url && (
+            <div className={classes.img}>
+              <Image
+                src={item.picture_url}
+                width={200}
+                height={200}
+                alt={'apercu'}
+              />
+            </div>
+          )}
+          {isMyItem && <ItemThumbButton />}
           <MiniForm
             label="libellé"
             user={user}
@@ -61,27 +64,29 @@ export default function ItemPopinView({
               <MiniFormSelect
                 options={[
                   {
-                  label: "moi",
-                  value: ItemOwnerType.user
-                },
-                {
-                  label: "league",
-                  value: ItemOwnerType.league
-                }
-              ]}
+                    label: 'moi',
+                    value: ItemOwnerType.user,
+                  },
+                  {
+                    label: 'league',
+                    value: ItemOwnerType.league,
+                  },
+                ]}
               />
             }
             readField={<ItemRenderType />}
           />
           <div>
-      <div className={classes.localization}>
-        <Image src={MarkSvg} width={15} height={15} alt="marqueur" />
-        <div className="fdz">{item.localization.name}</div>
-      </div>
+            <div className={classes.localization}>
+              <Image src={MarkSvg} width={15} height={15} alt="marqueur" />
+              <div className="fdz">{item.localization.name}</div>
+            </div>
           </div>
-          <ItemRecoveryButton item={item} reSync={reSync} setClose={setClose}/>
-          <ItemDepositButton item={item} reSync={reSync} setClose={setClose}/>
-          {isMyItem && <ItemDeleteButton item={item} reSync={reSync} setClose={setClose}/>}
+          <ItemRecoveryButton item={item} reSync={reSync} setClose={setClose} />
+          <ItemDepositButton item={item} reSync={reSync} setClose={setClose} />
+          {isMyItem && (
+            <ItemDeleteButton item={item} reSync={reSync} setClose={setClose} />
+          )}
         </div>
       )}
     </ShutterModale>
