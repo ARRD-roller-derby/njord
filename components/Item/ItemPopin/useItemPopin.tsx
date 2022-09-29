@@ -1,16 +1,25 @@
 import { useSession } from 'next-auth/react'
-import { ItemInterface, ItemOwnerType } from '../../../types/items.interface'
+import { ItemOwnerType } from '../../../types/items.interface'
+import { useProps } from './ItemPopin.type'
+import { useContext } from 'react';
+import { ItemPopinContext } from './ItemPopin.context';
 
-export default function useItemPopin(item: ItemInterface) {
-  const uri = 'item/update',
+const useItemPopin = (): useProps => {
+  const 
+    [item] = useContext(ItemPopinContext),
+    uri = 'item/update',
     { data: session } = useSession()
-    
+
   return {
+    item,
     user: session.user,
     uri,
     isMyItem:
+    // Api send me item + league item
       item?.ownerType === ItemOwnerType.league
         ? session?.user?.profiles.length > 0
         : true,
   }
 }
+
+export default useItemPopin
