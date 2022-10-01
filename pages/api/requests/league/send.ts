@@ -13,6 +13,7 @@ import { bifrost } from '../../../../datasources/bifrost'
 import Request from '../../../../models/request.model'
 import { requestType } from '../../../../types/requestType.enum'
 import userNameRender from '../../../../utils/userNameRender'
+import { pushNotifications } from '../../../../services/pusher/pusherBeams'
 
 export default async function sendRequest(
   req: NextApiRequest,
@@ -140,6 +141,17 @@ export default async function sendRequest(
         url: '/request/view/' + request.token,
       },
     })
+  })
+
+  const publishToInterests = notifReceivers.map((receiver)=> 'user-' + receiver._id )
+
+  pushNotifications.publishToInterests(publishToInterests, {
+    web: {
+      notification: {
+        title: resume,
+        deep_link: req.headers.origin + '/notifications',
+      },
+    },
   })
 
   res.send('ok')

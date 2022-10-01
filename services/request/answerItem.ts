@@ -11,13 +11,15 @@ import {
 } from '../../types/items.interface'
 import validator from 'validator'
 import User from '../../models/user.model'
+import { pushNotifications } from '../pusher/pusherBeams'
 
 export default async function answerItem(
   res: NextApiResponse,
   request: any,
   session: any,
   token: string,
-  answer: answerRequest
+  answer: answerRequest,
+  origin: string
 ) {
   const item = await Item.findById(request.value.itemId)
   if (!item) return res.status(404).send('Objet non trouvé')
@@ -83,6 +85,17 @@ export default async function answerItem(
       type: requestType.item,
     })
   }
+
+
+  pushNotifications.publishToInterests(['user-' + newCarrierId], {
+    web: {
+      notification: {
+        title: "Requête d'objet",
+        body: demand(),
+        deep_link: origin  + '/notifications',
+      },
+    },
+  })
 
   await request.delete()
 
