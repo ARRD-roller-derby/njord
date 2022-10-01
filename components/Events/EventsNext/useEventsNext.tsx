@@ -74,12 +74,14 @@ export default function useEventsNext(id: string) {
     events: events
     //prevent hour server problem
       ?.filter((event) => dayjs(event.end).diff(dayjs(), "day") >= 0)
-      .sort((a: any, b: any) => a.start - b.start)
       .sort((a: any, b: any) => {
-        const hourA = parseInt(a.hourStart.slice(0, 2)),
-          hourB = parseInt(b.hourStart.slice(0, 2));
-        return hourA - hourB;
-      }),
+        const parseDate = (date:Date,hour:string)=> `${dayjs(date).format('YYYY-MM-DD')}T${hour}:00.000Z`
+        const 
+          startDate = dayjs(parseDate(a.start,a.hourStart)),
+          endDate = dayjs(parseDate(b.start,b.hourStart))
+        return dayjs(startDate).diff(endDate, "hour")
+      })
+,
     loading,
     currentType,
     setCurrentType,
