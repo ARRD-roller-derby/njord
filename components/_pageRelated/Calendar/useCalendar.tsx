@@ -18,5 +18,10 @@ export default function useCalendar() {
     }
   }, [triggerRefresh])
   
-  return { refetch, events, setBetween }
+  return { refetch, events: events?.sort((a:any,b:any)=>{
+    const 
+      hourA = parseInt(a.hourStart.slice(0,2)),
+      hourB = parseInt(b.hourStart.slice(0,2))
+    return hourA -  hourB
+  }), setBetween }
 }

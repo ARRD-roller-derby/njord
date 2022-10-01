@@ -19,7 +19,11 @@ const EventCardDate = ({
 }: Props) => {
   return (
     <div className={classes.date} onClick={setShutter}>
-      {dayjs(start).format('YYYY-MM-DD') === dayjs(end).format('YYYY-MM-DD') ? (
+
+      {(
+        dayjs(start).format('YYYY-MM-DD') === dayjs(end).format('YYYY-MM-DD') &&
+        dayjs(end).diff(start,'day') <=0
+        ) ? (
         <div className={classes.top}>
           <div className={classes.containerDate}>
             <div className={classes.dayString}>
