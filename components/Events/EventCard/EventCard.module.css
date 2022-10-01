@@ -1,8 +1,8 @@
 .container {
   background: var(--color-bg-light-extra);
   border-radius: 10px;
-  display: grid;
-  grid-template-rows: repeat(2,auto) 1fr repeat(2,auto);
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
   border: 1px solid transparent;
   transition: 200ms ease-in-out;
@@ -10,7 +10,6 @@
   padding:10px;
   position:relative;
   overflow: hidden;
-  justify-content: space-around;
   width: 100%;
 }
 
@@ -43,45 +42,6 @@
 
 .container:hover {
   border: 1px solid var(--color-arrd);
-}
-
-.day {
-  font-size: 70px;
-  font-weight: bold;
-  line-height: .9em;
-}
-
-.containerDate {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-  white-space: nowrap;
-}
-
-.month {
-  font-size: 15px;
-}
-
-.dayString {
-  font-size: 10px;
-}
-
-.date {
-  display: flex;
-  flex-direction: column;
-  text-transform: uppercase;
-  color: var(--color-tierce);
-}
-
-.relativeDate {
-  font-size: .8em;
-}
-
-.hour {
-  font-size: 18px;
-  color:var(--color-link);
-  text-align: center;
 }
 
 .address {

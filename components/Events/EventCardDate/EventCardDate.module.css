@@ -1,0 +1,93 @@
+.day {
+  font-size: 70px;
+  font-weight: bold;
+  line-height: .9em;
+}
+
+.top {
+  display:flex;
+  align-items: stretch;
+  align-content: space-between;
+}
+
+.containerDate {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.end {
+  font-size: .8em;
+}
+
+.month {
+  font-size: 15px;
+}
+
+.dayString {
+  font-size: 10px;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  color: var(--color-tierce);
+}
+
+.relativeDate {
+  font-size: .8em;
+}
+
+.hour {
+  font-size: 18px;
+  color:var(--color-link);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.times {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.timeDetails {
+  display: flex;
+  flex-direction:column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px
+}
+
+.dates {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: .8em;
+}
+
+.dates > .containerDate {
+  gap : 5px;
+}
+
+.dates > .containerDate  > .day {
+  font-size: 50px;
+}
+
+.dates > .containerDate[data-type="end"]{
+      align-items: flex-end;
+}
+
+.relativeDateLong {
+  align-self: flex-end;
+  font-size: .8rem;
+  color: var(--color-txt);
+}

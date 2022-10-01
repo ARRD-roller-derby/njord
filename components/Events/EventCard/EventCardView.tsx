@@ -6,6 +6,7 @@ import validator from 'validator'
 import ReactMarkdown from 'react-markdown'
 import EventPresence from '../EventPresence/EventPresence'
 import { Props, useProps } from './EventCard.type'
+import EventCardDate from '../EventCardDate/EventCardDate'
 
 const EventCardView = ({
   event,
@@ -28,30 +29,7 @@ const EventCardView = ({
         data-cancel={event.cancel}
       >
         {event.cancel && <div className={classes.cancel}>Annulé</div>}
-        <div className={classes.containerDate}>
-          <div className={classes.date} onClick={() => setShutter(event)}>
-            <div className={classes.dayString}>
-              {dayjs(event.start).format('dddd')}
-            </div>
-            <div className={classes.day}>{dayjs(event.start).format('DD')}</div>
-            <div className={classes.month}>
-              {dayjs(event.start).format('MMMM')}
-            </div>
-          </div>
-          <div className={classes.times}>
-            <div className={classes.relativeDate}>
-              {dayjs(
-                dayjs(event.start).format('YYYY-MM-DD') +
-                  'T' +
-                  event.hourStart +
-                  ':00.000'
-              ).from(dayjs())}
-            </div>
-            <div className={classes.hour}>
-              {event.hourStart} {'-'} {event.hourEnd}
-            </div>
-          </div>
-        </div>
+            <EventCardDate {...event} setShutter={() => setShutter(event)}/>
 
         <div className={classes.type}>
           <EventTitle event={event} onClick={() => setShutter(event)} />
