@@ -18,10 +18,6 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
 ))return res.status(403).send('non autorisé')
   await MongoDb()
 
-  //TODO FEAT 
-  //---> ajouter les guests. (email d'user et league)
-  if (!req.body.address && req.body.type !== EventType.online) return res.status(400).send('Il manque une adresse')
-
   const 
     startDay = dayjs(validator.escape(req.body.start)),
     endDay = dayjs(validator.escape(req.body.end || req.body.start)),
