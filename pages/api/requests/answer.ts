@@ -29,7 +29,7 @@ export default async function requestAnswer(
 
   // ITEM REQUEST
   if (request.type === requestType.item) {
-    return await answerItem(res, request, session, token, answer)
+    return await answerItem(res, request, session, token, answer,req.headers.origin)
   }
 
   // LEAGUE REQUEST

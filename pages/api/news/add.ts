@@ -6,6 +6,8 @@ import Article from '../../../models/article.model'
 import User from '../../../models/user.model'
 import Notification from '../../../models/notification.model'
 import { pusher } from '../../../services/pusher/pusher'
+import { pushNotifications } from '../../../services/pusher/pusherBeams'
+import { ArticleVisibility } from '../../../types/article.interface'
 
 export default async function newsAdd(
   req: NextApiRequest,
@@ -52,6 +54,25 @@ export default async function newsAdd(
       type: 'news',
     })
   })
+
+  const publishToInterests = ['league-' + session.user.league.id]
+
+  if(visibility === ArticleVisibility.public)
+  publishToInterests.push('league-public')
+  
+  pushNotifications
+    .publishToInterests(
+      publishToInterests,
+      {
+        web: {
+          notification: {
+            title: "Nouvelle news !",
+            deep_link: req.headers.origin + '/news',
+            body: validator.unescape(resume),
+          },
+        },
+      }
+    )
 
   res.send('News Publiée !')
 }

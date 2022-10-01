@@ -13,6 +13,7 @@ import {
   ItemOwnerType,
 } from '../../../../types/items.interface'
 import User from '../../../../models/user.model'
+import { pushNotifications } from '../../../../services/pusher/pusherBeams'
 
 export default async function sendRequest(
   req: NextApiRequest,
@@ -110,6 +111,17 @@ export default async function sendRequest(
   pusher.trigger(item.localization.id + '-notification', 'message', {
     type: requestType.item,
     id: item._id,
+  })
+
+
+  pushNotifications.publishToInterests(['user-' + item.localization.id], {
+    web: {
+      notification: {
+        title: 'Requête d\'objet',
+        deep_link: req.headers.origin + '/notifications',
+        body: resume,
+      },
+    },
   })
 
   res.send('Demande de récupération envoyé')

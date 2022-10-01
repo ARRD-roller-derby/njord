@@ -22,14 +22,14 @@ export default function usePush() {
           // Sub to all profiles and leagues push
           .then(() => {
             session.user.profiles.forEach((profile: string) => {
-              beamsClient.addDeviceInterest(profile);
+              beamsClient.addDeviceInterest('profile-'+profile);
             });
-            session.user.leagues.forEach((league: string) => {
-              beamsClient.addDeviceInterest(league);
-            });
+            beamsClient.addDeviceInterest('league-public');
+            if(session?.user?.league)
+            beamsClient.addDeviceInterest('league-' + session.user.league.id);
+            //private msg
+            beamsClient.addDeviceInterest("user-" + session.user._id)
           })
-          //private msg
-          .then(() => beamsClient.addDeviceInterest("user-" + session.user._id))
           .then(() => setIsConnected(true))
           .catch(console.error);
       }
