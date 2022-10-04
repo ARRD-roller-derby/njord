@@ -1,9 +1,9 @@
 import { useState, useContext,useEffect } from 'react';
-import { PusherContext } from '../../stores/pusher.store';
+import { SocketContext } from '../../stores/socket.store'
 
 export default function useNotifications(type:string){
   const   
-    [state] = useContext(PusherContext),
+    [state] = useContext(SocketContext),
     [notification, setNotification] = useState<any|null>(null)
 
     useEffect(()=>{

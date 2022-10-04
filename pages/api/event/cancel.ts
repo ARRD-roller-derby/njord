@@ -6,9 +6,8 @@ import Event from '../../../models/event.model'
 import Notification from '../../../models/notification.model'
 import eventTitleRender from '../../../utils/eventTitleRender'
 import dayjs from 'dayjs'
-import { pusher } from '../../../services/pusher/pusher'
-import { UserInterface } from '../../../types/User.interface'
 import { pushNotifications } from '../../../services/pusher/pusherBeams'
+import trigger from '../../../services/bifrost/trigger'
 
 export default async function cancelEvent(
   req: NextApiRequest,
@@ -41,9 +40,7 @@ export default async function cancelEvent(
   )
 
   eventToCancel.attendees.forEach((user: { userId: string }) => {
-    pusher.trigger(user.userId + '-notification', 'message', {
-      type: 'event',
-    })
+    trigger(user.userId,{type:'event'})
   })
 
   const publishToInterests = eventToCancel.attendees.map(

@@ -1,7 +1,7 @@
 import useSilentDBSync from '../../_hooks/useSilentDBSync'
 import { useContext, useEffect, useState } from 'react'
 import { ItemInterface, ItemWithHereInterface } from '../../../types/items.interface'
-import { PusherContext } from '../../../stores/pusher.store'
+import { SocketContext } from '../../../stores/socket.store'
 
 export default function useStuff() {
   const {
@@ -18,7 +18,7 @@ export default function useStuff() {
     [itemForPopin, setItemForPopin] = useState<
       ItemInterface | undefined
     >(),
-    [triggerRefresh] = useContext(PusherContext)
+    [triggerRefresh] = useContext(SocketContext)
 
   useEffect(() => {
     if (triggerRefresh && triggerRefresh?.type === 'item') {

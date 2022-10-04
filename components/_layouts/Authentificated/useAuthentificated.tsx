@@ -1,15 +1,15 @@
 import { useSession } from 'next-auth/react'
 import { useContext, useEffect } from 'react'
-import { PusherContext } from '../../../stores/pusher.store'
 import useLocalState from '../../_hooks/useLocalState'
 import usePush from '../../_hooks/usePush'
-import usePusher from '../../_hooks/usePusher'
+import { SocketContext } from '../../../stores/socket.store';
+import useSocket from '../../_hooks/useSocket'
 
 export default function useAuthentificated() {
   const { data: session } = useSession(),
-    [_state, setState] = useContext(PusherContext),
+    [_state, setState] = useContext(SocketContext),
     isConnected = usePush(),
-    message = usePusher(session?.user._id + '-notification'),
+    message = useSocket(session?.user._id),
     { localState, setLocalState } = useLocalState<{open:boolean}>(
       { open: false },
       'njord_menu_state'

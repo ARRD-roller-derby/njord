@@ -1,9 +1,9 @@
 import { useContext, useEffect } from 'react'
-import { PusherContext } from '../../stores/pusher.store'
 import useSilentFetch from './useSilentFetch'
+import { SocketContext } from '../../stores/socket.store';
 
 export default function useNotificationWithFetch<T>(type: string, url: string):T {
-  const [state] = useContext(PusherContext),
+  const [state] = useContext(SocketContext),
     { data, fetch } = useSilentFetch<T>(url)
 
   useEffect(() => {

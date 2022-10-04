@@ -2,10 +2,10 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
 import validator from 'validator'
-import { pusher } from '../../../services/pusher/pusher'
 import User from '../../../models/user.model'
 import Event from '../../../models/event.model'
 import { AttendeesEventInterface } from '../../../types/Event.interface'
+import trigger from '../../../services/bifrost/trigger'
 
 export default async function presenceType(
   req: NextApiRequest,
@@ -77,7 +77,7 @@ export default async function presenceType(
   const users = await User.find({$or:ORUsers})
 
   users.forEach((user) => {
-    pusher.trigger(user._id + '-notification', 'message', {
+    trigger(user._id,{
       type: 'event',
       id: event._id,
     })

@@ -4,7 +4,7 @@ import { MongoDb } from '../../../db/mongo.connect'
 import validator from 'validator';
 import Article from '../../../models/article.model';
 import User from '../../../models/user.model';
-import { pusher } from '../../../services/pusher/pusher'
+import trigger from '../../../services/bifrost/trigger'
 
 export default async function deleteNews(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -22,9 +22,7 @@ export default async function deleteNews(req: NextApiRequest, res: NextApiRespon
   const users = await User.find({ 'league.id': session.user.league.id })
 
   users.forEach((user) => {
-    pusher.trigger(user._id + '-notification', 'message', {
-      type: 'news',
-    })
+    trigger(user._id,{type: 'news'})
   })
 
   res.send('News supprimée !')

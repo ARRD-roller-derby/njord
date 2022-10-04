@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
 import Notification from '../../../models/notification.model'
-import { pusher } from '../../../services/pusher/pusher'
+import trigger from '../../../services/bifrost/trigger'
 
 export default async function markAllRead(
   req: NextApiRequest,
@@ -14,7 +14,7 @@ export default async function markAllRead(
 
   await Notification.updateMany({userId:session.user._id},{state: 'read'})
 
-  pusher.trigger(session.user._id + '-notification', 'message', {
+  trigger(session.user._id,{
     type: 'readNotification',
     value: 'refresh',
   })

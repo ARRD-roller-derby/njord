@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../../db/mongo.connect'
 import League from '../../../../models/league.model'
-import { pusher } from '../../../../services/pusher/pusher'
 import { LeagueInterface } from '../../../../types/League.interface'
 import validator from 'validator'
 import dto from '../../../../utils/dto'
@@ -14,6 +13,7 @@ import Request from '../../../../models/request.model'
 import { requestType } from '../../../../types/requestType.enum'
 import userNameRender from '../../../../utils/userNameRender'
 import { pushNotifications } from '../../../../services/pusher/pusherBeams'
+import trigger from '../../../../services/bifrost/trigger'
 
 export default async function sendRequest(
   req: NextApiRequest,
@@ -129,18 +129,17 @@ export default async function sendRequest(
     updatedAt: new Date(),
   })
 
-  pusher.trigger(session.user._id + '-notification', 'message', {
-    type: requestType.league_join,
-  })
-
+  trigger(session.user._id , {type: requestType.league_join})
+  
   notifReceivers.forEach((receiver) => {
-    pusher.trigger(receiver._id + '-notification', 'message', {
+    trigger(receiver._id , {
       type: requestType.league_join,
       toast: {
         message: resume,
         url: '/request/view/' + request.token,
-      },
+      }
     })
+
   })
 
   const publishToInterests = notifReceivers.map((receiver)=> 'user-' + receiver._id )

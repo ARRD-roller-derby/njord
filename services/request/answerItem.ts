@@ -3,7 +3,6 @@ import { NextApiResponse } from 'next'
 import { answerRequest } from '../../types/answerRequest.enum'
 import Notification from '../../models/notification.model'
 import { requestType } from '../../types/requestType.enum'
-import { pusher } from '../pusher/pusher'
 import Item from '../../models/item.model'
 import {
   ItemLocalizationType,
@@ -12,6 +11,7 @@ import {
 import validator from 'validator'
 import User from '../../models/user.model'
 import { pushNotifications } from '../pusher/pusherBeams'
+import trigger from '../bifrost/trigger'
 
 export default async function answerItem(
   res: NextApiResponse,
@@ -61,7 +61,7 @@ export default async function answerItem(
     updatedAt: new Date(),
   })
 
-  pusher.trigger(newCarrierId + '-notification', 'message', {
+  trigger(newCarrierId,{
     type: requestType.item,
     toast: {
       message: demand(),
@@ -75,15 +75,13 @@ export default async function answerItem(
     const users = await User.find({ 'league.id': session.user?.league?.id })
 
     users.forEach((user) => {
-      pusher.trigger(user._id + '-notification', 'message', {
+      trigger(user._id,{
         type: requestType.item,
         id: item._id,
       })
     })
   } else {
-    pusher.trigger(session.user._id + '-notification', 'message', {
-      type: requestType.item,
-    })
+    trigger(session.user._id ,{type: requestType.item})
   }
 
 

@@ -6,7 +6,7 @@ import { MongoDb } from '../../../db/mongo.connect'
 import Feature from '../../../models/feature.model'
 import validator from 'validator'
 import User from '../../../models/user.model'
-import { pusher } from '../../../services/pusher/pusher'
+import trigger from '../../../services/bifrost/trigger'
 
 export default async function attendees(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -44,8 +44,8 @@ export default async function attendees(req: NextApiRequest, res: NextApiRespons
   user.wallet -= feature.cost
   await user.save()
 
-  pusher.trigger(user._id + '-notification', 'message', { type: 'wallet' })
-  pusher.trigger(user._id + '-notification', 'message', {type: 'event'})
+  trigger(user._id, {type: 'wallet' })
+  trigger(user._id, {type: 'event' })
 
   res.send('Merci pour cet achat !')
 }

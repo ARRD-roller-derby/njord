@@ -3,8 +3,8 @@ import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
 import Notification from '../../../models/notification.model'
 import dto from '../../../utils/dto'
-import { pusher } from '../../../services/pusher/pusher'
 import validator from 'validator'
+import trigger from '../../../services/bifrost/trigger'
 
 export default async function notifications(
   req: NextApiRequest,
@@ -32,7 +32,7 @@ export default async function notifications(
 
   await notification.delete()
 
-  pusher.trigger(session.user._id + '-notification', 'message', {
+  trigger(session.user._id,{
     type: 'notifications',
     value: 'refresh',
   })

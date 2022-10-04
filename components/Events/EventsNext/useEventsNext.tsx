@@ -1,9 +1,9 @@
 import { useContext, useEffect, useMemo, useState } from "react";
-import { PusherContext } from "../../../stores/pusher.store";
 import { EventInterface } from "../../../types/Event.interface";
 import useSilentDBSync from "../../_hooks/useSilentDBSync";
 import eventTitleRender from "../../../utils/eventTitleRender";
 import dayjs from "dayjs";
+import { SocketContext } from '../../../stores/socket.store';
 
 export default function useEventsNext(id: string) {
   const {
@@ -11,7 +11,7 @@ export default function useEventsNext(id: string) {
       loading,
       reSync,
     } = useSilentDBSync<Array<EventInterface>>("events/next", "events"),
-    [triggerRefresh] = useContext(PusherContext),
+    [triggerRefresh] = useContext(SocketContext),
     selectByType = useMemo(() => {
       return eventsDb
         ?.reduce((acc, event) => {

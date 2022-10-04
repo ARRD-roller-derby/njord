@@ -5,9 +5,9 @@ import validator from 'validator'
 import Article from '../../../models/article.model'
 import User from '../../../models/user.model'
 import Notification from '../../../models/notification.model'
-import { pusher } from '../../../services/pusher/pusher'
 import { pushNotifications } from '../../../services/pusher/pusherBeams'
 import { ArticleVisibility } from '../../../types/article.interface'
+import trigger from '../../../services/bifrost/trigger'
 
 export default async function newsAdd(
   req: NextApiRequest,
@@ -50,9 +50,7 @@ export default async function newsAdd(
   )
 
   users.forEach((user) => {
-    pusher.trigger(user._id + '-notification', 'message', {
-      type: 'news',
-    })
+    trigger(user._id,{type:'news'})
   })
 
   const publishToInterests = ['league-' + session.user.league.id]

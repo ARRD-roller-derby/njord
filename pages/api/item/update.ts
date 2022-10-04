@@ -5,7 +5,7 @@ import validator from 'validator'
 import Item from '../../../models/item.model'
 import { ItemOwnerType } from '../../../types/items.interface'
 import User from '../../../models/user.model'
-import { pusher } from '../../../services/pusher/pusher'
+import trigger from '../../../services/bifrost/trigger'
 
 export default async function itemUpdate(
   req: NextApiRequest,
@@ -42,7 +42,7 @@ export default async function itemUpdate(
     const users = await User.find({ 'league.id' : session.user.league.id})
 
     users.forEach((user) => {
-      pusher.trigger(user._id + '-notification', 'message', {
+      trigger(user._id, {
         type: 'item',
         id: item._id,
       })

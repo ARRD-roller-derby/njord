@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 import League from "../../models/league.model"
 import User from "../../models/user.model"
 import Notification from "../../models/notification.model"
-import { pusher } from '../../services/pusher/pusher'
+import trigger from "../bifrost/trigger"
 
 export default async function answerUserForLeague(  res: NextApiResponse,
   request: any,
@@ -66,7 +66,7 @@ export default async function answerUserForLeague(  res: NextApiResponse,
     )
 
     admins.forEach((admin:string) => {
-      pusher.trigger(admin + '-notification', 'message', {
+      trigger(admin, {
         type: requestType.league_join,
         toast: {
           message: notifText,
@@ -76,7 +76,7 @@ export default async function answerUserForLeague(  res: NextApiResponse,
     })
 
     //reload count
-    pusher.trigger(session.user._id + '-notification', 'message', {
+    trigger(session.user._id, {
       type: requestType.league_join,
     })
 
