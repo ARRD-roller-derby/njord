@@ -14,7 +14,7 @@ interface props {
   readonly shutter: EventInterface
   readonly close: Function
   readonly open: Function
-  readonly refetch: Function
+  readonly refetch: ()=>void
 }
 
 export default function CalendarDayDesktopView({

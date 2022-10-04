@@ -8,11 +8,11 @@ import EventShutter from '../Events/EventShutter/EventShutter'
 
 interface Props {
   readonly events: Array<EventInterface>
-  readonly close: Function
+  readonly close: ()=>void
   readonly setPopin: Function
   readonly shutterEvent: EventInterface
-  readonly setShutterEvent: Function
-  readonly refetch: Function
+  readonly setShutterEvent: (event?:EventInterface)=>void
+  readonly refetch: ()=>void
 }
 export default function CalendarMobileEventsView({
   events,
@@ -43,7 +43,7 @@ export default function CalendarMobileEventsView({
           {events && (
             <>
               <div className={classes.title} onClick={() => close()}>
-                <div className={classes.day} onClick={()=>setShutterEvent(events.at(0).start)}>
+                <div className={classes.day} onClick={()=>setShutterEvent(events.at(0))}>
                   {dayjs(events.at(0).start).format('LL')}
                 </div>
                 <div className="close" />

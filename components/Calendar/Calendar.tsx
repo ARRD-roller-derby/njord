@@ -3,7 +3,7 @@ import CalendarView from './CalendarView'
 import useCalendar from './useCalendar'
 
 interface Props {
-  readonly refetch: Function
+  readonly refetch: ()=>void
   readonly events: Array<EventInterface>
   readonly setBetween: Function 
 }

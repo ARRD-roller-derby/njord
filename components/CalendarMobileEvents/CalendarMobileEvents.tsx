@@ -4,9 +4,9 @@ import useCalendarMobileEvents from "./useCalendarMobileEvents";
 
 interface Props {
   readonly events:Array<EventInterface>
-  readonly close: Function
+  readonly close: ()=>void
   readonly setPopin: Function
-  readonly refetch:Function
+  readonly refetch:()=>void
 }
 
 export default function CalendarMobileEvents(props:Props){

@@ -7,7 +7,7 @@ interface Props {
   readonly currentMonthNum: number
   readonly setPopin: Function
   readonly isAdmin: boolean
-  readonly refetch: Function
+  readonly refetch: ()=>void
   
 }
 
