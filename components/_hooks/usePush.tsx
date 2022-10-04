@@ -26,11 +26,14 @@ export default function usePush() {
     beamsClient.addDeviceInterest("user-" + session.user._id);
   }
   useEffect(() => {
+    if(navigator){
+      if(navigator.userAgent.match(/Mi|iPhone|iPad/))return
+    }
     if (session && session.user && !isConnected) {
       const beamsClient = new PusherPushNotifications.Client({
         instanceId: process.env.NEXT_PUBLIC_PUSHER_BEAMS,
       });
-      
+
       if (beamsClient) addPush(beamsClient);
    
     }
