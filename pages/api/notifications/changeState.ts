@@ -45,5 +45,5 @@ export default async function notifications(
     value: 'refresh',
   })
 
-  res.send('Notification effacée')
+  res.send('Mise à jour du status de la notification')
 }
