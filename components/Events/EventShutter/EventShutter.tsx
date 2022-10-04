@@ -4,8 +4,8 @@ import { EventInterface } from '../../../types/Event.interface';
 
 interface props {
   readonly event: EventInterface
-  readonly setClose: Function
-  readonly reSync: Function
+  readonly setClose: ()=>void
+  readonly reSync: ()=>void
   readonly url: string
 }
 
