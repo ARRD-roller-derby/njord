@@ -1,14 +1,7 @@
-import EventCancelButtonView from "./EventCancelButtonView";
-import useEventCancelButton from "./useEventCancelButton";
+import EventCancelButtonView from "./EventCancelButton.view";
+import useEventCancelButton from "./EventCancelButton.hook";
+import { Props, useProps } from "./EventCancelButton.type";
+import Factory from "../../_layouts/Factory/Factory";
 
-interface Props {
-  readonly eventId: string
-  readonly setClose: Function
-  readonly reSync: Function
-}
-
-export default function EventCancelButton(props:Props){
-  const useProps = useEventCancelButton(props)
-
-  return <EventCancelButtonView {...useProps}/>
-}
+const EventCancelButton = Factory<Props,useProps>(useEventCancelButton,EventCancelButtonView)
+export default EventCancelButton

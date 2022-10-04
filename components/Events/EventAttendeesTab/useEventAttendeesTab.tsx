@@ -11,10 +11,10 @@ interface Props {
 export default function useEventAttendeesTab({eventId,eventType}:Props){
   
   const 
-    {data:attendees,loading,refetch} = useFetch<Array<AttendeeInterface>>('event/attendees',{eventId}),
+    {data,loading,refetch} = useFetch<{attendees:AttendeeInterface[],IcantSee:boolean}>('event/attendees',{eventId}),
     counts = useMemo(()=>{
-      if(!attendees) return []
-      return attendees.filter(attendee=>attendee.isPresent).reduce((acc,value)=> {
+      if(!data || !data?.attendees) return []
+      return data.attendees.filter(attendee=>attendee.isPresent).reduce((acc,value)=> {
         const isExist = acc.find(old=>old.type === searchTypeOfPresence(value,eventType))
   
         if(isExist){
@@ -29,7 +29,7 @@ export default function useEventAttendeesTab({eventId,eventType}:Props){
         return acc
       },[])
   
-    },[attendees])
+    },[data])
 
-  return {attendees:attendees ? attendees.sort((a,b)=> a.name.localeCompare(b.name)):[],loading,refetch,counts}
+  return {attendees:data?.attendees ? data?.attendees.sort((a,b)=> a.name.localeCompare(b.name)):[],loading,refetch,counts,IcantSee: data?.IcantSee}
 }

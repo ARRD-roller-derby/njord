@@ -25,20 +25,22 @@ export default async function attendees(
   const noProfiles = !session.user?.profiles.find((profile:string)=>profile.match(/bureau|coach|dev/))
 
   if ((!feature && noProfiles) || (!feature?.exp && noProfiles))
-    return res.send([])
+    return res.send({attendees:[], IcanTSee:true})
 
   const {attendees} = await Event.findById(validator.escape(req.body.eventId)).select('attendees')
   const users = await User.find({_id:{$in:attendees.map((attendee:{userId:string})=>attendee.userId)}})
 
-  res.send(attendees.map((attendee:any)=>{
-    const user = users.find(userDb=>attendee.userId === userDb._id.toString())
-    return {
-      name:userNameRender(user),
-      avatar: user.avatar,
-      id:user._id,
-      isPresent:attendee.isPresent,
-      type: attendee.type,
-      updatedAt: attendee.updatedAt
-    }
-  }))
+  res.send({
+    attendees:attendees.map((attendee:any)=>{
+      const user = users.find(userDb=>attendee.userId === userDb._id.toString())
+      return {
+        name:userNameRender(user),
+        avatar: user.avatar,
+        id:user._id,
+        isPresent:attendee.isPresent,
+        type: attendee.type,
+        updatedAt: attendee.updatedAt
+      }
+    })
+  })
 }

@@ -1,36 +1,35 @@
-import classes from './EventShutter.module.css'
-import ArrowUpRightFromSquare from '../../../public/icons/arrow-up-right-from-square.svg'
-import Link from 'next/link'
-import Image from 'next/image'
-import ShutterModale from '../../_ui/ShutterModale/ShutterModale'
-import { EventInterface } from '../../../types/Event.interface'
-import eventTitleRender from '../../../utils/eventTitleRender'
-import { UserInterface } from '../../../types/User.interface'
+import classes from "./EventShutter.module.css";
+import ArrowUpRightFromSquare from "../../../public/icons/arrow-up-right-from-square.svg";
+import Link from "next/link";
+import Image from "next/image";
+import ShutterModale from "../../_ui/ShutterModale/ShutterModale";
+import { EventInterface } from "../../../types/Event.interface";
+import eventTitleRender from "../../../utils/eventTitleRender";
+import { UserInterface } from "../../../types/User.interface";
+import Tabs from "../../_ui/Tabs/Tabs/Tabs";
+import Tab from "../../_ui/Tabs/Tab/Tab/Tab";
+import EventDetailsTab from "../EventDetailsTab/EventDetailsTab";
+import EventUpdateTab from "../EventUpdateTab/EventUpdateTab";
+import EventItems from "../EventItems/EventItems";
+import EventAttendeesTab from "../EventAttendeesTab/EventAttendeesTab";
+import EventDeleteButton from "../EventDeleteButton/EventDeleteButton";
+import EventCancelButton from "../EventCancelButton/EventCancelButton";
 
-import Tabs from '../../_ui/Tabs/Tabs/Tabs'
-import Tab from '../../_ui/Tabs/Tab/Tab/Tab'
-import EventDetailsTab from '../EventDetailsTab/EventDetailsTab'
-import EventUpdateTab from '../EventUpdateTab/EventUpdateTab'
-import EventItems from '../EventItems/EventItems'
-import EventAttendeesTab from '../EventAttendeesTab/EventAttendeesTab'
-import EventDeleteButton from '../EventDeleteButton/EventDeleteButton'
-import EventCancelButton from '../EventCancelButton/EventCancelButton'
-
-interface props {
-  readonly event: EventInterface
-  readonly reSync: Function
-  readonly close: Function
-  readonly uri: string
-  readonly user: UserInterface
+type Props = {
+  event: EventInterface;
+  reSync: () => void;
+  close: () => void;
+  uri: string;
+  user: UserInterface;
 }
 
-export default function EventShutterView({
+const EventShutterView = ({
   event,
   uri,
   close,
   reSync,
   user,
-}: props) {
+}: Props) => {
   return (
     <ShutterModale setClose={close} show={!!event}>
       {event && (
@@ -45,12 +44,11 @@ export default function EventShutterView({
                 alt="icon link"
               />
             </h1>
-   
           </Link>
           <div className={classes.box}>
             <Tabs>
               <Tab field="détails">
-                <EventDetailsTab event={event} reSync={reSync}/>
+                <EventDetailsTab event={event} reSync={reSync} />
               </Tab>
               <Tab field="participants">
                 <EventAttendeesTab eventId={event._id} eventType={event.type} />
@@ -73,7 +71,7 @@ export default function EventShutterView({
             </Tabs>
           </div>
           <div className={classes.buttons}>
-          {event.cancel && <div className={classes.cancel}>Annulé</div>}
+            {event.cancel && <div className={classes.cancel}>Annulé</div>}
             {user.profiles?.length > 0 && (
               <>
                 <EventDeleteButton
@@ -81,14 +79,19 @@ export default function EventShutterView({
                   reSync={reSync}
                   setClose={close}
                 />
-                <EventCancelButton eventId={event._id}
+                <EventCancelButton
+                  eventId={event._id}
+                  isCancel={event.cancel}
                   reSync={reSync}
-                  setClose={close}/>
+                  setClose={close}
+                />
               </>
             )}
           </div>
         </div>
       )}
     </ShutterModale>
-  )
+  );
 }
+
+export default EventShutterView

@@ -109,6 +109,27 @@ export default function EventCreateFormView({ onClose, event, setKey,loading,onS
             onChange={(choice) => setKey('visibility', choice.value)}
           />
         </LabeledBlock>
+        <LabeledBlock title="Inviter des leagues">
+          <ReactSelect
+            styles={reactSelectStyle}
+            defaultValue={{
+              label: 'League',
+              value: 'league',
+            }}
+            options={[
+              {
+                label: 'League',
+                value: 'league',
+              },
+              {
+                label: 'public',
+                value: 'public',
+              }
+            ]}
+            menuPlacement='top'
+            onChange={(choice) => setKey('visibility', choice.value)}
+          />
+        </LabeledBlock>
         <div className={classes.buttons}>
           <button type="reset" onClick={()=>onClose()}>Annuler</button>
           <SubmitButton onClick={()=>onSubmit()} text="Créer l'événement" loading={loading}/>

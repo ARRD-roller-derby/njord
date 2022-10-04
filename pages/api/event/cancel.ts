@@ -23,7 +23,7 @@ export default async function cancelEvent(
 
   const eventToCancel = await Event.findById(validator.escape(req.body.eventId))
 
-  eventToCancel.cancel = true
+  eventToCancel.cancel = !eventToCancel.cancel
   await eventToCancel.save()
 
   const text = `l'évenement ${eventTitleRender(eventToCancel)} du ${dayjs(
@@ -59,5 +59,5 @@ export default async function cancelEvent(
       },
     },
   })
-  res.send('événement annulé !')
+  res.send(eventToCancel.cancel  ? 'événement annulé !':'événement rétabli !')
 }

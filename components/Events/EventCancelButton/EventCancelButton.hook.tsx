@@ -1,17 +1,12 @@
 import { useEffect } from 'react'
 import usePost from '../../_hooks/usePost'
-
-interface Props {
-  readonly eventId: string
-  readonly setClose: Function
-  readonly reSync: Function
-}
+import { Props, useProps } from './EventCancelButton.type'
 
 export default function useEventCancelButton({
   eventId,
   setClose,
   reSync,
-}: Props) {
+}: Props):useProps {
   const { post, loading, data } = usePost('event/cancel')
 
   useEffect(() => {
@@ -21,5 +16,5 @@ export default function useEventCancelButton({
     }
   }, [data])
 
-  return { deleteEvent: () => post({ eventId }),loading }
+  return { cancelEvent: () => post({ eventId }),loading }
 }

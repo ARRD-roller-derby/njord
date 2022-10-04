@@ -6,7 +6,6 @@ interface props {
 }
 
 export default function MiniFormAddressRead({ value:address }: props) {
-  console.log(address)
   return address ?  <div className={classes.container}>
     <div className={address.label}>{address.label}</div>
     <div className={address.street}>{address.address || address.street}</div>

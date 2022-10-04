@@ -4,10 +4,11 @@ import EventAttendeeCard from '../EventAttendeeCard/EventAttendeeCard'
 import { AttendeeInterface } from '../../../types/attendee.interface'
 
 interface Props {
-  readonly refetch: Function
-  readonly attendees: Array<AttendeeInterface>
-  readonly eventType: string
-  readonly counts: Array<{ type: string; count: number }>
+  refetch: Function
+  attendees: Array<AttendeeInterface>
+  eventType: string
+  counts: Array<{ type: string; count: number }>
+  IcantSee: boolean
 }
 
 export default function EventAttendeesTabView({
@@ -15,7 +16,9 @@ export default function EventAttendeesTabView({
   refetch,
   eventType,
   counts,
+  IcantSee
 }: Props) {
+
   return (
     <div className={classes.container}>
      <div className={classes.grid}>
@@ -40,6 +43,7 @@ export default function EventAttendeesTabView({
                 eventType={eventType}
               />
             ))}
+            {!IcantSee && attendees.length === 0 && <p>Aucun participant</p>}
         </div>
       </div>
       </div>
