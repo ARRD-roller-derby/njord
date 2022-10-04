@@ -3,7 +3,6 @@
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  align-items:center ;
 }
 
 .box {
@@ -11,7 +10,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: center;
+  margin: 15px;
 }
 
 .actions {
@@ -29,3 +28,17 @@
   margin-left: 5px;
 }
 
+
+.box {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  gap: 15px;
+  justify-content: center;
+}
+
+@media screen and (max-width: 500px) {
+  .box {
+    width: 100%;
+  }
+}
