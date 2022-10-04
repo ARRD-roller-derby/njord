@@ -1,22 +1,23 @@
-import MiniForm from '../../MiniForm/MiniForm/MiniForm'
-import MiniFormStringEdit from '../../MiniForm/MiniFormString/MiniFormStringEdit/MiniFormStringEdit'
-import MiniFormStringRead from '../../MiniForm/MiniFormString/MiniFormStringRead/MiniFormStringRead'
-import MiniFormDateRead from '../../MiniForm/MiniFormDate/MiniFormDateRead/MiniFormDateRead'
-import MiniFormDateEdit from '../../MiniForm/MiniFormDate/MiniFormDateEdit/MiniFormDateEdit'
-import MiniFormTextEdit from '../../MiniForm/MiniFormText/MiniFormTextEdit/MiniFormTextEdit'
-import MiniFormTextRead from '../../MiniForm/MiniFormText/MiniFormTextRead/MiniFormTextRead'
-import { EventInterface } from '../../../types/Event.interface'
-import { UserInterface } from '../../../types/User.interface'
-import classes from './EventUpdateTab.module.css'
-import MiniFormHourEdit from '../../MiniForm/MiniFormHour/MiniFormHourEdit/MiniFormHourEdit'
-import MiniFormAddressEdit from '../../MiniForm/MiniFormAddress/MiniFormAddressEdit/MiniFormAddressEdit'
-import MiniFormAddressRead from '../../MiniForm/MiniFormAddress/MiniFormAddressRead/MiniFormAddressRead'
+import MiniForm from "../../MiniForm/MiniForm/MiniForm";
+import MiniFormStringEdit from "../../MiniForm/MiniFormString/MiniFormStringEdit/MiniFormStringEdit";
+import MiniFormStringRead from "../../MiniForm/MiniFormString/MiniFormStringRead/MiniFormStringRead";
+import MiniFormDateRead from "../../MiniForm/MiniFormDate/MiniFormDateRead/MiniFormDateRead";
+import MiniFormDateEdit from "../../MiniForm/MiniFormDate/MiniFormDateEdit/MiniFormDateEdit";
+import MiniFormTextEdit from "../../MiniForm/MiniFormText/MiniFormTextEdit/MiniFormTextEdit";
+import MiniFormTextRead from "../../MiniForm/MiniFormText/MiniFormTextRead/MiniFormTextRead";
+import { EventInterface } from "../../../types/Event.interface";
+import { UserInterface } from "../../../types/User.interface";
+import classes from "./EventUpdateTab.module.css";
+import MiniFormHourEdit from "../../MiniForm/MiniFormHour/MiniFormHourEdit/MiniFormHourEdit";
+import MiniFormAddressRead from '../../MiniForm/MiniFormAddress/MiniFormAddressRead/MiniFormAddressRead';
+import MiniFormSelect from "../../MiniForm/MiniFormSelect/MiniFormSelect";
+import MiniFormAddressSearch from '../../MiniForm/MiniFormAddress/MiniFormAddressSearch/MiniFormAddressEdit';
 
 interface props {
-  readonly event: EventInterface
-  readonly reSync: Function
-  readonly uri: string
-  readonly user: UserInterface
+  readonly event: EventInterface;
+  readonly reSync: Function;
+  readonly uri: string;
+  readonly user: UserInterface;
 }
 
 export default function EventUpdateTab({ event, uri, reSync, user }: props) {
@@ -100,6 +101,43 @@ export default function EventUpdateTab({ event, uri, reSync, user }: props) {
         editField={<MiniFormTextEdit />}
         readField={<MiniFormTextRead />}
       />
+            <MiniForm
+        label="adresse"
+        user={user}
+        field="address"
+        profiles
+        column
+        onlyAdmin
+        uri={uri}
+        model={event}
+        reSync={reSync}
+        editField={<MiniFormAddressSearch withSaveAddresses/>}
+        readField={<MiniFormAddressRead />}
+      />
+
+      <MiniForm
+        label="Visibilité"
+        model={event}
+        user={user}
+        field="visibility"
+        uri={uri}
+        reSync={reSync}
+        editField={
+          <MiniFormSelect
+            options={[
+              {
+                label: "League",
+                value: "league",
+              },
+              {
+                label: "public",
+                value: "public",
+              },
+            ]}
+          />
+        }
+        readField={<MiniFormStringRead />}
+      />
     </div>
-  )
+  );
 }

@@ -15,9 +15,9 @@ describe('<MiniFormAddressRead />', () => {
   })
 
   it('Check snapshot with value', async () => {
-    const {asFragment } = render(<MiniFormAddressRead address={myAddress}/>
+    const {asFragment } = render(<MiniFormAddressRead value={myAddress}/>
     )
-    expect(await screen.findByText("010101 - Rue du crime")).toBeInTheDocument()
+    expect(await screen.findByText("010101 - Gotham City")).toBeInTheDocument()
     expect(asFragment()).toMatchSnapshot()
   })
 })

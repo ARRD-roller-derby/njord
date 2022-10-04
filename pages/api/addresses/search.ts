@@ -18,6 +18,7 @@ export default async function searchAddress(req: NextApiRequest, res: NextApiRes
 
   if (!session) return res.status(403).send('non autorisé')
 
+  console.log(req.body)
   if(!req.body.search && !req.body.withSaveAddresses)return res.status(400).send('aucun critère de recherche')
 
   if(!req.body.search && req.body.withSaveAddresses){
@@ -27,7 +28,7 @@ export default async function searchAddress(req: NextApiRequest, res: NextApiRes
     }));
   }
 
-  const search = validator.escape(req.body.search)
+  const search = req.body.search
   const response = [];
   if(req.body.withSaveAddresses){
     const myAdresses = await Address.find({
@@ -39,7 +40,17 @@ export default async function searchAddress(req: NextApiRequest, res: NextApiRes
     response.push(...myAdresses);
   }
 
-  const {data} = await bano.get(search)
+  try {
+    await bano.get('',{params:{
+      q:search
+    }})
+  }catch(e){
+    console.log('e',e)
+  }
+
+  const {data} = await bano.get('',{params:{
+    q:search
+  }})
 
   if(!data && data?.features) return res.json(data)
 

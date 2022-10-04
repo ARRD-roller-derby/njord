@@ -6,5 +6,5 @@ export const bano = axios.create({
     'Access-Control-Allow-Credentials': 'true',
     'Access-Control-Allow-Headers': 'Content-Type, Accept'
   },
-  baseURL: 'https://api-adresse.data.gouv.fr/search?q=',
+  baseURL: 'https://api-adresse.data.gouv.fr/search',
 })

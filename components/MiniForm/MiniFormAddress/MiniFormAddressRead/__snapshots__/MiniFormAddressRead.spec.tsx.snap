@@ -28,7 +28,7 @@ exports[`<MiniFormAddressRead /> > Check snapshot with value 1`] = `
     <div
       class="Gotham City"
     >
-      010101 - Rue du crime
+      010101 - Gotham City
     </div>
   </div>
 </DocumentFragment>
