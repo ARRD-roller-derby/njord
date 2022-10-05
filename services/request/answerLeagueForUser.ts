@@ -6,7 +6,7 @@ import { NextApiResponse } from 'next'
 import { answerRequest } from '../../types/answerRequest.enum'
 import Notification from '../../models/notification.model'
 import { requestType } from '../../types/requestType.enum'
-import { pusher } from '../../services/pusher/pusher'
+import trigger from '../bifrost/trigger'
 
 export default async function answerLeagueForUser(
   res: NextApiResponse,
@@ -43,7 +43,7 @@ export default async function answerLeagueForUser(
 
     if (!user?.league?.id) {
       user.wallet += 500
-      pusher.trigger(userId + '-notification', 'message', { type: 'wallet' })
+      trigger(userId, { type: 'wallet' })
     }
 
     user.league = {
@@ -73,7 +73,9 @@ export default async function answerLeagueForUser(
     updatedAt: new Date(),
   })
 
-  pusher.trigger(userId + '-notification', 'message', {
+
+
+  trigger(userId, {
     type: requestType.league_join,
     toast: {
       message: demand(),
@@ -82,7 +84,7 @@ export default async function answerLeagueForUser(
   })
 
   //reload count
-  pusher.trigger(session.user._id + '-notification', 'message', {
+  trigger(session.user._id, {
     type: requestType.league_join,
   })
 
@@ -110,7 +112,7 @@ export default async function answerLeagueForUser(
     )
 
     admins.forEach((admin) => {
-      pusher.trigger(admin + '-notification', 'message', {
+      trigger(admin , {
         type: requestType.league_join,
         toast: {
           message: resume(),

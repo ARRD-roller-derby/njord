@@ -4,10 +4,9 @@ import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
 import { v4 as uuidv4 } from 'uuid'
 import validator from 'validator'
-import { pusher } from '../../../services/pusher/pusher'
-import { EventType } from '../../../types/EventType.enum'
 import User from '../../../models/user.model'
 import Event from '../../../models/event.model'
+import trigger from '../../../services/bifrost/trigger'
 
 export default async function event(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -65,9 +64,7 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
   })
 
   users.forEach(user=>{
-    pusher.trigger(user._id + '-notification', 'message', {
-      type: 'event',
-    })
+    trigger(user._id,{type:'event'})
   })
 
   const msg = creatableEvents.length > 1 ? `${creatableEvents.length} événement créés.`:'événement créé.'

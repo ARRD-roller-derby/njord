@@ -5,8 +5,8 @@ import User from '../../../models/user.model'
 import S3 from '../../../utils/bucket'
 import { v4 as uuidv4 } from 'uuid'
 import { availableFeatures } from '../../../datasources/availableFeatures'
-import { pusher } from '../../../services/pusher/pusher'
 import { AvailableFeatureInterface } from '../../../types/feature.interface';
+import trigger from '../../../services/bifrost/trigger'
 
 export default async function buyAvatar(
   req: NextApiRequest,
@@ -43,8 +43,8 @@ export default async function buyAvatar(
   me.wallet = newWallet
   await me.save()
 
-  pusher.trigger(me._id + '-notification', 'message', { type: 'wallet' })
-  pusher.trigger(me._id + '-notification', 'message', { type: 'avatar' })
+  trigger(me._id  , { type: 'wallet' })
+  trigger(me._id , { type: 'avatar' })
 
   res.send('Merci pour votre achat !')
 }

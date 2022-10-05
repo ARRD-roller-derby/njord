@@ -1,10 +1,10 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { cleanup } from '@testing-library/react'
-import { PusherContext } from '../../../stores/pusher.store'
 import { render, screen } from '../../../utils/test-utils'
 import Event from './Event'
 import { rest } from 'msw'
 import { server } from '../../../setupFiles/server'
+import { SocketContext } from '../../../stores/socket.store';
 
 describe('<Event />', () => {
   afterEach(cleanup)
@@ -18,9 +18,9 @@ describe('<Event />', () => {
   it('Check snapshot', async () => {
 
     const { asFragment } = render(
-      <PusherContext.Provider value={[null, vi.fn]}>
+      <SocketContext.Provider value={[null, vi.fn]}>
         <Event id={'id'} />
-      </PusherContext.Provider>
+      </SocketContext.Provider>
     )
     expect(await screen.findByText('200 Dr.')).toBeInTheDocument()
     expect(asFragment()).toMatchSnapshot()

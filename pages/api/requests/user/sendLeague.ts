@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../../db/mongo.connect'
 import League from '../../../../models/league.model'
-import { pusher } from '../../../../services/pusher/pusher'
 import validator from 'validator'
 import User from '../../../../models/user.model'
 import jwt from 'jsonwebtoken'
@@ -12,6 +11,7 @@ import Request from '../../../../models/request.model'
 import { requestType } from '../../../../types/requestType.enum'
 import { UserInterface } from '../../../../types/User.interface'
 import userNameRender from '../../../../utils/userNameRender'
+import trigger from '../../../../services/bifrost/trigger'
 
 export default async function sendLeagueRequest(
   req: NextApiRequest,
@@ -120,15 +120,11 @@ export default async function sendLeagueRequest(
   bureau.admins
     .filter((admin: string) => admin !== session.user._id)
     .forEach((id: string) => {
-      pusher.trigger(id + '-notification', 'message', {
-        type: requestType.for_user,
-      })
+      trigger(id , {type: requestType.for_user})
     })
 
   requestedUsers.forEach((user) => {
-    pusher.trigger(user._id + '-notification', 'message', {
-      type: requestType.for_user,
-    })
+    trigger(user._id , {type: requestType.for_user})
   })
 
   res.send('ok')

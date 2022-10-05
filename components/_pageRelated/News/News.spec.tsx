@@ -1,10 +1,10 @@
 import { afterEach,describe,expect, it, vi } from 'vitest'
 import { cleanup } from '@testing-library/react'
 import News from './News'
-import { PusherContext } from '../../../stores/pusher.store'
 import { render } from '../../../utils/test-utils'
 import { rest } from 'msw'
 import { server } from '../../../setupFiles/server'
+import { SocketContext } from '../../../stores/socket.store'
 
 describe('<News />', () => {
   afterEach(cleanup)
@@ -16,9 +16,9 @@ describe('<News />', () => {
 
   it('Check snapshot', async () => {
     const {asFragment } = render(
-      <PusherContext.Provider value={[null, vi.fn]}>
+      <SocketContext.Provider value={[null, vi.fn]}>
         <News/>
-      </PusherContext.Provider>
+      </SocketContext.Provider>
     )
     expect(asFragment()).toMatchSnapshot()
   })

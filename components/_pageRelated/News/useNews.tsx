@@ -3,7 +3,7 @@ import useFetch from '../../_hooks/useFetch'
 import { useSession } from 'next-auth/react'
 import { ArticleInterface } from '../../../types/article.interface'
 import { useProps } from './News.type'
-import { PusherContext } from '../../../stores/pusher.store'
+import { SocketContext } from '../../../stores/socket.store'
 
 const useNews = ():useProps => {
   const { data, loading, refetch } = useFetch<{
@@ -11,7 +11,7 @@ const useNews = ():useProps => {
       totalPage: number
       articles: Array<ArticleInterface>
     }>('news/news'),
-    [triggerRefresh] = useContext(PusherContext),
+    [triggerRefresh] = useContext(SocketContext),
     { data: session } = useSession(),
     [currentPage, _setCurrentPage] = useState<number>(1)
 

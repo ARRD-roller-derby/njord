@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../../db/mongo.connect'
-import { pusher } from '../../../../services/pusher/pusher'
 import validator from 'validator'
 import jwt from 'jsonwebtoken'
 import Request from '../../../../models/request.model'
@@ -14,6 +13,7 @@ import {
 } from '../../../../types/items.interface'
 import User from '../../../../models/user.model'
 import { pushNotifications } from '../../../../services/pusher/pusherBeams'
+import trigger from '../../../../services/bifrost/trigger'
 
 export default async function sendRequest(
   req: NextApiRequest,
@@ -61,14 +61,14 @@ export default async function sendRequest(
       const users = await User.find({'league.id':session.user?.league?.id})
   
       users.forEach(user=>{
-        pusher.trigger(user._id + '-notification', 'message', {
+        trigger(user._id,{
           type: requestType.item,
           id: item._id,
         })
       })
       
     } else {
-      pusher.trigger(item.localization.id + '-notification', 'message', {
+      trigger(item.localization.id ,{
         type: requestType.item,
         id: item._id,
       })
@@ -108,11 +108,10 @@ export default async function sendRequest(
     answer: 'pending',
   })
 
-  pusher.trigger(item.localization.id + '-notification', 'message', {
+  trigger(item.localization.id ,{
     type: requestType.item,
     id: item._id,
   })
-
 
   pushNotifications.publishToInterests(['user-' + item.localization.id], {
     web: {

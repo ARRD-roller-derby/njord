@@ -1,12 +1,12 @@
 import { useState,useEffect, useContext } from 'react'
-import { PusherContext } from '../../../stores/pusher.store'
 import { EventInterface } from '../../../types/Event.interface'
 import useFetch from '../../_hooks/useFetch'
+import { SocketContext } from '../../../stores/socket.store';
 
 export default function useCalendar() {
   const [between, setBetween] = useState<[Date,Date]>(),
     { data: events, refetch } = useFetch<Array<EventInterface>>('events/events', { between }),
-    [triggerRefresh] = useContext(PusherContext);
+    [triggerRefresh] = useContext(SocketContext);
 
   useEffect(()=>{
     if(between) refetch()

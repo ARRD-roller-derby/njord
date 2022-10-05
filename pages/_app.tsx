@@ -9,12 +9,11 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
 import timezone from 'dayjs/plugin/timezone'
-
 import fr from 'dayjs/locale/fr'
-import { PusherContext } from '../stores/pusher.store'
 import { useState } from 'react'
 import { registerLocale, setDefaultLocale } from 'react-datepicker'
 import frFns from 'date-fns/locale/fr'
+import { SocketContext } from '../stores/socket.store';
 
 registerLocale('fr', frFns)
 setDefaultLocale('fr')
@@ -30,11 +29,12 @@ export default function App({
   pageProps: { session, ...pageProps },
 }) {
   const [state, setState] = useState()
+  
   return (
     <SessionProvider session={session}>
-      <PusherContext.Provider value={[state, setState]}>
+      <SocketContext.Provider value={[state, setState]}>
         <Component {...pageProps} />
-      </PusherContext.Provider>
+      </SocketContext.Provider>
     </SessionProvider>
   )
 }

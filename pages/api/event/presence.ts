@@ -2,10 +2,10 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
 import validator from 'validator'
-import { pusher } from '../../../services/pusher/pusher'
 import User from '../../../models/user.model'
 import Event from '../../../models/event.model'
 import { AttendeesEventInterface } from '../../../types/Event.interface'
+import trigger from '../../../services/bifrost/trigger'
 
 export default async function presence(
   req: NextApiRequest,
@@ -53,7 +53,7 @@ export default async function presence(
     const user = await User.findById(session.user._id)
     user.wallet += 50
     await user.save()
-    pusher.trigger(user._id + '-notification', 'message', { type: 'wallet' })
+    trigger(user._id,{type:'wallet'})
   }
 
   event.attendees.push({
@@ -86,10 +86,7 @@ export default async function presence(
   const users = await User.find({$or:ORUsers})
 
   users.forEach((user) => {
-    pusher.trigger(user._id + '-notification', 'message', {
-      type: 'event',
-      id: event._id,
-    })
+    trigger(user._id,{type:'event',id: event._id,})
   })
 
   res.send('Présence mise à jour')

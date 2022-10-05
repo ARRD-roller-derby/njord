@@ -3,8 +3,8 @@ import {  cleanup,  waitFor, fireEvent } from '@testing-library/react';
 import { server } from '../../../setupFiles/server'
 import { rest } from 'msw'
 import { render } from '../../../utils/test-utils'
-import { PusherContext } from '../../../stores/pusher.store'
 import MyAvatarWithPopin from './MyAvatarWithPopin';
+import { SocketContext } from '../../../stores/socket.store'
 
 describe('<MyAvatarWithPopin />', () => {
   afterEach(cleanup)
@@ -19,9 +19,9 @@ describe('<MyAvatarWithPopin />', () => {
     const mockOnclose = vi.fn()
 
     const {getByTestId } = render(
-      <PusherContext.Provider value={[null, vi.fn]}>
+      <SocketContext.Provider value={[null, vi.fn]}>
         <MyAvatarWithPopin onClose={mockOnclose}/>
-      </PusherContext.Provider>
+      </SocketContext.Provider>
     )
 
     fireEvent.click(getByTestId('avatar'));
