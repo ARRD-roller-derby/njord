@@ -17,6 +17,10 @@
   align-items: center;
 }
 
+.name {
+  word-break: break-all;
+}
+
 .avatar {
   display: flex;
   align-items: center;
