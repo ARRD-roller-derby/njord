@@ -1,5 +1,6 @@
 import axios from 'axios';
 import reactSelectStyle from '../../../styles/reactSelectStyle';
+import validator from 'validator';
 import { ItemInterface, ItemOwnerType } from '../../../types/items.interface';
 
 export default function useItemSelector(setValue:Function){
@@ -9,7 +10,7 @@ export default function useItemSelector(setValue:Function){
 
     if (data) {
       const results = data.map((item: ItemInterface) => ({
-        label: `${item.name}${item.ownerType === ItemOwnerType.league? ' (league)':''}`,
+        label: `${validator.unescape(item.name)}${item.ownerType === ItemOwnerType.league? ' (league)':''}`,
         value: item._id
       }))
       callback(results)

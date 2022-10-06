@@ -9,6 +9,7 @@ import Image from 'next/image'
 import MarkSvg from '../../../public/icons/marker.svg'
 import FlagSvg from '../../../public/icons/flag-pennant.svg'
 import IdCardSvg from '../../../public/icons/idcard.svg'
+import validator from 'validator'
 
 interface props {
   readonly item: ItemWithHereInterface
@@ -41,7 +42,7 @@ export default function ItemCard({ item, openPopin, isHereIndicator }: props) {
               <Image src={FlagSvg} width={15} height={15} alt="marqueur" />
             )}
           </div>
-          <div className={classes.name}>{item.name}</div>
+          <div className={classes.name}>{validator.unescape(item.name)}</div>
         </div>
         <div className={classes.localization}>
           <Image src={MarkSvg} width={15} height={15} alt="marqueur" />
