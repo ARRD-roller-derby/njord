@@ -27,7 +27,7 @@ export default function usePush() {
   }
   useEffect(() => {
     if(navigator){
-      if(navigator.userAgent.match(/Mi|iPhone|iPad/))return
+      if(navigator.userAgent.match(/Mi|iPhone|iPad|Crosscall/))return
     }
     if (session && session.user && !isConnected) {
       const beamsClient = new PusherPushNotifications.Client({
