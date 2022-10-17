@@ -26,8 +26,12 @@ export default async function updateField(
 
   const event = await Event.findById(validator.escape(req.body.id))
 
+  
   event[req.body.field]= typeof value === 'string' ? validator.escape(req.body.value):req.body.value
 
+  if(req.body.field === 'start' && event.type.match(/training|match|scrimmage|AG/) && typeof value !== 'string'){
+    event.end = value
+  }
   await event.save()
 
   res.send('événement mis à jour')

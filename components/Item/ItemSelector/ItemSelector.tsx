@@ -1,10 +1,11 @@
 import ItemSelectorView from "./ItemSelectorView";
 import useItemSelector from "./useItemSelector";
 interface Props {
-  readonly setValue:Function
+  setValue:Function
+  defaultValues?: Array<{label:string,value:string}>
 }
 
-export default function ItemSelector({setValue}:Props){
-  const useProps = useItemSelector(setValue)
+export default function ItemSelector({setValue,defaultValues}:Props){
+  const useProps = useItemSelector(setValue,defaultValues)
   return <ItemSelectorView {...useProps}/>
 }

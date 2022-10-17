@@ -3,7 +3,7 @@ import reactSelectStyle from '../../../styles/reactSelectStyle';
 import validator from 'validator';
 import { ItemInterface, ItemOwnerType } from '../../../types/items.interface';
 
-export default function useItemSelector(setValue:Function){
+export default function useItemSelector(setValue:Function,defaultValues:Array<{label:string,value:string}>){
 
   async function options(search: string, callback: Function) {
     const { data } = await axios.post(`api/items/search`,{search})
@@ -32,6 +32,7 @@ export default function useItemSelector(setValue:Function){
     cacheOptions: true,
     defaultOptions:true,
     isMulti:true,
+    defaultValues,
     styles: reactSelectStyle,
     noOptionsMessage: () => 'Aucun objet trouvé',
     placeholder: 'objets...',
