@@ -25,7 +25,7 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
   //TODO requierement à traiter plus tard
   const event = {
     start: validator.escape(req.body.start),
-    end: validator.escape(req.body.end || req.body.start),
+    end: req.body.type.match(/training|match|scrimmage|AG/) ? validator.escape(req.body.start): validator.escape(req.body.end || req.body.start),
     title: req.body.title  ? validator.escape(req.body.title):undefined,
     leagueId:session.user.league.id,
     hourStart:validator.escape(req.body.hourStart),

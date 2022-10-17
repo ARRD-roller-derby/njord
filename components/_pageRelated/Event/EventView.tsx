@@ -11,7 +11,7 @@ import EventAttendeesTab from '../../Events/EventAttendeesTab/EventAttendeesTab'
 
 interface props {
   readonly event: EventInterface
-  readonly reSync: Function
+  readonly reSync: ()=>void
   readonly uri: string
   readonly user: UserInterface
 }

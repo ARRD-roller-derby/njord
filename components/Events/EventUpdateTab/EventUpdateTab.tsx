@@ -12,10 +12,11 @@ import MiniFormHourEdit from "../../MiniForm/MiniFormHour/MiniFormHourEdit/MiniF
 import MiniFormAddressRead from '../../MiniForm/MiniFormAddress/MiniFormAddressRead/MiniFormAddressRead';
 import MiniFormSelect from "../../MiniForm/MiniFormSelect/MiniFormSelect";
 import MiniFormAddressSearch from '../../MiniForm/MiniFormAddress/MiniFormAddressSearch/MiniFormAddressEdit';
+import MiniFormItems from "../../MiniForm/MiniFormItems/MiniFormItems"
 
 interface props {
   readonly event: EventInterface;
-  readonly reSync: Function;
+  readonly reSync: ()=>void;
   readonly uri: string;
   readonly user: UserInterface;
 }
@@ -101,7 +102,7 @@ export default function EventUpdateTab({ event, uri, reSync, user }: props) {
         editField={<MiniFormTextEdit />}
         readField={<MiniFormTextRead />}
       />
-            <MiniForm
+      <MiniForm
         label="adresse"
         user={user}
         field="address"
@@ -138,6 +139,10 @@ export default function EventUpdateTab({ event, uri, reSync, user }: props) {
         }
         readField={<MiniFormStringRead />}
       />
+
+      <MiniFormItems event={event} reSync={reSync}/>
+
+      
     </div>
   );
 }
