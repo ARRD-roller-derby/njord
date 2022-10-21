@@ -22,7 +22,7 @@ export default async function attendees(
     userId: session.user._id
   })
 
-  const noProfiles = !session.user?.profiles.find((profile:string)=>profile.match(/bureau|coach|dev/))
+  const noProfiles = !session.user?.profiles.find((profile:string)=>profile.match(/bureau|coach/))
 
   if ((!feature && noProfiles) || (!feature?.exp && noProfiles))
     return res.send({attendees:[], IcanTSee:true})
