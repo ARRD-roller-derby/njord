@@ -14,7 +14,8 @@ export default async function attendees(req: NextApiRequest, res: NextApiRespons
     userId: session.user._id
   })
 
-  if(session.user.profiles.length > 0) return res.send('no required')
+  if(session.user.profiles.length > 0 && 
+    session.user.profiles.find((profile) => profile.match(/coach|bureau/))) return res.send('no required')
   if(!feature)return res.send(false)
   if(!feature?.exp) return res.send(feature)
 
