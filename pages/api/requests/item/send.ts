@@ -30,17 +30,6 @@ export default async function sendRequest(
   const itemId = validator.escape(req.body.itemId)
 
   const item = await Item.findById(itemId)
-  if (
-    item.ownerType === ItemOwnerType.user &&
-    item.ownerId !== session.user._id
-  )
-    return res.status(403).send('non autorisé')
-
-  if (
-    item.ownerType === ItemOwnerType.league &&
-    item.ownerId !== session.user?.league?.id
-  )
-    return res.status(403).send('non autorisé')
 
   await MongoDb()
 
