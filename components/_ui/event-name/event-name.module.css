@@ -1,0 +1,22 @@
+.container {
+  text-transform: uppercase;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 3px;
+  font-size: 15px;
+  background: var(--color-quator);
+  justify-content: center;
+}
+
+.container[data-type="training"] {
+  background: var(--color-bg-dark);
+  color: var(--color-tierce);
+}
+
+.container[data-type="match"],
+.container[data-type="scrimmage"] {
+  background: var(--color-second);
+  color: white;
+}

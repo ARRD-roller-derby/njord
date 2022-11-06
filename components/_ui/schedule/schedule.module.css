@@ -1,0 +1,19 @@
+.container {
+  color: var(--color-link);
+  font-size: 13px;
+  display: flex;
+  gap: 3px;
+}
+
+.container[data-direction="vertical"] {
+  flex-direction: column;
+  align-items: center;
+}
+
+.time {
+  line-height: 0.5em;
+}
+
+.arrow {
+  transform: rotate(90deg);
+}
