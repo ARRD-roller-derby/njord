@@ -64,9 +64,13 @@ export const EventCardView: React.FC<EventCardProps & EventCardResult> = ({
             </ReactMarkdown>
           </div>
         </div>
-        <div className={styles.presences}>
-          {!event.cancel && <EventPresence event={event} />}
-        </div>
+
+        {!event.cancel && (
+          <div className={styles.presences}>
+            {" "}
+            <EventPresence event={event} />{" "}
+          </div>
+        )}
       </div>
     </Card>
   </>
