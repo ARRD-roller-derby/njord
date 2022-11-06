@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+}
