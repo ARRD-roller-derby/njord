@@ -1,37 +1,27 @@
-import Image from "next/image";
-import Link from "next/link";
 import EventDetailsTab from "../../Events/EventDetailsTab/EventDetailsTab";
 import ShutterModale from "../../_ui/ShutterModale/ShutterModale";
 import Tab from "../../_ui/Tabs/Tab/Tab/Tab";
 import Tabs from "../../_ui/Tabs/Tabs/Tabs";
 import styles from "./event-shutter.module.css";
 import { EventShutterProps, EventShutterResult } from "./event-shutter.type";
-import ArrowUpRightFromSquare from "../../../public/icons/arrow-up-right-from-square.svg";
-import eventTitleRender from "../../../utils/eventTitleRender";
 import EventAttendeesTab from "../../Events/EventAttendeesTab/EventAttendeesTab";
 import EventItems from "../../Events/EventItems/EventItems";
 import EventUpdateTab from "../../Events/EventUpdateTab/EventUpdateTab";
 import EventDeleteButton from "../../Events/EventDeleteButton/EventDeleteButton";
 import EventCancelButton from "../../Events/EventCancelButton/EventCancelButton";
+import { EventShutterTitle } from "./event-shutter-title/event-shutter-title";
 
 export const EventShutterView: React.FC<
   EventShutterProps & EventShutterResult
 > = ({ close, event, user, uri, reSync }) => {
   return (
-    <ShutterModale setClose={close} show={!!event}>
+    <ShutterModale
+      setClose={close}
+      show={!!event}
+      title={<EventShutterTitle event={event} />}
+    >
       {event && (
         <div className={styles.container}>
-          <Link href={`/event/${event._id}`} passHref>
-            <h1 className={styles.title}>
-              <div>{eventTitleRender(event)}</div>
-              <Image
-                src={ArrowUpRightFromSquare}
-                width={20}
-                height={20}
-                alt="icon link"
-              />
-            </h1>
-          </Link>
           <div className={styles.box}>
             <Tabs>
               <Tab field="détails">

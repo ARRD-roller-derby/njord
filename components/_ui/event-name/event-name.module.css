@@ -8,6 +8,7 @@
   font-size: 15px;
   background: var(--color-quator);
   justify-content: center;
+  cursor: pointer;
 }
 
 .container[data-type="training"] {

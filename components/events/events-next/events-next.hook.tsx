@@ -13,7 +13,6 @@ export const useEventsNext = (): EventsNextResult => {
     }
   }, [triggerRefresh]);
 
-  console.log(ctx);
   return {
     ...ctx,
   };

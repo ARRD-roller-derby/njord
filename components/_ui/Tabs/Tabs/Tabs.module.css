@@ -1,6 +1,15 @@
 .nav {
   display: flex;
   gap: 12px;
+  overflow-y: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  position: sticky;
+  top: 0;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
 }
 
 .tab {
@@ -11,16 +20,16 @@
   text-transform: uppercase;
   font-size: 15px;
   cursor: pointer;
-
 }
 
 .tab:hover {
   color: white;
 }
 
-.tab[data-current='true'] {
+.tab[data-current="true"] {
   border-bottom: 2px solid var(--color-arrd);
 }
+
 .content {
   position: relative;
   padding: 15px 0;
@@ -32,4 +41,11 @@
 }
 .container {
   overflow: hidden;
+}
+
+@media screen and (min-width: 600px) {
+  .nav {
+    flex-wrap: wrap;
+    overflow-y: initial;
+  }
 }

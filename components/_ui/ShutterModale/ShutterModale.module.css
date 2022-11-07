@@ -6,19 +6,17 @@
   left: 0;
   position: fixed;
   right: 0;
-  top: 10%;
+  top: 50px;
   z-index: 100;
   gap: 10px;
   background: var(--color-bg-dark);
   border-top: 1px solid var(--color-border);
-  box-shadow: -10px 0 10px rgba(0, 0, 0, .7);
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.7);
   padding-top: 10px;
-  border-radius: 30px 30px 0 0;
-
 }
 
 .box {
-position: relative;
+  position: relative;
   gap: 10px;
   justify-content: center;
   align-items: center;
@@ -26,8 +24,10 @@ position: relative;
   flex-direction: column;
 }
 
-.close{
-  justify-self: end;
-  align-self: flex-end;
-  padding-right: 20px;
+.title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+  align-items: center;
 }
