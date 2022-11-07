@@ -8,10 +8,10 @@ import {
 } from "./event-attendees.type";
 import { EventAttendeesView } from "./event-attendees.view";
 
-const EventAttendeesFactory = Factory<
-  EventAttendeesProps,
-  EventAttendeesResult
->(useEventAttendees, EventAttendeesView);
+const EventAttendeesFactory = Factory<EventAttendeesProps, unknown>(
+  useEventAttendees,
+  EventAttendeesView
+);
 
 export const EventAttendees: React.FC<EventAttendeesProps> = (props) => {
   //TODO silent ?
