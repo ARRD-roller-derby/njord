@@ -11,9 +11,9 @@ import Tab from "../../_ui/Tabs/Tab/Tab/Tab";
 import EventDetailsTab from "../EventDetailsTab/EventDetailsTab";
 import EventUpdateTab from "../EventUpdateTab/EventUpdateTab";
 import EventItems from "../EventItems/EventItems";
-import EventAttendeesTab from "../EventAttendeesTab/EventAttendeesTab";
 import EventDeleteButton from "../EventDeleteButton/EventDeleteButton";
 import EventCancelButton from "../EventCancelButton/EventCancelButton";
+import { EventAttendees } from "../../events/event-attendees/event-attendees";
 
 type Props = {
   event: EventInterface;
@@ -21,15 +21,9 @@ type Props = {
   close: () => void;
   uri: string;
   user: UserInterface;
-}
+};
 
-const EventShutterView = ({
-  event,
-  uri,
-  close,
-  reSync,
-  user,
-}: Props) => {
+const EventShutterView = ({ event, uri, close, reSync, user }: Props) => {
   return (
     <ShutterModale setClose={close} show={!!event}>
       {event && (
@@ -51,7 +45,7 @@ const EventShutterView = ({
                 <EventDetailsTab event={event} reSync={reSync} />
               </Tab>
               <Tab field="participants">
-                <EventAttendeesTab eventId={event._id} eventType={event.type} />
+                <EventAttendees event={event} />
               </Tab>
               {event?.items?.length > 0 && (
                 <Tab field="objets">
@@ -92,6 +86,6 @@ const EventShutterView = ({
       )}
     </ShutterModale>
   );
-}
+};
 
-export default EventShutterView
+export default EventShutterView;
