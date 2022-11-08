@@ -1,12 +1,16 @@
 import { EventInterface } from "../../../types/Event.interface";
-import { UserInterface } from "../../../types/User.interface";
+import { AttendeeInterface } from "../../../types/attendee.interface";
 
 export type EventAttendeesProps = {
   event: EventInterface;
 };
 
 export type EventAttendeesResult = {
-  canISee: boolean;
-  cost: number;
-  attendees: UserInterface[];
+  IcantSee: boolean;
+  loading: boolean;
+  attendees: AttendeeInterface[];
+  counts: EventAttendeesCountProps[];
+  refetch: () => void;
 };
+
+export type EventAttendeesCountProps = { type: string; count: number };
