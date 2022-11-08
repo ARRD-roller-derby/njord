@@ -5,7 +5,7 @@ import { EventAttendeesContext } from "./event-attendees.context";
 import {
   EventAttendeesResult,
   EventAttendeesProps,
-  EventAttendeesCount,
+  EventAttendeesCountProps,
 } from "./event-attendees.type";
 
 export const useEventAttendees = ({
@@ -16,7 +16,7 @@ export const useEventAttendees = ({
       if (!data || !data?.attendees) return [];
       return data.attendees
         .filter((attendee: AttendeeInterface) => attendee.isPresent)
-        .reduce((acc: EventAttendeesCount[], value: AttendeeInterface) => {
+        .reduce((acc: EventAttendeesCountProps[], value: AttendeeInterface) => {
           const isExist = acc.find(
             (old) => old.type === searchTypeOfPresence(value, event.type)
           );
