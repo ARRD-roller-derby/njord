@@ -4,12 +4,12 @@ import Tab from "../../_ui/Tabs/Tab/Tab/Tab";
 import Tabs from "../../_ui/Tabs/Tabs/Tabs";
 import styles from "./event-shutter.module.css";
 import { EventShutterProps, EventShutterResult } from "./event-shutter.type";
-import EventAttendeesTab from "../../Events/EventAttendeesTab/EventAttendeesTab";
 import EventItems from "../../Events/EventItems/EventItems";
 import EventUpdateTab from "../../Events/EventUpdateTab/EventUpdateTab";
 import EventDeleteButton from "../../Events/EventDeleteButton/EventDeleteButton";
 import EventCancelButton from "../../Events/EventCancelButton/EventCancelButton";
 import { EventShutterTitle } from "./event-shutter-title/event-shutter-title";
+import { EventAttendees } from "../event-attendees/event-attendees";
 
 export const EventShutterView: React.FC<
   EventShutterProps & EventShutterResult
@@ -28,7 +28,7 @@ export const EventShutterView: React.FC<
                 <EventDetailsTab event={event} reSync={reSync} />
               </Tab>
               <Tab field="participants">
-                <EventAttendeesTab eventId={event._id} eventType={event.type} />
+                <EventAttendees event={event} />
               </Tab>
               {event?.items?.length > 0 && (
                 <Tab field="objets">

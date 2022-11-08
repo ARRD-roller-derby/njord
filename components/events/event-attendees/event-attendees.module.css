@@ -7,6 +7,13 @@
   gap: 10px;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
 .grid {
   display: grid;
   grid-template-rows: repeat(2, auto) 1fr;
@@ -26,15 +33,6 @@
   gap: 10px;
   align-items: center;
   flex-wrap: wrap;
-}
-
-.count {
-  background: var(--color-second);
-  color: white;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 3px 5px;
-  border-radius: 5px;
 }
 
 .attendeesBox {
