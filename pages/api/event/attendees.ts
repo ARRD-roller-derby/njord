@@ -22,13 +22,13 @@ export default async function attendees(
     userId: session.user._id,
   });
 
-  const isExpired = dayjs().diff(feature.exp.delay, "hours");
+  const isExpired = dayjs().diff(feature?.exp?.delay ?? dayjs(), "hours");
 
   const noProfiles = !session.user?.profiles.find((profile: string) =>
     profile.match(/bureau|coach/)
   );
 
-  if ((!feature && noProfiles) || (isExpired && noProfiles))
+  if ((!feature && noProfiles) || (isExpired < 0 && noProfiles))
     return res.send({ attendees: [], IcantSee: true });
 
   const { attendees } = await Event.findById(
