@@ -20,15 +20,16 @@ export default async function attendees(
   const feature = await Feature.findOne({
     name: { $regex: /attendees/i },
     userId: session.user._id,
+    exp: {
+      $gte: dayjs().toISOString(),
+    },
   });
-
-  const isExpired = dayjs().diff(feature?.exp ?? dayjs(), "hours");
 
   const noProfiles = !session.user?.profiles.find((profile: string) =>
     profile.match(/bureau|coach/)
   );
 
-  if ((!feature && noProfiles) || (isExpired < 0 && noProfiles))
+  if (!feature && noProfiles)
     return res.send({ attendees: [], IcantSee: true });
 
   const { attendees } = await Event.findById(
