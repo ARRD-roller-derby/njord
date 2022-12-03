@@ -1,15 +1,15 @@
-import classes from './EventAttendessBuy.module.css'
-import { FeatureInterface } from '../../../types/feature.interface'
-import AutoConfirmButton from '../../_ui/AutoConfirmButton/AutoConfirmButton'
-import Info from '../../_ui/Info/Info'
-import Bold from '../../_ui/Bold/Bold'
-import dayjs from 'dayjs'
+import classes from "./EventAttendessBuy.module.css";
+import { FeatureInterface } from "../../../types/feature.interface";
+import AutoConfirmButton from "../../_ui/AutoConfirmButton/AutoConfirmButton";
+import Info from "../../_ui/Info/Info";
+import Bold from "../../_ui/Bold/Bold";
+import dayjs from "dayjs";
 
 interface Props {
-  readonly feature: FeatureInterface | boolean
-  readonly buy: Function
-  readonly cost: number
-  readonly loading: boolean
+  readonly feature: FeatureInterface | boolean;
+  readonly buy: Function;
+  readonly cost: number;
+  readonly loading: boolean;
 }
 
 export default function EventAttendessBuyView({
@@ -20,8 +20,8 @@ export default function EventAttendessBuyView({
 }: Props) {
   return (
     <div className={classes.container}>
-      {loading && <div className={classes.loading}>{'...'}</div>}
-      {typeof feature === 'boolean' && !feature && !loading && (
+      {loading && <div className={classes.loading}>{"..."}</div>}
+      {typeof feature === "boolean" && !feature && !loading && (
         <>
           <Info>
             Vous pouvez débloquer la visibilité des participants aux événements
@@ -34,12 +34,11 @@ export default function EventAttendessBuyView({
           />
         </>
       )}
-      {typeof feature !== 'boolean' &&
-        feature?.exp && (
-          <div className={classes.exp}>
-            expire dans {dayjs(feature.exp).diff(dayjs(), 'hour')}h
-          </div>
-        )}
+      {typeof feature !== "boolean" && feature?.exp && (
+        <div className={classes.exp}>
+          expire dans {dayjs(feature.exp).diff(dayjs(), "hour")}h
+        </div>
+      )}
     </div>
-  )
+  );
 }

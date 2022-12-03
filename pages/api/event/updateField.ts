@@ -29,8 +29,8 @@ export default async function updateField(
   
   event[req.body.field]= typeof value === 'string' ? validator.escape(req.body.value):req.body.value
 
-  if(req.body.field === 'start' && event.type.match(/training|match|scrimmage|AG/) && typeof value !== 'string'){
-    event.end = value
+  if(req.body.field === 'start' && event.type.match(/training|match|scrimmage|AG/)){
+    event.end = event.start
   }
   await event.save()
 

@@ -1,12 +1,12 @@
-import { Children, cloneElement, Fragment, useRef } from 'react'
-import { CSSTransition } from 'react-transition-group'
-import classes from './Tabs.module.css'
+import { Children, cloneElement, Fragment, useRef } from "react";
+import { CSSTransition } from "react-transition-group";
+import classes from "./Tabs.module.css";
 
 interface Props {
-  readonly tabs: Array<string>
-  readonly current: string
-  readonly setCurrent: Function
-  readonly children: Array<JSX.Element>
+  readonly tabs: Array<string>;
+  readonly current: string;
+  readonly setCurrent: Function;
+  readonly children: Array<JSX.Element>;
 }
 export default function TabsView({
   tabs,
@@ -29,10 +29,11 @@ export default function TabsView({
         ))}
       </div>
       <div className={classes.content}>
-        {Children.map(children.filter(child=> tabs.includes(child.props?.field)), (child) =>
-          cloneElement(child, { current, ...child?.props })
+        {Children.map(
+          children.filter((child) => tabs.includes(child.props?.field)),
+          (child) => cloneElement(child, { current, ...child?.props })
         )}
       </div>
     </div>
-  )
+  );
 }

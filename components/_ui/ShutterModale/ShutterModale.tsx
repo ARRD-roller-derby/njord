@@ -1,15 +1,21 @@
-import { ReactChild, useRef } from 'react'
-import classes from './ShutterModale.module.css'
-import { CSSTransition } from 'react-transition-group'
+import { ReactChild, useRef } from "react";
+import classes from "./ShutterModale.module.css";
+import { CSSTransition } from "react-transition-group";
 
-interface props {
-  readonly children: ReactChild
-  readonly setClose: Function
-  readonly show: boolean
-}
+type ShutterModaleProps = {
+  children: ReactChild;
+  setClose: Function;
+  show: boolean;
+  title?: ReactChild;
+};
 
-export default function ShutterModale({ children, setClose, show }: props) {
-  const ref = useRef(null)
+export default function ShutterModaleProps({
+  children,
+  setClose,
+  show,
+  title,
+}: ShutterModaleProps) {
+  const ref = useRef(null);
   return (
     <CSSTransition
       nodeRef={ref}
@@ -21,12 +27,13 @@ export default function ShutterModale({ children, setClose, show }: props) {
     >
       <div className={classes.container} ref={ref}>
         <div className={classes.box}>
-          <div className={classes.close} onClick={() => setClose()}>
-            <div className="close" />
+          <div className={classes.title}>
+            <div>{title}</div>
+            <div className="close" onClick={() => setClose()} />
           </div>
           {children}
         </div>
       </div>
     </CSSTransition>
-  )
+  );
 }

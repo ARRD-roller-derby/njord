@@ -1,0 +1,21 @@
+.count {
+  background: var(--color-quator);
+  color: white;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 3px 5px;
+  border-radius: 5px;
+}
+
+.count[data-type="patins"] {
+  background: var(--color-arrd);
+}
+
+.count[data-type*="SO"] {
+  background: var(--color-second);
+}
+
+.count[data-type="coach"] {
+  background: var(--color-tierce);
+  color: black;
+}

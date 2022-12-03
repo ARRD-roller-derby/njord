@@ -1,0 +1,12 @@
+.title {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+  background: var(--color-bg-dark);
+}
+
+.title:hover {
+  color: var(--color-second);
+}

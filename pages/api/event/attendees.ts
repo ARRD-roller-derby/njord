@@ -28,12 +28,8 @@ export default async function attendees(
     profile.match(/bureau|coach/)
   );
 
-  if (
-    (!feature && noProfiles) ||
-    (!feature?.exp && noProfiles) ||
-    isExpired < 0
-  )
-    return res.send({ attendees: [], IcanTSee: true });
+  if ((!feature && noProfiles) || (isExpired && noProfiles))
+    return res.send({ attendees: [], IcantSee: true });
 
   const { attendees } = await Event.findById(
     validator.escape(req.body.eventId)
@@ -45,6 +41,7 @@ export default async function attendees(
   });
 
   res.send({
+    IcantSee: false,
     attendees: attendees.map((attendee: any) => {
       const user = users.find(
         (userDb) => attendee.userId === userDb._id.toString()
