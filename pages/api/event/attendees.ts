@@ -22,7 +22,7 @@ export default async function attendees(
     userId: session.user._id,
   });
 
-  const isExpired = dayjs().diff(feature?.exp?.delay ?? dayjs(), "hours");
+  const isExpired = dayjs().diff(feature?.exp ?? dayjs(), "hours");
 
   const noProfiles = !session.user?.profiles.find((profile: string) =>
     profile.match(/bureau|coach/)
