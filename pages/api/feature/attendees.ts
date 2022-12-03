@@ -15,6 +15,9 @@ export default async function attendees(
   const feature = await Feature.findOne({
     name: { $regex: /attendees/i },
     userId: session.user._id,
+    exp: {
+      $gte: dayjs().toISOString(),
+    },
   });
 
   if (
