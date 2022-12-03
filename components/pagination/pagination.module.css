@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px
+}
+
+.button {
+    cursor: pointer;
+}
+
+.button[data-current="true"]{
+    opacity: .5;
+}

@@ -2,14 +2,14 @@
   display: flex;
   gap: 12px;
   overflow-y: auto;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none;
   position: sticky;
   top: 0;
+  padding-bottom: 5px;
+  scroll-snap-type: x mandatory;
 }
 
 .nav::-webkit-scrollbar {
-  display: none;
+  height: 3px;
 }
 
 .tab {

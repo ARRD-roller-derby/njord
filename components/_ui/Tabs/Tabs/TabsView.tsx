@@ -1,5 +1,4 @@
-import { Children, cloneElement, Fragment, useRef } from "react";
-import { CSSTransition } from "react-transition-group";
+import { Children, cloneElement} from "react";
 import classes from "./Tabs.module.css";
 
 interface Props {
@@ -25,6 +24,7 @@ export default function TabsView({
             data-current={tab === current}
           >
             {tab}
+  
           </div>
         ))}
       </div>

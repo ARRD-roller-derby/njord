@@ -4,34 +4,49 @@ import { useSession } from 'next-auth/react'
 import { ArticleInterface } from '../../../types/article.interface'
 import { useProps } from './News.type'
 import { SocketContext } from '../../../stores/socket.store'
+import { PaginationContext } from '../../pagination/pagination.context'
 
-const useNews = ():useProps => {
+const useNews = (): useProps => {
   const { data, loading, refetch } = useFetch<{
-      page: number
-      totalPage: number
-      articles: Array<ArticleInterface>
-    }>('news/news'),
+    page: number
+    totalPage: number
+    articles: Array<ArticleInterface>
+  }>('news/news', { page: 1 }),
     [triggerRefresh] = useContext(SocketContext),
     { data: session } = useSession(),
-    [currentPage, _setCurrentPage] = useState<number>(1)
+    { pagination, setTotal } = useContext(PaginationContext)
 
   function setPagination() {
     if (!loading && data?.totalPage > data?.page) {
-      refetch({ page: data?.page ? data.page + 1 : 0 })
+      refetch({ page: pagination.currentPage })
     }
   }
 
   useEffect(() => {
     if (triggerRefresh && triggerRefresh?.type === 'news') {
-      refetch()
+      refetch({ page: pagination.currentPage })
     }
   }, [triggerRefresh])
+
+  useEffect(() => {
+    if (!loading && pagination?.currentPage <= data?.totalPage) {
+      refetch({ page: pagination.currentPage })
+    }
+  }, [pagination.currentPage])
+
+  useEffect(() => {
+    if (!loading && data?.totalPage) {
+      setTotal(data.totalPage)
+    }
+  }, [data])
+
 
   return {
     news: data?.articles,
     loading,
     reSync: refetch,
-    currentPage,
+    currentPage: pagination.currentPage,
+    totalPage: data?.totalPage,
     setPagination,
     canPublish: session?.user?.profiles.length > 0 ? true : false,
   }

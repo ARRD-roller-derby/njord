@@ -8,15 +8,21 @@ export default async function news(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
   if (!session) return res.status(403).send('non autorisé')
   
+  const {page} = req.body
+
   await MongoDb()
   const OR = [
     {visibility:ArticleVisibility.public},
     {leagueId: session.user?.league?.id,visibility:ArticleVisibility.league}
   ]
 
+  const perPage = 10
+
+  const totalArticle = await Article.count({$or:OR})
+
+  console.log(page)
   res.json({
-    articles: await Article.find({$or:OR}).limit(30).sort({ updatedAt: -1 }),
-    page: 1,
-    totalPage: 10
+    articles: await Article.find({$or:OR }).skip(page > 1 ? page * perPage - perPage: 0).limit(perPage).sort({ updatedAt: -1 }),
+    totalPage: Math.ceil(totalArticle / perPage)
   })
 }
