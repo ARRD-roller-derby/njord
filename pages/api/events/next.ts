@@ -36,7 +36,7 @@ export default async function eventsNext(
 
   const {page} = req.body || 1 
 
-  const perPage = 3
+  const perPage = 10
 
   const totalEvents = await Event.count({$or:OR})
 
