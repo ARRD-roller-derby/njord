@@ -5,13 +5,12 @@ import { ArticleInterface } from '../../../types/article.interface'
 import { useProps } from './News.type'
 import { SocketContext } from '../../../stores/socket.store'
 import { PaginationContext } from '../../pagination/pagination.context'
+import { PaginationFetch } from '../../../types/pagination.interface'
 
 const useNews = (): useProps => {
   const { data, loading, refetch } = useFetch<{
-    page: number
-    totalPage: number
     articles: Array<ArticleInterface>
-  }>('news/news', { page: 1 }),
+  } & PaginationFetch>('news/news', { page: 1 }),
     [triggerRefresh] = useContext(SocketContext),
     { data: session } = useSession(),
     { pagination, setTotal } = useContext(PaginationContext)
