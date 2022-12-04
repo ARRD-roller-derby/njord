@@ -1,9 +1,13 @@
-import AuthentificatedLayout from '../../_layouts/Authentificated/Authentificated';
+import { PaginationProvider } from "../../pagination/pagination.provider"
+import Factory from "../../_layouts/Factory/Factory"
+import { useQuestions } from "./questions.hook";
+import { QuestionsResults } from "./questions.type";
+import { QuestionsView } from "./questions.view";
 
-export const Questions: React.FC = ()=> {
-  return <AuthentificatedLayout>
-    <p>Ma page questions</p>
-    <p>Un filtre</p>
-    <p>Les questions</p>
-  </AuthentificatedLayout>
-}
+const QuestionsFactory = Factory<unknown, QuestionsResults>(useQuestions, QuestionsView)
+
+export const Questions: React.FC = () => (
+  <PaginationProvider>
+    <QuestionsFactory />
+  </PaginationProvider>
+);

@@ -1,0 +1,23 @@
+.container {
+display: flex;
+flex-direction: column;
+gap: 15px;
+max-height: 80vh;
+overflow-y: auto;
+}
+
+.buttons  {
+    display: flex;
+    justify-content: space-between;
+}
+
+.badAnswer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+}

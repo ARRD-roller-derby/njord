@@ -42,9 +42,9 @@ export const EventCardView: React.FC<EventCardProps & EventCardResult> = ({
             <div className={styles.relativeDate}>
               {dayjs(
                 dayjs(event.start).format("YYYY-MM-DD") +
-                  "T" +
-                  event.hourStart +
-                  ":00.000"
+                "T" +
+                event.hourStart +
+                ":00.000"
               ).from(dayjs())}
             </div>
           </div>

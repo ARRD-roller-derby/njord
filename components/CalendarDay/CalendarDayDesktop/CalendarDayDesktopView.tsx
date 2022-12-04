@@ -14,7 +14,7 @@ interface props {
   readonly shutter: EventInterface
   readonly close: Function
   readonly open: Function
-  readonly refetch: ()=>void
+  readonly refetch: () => void
 }
 
 export default function CalendarDayDesktopView({
@@ -33,7 +33,7 @@ export default function CalendarDayDesktopView({
         event={shutter}
         url="/calendrier"
         reSync={refetch}
-        setClose={()=>close()}
+        setClose={() => close()}
 
       />
       <div
