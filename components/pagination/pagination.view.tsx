@@ -13,23 +13,25 @@ export const PaginationView: React.FC<PaginationProps & PaginationResults> = ({ 
         >
             précédent
         </button>
-        {Array.from(
-            Array(pagination?.totalPage || 1).keys())
-            .map((page) => {
+        <div className={styles.pages}>
+            {Array.from(
+                Array(pagination?.totalPage || 1).keys())
+                .map((page) => {
 
-                const pageNum = page + 1
-                return <button
-                    className={styles.button}
-                    data-current={pageNum === pagination.currentPage}
-                    disabled={pageNum === pagination.currentPage}
-                    key={page}
-                    onClick={() => setPage(pageNum)}
-                >
-                    {pageNum}
-                </button>
-            }
+                    const pageNum = page + 1
+                    return <button
+                        className={styles.button}
+                        data-current={pageNum === pagination.currentPage}
+                        disabled={pageNum === pagination.currentPage}
+                        key={page}
+                        onClick={() => setPage(pageNum)}
+                    >
+                        {pageNum}
+                    </button>
+                }
 
-            )}
+                )}
+        </div>
         <button
             onClick={next}
             className={styles.button}

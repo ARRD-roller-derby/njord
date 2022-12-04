@@ -10,3 +10,7 @@
   justify-items: center;
   justify-content: center;
 }
+
+.pagination {
+  width: 100%;
+}

@@ -1,7 +1,10 @@
 import { EventInterface } from "../../../types/Event.interface";
 
 export type EventsNextResult = {
-  data: EventInterface[];
+  data: {
+    events: EventInterface[],
+    totalPage:number
+  };
   loading: boolean;
   reSync: () => void;
   id: string;

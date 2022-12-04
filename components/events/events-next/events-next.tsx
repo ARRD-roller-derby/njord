@@ -1,4 +1,6 @@
 import { EventInterface } from "../../../types/Event.interface";
+import { PaginationProvider } from "../../pagination/pagination.provider";
+import useFetch from "../../_hooks/useFetch";
 import useSilentDBSync from "../../_hooks/useSilentDBSync";
 import Factory from "../../_layouts/Factory/Factory";
 import { EventsNextContext } from "./events-next.context";
@@ -12,11 +14,13 @@ const EventsNextFactory = Factory<unknown, EventsNextResult>(
 );
 
 export const EventsNext: React.FC = () => {
-  const ctx = useSilentDBSync<EventInterface[]>("events/next", "events");
+  const ctx = useFetch<EventInterface[]>("events/next");
 
   return (
     <EventsNextContext.Provider value={ctx}>
-      <EventsNextFactory />
+      <PaginationProvider>
+        <EventsNextFactory />
+      </PaginationProvider>
     </EventsNextContext.Provider>
   );
 };

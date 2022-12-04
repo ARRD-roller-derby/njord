@@ -20,7 +20,6 @@ export default async function news(req: NextApiRequest, res: NextApiResponse) {
 
   const totalArticle = await Article.count({$or:OR})
 
-  console.log(page)
   res.json({
     articles: await Article.find({$or:OR }).skip(page > 1 ? page * perPage - perPage: 0).limit(perPage).sort({ updatedAt: -1 }),
     totalPage: Math.ceil(totalArticle / perPage)

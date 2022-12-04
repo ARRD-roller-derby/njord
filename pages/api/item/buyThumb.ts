@@ -17,7 +17,6 @@ export default async function buyThumb(
 ) {
   const session = await getSession({ req })
 
-  console.log(req.body.item)
   if (!session) return res.status(403).send('non autorisé')
   if (!req.body.img || typeof req?.body.img !== 'string')
     return res.status(400).send("Il manque l'image encodée")

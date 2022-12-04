@@ -18,8 +18,7 @@ export default async function eventsNext(
 
   const between = {
     start: {
-      $gte: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
-      $lt: dayjs().add(3, 'month').format('YYYY-MM-DD'),
+      $gte: dayjs().subtract(1, 'day').format('YYYY-MM-DD')
     },
   }
 
@@ -35,10 +34,19 @@ export default async function eventsNext(
     )
   }
 
-  const events = await Event.find({ $or: OR }).sort({ start: 1 }),
+  const {page} = req.body || 1 
+
+  const perPage = 3
+
+  const totalEvents = await Event.count({$or:OR})
+
+  const events = await Event.find({ $or: OR }).skip(page > 1 ? page * perPage - perPage: 0).limit(perPage).sort({ start: 1 }),
     eventsWithPresence = events.map((event) => {
      return eventWithPresence(session.user._id,event)
     })
 
-  res.json(eventsWithPresence)
+  res.json({
+    events: eventsWithPresence,
+    totalPage: Math.ceil(totalEvents / perPage)
+  })
 }
