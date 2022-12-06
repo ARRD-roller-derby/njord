@@ -19,20 +19,20 @@ export default function useCalendar({ setBetween, events }: Props) {
     }>(
       {
         year: 0,
-        month: parseInt(dayjs().format('MM')) -1,
+        month: parseInt(dayjs().format('MM')) - 1,
       },
       'njord_yearMonth'
     ),
     [cal, setCal] = useState<Array<CalDayInterface>>([]),
-    [popin,setPopin] = useState<string|null>(null),
-    [mobileEvents,setMobileEvents] = useState<Array<EventInterface>|null>(null),
+    [popin, setPopin] = useState<string | null>(null),
+    [mobileEvents, setMobileEvents] = useState<Array<EventInterface> | null>(null),
     [currentMonth, setCurrentMonth] = useState<string>(''),
     isMobile = useIsMobile()
 
   function createCalendar() {
-    const thisMonth = dayjs().month(localState.month || dayjs(dayjs().format('MM'))),
-      firstDay = dayjs(thisMonth).add(localState.year || 0, 'year').startOf('month'),
-      lastDay = dayjs(thisMonth).add(localState.year || 0, 'year').endOf('month'),
+    const thisMonth = dayjs().month(localState.month ?? dayjs(dayjs().format('MM'))),
+      firstDay = dayjs(thisMonth).add(localState.year ?? 0, 'year').startOf('month'),
+      lastDay = dayjs(thisMonth).add(localState.year ?? 0, 'year').endOf('month'),
       firstCalDay = firstDay.subtract(
         firstDay.day() === 0 ? 0 : firstDay.day() - 1,
         'day'
@@ -44,6 +44,7 @@ export default function useCalendar({ setBetween, events }: Props) {
       numOfDay = lastCalDay.diff(firstCalDay, 'day'),
       generateCal = []
 
+    console.log(thisMonth, firstCalDay)
     setBetween([firstCalDay.toISOString(), lastCalDay.toISOString()])
 
     for (let i = 0; i < numOfDay + 1; i++) {
@@ -55,7 +56,7 @@ export default function useCalendar({ setBetween, events }: Props) {
         events: [],
       })
     }
-    
+
     setCurrentMonth(
       dayjs()
         .month(localState.month)
@@ -68,33 +69,19 @@ export default function useCalendar({ setBetween, events }: Props) {
 
   function nextMonth() {
     const next = localState.month + 1
-    if (next > 11) {
-      setLocalState({
-        month: 0,
-        year: localState.year + 1,
-      })
-    } else {
-      setLocalState({
-        ...localState,
-        month: next,
-      })
-    }
+    setLocalState({
+      ...localState,
+      month: next,
+    })
   }
 
   function previousMonth() {
     const previous = localState.month - 1
+    setLocalState({
+      ...localState,
+      month: previous,
+    })
 
-    if (previous < 0) {
-      setLocalState({
-        month: 11,
-        year: localState.year - 1,
-      })
-    } else {
-      setLocalState({
-        ...localState,
-        month: previous,
-      })
-    }
   }
 
   useEffect(() => {
@@ -128,7 +115,7 @@ export default function useCalendar({ setBetween, events }: Props) {
     setPopin,
     currentMonth,
     isMobile,
-    mobileEvents,setMobileEvents,
+    mobileEvents, setMobileEvents,
     isAdmin: session?.user?.profiles.find((profile: string) =>
       profile.match(/bureau|coach|com|fest/)
     ),
