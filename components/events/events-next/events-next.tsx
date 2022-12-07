@@ -1,7 +1,6 @@
 import { EventInterface } from "../../../types/Event.interface";
 import { PaginationProvider } from "../../pagination/pagination.provider";
 import useFetch from "../../_hooks/useFetch";
-import useSilentDBSync from "../../_hooks/useSilentDBSync";
 import Factory from "../../_layouts/Factory/Factory";
 import { EventsNextContext } from "./events-next.context";
 import { useEventsNext } from "./events-next.hook";

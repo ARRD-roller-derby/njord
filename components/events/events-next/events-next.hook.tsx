@@ -11,7 +11,7 @@ export const useEventsNext = (): EventsNextResult => {
 
   useEffect(() => {
     if (triggerRefresh && triggerRefresh?.type === "event") {
-      ctx.reSync();
+      ctx.refetch();
     }
   }, [triggerRefresh]);
 
