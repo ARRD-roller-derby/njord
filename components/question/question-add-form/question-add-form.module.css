@@ -1,37 +1,38 @@
 .container {
-display: flex;
-flex-direction: column;
-gap: 15px;
-max-height: 80vh;
-overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 80vh;
+  overflow-y: auto;
+  max-width: 500px;
 }
 
-.buttons  {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    width: 100%;
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
 }
 
 .badAnswer {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 10px
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px
 }
 
 .actions {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .file {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
 }
 
-.fileInput{
-display: none;
+.fileInput {
+  display: none;
 }

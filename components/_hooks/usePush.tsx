@@ -19,8 +19,6 @@ export default function usePush() {
       return;
     }
 
-    console.log(pushClient)
-
     try {
       await pushClient?.addDeviceInterest("league-public");
     } catch (e) {

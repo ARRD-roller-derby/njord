@@ -165,6 +165,7 @@ label {
 img {
   width: 100%;
   height: auto;
+  max-width: 500px;
 }
 
 .header {
@@ -235,6 +236,7 @@ button,
   font-size: 12px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
+  text-align: center;
 }
 
 label.button {
@@ -243,12 +245,12 @@ label.button {
 }
 
 button:hover,
-.buttonReset:hover
-.button:hover {
+.buttonReset:hover .button:hover {
   box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
 }
 
-button[type="reset"],.buttonReset {
+button[type="reset"],
+.buttonReset {
   background: var(--color-bg-light);
   border: 1px solid var(--color-arrd);
 }
@@ -370,17 +372,13 @@ label::first-letter {
   background-color: var(--color-second);
 }
 
-.react-datepicker-popper[data-placement^="top"]
-  .react-datepicker__triangle::before,
-.react-datepicker-popper[data-placement^="bottom"]
-  .react-datepicker__triangle::before {
+.react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle::before,
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
   border-bottom-color: var(--color-bg-dark);
 }
 
-.react-datepicker-popper[data-placement^="bottom"]
-  .react-datepicker__triangle::before,
-.react-datepicker-popper[data-placement^="bottom"]
-  .react-datepicker__triangle::after {
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before,
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::after {
   border-bottom-color: var(--color-bg-dark);
 }
 

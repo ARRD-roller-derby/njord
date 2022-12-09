@@ -1,0 +1,71 @@
+.container {
+  background: var(--color-bg-dark);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  overflow: hidden;
+  flex-basis: 500px
+}
+
+
+.img {
+  display: flex;
+  justify-content: center;
+}
+
+.img img {
+  width: 100%;
+  height: auto;
+}
+
+.questions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.good,
+.bad {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  border-radius: 30px;
+  justify-content: center;
+  padding: 5px 8px;
+}
+
+.good {
+  background: var(--color-quator);
+}
+
+.bad {
+  background: var(--color-border);
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: .8em;
+}
+
+.difficulty {
+  align-self: center;
+}
+
+.activate {
+  align-self: flex-end;
+}
+
+@media screen and (max-width: 500px) {
+
+  .questions {
+    display: flex;
+    flex-direction: column;
+  }
+
+}
