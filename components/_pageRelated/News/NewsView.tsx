@@ -20,7 +20,6 @@ const NewsView = ({ news, loading, reSync, canPublish }: useProps) => {
           {news && news.length === 0 && <div>Aucune news.</div>}
           {!loading &&
             news &&
-
             <>
               {news.map((article) => (
                 <ArticleCard

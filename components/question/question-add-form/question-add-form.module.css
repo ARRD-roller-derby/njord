@@ -9,6 +9,8 @@ overflow-y: auto;
 .buttons  {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
+    width: 100%;
 }
 
 .badAnswer {
@@ -20,4 +22,16 @@ overflow-y: auto;
 .actions {
     display: flex;
     justify-content: center;
+}
+
+.file {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.fileInput{
+display: none;
 }

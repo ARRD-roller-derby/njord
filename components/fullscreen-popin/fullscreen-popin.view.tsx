@@ -4,10 +4,8 @@ import { FullscreenPopinProps } from "./fullscreen-popin.type"
 
 export const FullscreenPopinView: React.FC<
     FullscreenPopinProps & FullscreenPopinProviderState
-> = ({ isOpen, close, open, text, children }) => {
-
-    console.log(isOpen)
-    return <>
+> = ({ isOpen, close, open, text, children }) => (
+    <>
         <button onClick={open}>{text}</button>
         {isOpen && <FullscreenModale setClose={close}>
             <>
@@ -15,4 +13,4 @@ export const FullscreenPopinView: React.FC<
             </>
         </FullscreenModale>}
     </>
-}
+)

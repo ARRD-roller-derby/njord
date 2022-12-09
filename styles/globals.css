@@ -224,6 +224,7 @@ img {
 }
 
 button,
+.buttonReset,
 .button {
   background: var(--color-bg-light-subtitle);
   border-radius: 50px;
@@ -242,16 +243,19 @@ label.button {
 }
 
 button:hover,
+.buttonReset:hover
 .button:hover {
   box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
 }
 
-button[type="reset"] {
+button[type="reset"],.buttonReset {
   background: var(--color-bg-light);
   border: 1px solid var(--color-arrd);
 }
 
+
 button:disabled,
+
 button[data-disabeld="true"],
 input:disabled {
   opacity: 0.5;

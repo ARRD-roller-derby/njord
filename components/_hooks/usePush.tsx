@@ -7,27 +7,52 @@ export default function usePush() {
     { data: session } = useSession();
 
   async function addPush(beamsClient: any) {
+    if (isConnected) return;
+    const pushClient = await beamsClient?.start();
     try {
-      const pushClient = await beamsClient.start();
-      if (pushClient) console.log("Vous pouvez recevoir des notifs");
+      const isReady = pushClient.instanceId
+      if (!pushClient || !isReady) return
+      console.log("Vous pouvez recevoir des notifs");
+      setIsConnected(true);
     } catch (e) {
       console.log("Votre navigateur bloque les notif push", e);
       return;
-    } finally {
-      setIsConnected(true);
     }
-    session.user.profiles.forEach((profile: string) => {
-      beamsClient.addDeviceInterest("profile-" + profile);
-    });
-    beamsClient.addDeviceInterest("league-public");
-    if (session?.user?.league)
-      beamsClient.addDeviceInterest("league-" + session.user.league.id);
-    //private msg
-    beamsClient.addDeviceInterest("user-" + session.user._id);
+
+    console.log(pushClient)
+
+    try {
+      await pushClient?.addDeviceInterest("league-public");
+    } catch (e) {
+      console.log(e)
+    }
+    try {
+      await pushClient?.addDeviceInterest("user-" + session.user._id);
+    } catch (e) {
+      console.log(e)
+    }
+
+    try {
+      for (const profile of session.user?.profiles) {
+        await pushClient?.addDeviceInterest("profile-" + profile);
+      }
+    } catch (e) {
+      console.log(e)
+    }
+
+    if (session?.user?.league) {
+      try {
+        await pushClient?.addDeviceInterest("league-" + session.user.league.id);
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
   }
   useEffect(() => {
-    if(navigator){
-      if(navigator.userAgent.match(/Mi|iPhone|iPad|Crosscall/))return
+
+    if (navigator) {
+      if (navigator.userAgent.match(/Mi|iPhone|iPad|Crosscall/)) return
     }
     if (session && session.user && !isConnected) {
       const beamsClient = new PusherPushNotifications.Client({
@@ -35,7 +60,7 @@ export default function usePush() {
       });
 
       if (beamsClient) addPush(beamsClient);
-   
+
     }
   }, [session]);
 

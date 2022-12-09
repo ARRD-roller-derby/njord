@@ -1,8 +1,27 @@
+import { useContext, useEffect } from "react"
+import { PaginationContext } from "../../pagination/pagination.context"
+import { QuestionsContext } from "./question.context"
 import { QuestionsResults } from "./questions.type"
 
 export const useQuestions = (): QuestionsResults => {
+    const { data, loading, refetch } = useContext(QuestionsContext),
+        { pagination, setTotal } = useContext(PaginationContext)
+
+
+    useEffect(() => {
+        if (!loading && pagination?.currentPage <= data?.totalPage) {
+            refetch({ page: pagination.currentPage })
+        }
+    }, [pagination.currentPage])
+
+    useEffect(() => {
+        if (!loading && data?.totalPage) {
+            setTotal(data.totalPage)
+        }
+    }, [data])
 
     return {
-        test: 'test'
+        loading,
+        questions: data?.questions
     }
 }

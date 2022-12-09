@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import useFetch from '../../_hooks/useFetch'
 import { useSession } from 'next-auth/react'
 import { ArticleInterface } from '../../../types/article.interface'
@@ -14,12 +14,6 @@ const useNews = (): useProps => {
     [triggerRefresh] = useContext(SocketContext),
     { data: session } = useSession(),
     { pagination, setTotal } = useContext(PaginationContext)
-
-  function setPagination() {
-    if (!loading && data?.totalPage > data?.page) {
-      refetch({ page: pagination.currentPage })
-    }
-  }
 
   useEffect(() => {
     if (triggerRefresh && triggerRefresh?.type === 'news') {
@@ -39,14 +33,10 @@ const useNews = (): useProps => {
     }
   }, [data])
 
-
   return {
     news: data?.articles,
     loading,
     reSync: refetch,
-    currentPage: pagination.currentPage,
-    totalPage: data?.totalPage,
-    setPagination,
     canPublish: session?.user?.profiles.length > 0 ? true : false,
   }
 }

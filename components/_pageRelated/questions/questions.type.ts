@@ -1,3 +1,6 @@
+import { QuestionInterface } from "../../../types/question.interface"
+
 export type QuestionsResults = {
-    test?: string
+    questions?: QuestionInterface[],
+    loading: boolean
 }

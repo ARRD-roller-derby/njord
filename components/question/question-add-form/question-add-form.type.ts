@@ -1,16 +1,18 @@
 export type QuestionAddFormResults = {
-    onChange: (key:'question'|'good_answers', value:string)=>void,
+    onChange: (key:'question'|'good_answers'|'img', value:string)=>void,
     deleteBad: (index: string)=>void,
     addBad: ()=>void,
     activeQuestion:(value:boolean)=>void,
     onChangeBadAnwser: (value:string, index:string) =>void,
     form: QuestionAddFormForm,
     loading: boolean,
-    onSubmit: ()=>void,
+    onSubmit: (e: React.SyntheticEvent)=>void,
     onCrop: (imageElement:any)=>void
     img: string
     submitFile: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    cropperRef: any
+    cropperRef: any,
+    delImg: ()=>void,
+    addImg: ()=>void,
 }
 
 export type QuestionAddFormForm = {

@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import { useRef } from "react";
 import { Cropper } from "react-cropper";
 import LabeledBlock from "../../_ui/LabeledBlock/LabeledBlock";
 import SubmitButton from "../../_ui/SubmitButton/SubmitButton";
@@ -11,33 +10,42 @@ const MarkdownEditor = dynamic(() => import('@uiw/react-md-editor'), {
 })
 
 export const QuestionAddFormView: React.FC<QuestionAddFormResults> = (
-    { onChange, cropperRef, addBad, deleteBad, submitFile, img,
+    { onChange, cropperRef, addBad, deleteBad, submitFile, delImg, img, addImg,
         onCrop, form, loading, onChangeBadAnwser, onSubmit }) => {
 
-
-    return <form className={styles.container}>
+    return <form className={styles.container} onSubmit={onSubmit}>
         <h2 className={styles.title}>Ajouter une question</h2>
         <LabeledBlock title="Question">
-            <div className={styles.container}>
-                {img ? <Cropper
-                    src={img}
-                    style={{ height: 200, width: '100%' }}
-                    guides={false}
-                    crop={onCrop}
-                    ref={cropperRef}
-                /> : (
-                    <input
-                        type="file"
-                        className={styles.input}
-                        onChange={(e) => submitFile(e)}
-                        id="item_change_pict"
-                        accept="image/*"
+            <div className={styles.file}>
+
+                {img ? <>
+                    <Cropper
+                        src={img}
+                        style={{ height: 200, width: 'auto' }}
+                        guides={false}
+                        crop={onCrop}
+                        ref={cropperRef}
                     />
+                    <div className={styles.buttons}>
+                        <div className="buttonReset" onClick={delImg}>Annuler</div>
+                        <div className="button" onClick={addImg}>Ajouter</div>
+                    </div>
+
+                </> : (
+                    <>
+                        <label className="button" htmlFor="question_add_img">
+                            Ajouter une image
+                        </label>
+                        <input
+                            type="file"
+                            className={styles.fileInput}
+                            onChange={(e) => submitFile(e)}
+                            id="question_add_img"
+                            accept="image/*"
+                        />
+                    </>
                 )}
-
-
             </div>
-
         </LabeledBlock>
         <LabeledBlock title="Question">
             <MarkdownEditor
@@ -73,8 +81,7 @@ export const QuestionAddFormView: React.FC<QuestionAddFormResults> = (
                 Annuler
             </button>
             <SubmitButton
-                onClick={() => onSubmit()}
-                text="Créer la news"
+                text="Créer la question"
                 loading={loading}
             />
         </div>
