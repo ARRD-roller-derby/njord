@@ -1,19 +1,21 @@
 export interface FeatureInterface {
-  _id:string
-  name:string
-  userId:string
+  _id: string
+  name: string
+  userId: string
   updatedAt: Date
+  count?: number
   exp?: Date
 }
 
 
 export interface AvailableFeatureInterface {
-  name:string
+  name: string
   description: string
-  cost:number
-  exp?:{
+  cost: number
+
+  exp?: {
     delay: number
-    scale:'day'|'week'|'month'
+    scale: 'day' | 'week' | 'month' | 'shot'
   }
 }
 

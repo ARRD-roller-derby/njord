@@ -1,6 +1,8 @@
 import { CSSTransition } from 'react-transition-group'
 import classes from './AutoConfirmButton.module.css'
 import { useRef } from 'react'
+import UserAgent from '../../../public/icons/user-secret.svg'
+import Image from 'next/image'
 
 interface props {
   readonly buttonText: string
@@ -9,6 +11,7 @@ interface props {
   readonly loading?: boolean
   readonly clickAction: Function
   readonly submit: Function
+  readonly isSpy?: boolean
 }
 export default function AutoConfirmButtonView({
   buttonText,
@@ -17,11 +20,13 @@ export default function AutoConfirmButtonView({
   textConfirm,
   submit,
   loading,
+  isSpy
 }: props) {
   const ref = useRef(null)
   return (
     <div className={classes.container} >
       <button className={classes.button} onClick={() => clickAction()} disabled={loading}>
+        {isSpy && <Image src={UserAgent} width={15} height={15} />}
         {buttonText}
       </button>
       <CSSTransition
@@ -32,7 +37,7 @@ export default function AutoConfirmButtonView({
         unmountOnExit
         mountOnEnter
       >
-        <div  ref={ref} className={classes.confirm} onClick={() => submit()} >
+        <div ref={ref} className={classes.confirm} onClick={() => submit()} >
           <button disabled={loading}>{textConfirm}</button>
         </div>
       </CSSTransition>

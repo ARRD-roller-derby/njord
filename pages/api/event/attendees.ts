@@ -7,6 +7,7 @@ import Feature from "../../../models/feature.model";
 import validator from "validator";
 import User from "../../../models/user.model";
 import userNameRender from "../../../utils/userNameRender";
+import trigger from "../../../services/bifrost/trigger";
 
 export default async function attendees(
   req: NextApiRequest,
@@ -40,6 +41,8 @@ export default async function attendees(
       $in: attendees.map((attendee: { userId: string }) => attendee.userId),
     },
   });
+
+  trigger(session.user._id._id, { type: 'wallet' })
 
   res.send({
     IcantSee: false,
