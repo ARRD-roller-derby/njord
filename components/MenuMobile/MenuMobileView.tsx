@@ -8,6 +8,7 @@ import AddressIcon from '../../public/icons/map.svg'
 import CalIcon from '../../public/icons/calendar-days.svg'
 import StuffIcon from '../../public/icons/warehouse.svg'
 import NewsIcon from '../../public/icons/newspaper.svg'
+import BlockQuestionIcon from '../../public/icons/block-question.svg'
 import LinkForMobile from '../_ui/LinkForMobile/LinkForMobile'
 
 interface props {
@@ -33,6 +34,7 @@ export default function MenuMobileView({ isOpen, setIsOpen,goToPage,isAdmin,bure
         <LinkForMobile icon={CardIdIcon} label="Mon profil" url='/profile' goToPage={goToPage}/>
         <LinkForMobile icon={AddressIcon} label="Mes adresses" url='/adresses' goToPage={goToPage}/>
         <LinkForMobile icon={StuffIcon} label="inventaire" url='/stuff' goToPage={goToPage}/>
+        {isAdmin && <LinkForMobile icon={BlockQuestionIcon} label="questions" url='/questions' goToPage={goToPage}/>}
         
       </div>
     </div>

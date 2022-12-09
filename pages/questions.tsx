@@ -9,7 +9,7 @@ export async function getServerSideProps({ req }) {
   const session = await getSession({ req })
   return !session?.isAdmin
     ? {
-        redirect: { destination: '/login' },
-      }
+      redirect: { destination: '/login' },
+    }
     : { props: { start: true } }
 }

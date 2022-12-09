@@ -42,7 +42,7 @@ export default async function attendees(
     },
   });
 
-  trigger(session.user._id._id, { type: 'wallet' })
+  trigger(session.user._id, { type: 'wallet' })
 
   res.send({
     IcantSee: false,

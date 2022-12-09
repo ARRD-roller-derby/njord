@@ -1,4 +1,3 @@
-
 import Factory from "../_layouts/Factory/Factory"
 import { usePagination } from "./pagination.hook"
 import { PaginationResults } from "./pagination.type"

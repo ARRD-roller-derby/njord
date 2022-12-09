@@ -61,6 +61,7 @@
     "@types/react": "18.0.1",
     "@types/react-datepicker": "^4.4.2",
     "@types/react-transition-group": "^4.4.5",
+    "@types/uuid": "^9.0.0",
     "@types/validator": "^13.7.5",
     "@vitejs/plugin-react": "^2.0.0",
     "@vitest/ui": "^0.20.3",

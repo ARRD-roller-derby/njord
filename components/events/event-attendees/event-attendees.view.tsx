@@ -21,7 +21,7 @@ export const EventAttendeesView: React.FC<
   return (
     <div className={styles.container}>
       <div className={styles.grid}>
-        <EventAttendessBuy reSync={refetch} eventId={event._id} />
+        <EventAttendessBuy eventId={event._id} />
         <div className={styles.counts}>
           {counts &&
             counts.map((count) => (

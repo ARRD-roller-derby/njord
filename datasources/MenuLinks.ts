@@ -36,5 +36,11 @@ export const MenuLinks: Array<MenuLinksInterface> = [
     title: 'News',
     icon: '/icons/newspaper.svg',
   },
+  {
+    href: '/questions',
+    title: 'Questions',
+    icon: '/icons/block-question.svg',
+    admin: true
+  },
 ]
 
