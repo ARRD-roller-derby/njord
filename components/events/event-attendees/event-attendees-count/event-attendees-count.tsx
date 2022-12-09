@@ -4,6 +4,7 @@ import { EventAttendeesCountProps } from "../event-attendees.type";
 type eventAttendeesCountProps = {
   count: EventAttendeesCountProps;
 };
+
 export const EventAttendeesCount: React.FC<eventAttendeesCountProps> = ({
   count,
 }) => (

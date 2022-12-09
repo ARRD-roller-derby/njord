@@ -4,12 +4,14 @@ import AutoConfirmButton from "../../_ui/AutoConfirmButton/AutoConfirmButton";
 import Info from "../../_ui/Info/Info";
 import Bold from "../../_ui/Bold/Bold";
 import dayjs from "dayjs";
+import { EventAttendeesSpyCount } from "../../events/event-attendees/event-attendees-spy-count/event-attendees-spy-count";
 
 interface Props {
-  readonly feature: FeatureInterface | boolean;
-  readonly buy: Function;
-  readonly cost: number;
-  readonly loading: boolean;
+  feature: FeatureInterface | boolean;
+  buy: Function;
+  cost: number;
+  loading: boolean;
+  eventId: string
 }
 
 export default function EventAttendessBuyView({
@@ -17,12 +19,18 @@ export default function EventAttendessBuyView({
   buy,
   cost,
   loading,
+  eventId,
 }: Props) {
   return (
     <div className={classes.container}>
       {loading && <div className={classes.loading}>{"..."}</div>}
       {typeof feature === "boolean" && !feature && !loading && (
         <>
+          <div className={classes.spy}>
+            <EventAttendeesSpyCount eventId={eventId} />
+          </div>
+
+
           <Info>
             Vous pouvez débloquer la visibilité des participants aux événements
             pour une journée en utilisant vos <Bold>Dragons (dr.)</Bold>.

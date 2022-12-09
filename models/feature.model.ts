@@ -2,9 +2,10 @@ import { Schema, model, models } from 'mongoose'
 import { FeatureInterface } from '../types/feature.interface'
 
 const featureSchema = new Schema<FeatureInterface>({
-  name:String,
-  userId:String,
+  name: String,
+  userId: String,
   updatedAt: Date,
+  count: Number,
   exp: Date
 })
 

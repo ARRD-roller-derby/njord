@@ -2,6 +2,12 @@
   position: relative;
 }
 
+.button {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
 .confirm{
   position: absolute;
   bottom: calc(100% + 10px);
