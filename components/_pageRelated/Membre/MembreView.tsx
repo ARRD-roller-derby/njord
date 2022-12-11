@@ -1,4 +1,5 @@
 import { UserInterface } from '../../../types/User.interface'
+import { UserBlockAdmin } from '../../User/user-block-admin/user-block-admin'
 import UserBlockContact from '../../User/UserBlockContact/UserBlockContact'
 import UserBlockDerby from '../../User/UserBlockDerby/UserBlockDerby'
 import UserBlockIndentity from '../../User/UserBlockIndentity/UserBlockIndentity'
@@ -34,6 +35,7 @@ export default function MembreView({ user, reSync, uri, isMe }: props) {
             <UserBlockContact user={user} uri={uri} reSync={reSync} />
             <UserBlockDerby user={user} uri={uri} reSync={reSync} />
             <UserBlockLeague user={user} uri={uri} reSync={reSync} />
+            <UserBlockAdmin user={user} uri={uri} reSync={reSync} />
           </div>
         ) : (
           <>Utilisateur inconnu</>

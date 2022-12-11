@@ -18,6 +18,7 @@ const userSchema = new Schema<UserInterface>({
   numLicence: String,
   pronoun: String,
   admin: Boolean,
+  admin_game: Boolean,
   wallet: Number,
   birthDate: Date,
   numRoster: String,
@@ -64,13 +65,13 @@ userSchema.methods.canIUpdateThisField = function canIUpdateThisField(
   id: string,
   field: string
 ): boolean {
-  
+
   const userFields = [
-      'emailVisibility',
-      'phoneVisibility',
-      'notificationPrefs',
-      'addressVisibility',
-    ],
+    'emailVisibility',
+    'phoneVisibility',
+    'notificationPrefs',
+    'addressVisibility',
+  ],
     coachFields = ['mst', 'msp', 'teams', 'teams'],
     bureauFields = ['profiles'],
     forbiddenFields = ['wallet', 'league']

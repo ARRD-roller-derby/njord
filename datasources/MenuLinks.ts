@@ -1,8 +1,9 @@
 export interface MenuLinksInterface {
-  readonly href: string
-  readonly title: string
-  readonly icon: string
-  readonly admin?: boolean
+  href: string
+  title: string
+  icon: string
+  admin?: boolean
+  admin_game?: boolean
 }
 
 export const MenuLinks: Array<MenuLinksInterface> = [
@@ -40,6 +41,7 @@ export const MenuLinks: Array<MenuLinksInterface> = [
     href: '/questions',
     title: 'Questions',
     icon: '/icons/block-question.svg',
+    admin_game: true,
     admin: true
   },
 ]

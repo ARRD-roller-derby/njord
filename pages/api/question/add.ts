@@ -12,8 +12,7 @@ export default async function questionAdd(
   res: NextApiResponse
 ) {
   const session = await getSession({ req });
-  if (!session) return res.status(403).send("non autorisé");
-  if (!session?.isAdmin) return res.status(403).send("non autorisé");
+  if (!session?.isAdmin || !session?.admin_game) return res.status(403).send("non autorisé");
   const { body } = req
 
   if (!body?.question || !body.good_answers ||

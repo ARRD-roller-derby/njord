@@ -12,30 +12,31 @@ import BlockQuestionIcon from '../../public/icons/block-question.svg'
 import LinkForMobile from '../_ui/LinkForMobile/LinkForMobile'
 
 interface props {
-  readonly goToPage: Function
-  readonly isOpen: boolean
-  readonly setIsOpen:Function
-  readonly isAdmin: boolean
-  readonly bureau:boolean
-  readonly coach: boolean
+  goToPage: Function
+  isOpen: boolean
+  setIsOpen: Function
+  isAdmin: boolean
+  isAdmin_game: boolean
+  bureau: boolean
+  coach: boolean
 }
-export default function MenuMobileView({ isOpen, setIsOpen,goToPage,isAdmin,bureau,coach }:props) {
+export default function MenuMobileView({ isOpen, setIsOpen, goToPage, isAdmin, isAdmin_game, bureau, coach }: props) {
   return (
     <div className={classes.container}>
       <div className={classes.menu} data-isopen={isOpen}>
-        <LinkForMobile icon={HomeIcon} label="Accueil" url='/' goToPage={goToPage}/>
-        <LinkForMobile icon={LeagueIcon} label="Ma league" url='/league' goToPage={goToPage}/>
+        <LinkForMobile icon={HomeIcon} label="Accueil" url='/' goToPage={goToPage} />
+        <LinkForMobile icon={LeagueIcon} label="Ma league" url='/league' goToPage={goToPage} />
         <div className={classes.button}>
           <MenuButton isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
-        <LinkForMobile icon={CalIcon} label="Calendrier" url='/calendrier' goToPage={goToPage}/>
-        <LinkForMobile icon={NewsIcon} label="News" url='/news' goToPage={goToPage}/>
+        <LinkForMobile icon={CalIcon} label="Calendrier" url='/calendrier' goToPage={goToPage} />
+        <LinkForMobile icon={NewsIcon} label="News" url='/news' goToPage={goToPage} />
         {/*<LinkForMobile icon={TeamsIcon} label="Mes équipes" url='/teams' goToPage={goToPage}/>*/}
-        <LinkForMobile icon={CardIdIcon} label="Mon profil" url='/profile' goToPage={goToPage}/>
-        <LinkForMobile icon={AddressIcon} label="Mes adresses" url='/adresses' goToPage={goToPage}/>
-        <LinkForMobile icon={StuffIcon} label="inventaire" url='/stuff' goToPage={goToPage}/>
-        {isAdmin && <LinkForMobile icon={BlockQuestionIcon} label="questions" url='/questions' goToPage={goToPage}/>}
-        
+        <LinkForMobile icon={CardIdIcon} label="Mon profil" url='/profile' goToPage={goToPage} />
+        <LinkForMobile icon={AddressIcon} label="Mes adresses" url='/adresses' goToPage={goToPage} />
+        <LinkForMobile icon={StuffIcon} label="inventaire" url='/stuff' goToPage={goToPage} />
+        {(isAdmin || isAdmin_game) && <LinkForMobile icon={BlockQuestionIcon} label="questions" url='/questions' goToPage={goToPage} />}
+
       </div>
     </div>
   )

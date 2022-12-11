@@ -10,6 +10,7 @@ import ShutterModale from '../../_ui/ShutterModale/ShutterModale'
 import UserBlockLeague from '../UserBlockLeague/UserBlockLeague'
 import UserChangeAvatarButton from '../UserChangeAvatarButton/UserChangeAvatarButton'
 import Avatar from '../../_ui/Avatar/Avatar'
+import { UserBlockAdmin } from '../user-block-admin/user-block-admin'
 
 interface props {
   readonly user: UserInterface
@@ -47,7 +48,7 @@ export default function UserPopinView({
           ) : (
             <div className={classes.avatarContainer}>
               <div className={classes.avatar}>
-              <Avatar src={user.avatar} size={50} />
+                <Avatar src={user.avatar} size={50} />
               </div>
             </div>
           )}
@@ -55,6 +56,7 @@ export default function UserPopinView({
           <UserBlockContact user={user} uri={uri} reSync={reSync} />
           <UserBlockDerby user={user} uri={uri} reSync={reSync} />
           <UserBlockLeague user={user} uri={uri} reSync={reSync} />
+          <UserBlockAdmin user={user} uri={uri} reSync={reSync} />
         </div>
       )}
     </ShutterModale>

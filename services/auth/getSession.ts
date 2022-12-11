@@ -10,7 +10,7 @@ export default async function getSessionWithProfile({ session, token, user }) {
 
   session.user = await User.findOne({ email: user.email })
 
-  if(!session.user.wallet){
+  if (!session.user.wallet) {
     session.user.wallet = 100;
     session.user.save()
   }
@@ -18,6 +18,8 @@ export default async function getSessionWithProfile({ session, token, user }) {
   if (session.user) {
     session.user.id = session.user._id
     session.isAdmin = session.user.admin
+    session.admin_game = session.user.admin_game
   }
+
   return session
 }
