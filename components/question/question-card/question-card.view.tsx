@@ -23,7 +23,7 @@ export const QuestionCardView: React.FC<QuestionCardResults> = ({
       <img src={question.img} alt="illutrastion" />
     </div>}
     <div className={styles.question}>
-      <ReactMarkdown>{validator.unescape(question.good_answers)}</ReactMarkdown>
+      <ReactMarkdown>{validator.unescape(question.question)}</ReactMarkdown>
     </div>
     <div className={styles.questions}>
       <div className={styles.good}>
