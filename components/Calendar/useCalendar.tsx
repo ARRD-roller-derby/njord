@@ -44,7 +44,6 @@ export default function useCalendar({ setBetween, events }: Props) {
       numOfDay = lastCalDay.diff(firstCalDay, 'day'),
       generateCal = []
 
-    console.log(thisMonth, firstCalDay)
     setBetween([firstCalDay.toISOString(), lastCalDay.toISOString()])
 
     for (let i = 0; i < numOfDay + 1; i++) {
@@ -69,6 +68,13 @@ export default function useCalendar({ setBetween, events }: Props) {
 
   function nextMonth() {
     const next = localState.month + 1
+
+    if (next === 12) {
+      setLocalState({
+        year: localState.year + 1,
+        month: next,
+      })
+    }
     setLocalState({
       ...localState,
       month: next,
@@ -77,6 +83,13 @@ export default function useCalendar({ setBetween, events }: Props) {
 
   function previousMonth() {
     const previous = localState.month - 1
+
+    if (previous > 0) {
+      setLocalState({
+        year: localState.year - 1,
+        month: previous,
+      })
+    }
     setLocalState({
       ...localState,
       month: previous,
