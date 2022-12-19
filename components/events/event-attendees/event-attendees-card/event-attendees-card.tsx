@@ -4,8 +4,8 @@ import { useEventAttendeesCard } from "./event-attendees-card.hook";
 import { EventAttendeesCardView } from "./event-attendees-card.view";
 
 export interface EventAttendeeCardProps {
-  user: AttendeeInterface
   eventType: string
+  user: AttendeeInterface
 }
 
 

@@ -16,5 +16,5 @@ export const useEventAttendeesCard = (
     if (user) paramType()
   }, [user])
 
-  return { user, type }
+  return { type }
 }
