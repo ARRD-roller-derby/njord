@@ -14,8 +14,9 @@
   color: white;
   padding: 3px;
   border-radius: 3px;
-  align-items: center;
+  align-self: flex-end;
   font-size: 12px;
+
 }
 
 .type[data-type="patins"] {
@@ -31,11 +32,15 @@
   color: black;
 }
 
-.name {
+.nameContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 5px;
+}
+
+.name {
+  overflow: hidden;
 }
 
 .avatar {

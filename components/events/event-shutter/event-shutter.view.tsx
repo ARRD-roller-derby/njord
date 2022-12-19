@@ -6,10 +6,10 @@ import styles from "./event-shutter.module.css";
 import { EventShutterProps, EventShutterResult } from "./event-shutter.type";
 import EventItems from "../../Events/EventItems/EventItems";
 import EventUpdateTab from "../../Events/EventUpdateTab/EventUpdateTab";
-import EventDeleteButton from "../../Events/EventDeleteButton/EventDeleteButton";
-import EventCancelButton from "../../Events/EventCancelButton/EventCancelButton";
 import { EventShutterTitle } from "./event-shutter-title/event-shutter-title";
 import { EventAttendees } from "../event-attendees/event-attendees";
+import { EventDeleteButton } from "../event-delete-button/event-delete-button";
+import { EventCancelButton } from "../event-cancel-button/event-cancel-button";
 
 export const EventShutterView: React.FC<
   EventShutterProps & EventShutterResult
@@ -53,13 +53,11 @@ export const EventShutterView: React.FC<
               <>
                 <EventDeleteButton
                   eventId={event._id}
-                  reSync={reSync}
                   setClose={close}
                 />
                 <EventCancelButton
                   eventId={event._id}
                   isCancel={event.cancel}
-                  reSync={reSync}
                   setClose={close}
                 />
               </>

@@ -23,11 +23,23 @@ export default async function cancelEvent(
   const eventToCancel = await Event.findById(validator.escape(req.body.eventId))
 
   eventToCancel.cancel = !eventToCancel.cancel
+
   await eventToCancel.save()
 
   const text = `l'évenement ${eventTitleRender(eventToCancel)} du ${dayjs(
     eventToCancel.start
   ).format('LL')} a été annulé.`
+
+  const triggerPayload = { type: 'event', cancel: eventToCancel.cancel, eventId: eventToCancel._id }
+  trigger(session.user._id, triggerPayload)
+
+  eventToCancel?.attendees
+    //don't send twice trigger
+    .filter((user: { userId: string }) => user.userId !== session.user._id)
+    .forEach((user: { userId: string }) => {
+      trigger(user.userId, triggerPayload)
+    })
+
   await Notification.create(
     eventToCancel.attendees.map((attendee: { userId: string }) => ({
       userId: attendee.userId,
@@ -39,22 +51,24 @@ export default async function cancelEvent(
     }))
   )
 
-  eventToCancel.attendees.forEach((user: { userId: string }) => {
-    trigger(user.userId,{type:'event'})
-  })
+  if (eventToCancel.cancel) {
+    const publishToInterests = eventToCancel.attendees.map(
+      (user: { userId: string }) => 'user-' + user.userId
+    )
 
-  const publishToInterests = eventToCancel.attendees.map(
-    (user: {userId:string}) => 'user-' + user.userId
-  )
+    if (publishToInterests.length > 0) {
+      pushNotifications.publishToInterests(publishToInterests, {
+        web: {
+          notification: {
+            title: 'événement annulé !',
+            deep_link: req.headers.origin + '/calendrier',
+            body: text,
+          },
+        },
+      })
+    }
 
-  pushNotifications.publishToInterests(publishToInterests, {
-    web: {
-      notification: {
-        title: 'événement annulé !',
-        deep_link: req.headers.origin + '/calendrier',
-        body: text,
-      },
-    },
-  })
-  res.send(eventToCancel.cancel  ? 'événement annulé !':'événement rétabli !')
+  }
+
+  res.send(eventToCancel.cancel ? 'événement annulé !' : 'événement rétabli !')
 }

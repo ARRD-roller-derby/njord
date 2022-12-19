@@ -1,39 +1,46 @@
 import { useRouter } from 'next/router'
-import io  from "socket.io-client";
-import {useEffect, useState} from 'react'
+import io, { Socket } from "socket.io-client";
+import { useEffect, useState } from 'react'
 import { requestType } from '../../types/requestType.enum'
 import { toast } from 'react-toastify'
 
 type Data = {
   type: requestType,
   value: unknown,
-  toast?: {message:string,url:string}
+  toast?: { message: string, url: string }
 }
-const useSocket = (channelName: string)=>{
-  const 
-  router = useRouter(),
-  [messages, setMessages] = useState<any>()
+const useSocket = (channelName: string) => {
+  const
+    router = useRouter(),
+    [messages, setMessages] = useState<any>()
 
-useEffect(() => {
-  if(channelName){
-    const socket = io(process.env.NEXT_PUBLIC_BIFROST_URL)
-    socket.on("connect", () => {
-      socket.once(channelName + '-notification', (data:Data) => {
-        if(data.toast){
-          toast.info(data.toast.message,{
-            onClick:()=>router.push(data.toast.url),
-            toastId: data.toast.message
-          })
-        }
-        setMessages(data)
+  const cbSocket = (data: Data) => {
+    if (data.toast) {
+      toast.info(data.toast.message, {
+        onClick: () => router.push(data.toast.url),
+        toastId: data.toast.message
+      })
+    }
+    setMessages(data)
 
-      });
-    });
+    setTimeout(() => setMessages(undefined), 400)
   }
+  useEffect(() => {
+    const socket = io(process.env.NEXT_PUBLIC_BIFROST_URL)
+    if (channelName) {
+      socket.on("connect", () => {
+        socket.on(channelName + '-notification', cbSocket);
+        socket.on('public-notification', cbSocket);
+      })
+    }
 
-}, [channelName])
+    return () => {
+      socket.disconnect()
+    }
 
-return messages
+  }, [channelName])
+
+  return messages
 }
 
 export default useSocket

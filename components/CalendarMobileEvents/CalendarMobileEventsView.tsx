@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { EventInterface } from '../../types/Event.interface'
 import dayjs from 'dayjs'
 import eventTitleRender from '../../utils/eventTitleRender'
-import EventShutter from '../Events/EventShutter/EventShutter'
+import { EventShutter } from '../events/event-shutter/event-shutter'
 
 interface Props {
   readonly events: Array<EventInterface>

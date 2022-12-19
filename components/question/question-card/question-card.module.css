@@ -1,14 +1,13 @@
 .container {
   background: var(--color-bg-dark);
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
   gap: 20px;
   padding: 10px;
   overflow: hidden;
   flex-basis: 500px
 }
-
 
 .img {
   display: flex;
@@ -24,6 +23,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  align-items: stretch;
 }
 
 .good,
@@ -58,7 +58,8 @@
 }
 
 .activate {
-  align-self: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media screen and (max-width: 500px) {

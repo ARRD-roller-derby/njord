@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
-import { Props } from './EventAttendeeCard.type'
+import { useEffect, useState } from "react"
+import { EventAttendeeCardProps, EventAttendeeCardResult } from "./event-attendees-card"
 
-const useEventAttendeeCard = ({ user, eventType }: Props) => {
-
+export const useEventAttendeesCard = (
+  { user, eventType }: EventAttendeeCardProps): EventAttendeeCardResult => {
   const [type, setType] = useState<string>()
 
   function paramType() {
@@ -16,7 +16,5 @@ const useEventAttendeeCard = ({ user, eventType }: Props) => {
     if (user) paramType()
   }, [user])
 
-  return { user,type }
+  return { user, type }
 }
-
-export default useEventAttendeeCard

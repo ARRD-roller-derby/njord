@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 import { CalDayInterface } from '../../../types/CalDay.interface'
 import { EventInterface } from '../../../types/Event.interface'
 import eventTitleRender from '../../../utils/eventTitleRender'
-import EventShutter from '../../Events/EventShutter/EventShutter'
+import { EventShutter } from '../../events/event-shutter/event-shutter'
 
 import classes from './CalendarDayDesktop.module.css'
 

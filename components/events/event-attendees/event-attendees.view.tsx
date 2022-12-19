@@ -1,4 +1,3 @@
-import EventAttendeeCard from "../../Events/EventAttendeeCard/EventAttendeeCard";
 import EventAttendessBuy from "../../Events/EventAttendessBuy/EventAttendessBuy";
 import {
   EventAttendeesResult,
@@ -7,10 +6,11 @@ import {
 import styles from "./event-attendees.module.css";
 import { EventAttendeesCount } from "./event-attendees-count/event-attendees-count";
 import LoaderWheel from "../../_ui/LoaderWheel/LoaderWheel";
+import { EventAttendeeCard } from "./event-attendees-card/event-attendees-card";
 
 export const EventAttendeesView: React.FC<
   EventAttendeesProps & EventAttendeesResult
-> = ({ event, refetch, IcantSee, loading, counts, attendees }) => {
+> = ({ event, IcantSee, loading, counts, attendees }) => {
   if (loading)
     return (
       <div className={styles.loading}>

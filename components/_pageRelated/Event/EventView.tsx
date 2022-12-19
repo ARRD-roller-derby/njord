@@ -8,6 +8,8 @@ import classes from "./Event.module.css";
 import { UserInterface } from "../../../types/User.interface";
 import EventItems from "../../Events/EventItems/EventItems";
 import { EventAttendees } from "../../events/event-attendees/event-attendees";
+import { EventDeleteButton } from "../../events/event-delete-button/event-delete-button";
+import { EventCancelButton } from "../../events/event-cancel-button/event-cancel-button";
 
 interface props {
   readonly event: EventInterface;
@@ -44,6 +46,22 @@ export default function EventView({ event, user, reSync, uri }: props) {
               </Tab>
             )}
           </Tabs>
+          <div className={classes.buttons}>
+            {event.cancel && <div className={classes.cancel}>Annulé</div>}
+            {user.profiles?.length > 0 && (
+              <>
+                <EventDeleteButton
+                  eventId={event._id}
+                  setClose={close}
+                />
+                <EventCancelButton
+                  eventId={event._id}
+                  isCancel={event.cancel}
+                  setClose={close}
+                />
+              </>
+            )}
+          </div>
         </div>
       ) : (
         <></>

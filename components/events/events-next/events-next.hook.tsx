@@ -7,17 +7,18 @@ import { EventsNextResult } from "./events-next.type";
 export const useEventsNext = (): EventsNextResult => {
   const ctx = useContext(EventsNextContext),
     [triggerRefresh] = useContext(SocketContext),
-    { pagination, setTotal } = useContext(PaginationContext)
+    { pagination, setTotal, setPage } = useContext(PaginationContext)
 
   useEffect(() => {
     if (triggerRefresh && triggerRefresh?.type === "event") {
-      ctx.refetch();
+      ctx.refetch({ page: pagination.currentPage });
     }
   }, [triggerRefresh]);
 
   useEffect(() => {
     if (!ctx.loading && pagination?.currentPage <= ctx.data?.totalPage) {
-      ctx.refetch({ page: pagination.currentPage })
+      ctx.refetch({ page: 1 })
+      setPage(1)
     }
   }, [pagination.currentPage])
 

@@ -34,15 +34,15 @@ export default async function eventsNext(
     )
   }
 
-  const {page} = req.body || 1 
+  const { page } = req.body || 1
 
-  const perPage = 10
+  const perPage = 12
 
-  const totalEvents = await Event.count({$or:OR})
+  const totalEvents = await Event.count({ $or: OR })
 
-  const events = await Event.find({ $or: OR }).skip(page > 1 ? page * perPage - perPage: 0).limit(perPage).sort({ start: 1 }),
+  const events = await Event.find({ $or: OR }).skip(page > 1 ? page * perPage - perPage : 0).limit(perPage).sort({ start: 1 }),
     eventsWithPresence = events.map((event) => {
-     return eventWithPresence(session.user._id,event)
+      return eventWithPresence(session.user._id, event)
     })
 
   res.json({
