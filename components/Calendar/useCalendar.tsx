@@ -18,7 +18,7 @@ export default function useCalendar({ setBetween, events }: Props) {
       month: any
     }>(
       {
-        year: 0,
+        year: dayjs().year(),
         month: parseInt(dayjs().format('MM')) - 1,
       },
       'njord_yearMonth'
@@ -30,11 +30,20 @@ export default function useCalendar({ setBetween, events }: Props) {
     isMobile = useIsMobile()
 
   function createCalendar() {
-    const thisMonth = dayjs().month(localState.month ?? dayjs(dayjs().format('MM'))),
-      firstDay = dayjs(thisMonth).add(localState.year ?? 0, 'year').startOf('month'),
-      lastDay = dayjs(thisMonth).add(localState.year ?? 0, 'year').endOf('month'),
+
+    //for breaking change year
+    if (localState.year === 0) {
+      setLocalState({
+        ...localState,
+        year: dayjs().year(),
+      })
+    }
+
+    const thisMonth = dayjs().set('year', localState.year).month(localState.month ?? dayjs(dayjs().format('MM'))),
+      firstDay = dayjs(thisMonth).startOf('month'),
+      lastDay = dayjs(thisMonth).endOf('month'),
       firstCalDay = firstDay.subtract(
-        firstDay.day() === 0 ? 0 : firstDay.day() - 1,
+        firstDay.day() - 1,
         'day'
       ),
       lastCalDay = lastDay.add(
@@ -59,7 +68,7 @@ export default function useCalendar({ setBetween, events }: Props) {
     setCurrentMonth(
       dayjs()
         .month(localState.month)
-        .add(localState.year, 'year')
+        .set('year', localState.year)
         .format('MMMM YYYY')
     )
     //sometimes, one day add
@@ -68,33 +77,34 @@ export default function useCalendar({ setBetween, events }: Props) {
 
   function nextMonth() {
     const next = localState.month + 1
-
-    if (next === 12) {
+    if (next >= 12) {
       setLocalState({
         year: localState.year + 1,
+        month: 0,
+      })
+
+    } else {
+      setLocalState({
+        ...localState,
         month: next,
       })
     }
-    setLocalState({
-      ...localState,
-      month: next,
-    })
+
   }
 
   function previousMonth() {
     const previous = localState.month - 1
-
-    if (previous > 0) {
+    if (previous < 0) {
       setLocalState({
         year: localState.year - 1,
+        month: 11,
+      })
+    } else {
+      setLocalState({
+        ...localState,
         month: previous,
       })
     }
-    setLocalState({
-      ...localState,
-      month: previous,
-    })
-
   }
 
   useEffect(() => {
