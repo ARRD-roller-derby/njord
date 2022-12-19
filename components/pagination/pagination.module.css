@@ -1,20 +1,21 @@
-.container, .pages {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    justify-items: center;
-
+.container,
+.pages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  justify-items: center;
+  width: 100%;
 }
 
 .pages {
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.button[data-current="true"]{
-    opacity: .5;
+.button[data-current="true"] {
+  opacity: .5;
 }

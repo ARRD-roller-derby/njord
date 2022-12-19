@@ -32,7 +32,7 @@ export default async function questionAdd(
     bad_answers: req.body.bad_answers
       .filter((bad_answer: string) => bad_answer !== "")
       .map((bad_answer: string) => validator.escape(bad_answer)),
-    active: false,
+    active: true,
     updatedAt: new Date(),
     difficulty: QuestionDifficulty.normal,
     good_answers_num: 0,
