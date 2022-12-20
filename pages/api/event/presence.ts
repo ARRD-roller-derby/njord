@@ -21,21 +21,21 @@ export default async function presence(
 
   const isPresent = typeof req.body?.type === 'boolean' ? req.body.type : false
 
-  const OR:any = [
-    {_id: validator.escape(req.body.eventId),visibility:'public'}
+  const OR: any = [
+    { _id: validator.escape(req.body.eventId), visibility: 'public' }
   ]
 
-  if(session.user?.league?.id){
-    OR.push( {
+  if (session.user?.league?.id) {
+    OR.push({
       _id: validator.escape(req.body.eventId),
       leaguesGuest: session.user?.league.id,
     },
-    {
-      _id: validator.escape(req.body.eventId),
-      leagueId: session.user?.league.id,
-    })
+      {
+        _id: validator.escape(req.body.eventId),
+        leagueId: session.user?.league.id,
+      })
   }
-  const event = await Event.findOne({ $or:OR})
+  const event = await Event.findOne({ $or: OR })
 
   if (!event)
     return res
@@ -53,7 +53,7 @@ export default async function presence(
     const user = await User.findById(session.user._id)
     user.wallet += 50
     await user.save()
-    trigger(user._id,{type:'wallet'})
+    trigger(user._id, { type: 'wallet' })
   }
 
   event.attendees.push({
@@ -64,13 +64,13 @@ export default async function presence(
 
   await event.save()
 
-  const ORUsers:any= [{
+  const ORUsers: any = [{
     id: {
       $in: event.guests,
     },
   }]
 
-  if(session.user?.league?.id){
+  if (session.user?.league?.id) {
     ORUsers.push(
       {
         'league.id': session.user.league.id,
@@ -82,12 +82,6 @@ export default async function presence(
       }
     )
   }
-
-  const users = await User.find({$or:ORUsers})
-
-  users.forEach((user) => {
-    trigger(user._id,{type:'event',id: event._id,})
-  })
 
   res.send('Présence mise à jour')
 }

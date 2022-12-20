@@ -14,7 +14,7 @@ export default async function presenceType(
   const session = await getSession({ req })
 
   if (!session) return res.status(403).send('non autorisé')
-  
+
   await MongoDb()
 
   if (!req.body.eventId)
@@ -24,21 +24,21 @@ export default async function presenceType(
 
   const presence = validator.escape(req.body.type)
 
-  const OR:any = [
-    {_id: validator.escape(req.body.eventId),visibility:'public'}
+  const OR: any = [
+    { _id: validator.escape(req.body.eventId), visibility: 'public' }
   ]
 
-  if(session.user?.league?.id){
-    OR.push( {
+  if (session.user?.league?.id) {
+    OR.push({
       _id: validator.escape(req.body.eventId),
       leaguesGuest: session.user?.league.id,
     },
-    {
-      _id: validator.escape(req.body.eventId),
-      leagueId: session.user?.league.id,
-    })
+      {
+        _id: validator.escape(req.body.eventId),
+        leagueId: session.user?.league.id,
+      })
   }
-  const event = await Event.findOne({ $or:OR})
+  const event = await Event.findOne({ $or: OR })
 
   if (!event)
     return res
@@ -55,13 +55,13 @@ export default async function presenceType(
   event.attendees.id(myPresence._id).type = presence
   await event.save()
 
-  const ORUsers:any= [{
+  const ORUsers: any = [{
     id: {
       $in: event.guests,
     },
   }]
 
-  if(session.user?.league?.id){
+  if (session.user?.league?.id) {
     ORUsers.push(
       {
         'league.id': session.user.league.id,
@@ -73,15 +73,6 @@ export default async function presenceType(
       }
     )
   }
-
-  const users = await User.find({$or:ORUsers})
-
-  users.forEach((user) => {
-    trigger(user._id,{
-      type: 'event',
-      id: event._id,
-    })
-  })
 
   res.send('Présence mise à jour')
 }
