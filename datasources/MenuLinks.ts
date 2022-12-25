@@ -23,6 +23,16 @@ export const MenuLinks: Array<MenuLinksInterface> = [
     icon: '/icons/flag-pennant.svg',
   },
   {
+    href: '/daily-context',
+    title: 'Concours journalier',
+    icon: '/icons/question.svg',
+  },
+  {
+    href: '/shop',
+    title: 'Boutique',
+    icon: '/icons/store.svg',
+  },
+  {
     href: '/adresses',
     title: 'Mes adresses',
     icon: '/icons/map.svg',

@@ -2,11 +2,9 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
 import validator from 'validator'
-import User from '../../../models/user.model'
 import Event from '../../../models/event.model'
 import { AttendeesEventInterface } from '../../../types/Event.interface'
 import trigger from '../../../services/bifrost/trigger'
-
 export default async function presenceType(
   req: NextApiRequest,
   res: NextApiResponse
@@ -55,24 +53,7 @@ export default async function presenceType(
   event.attendees.id(myPresence._id).type = presence
   await event.save()
 
-  const ORUsers: any = [{
-    id: {
-      $in: event.guests,
-    },
-  }]
-
-  if (session.user?.league?.id) {
-    ORUsers.push(
-      {
-        'league.id': session.user.league.id,
-      },
-      {
-        'league.id': {
-          $in: event.leaguesGuest,
-        },
-      }
-    )
-  }
+  trigger('public', { type: 'event_attendees' })
 
   res.send('Présence mise à jour')
 }

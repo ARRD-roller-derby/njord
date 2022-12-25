@@ -3,6 +3,7 @@ import useTabs from './useTabs'
 
 interface Props {
   readonly children: Array<JSX.Element>
+  defaultCurrent?: string
 }
 
 export default function Tabs(props: Props) {
