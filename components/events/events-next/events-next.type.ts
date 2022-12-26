@@ -6,4 +6,5 @@ export type EventsNextResult = {
     totalPage: number
   };
   loading: boolean;
+  reSync: () => void
 };
