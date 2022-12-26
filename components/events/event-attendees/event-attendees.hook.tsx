@@ -1,4 +1,5 @@
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo } from "react";
+import { SocketContext } from "../../../stores/socket.store";
 import { AttendeeInterface } from "../../../types/attendee.interface";
 import searchTypeOfPresence from "../../../utils/searchTypeOfPresence";
 import { EventAttendeesContext } from "./event-attendees.context";
@@ -11,7 +12,8 @@ import {
 export const useEventAttendees = ({
   event,
 }: EventAttendeesProps): EventAttendeesResult => {
-  const { data, loading, refetch } = useContext(EventAttendeesContext),
+  const { data, loading, refetch, reSync } = useContext(EventAttendeesContext),
+    [triggerRefresh] = useContext(SocketContext),
     counts = useMemo(() => {
       if (!data || !data?.attendees) return [];
       return data.attendees
@@ -33,6 +35,13 @@ export const useEventAttendees = ({
           return acc;
         }, []);
     }, [data]);
+
+
+  useEffect(() => {
+    if (triggerRefresh && triggerRefresh?.type === "event_attendees") {
+      reSync();
+    }
+  }, [triggerRefresh]);
 
   return {
     attendees: data?.attendees,

@@ -1,9 +1,9 @@
 export interface QuestionInterface {
-  _id:string
-  question:string
-  good_answers:string
-  bad_answers:string[]
-  active:boolean
+  _id: string
+  question: string
+  good_answers: string
+  bad_answers: string[]
+  active: boolean
   img?: string
   good_answers_num: number
   bad_answers_num: number

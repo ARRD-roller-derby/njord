@@ -17,8 +17,12 @@
   position: relative;
 }
 
-.link[data-current='true']::before{
-  content:'';
+.title {
+  position: relative;
+}
+
+.link[data-current='true'] .title::before {
+  content: '';
   position: absolute;
   width: 4px;
   height: 4px;
@@ -27,5 +31,3 @@
   bottom: -3px;
   left: calc(50% - 2px)
 }
-
-

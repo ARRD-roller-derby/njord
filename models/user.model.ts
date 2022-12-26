@@ -25,6 +25,7 @@ const userSchema = new Schema<UserInterface>({
   derbyName: String,
   mst: Boolean,
   msp: Boolean,
+  rank_card: String,
   allergies: [String],
   profiles: [String],
   league: {

@@ -1,15 +1,14 @@
 export interface QuizInterface {
-  _id:string
-  questions:string[]
-  difficulty:string
-  ranking: RankingQuizInterface
+  _id: string
+  questions: string[]
+  difficulty: string
   updatedAt: Date
+  day: string
+  type: QuizType
 }
 
-export interface RankingQuizInterface {
-  userId: string
-  userName: string
-  time: number
-  score:number
-  updatedAt: Date
-}
+export enum QuizType {
+  daily = 'daily',
+  user = 'user',
+  ms = 'ms'
+} 

@@ -1,0 +1,42 @@
+.container {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 0 50px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, .2);
+  padding: 10px;
+  gap: 10px;
+  border-radius: 3px;
+}
+
+.price {
+  color: var(--color-tierce);
+  text-align: center;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}

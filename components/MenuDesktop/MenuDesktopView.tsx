@@ -28,7 +28,7 @@ export default function MenuDesktopView({ iconSize, filter, pathname }: props) {
               width={iconSize}
               height={iconSize}
             />
-            <div>{link.title}</div>
+            <div className={classes.title}>{link.title}</div>
           </a>
         </Link>
       ))}

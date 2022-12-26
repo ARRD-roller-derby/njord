@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Cutive+Mono&family=Lacquer&family=Special+Elite&display=swap');
+
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto repeat(2, 1fr);
+  grid-template-areas:
+    "avatar name name"
+    "avatar position score ";
+  background: var(--color-bg-light);
+
+  padding: 10px;
+  max-width: 400px;
+  border-radius: 5px;
+  gap: 5px;
+  border: 1px solid var(--color-bg-light);
+}
+
+.container[data-isme='true'] {
+  box-shadow: 0 0 5px var(--color-tierce);
+}
+
+.nameContainer {
+  grid-area: name;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatarContainer {
+  grid-area: avatar;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.scoreContainer {
+  grid-area: score;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.positionContainer {
+  grid-area: position;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+
+.badgesContainer {
+  grid-area: badges;
+}
+
+.avatar {
+  width: 40px;
+}
+
+
+/* ---- ARRD ----*/
+.container[data-variant='arrd'] {
+  background: var(--color-arrd);
+  color: white;
+}
+
+/* ---- MATRIX ----*/
+.container[data-variant='matrix'] {
+  font-family: 'Cutive Mono', monospace;
+  background: black;
+  border: 1px solid black;
+  color: #008F11;
+  text-shadow: 0 0 5px #236b2c;
+  font-size: 1.1em;
+}
+
+.container[data-variant='matrix'] .score {
+  font-weight: bold;
+  color: #06b01a;
+}
+
+.container[data-variant='xfiles'] {
+  font-family: 'Special Elite', cursive;
+  background: #1e2f3b;
+  border: 1px solid #131f27;
+  color: #e9e9e9;
+  gap: 12px;
+  border-radius: 0;
+  box-shadow: 5px 5px 3px #060c10, -6px -4px 5px #020608;
+}
+
+.container[data-variant='xfiles'] .name::first-letter {
+  padding: 5px 8px;
+  margin-right: 2px;
+  border: 2px solid #c91212;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  text-transform: uppercase;
+
+}
+
+/* ---- MARVEL ----*/
+.container[data-variant='marvel'] {
+  font-family: 'Bangers', cursive;
+  background: rgba(199, 15, 23, 1)
+}
+
+.container[data-variant='marvel'] .name {
+  color: #f5f5f5;
+  font-size: 1.3em;
+}
+
+.container[data-variant='marvel'] .position {
+  color: #f2c638;
+}
+
+
+.container[data-variant='marvel'] .score {
+  color: #f2c638;
+}

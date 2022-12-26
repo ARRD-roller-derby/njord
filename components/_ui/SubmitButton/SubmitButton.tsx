@@ -1,25 +1,22 @@
 import classes from './SubmitButton.module.css'
 
-interface props {
-  readonly text: string
-  readonly onClick?: Function
-  readonly loading: boolean
-  readonly  disabled?:boolean
+interface SubmitButtonProps {
+  text: string
+  onClick?: Function
+  loading: boolean
+  disabled?: boolean
 }
-export default function SubmitButton({ text, onClick, loading,disabled }: props) {
+export default function SubmitButton({ text, onClick, loading, disabled }: SubmitButtonProps) {
   return (
     <div
       className={classes.container}
-      data-disabled={disabled}
+      data-disabled={disabled || loading}
       data-loading={loading}
       onClick={() => {
-        //don't pass onClick if button is inside form
-        if (onClick) {
-          onClick()
-        }
+        onClick?.()
       }}
     >
-      <button disabled={loading||disabled} className={classes.button}>
+      <button disabled={loading || disabled} className={classes.button}>
         {text}
       </button>
     </div>
