@@ -11,10 +11,11 @@ import { DailyContestRanking } from "../../daily-contest/daily-contest-ranking/d
 export const DailyContestView: FC<DailyContextFactoryResult> = ({ quiz, cantPlay }) => (
   <div className={styles.container}>
 
-    <div>{dayjs(quiz.day).format('LL')}</div>
+    <div className={styles.title}>Quizz du {dayjs(quiz.day).format('LL')}</div>
     <PageActions>
       <DailyContestButton cantPlay={cantPlay} />
     </PageActions>
+    <div className={styles.title}>Classement</div>
     <Tabs defaultCurrent="aujourd'hui">
       <Tab field="hier">
         <DailyContestRanking date={1} />

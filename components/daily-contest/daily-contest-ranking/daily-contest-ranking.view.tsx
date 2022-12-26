@@ -3,6 +3,7 @@ import LoaderWheel from "../../_ui/LoaderWheel/LoaderWheel";
 import styles from './daily-contest-ranking.module.css'
 import { DailyContestRankingFactoryProps, DailyContestRankingFactoryResult } from "./daily-contest-ranking";
 import Pagination from "../../pagination/pagination";
+import { DailycontestCard } from "../../_ui/daily-contest/daily-contest-card";
 
 export const DailyContestRankingView: FC<DailyContestRankingFactoryProps & DailyContestRankingFactoryResult> = ({ loading, ranking }) => (
   <div className={styles.container}>
@@ -14,7 +15,7 @@ export const DailyContestRankingView: FC<DailyContestRankingFactoryProps & Daily
         ranking &&
         <>
           {ranking.map((user) => (
-            <p key={user.ranking._id}>{user.user?.derbyName} {user.ranking.percent}</p>
+            <DailycontestCard key={user.ranking._id} user={user} />
           ))}
           <Pagination />
         </>}

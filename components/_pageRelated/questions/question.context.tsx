@@ -1,3 +1,4 @@
 import { createContext } from "react";
 import { Fetch } from "../../../types/fetch.interface";
-export const QuestionsContext = createContext<Fetch>(null);
+import { QuestionInterface } from "../../../types/question.interface";
+export const QuestionsContext = createContext<Fetch<QuestionInterface[]>>(null);

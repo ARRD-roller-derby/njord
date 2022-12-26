@@ -3,3 +3,8 @@
   flex-direction: column;
   gap: 15px;
 }
+
+.title {
+  text-align: center;
+  color: var(--color-arrd)
+}

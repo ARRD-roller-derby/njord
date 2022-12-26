@@ -1,0 +1,42 @@
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: repeat(3, auto);
+  grid-template-areas:
+    "avatar name"
+    "avatar score";
+  background: var(--color-bg-light);
+
+  padding: 10px;
+  max-width: 400px;
+  border-radius: 5px;
+  gap: 5px;
+}
+
+.nameContainer {
+  grid-area: name;
+}
+
+.avatarContainer {
+  grid-area: avatar;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.scoreContainer {
+  grid-area: score;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badgesContainer {
+  grid-area: badges;
+}
+
+.avatar {
+  width: 40px;
+
+
+}
