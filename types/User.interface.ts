@@ -9,6 +9,7 @@ export interface UserInterface {
   lastname?: string;
   admin?: boolean;
   admin_game?: boolean
+  rank_card?: string
   emailVisibility?: string;
   phone?: string;
   phoneVisibility?: string;

@@ -13,7 +13,8 @@ export const useDailyContestRanking = ({ date }): DailyContestRankingFactoryResu
     ranking: Array<RankingUserInterface>
   } & PaginationFetch>('quiz/daily_ranking', { page: 1, date }),
     [triggerRefresh] = useContext(SocketContext),
-    { pagination, setTotal } = useContext(PaginationContext)
+    { pagination, setTotal } = useContext(PaginationContext),
+    { data: session } = useSession()
 
   useEffect(() => {
     if (triggerRefresh && triggerRefresh?.type === TriggerEvents.daily_contest) {
@@ -35,6 +36,7 @@ export const useDailyContestRanking = ({ date }): DailyContestRankingFactoryResu
 
   return {
     ranking: data?.ranking,
+    myId: session?.user._id ?? '',
     loading,
     reSync,
   }

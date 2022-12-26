@@ -5,7 +5,7 @@ import { DailyContestRankingFactoryProps, DailyContestRankingFactoryResult } fro
 import Pagination from "../../pagination/pagination";
 import { DailycontestCard } from "../../_ui/daily-contest/daily-contest-card";
 
-export const DailyContestRankingView: FC<DailyContestRankingFactoryProps & DailyContestRankingFactoryResult> = ({ loading, ranking }) => (
+export const DailyContestRankingView: FC<DailyContestRankingFactoryProps & DailyContestRankingFactoryResult> = ({ loading, ranking, myId }) => (
   <div className={styles.container}>
     {loading && <LoaderWheel />}
 
@@ -14,8 +14,8 @@ export const DailyContestRankingView: FC<DailyContestRankingFactoryProps & Daily
       {!loading &&
         ranking &&
         <>
-          {ranking.map((user) => (
-            <DailycontestCard key={user.ranking._id} user={user} />
+          {ranking.map((user, index) => (
+            <DailycontestCard key={user.ranking._id} user={user} myId={myId} position={index + 1} />
           ))}
           <Pagination />
         </>}

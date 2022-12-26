@@ -12,6 +12,7 @@ export interface DailyContestRankingFactoryResult {
   ranking: RankingUserInterface[],
   loading: boolean,
   reSync: () => void,
+  myId: string
 }
 
 const DailyContestRankingFactory = Factory<DailyContestRankingFactoryProps, DailyContestRankingFactoryResult>(useDailyContestRanking, DailyContestRankingView)

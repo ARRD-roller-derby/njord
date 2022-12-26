@@ -1,20 +1,28 @@
 .container {
   display: grid;
   grid-template-rows: auto 1fr;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: auto repeat(2, 1fr);
   grid-template-areas:
-    "avatar name"
-    "avatar score";
+    "avatar name name"
+    "avatar position score ";
   background: var(--color-bg-light);
 
   padding: 10px;
   max-width: 400px;
   border-radius: 5px;
   gap: 5px;
+  border: 1px solid var(--color-bg-light);
+}
+
+.container[data-isme='true'] {
+  box-shadow: 0 0 5px var(--color-tierce);
 }
 
 .nameContainer {
   grid-area: name;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .avatarContainer {
@@ -28,8 +36,16 @@
   grid-area: score;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
+
+.positionContainer {
+  grid-area: position;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 
 .badgesContainer {
   grid-area: badges;
