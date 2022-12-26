@@ -17,10 +17,8 @@ export default async function quizRanking(req: NextApiRequest, res: NextApiRespo
 
   const perPage = 50
   const quiz = await Quiz.findOne({
-    where: {
-      type: QuizType.daily,
-      day: dayjs().subtract(parseInt(req.body.date), 'day').format('YYYY-MM-DD')
-    }
+    type: QuizType.daily,
+    day: dayjs().subtract(parseInt(req.body.date), 'day').format('YYYY-MM-DD')
   })
 
   if (!quiz) return res.status(404).send('Quiz non trouvé')
@@ -36,7 +34,6 @@ export default async function quizRanking(req: NextApiRequest, res: NextApiRespo
     })
     return val
   }, [])
-
 
   res.json({
     ranking,

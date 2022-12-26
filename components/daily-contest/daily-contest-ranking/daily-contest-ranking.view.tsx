@@ -15,8 +15,14 @@ export const DailyContestRankingView: FC<DailyContestRankingFactoryProps & Daily
         ranking &&
         <>
           {ranking.map((user, index) => (
-            <DailycontestCard key={user.ranking._id} user={user} myId={myId} position={index + 1} />
+            <DailycontestCard
+              key={user.ranking._id}
+              user={user} myId={myId}
+              position={index + 1}
+              variant={user.user.rank_card}
+            />
           ))}
+
           <Pagination />
         </>}
 

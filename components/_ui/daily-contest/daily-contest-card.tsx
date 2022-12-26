@@ -8,10 +8,11 @@ interface DailycontestCardProps {
   user: RankingUserInterface
   myId: string
   position: number
+  variant?: string
 }
 
-export const DailycontestCard: FC<DailycontestCardProps> = ({ user, myId, position }) => (
-  <div className={styles.container} data-isme={myId === user.user._id} data-varian={user.user?.rank_card}>
+export const DailycontestCard: FC<DailycontestCardProps> = ({ user, myId, position, variant }) => (
+  <div className={styles.container} data-isme={myId === user.user._id} data-varian={user.user?.rank_card} data-variant={variant}>
 
     <div className={styles.avatarContainer}>
       <div className={styles.avatar}>
