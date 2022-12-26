@@ -10,7 +10,7 @@ import { QuestionsView } from "./questions.view";
 const QuestionsFactory = Factory<unknown, QuestionsResults>(useQuestions, QuestionsView)
 
 export const Questions: React.FC = () => {
-  const ctx = useFetch<QuestionInterface[]>("questions/all");
+  const ctx = useFetch<{ questions: QuestionInterface[], totalPage: number }>("questions/all");
 
   return <QuestionsContext.Provider value={ctx}>
     <PaginationProvider >
