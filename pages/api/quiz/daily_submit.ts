@@ -50,5 +50,15 @@ export default async function quizDailySubmit(req: NextApiRequest, res: NextApiR
   trigger(session.user._id, { type: TriggerEvents.wallet })
   trigger('public', { type: TriggerEvents.daily_contest })
 
+  questions.forEach(question => {
+    const isGood = goodAnswers.find(q => question._id.toString() === q._id.toString())
+    if (isGood) {
+      question.good_answers_num = question.good_answers_num + 1
+    } else {
+      question.bad_answers_num = question.bad_answers_num + 1
+    }
+    question.save()
+  })
+
   return res.send('ton score : ' + ranking.percent.toFixed(0) + "%")
 }
