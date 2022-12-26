@@ -8,3 +8,9 @@
   text-align: center;
   color: var(--color-arrd)
 }
+
+.difficulty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
