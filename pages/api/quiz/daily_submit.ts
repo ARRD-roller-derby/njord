@@ -45,6 +45,7 @@ export default async function quizDailySubmit(req: NextApiRequest, res: NextApiR
   //little score is good score
   ranking.score = parseFloat(`${questions.length - goodAnswers.length}.${dayjs(ranking.end).diff(dayjs(ranking.start), 'second')}`)
 
+  await me.save()
   await ranking.save()
 
   trigger(session.user._id, { type: TriggerEvents.wallet })
