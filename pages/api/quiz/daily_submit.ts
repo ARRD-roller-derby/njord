@@ -61,5 +61,8 @@ export default async function quizDailySubmit(req: NextApiRequest, res: NextApiR
     question.save()
   })
 
-  return res.send('ton score : ' + ranking.percent.toFixed(0) + "%")
+  return res.json({
+    percent: ranking.percent.toFixed(0),
+    responses: questions.map(question => question.good_answers)
+  })
 }

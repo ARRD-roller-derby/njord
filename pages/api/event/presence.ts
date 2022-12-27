@@ -6,6 +6,7 @@ import User from '../../../models/user.model'
 import Event from '../../../models/event.model'
 import { AttendeesEventInterface } from '../../../types/Event.interface'
 import trigger from '../../../services/bifrost/trigger'
+import { TriggerEvents } from '../../../types/trigger-events.enum'
 
 export default async function presence(
   req: NextApiRequest,
@@ -53,7 +54,7 @@ export default async function presence(
     const user = await User.findById(session.user._id)
     user.wallet += 50
     await user.save()
-    trigger(user._id, { type: 'wallet' })
+    trigger(user._id, { type: TriggerEvents.wallet })
   }
 
   event.attendees.push({

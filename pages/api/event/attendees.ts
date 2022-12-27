@@ -8,6 +8,7 @@ import validator from "validator";
 import User from "../../../models/user.model";
 import userNameRender from "../../../utils/userNameRender";
 import trigger from "../../../services/bifrost/trigger";
+import { TriggerEvents } from "../../../types/trigger-events.enum";
 
 export default async function attendees(
   req: NextApiRequest,
@@ -42,7 +43,7 @@ export default async function attendees(
     },
   });
 
-  trigger(session.user._id, { type: 'wallet' })
+  trigger(session.user._id, { type: TriggerEvents.wallet })
 
   res.send({
     IcantSee: false,

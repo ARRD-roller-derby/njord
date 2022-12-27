@@ -7,9 +7,11 @@ import SubmitButton from '../../_ui/SubmitButton/SubmitButton'
 
 //TODO affiche question ou resultat
 export const DailyContestFormView: FC<
-  DailyContestFormProps & DailyContestFormResult> = ({ closePopin, answers, nextQuestions, prevQuestions, question, selectChoice, handleSubmit, current, questions, loading }) => (
+  DailyContestFormProps & DailyContestFormResult> = ({ closePopin, answers, nextQuestions, prevQuestions, question, selectChoice, handleSubmit, current, questions, loading, responses, percent }) => (
     <FullscreenModale setClose={closePopin}>
+
       <div className={styles.question}>
+
         <div className={styles.number}>{current} / {questions.length}</div>
         <div className={styles.img}>
           {question.img && <img src={question.img} />}
@@ -23,6 +25,7 @@ export const DailyContestFormView: FC<
                 key={choice}
                 className={styles.choice}
                 data-choice={answers?.[question._id] === choice}
+                data-good={!!responses?.find(response => response === choice)}
                 onClick={() => selectChoice(choice)}
               >
                 {validator.unescape(choice)}
@@ -31,7 +34,7 @@ export const DailyContestFormView: FC<
         </div>
         <div className={styles.buttons}>
           <button onClick={prevQuestions}>précédent</button>
-          <SubmitButton loading={loading} text="Envoyer" onClick={handleSubmit} />
+          {responses ? <div className={styles.score}>Ton score : {percent}{"%"}</div> : <SubmitButton loading={loading} text="Envoyer" onClick={handleSubmit} />}
           <button onClick={nextQuestions}>Suivant</button>
         </div>
       </div>

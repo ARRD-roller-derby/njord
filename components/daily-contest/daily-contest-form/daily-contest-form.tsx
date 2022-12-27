@@ -25,6 +25,8 @@ export interface DailyContestFormResult {
   current: number
   answers: Object,
   loading: boolean
+  responses?: string[]
+  percent?: string
 
 }
 

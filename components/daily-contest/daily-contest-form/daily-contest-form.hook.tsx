@@ -35,10 +35,6 @@ export const useDailyContestForm = ({ questions, closePopin }: DailyContestFormP
 
   }
 
-  useEffect(() => {
-    if (data) closePopin()
-  }, [data])
-
   return {
     question: questions[index],
     nextQuestions,
@@ -48,6 +44,8 @@ export const useDailyContestForm = ({ questions, closePopin }: DailyContestFormP
     selectChoice,
     answers,
     handleSubmit,
-    loading
+    loading,
+    responses: data?.responses,
+    percent: data?.percent
   }
 }

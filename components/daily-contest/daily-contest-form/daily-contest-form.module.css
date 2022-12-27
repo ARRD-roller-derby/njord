@@ -19,6 +19,12 @@
   text-align: center;
 }
 
+.score {
+  text-align: center;
+  color: var(--color-tierce);
+  font-weight: bold;
+}
+
 .choices {
   position: absolute;
   top: 0;
@@ -33,6 +39,7 @@
   align-items: stretch;
   align-content: flex-start;
   justify-content: center;
+  padding: 10px 0
 }
 
 .choice {
@@ -49,6 +56,11 @@
 
 .choice[data-choice='true'] {
   background: var(--color-arrd)
+}
+
+.choice[data-good='true'] {
+  box-shadow: 0 0 10px var(--color-tierce);
+  color: var(--color-tierce)
 }
 
 .buttons {

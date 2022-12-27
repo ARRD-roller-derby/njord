@@ -10,6 +10,7 @@ import Item from '../../../models/item.model'
 import validator from 'validator';
 import { ItemOwnerType } from '../../../types/items.interface'
 import trigger from '../../../services/bifrost/trigger'
+import { TriggerEvents } from '../../../types/trigger-events.enum'
 
 export default async function buyThumb(
   req: NextApiRequest,
@@ -25,7 +26,7 @@ export default async function buyThumb(
   const s3 = new S3()
 
   await MongoDb()
-  const 
+  const
     me = await User.findById(session.user._id),
     item = await Item.findById(validator.escape(req.body.item._id))
 
@@ -35,7 +36,7 @@ export default async function buyThumb(
   )
     return res.status(403).send('non autorisé')
 
-  if (item.ownerType === ItemOwnerType.league  && session.user.profiles.length === 0)
+  if (item.ownerType === ItemOwnerType.league && session.user.profiles.length === 0)
     res.status(403).send('non autorisé')
 
   const link = await s3.sendImage('item', req.body.img, uuidv4(), 'item')
@@ -53,14 +54,14 @@ export default async function buyThumb(
       .send(
         "Vous n'avais pas assez de Dragons (Dr.) pour modifier l'image de cette objet."
       )
-      
+
   item.picture_url = link
-  await item.save()   
+  await item.save()
   me.wallet = newWallet
   await me.save()
 
-  trigger(me._id, {type: 'wallet' })
-  trigger(me._id, {type: 'item' })
+  trigger(me._id, { type: TriggerEvents.wallet })
+  trigger(me._id, { type: 'item' })
 
   res.json(item)
 }

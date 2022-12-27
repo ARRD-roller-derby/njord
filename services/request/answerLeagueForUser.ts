@@ -7,6 +7,7 @@ import { answerRequest } from '../../types/answerRequest.enum'
 import Notification from '../../models/notification.model'
 import { requestType } from '../../types/requestType.enum'
 import trigger from '../bifrost/trigger'
+import { TriggerEvents } from '../../types/trigger-events.enum'
 
 export default async function answerLeagueForUser(
   res: NextApiResponse,
@@ -43,7 +44,7 @@ export default async function answerLeagueForUser(
 
     if (!user?.league?.id) {
       user.wallet += 500
-      trigger(userId, { type: 'wallet' })
+      trigger(userId, { type: TriggerEvents.wallet })
     }
 
     user.league = {
@@ -112,7 +113,7 @@ export default async function answerLeagueForUser(
     )
 
     admins.forEach((admin) => {
-      trigger(admin , {
+      trigger(admin, {
         type: requestType.league_join,
         toast: {
           message: resume(),
@@ -120,7 +121,7 @@ export default async function answerLeagueForUser(
         },
       })
     })
-    
+
   }
 
   return res.send('Vous avez accepté la requête.')
