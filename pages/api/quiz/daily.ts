@@ -16,10 +16,8 @@ export default async function quizDaily(req: NextApiRequest, res: NextApiRespons
   await MongoDb()
   // rechercher ou creer 
   const existDailyQuiz = await Quiz.findOne({
-    where: {
       type: QuizType.daily,
       day: dayjs().format('YYYY-MM-DD')
-    }
   })
 
   if (existDailyQuiz) {
