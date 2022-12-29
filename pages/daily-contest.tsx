@@ -1,8 +1,8 @@
 import { getSession } from 'next-auth/react'
-import { DailyContext } from '../components/_pageRelated/daily-contest/daily-contest';
+import { DailyContest } from '../components/_pageRelated/daily-contest/daily-contest';
 
 export default function DailyContextPage() {
-  return <DailyContext />
+  return <DailyContest />
 }
 
 export async function getServerSideProps({ req }) {

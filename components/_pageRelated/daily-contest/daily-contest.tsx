@@ -13,17 +13,17 @@ export interface DailyContextFactoryResult {
   cantPlay?: boolean
 }
 
-export const DailyContextFactory = Factory<unknown, DailyContextFactoryResult>(useDailyContest, DailyContestView)
+export const DailyContestFactory = Factory<unknown, DailyContextFactoryResult>(useDailyContest, DailyContestView)
 
 //TODO classement a part TODO --> mettre  in interface dédié
-export const DailyContext: React.FC = () => {
+export const DailyContest: React.FC = () => {
   const ctx = useFetch<QuizInterface[]>("quiz/daily");
 
   return (
     <DailyContestContext.Provider value={ctx}>
       <AuthentificatedLayout>
         {ctx.loading && <LoaderWheel />}
-        {ctx.data && <DailyContextFactory />}
+        {ctx.data && <DailyContestFactory />}
       </AuthentificatedLayout>
     </DailyContestContext.Provider>
   );

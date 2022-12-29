@@ -31,7 +31,7 @@ export default function MenuMobileView({ isOpen, setIsOpen, goToPage, isAdmin, i
         <div className={classes.button}>
           <MenuButton isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
-        <LinkForMobile icon={QuestionIcon} label="Concours" url='/daily-context' goToPage={goToPage} />
+        <LinkForMobile icon={QuestionIcon} label="Concours" url='/daily-contest' goToPage={goToPage} />
         <LinkForMobile icon={CalIcon} label="Calendrier" url='/calendrier' goToPage={goToPage} />
         <LinkForMobile icon={NewsIcon} label="News" url='/news' goToPage={goToPage} />
 

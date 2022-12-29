@@ -20,6 +20,12 @@ export const DailyContestView: FC<DailyContextFactoryResult> = ({ quiz, cantPlay
     </PageActions>
     <div className={styles.title}>Classement</div>
     <Tabs defaultCurrent="aujourd'hui">
+      <Tab field={dayjs().subtract(3, 'day').format('DD-MM-YY')}>
+        <DailyContestRanking date={3} />
+      </Tab>
+      <Tab field={dayjs().subtract(2, 'day').format('DD-MM-YY')}>
+        <DailyContestRanking date={2} />
+      </Tab>
       <Tab field="hier">
         <DailyContestRanking date={1} />
       </Tab>
