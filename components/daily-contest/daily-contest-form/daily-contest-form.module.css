@@ -3,7 +3,6 @@
   grid-template-rows: repeat(3, auto) 1fr auto;
   gap: 10px;
   width: 600px;
-  height: 95vh;
 }
 
 .title {
@@ -43,7 +42,7 @@
 }
 
 .choice {
-  padding: 10px;
+  padding: 5px;
   background: var(--color-second);
   border-radius: 10px;
   display: flex;
@@ -73,12 +72,13 @@
 
   .question {
     width: calc(100vw - 60px);
+    height: calc(100vh - 10px);
   }
 
   .choices {
     flex-direction: column;
-    gap: 15px;
-    padding: 5px;
+    gap: 13px;
+    padding: 3px;
     align-content: flex-start;
     justify-content: flex-start;
   }
@@ -86,6 +86,7 @@
   .choice {
     flex-basis: auto;
     width: 100%;
+    font-size: .9em;
   }
 
 }

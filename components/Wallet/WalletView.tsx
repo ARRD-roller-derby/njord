@@ -5,5 +5,5 @@ interface props {
 }
 
 export default function WalletView({ wallet }: props) {
-  return <div className={classes.count}>{wallet || '--'} Dr.</div>
+  return <div className={classes.count}>{wallet || '...'} Dr.</div>
 }

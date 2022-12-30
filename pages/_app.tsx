@@ -2,6 +2,7 @@ import { SessionProvider } from 'next-auth/react'
 import 'react-datepicker/dist/react-datepicker.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'leaflet/dist/leaflet.css'
+import 'nprogress/nprogress.css'
 import '../styles/globals.css'
 import '@uiw/react-md-editor/markdown-editor.css';
 import '@uiw/react-markdown-preview/markdown.css';
@@ -14,6 +15,13 @@ import { useState } from 'react'
 import { registerLocale, setDefaultLocale } from 'react-datepicker'
 import frFns from 'date-fns/locale/fr'
 import { SocketContext } from '../stores/socket.store';
+import NProgress from 'nprogress'
+import { Router } from 'next/router'
+
+Router.events.on('routeChangeStart', () => NProgress.start())
+Router.events.on('routeChangeComplete', () => NProgress.done())
+Router.events.on('routeChangeError', () => NProgress.done())
+NProgress.configure({ showSpinner: false })
 
 registerLocale('fr', frFns)
 setDefaultLocale('fr')
@@ -29,7 +37,7 @@ export default function App({
   pageProps: { session, ...pageProps },
 }) {
   const [state, setState] = useState()
-  
+
   return (
     <SessionProvider session={session}>
       <SocketContext.Provider value={[state, setState]}>

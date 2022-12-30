@@ -28,6 +28,6 @@
   height: 4px;
   border-radius: 50%;
   background: var(--color-tierce);
-  bottom: -3px;
+  bottom: -6px;
   left: calc(50% - 2px)
 }

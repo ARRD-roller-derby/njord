@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className={classes.header}>
       <div className={classes.appName}>
-        <GoBack/>
+        <GoBack />
       </div>
       <div className={classes.appName}>
         <Wallet />
