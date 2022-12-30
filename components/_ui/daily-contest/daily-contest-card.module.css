@@ -6,9 +6,8 @@
   grid-template-columns: auto repeat(2, 1fr);
   grid-template-areas:
     "avatar name name"
-    "avatar position score ";
+    "avatar position score";
   background: var(--color-bg-light);
-
   padding: 10px;
   max-width: 400px;
   border-radius: 5px;
@@ -119,4 +118,86 @@
 
 .container[data-variant='marvel'] .score {
   color: #f2c638;
+}
+
+
+/* ---- SHINY ----*/
+
+.container[data-variant='shiny'] {
+  grid-template-rows: auto 1fr 0;
+  grid-template-columns: 1fr repeat(2, 1fr);
+  grid-template-areas:
+    "avatar name name"
+    "avatar position position"
+    "score score score";
+  background: black;
+
+  padding: 0;
+  max-width: 400px;
+  border-radius: 0;
+  gap: 5px;
+  border: 1px solid var(--color-bg);
+}
+
+
+.container[data-variant='shiny'] .score {
+  height: 5px;
+  position: relative;
+  width: 100%;
+  margin: 0;
+}
+
+.container[data-variant='shiny'] .avatarContainer {
+  background-size: cover;
+  background-position: center center;
+}
+
+
+.container[data-variant='shiny'] .scoreBar {
+  position: absolute;
+  left: 0;
+  right: 100%;
+  top: 0;
+  background: linear-gradient(90deg, rgba(180, 58, 58, 1) 0%, rgba(248, 253, 29, 1) 54%, rgba(69, 252, 136, 1) 100%);
+  transition: 200ms ease-in-out;
+  height: 5px;
+  overflow: hidden;
+  padding: 0;
+  margin-top: -4px;
+}
+
+.container[data-variant='shiny'] .name {
+  color: #e6992c;
+  font-size: .8em;
+  padding: 5px 5px 0
+}
+
+.container[data-variant='shiny'] .positionContainer {
+  display: flex;
+  padding: 3px;
+  justify-content: center;
+  color: yellow
+}
+
+.container[data-variant='shiny'] .scoreBar:after {
+  position: absolute;
+  left: -30px;
+  width: 30px;
+  top: 0;
+  bottom: 0;
+  content: '';
+  background: rgba(255, 255, 255, .9);
+  animation: flash 3000ms ease-in-out infinite;
+}
+
+@keyframes flash {
+
+
+  75% {
+    left: -30px
+  }
+
+  100% {
+    left: calc(100% + 30px)
+  }
 }

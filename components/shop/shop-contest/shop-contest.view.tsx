@@ -27,7 +27,11 @@ export const ShopContestView: FC<ShopContestResult> = ({ user, loading, buy }) =
             {user.rank_card === card.name ? <Info>Tu possèdes cette carte</Info> :
               <>           <div className={styles.price}>{card.cost} dr.</div>
                 <div className={styles.button}>
-                  <AutoConfirmButton textConfirm="Je confirme l'achat" onClick={() => buy(card.name)} loading={loading} text="acheter" />
+                  <AutoConfirmButton
+                    textConfirm="Je confirme l'achat"
+                    onClick={() => buy(card.name)}
+                    loading={loading}
+                    text="acheter" />
                 </div>
 
 
