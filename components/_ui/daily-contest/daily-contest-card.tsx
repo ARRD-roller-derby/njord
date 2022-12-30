@@ -13,7 +13,7 @@ interface DailycontestCardProps {
 }
 
 const regexVariantPremium = /shiny/;
-export const DailycontestCard: FC<DailycontestCardProps> = ({ user, myId, position, variant }) => (
+export const DailycontestCard: FC<DailycontestCardProps> = ({ user, myId, position, variant = 'normal' }) => (
   <div className={styles.container} data-isme={myId === user.user._id} data-varian={user.user?.rank_card} data-variant={variant}>
 
     <div className={styles.avatarContainer} style={{ backgroundImage: variant.match(regexVariantPremium) ? `url('${user.user.avatar}')` : 'transparent' }}>
