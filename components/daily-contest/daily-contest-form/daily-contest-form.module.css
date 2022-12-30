@@ -3,6 +3,7 @@
   grid-template-rows: repeat(3, auto) 1fr auto;
   gap: 10px;
   width: 600px;
+  height: calc(100vh - 10px);
 }
 
 .title {
@@ -72,7 +73,7 @@
 
   .question {
     width: calc(100vw - 60px);
-    height: calc(100vh - 10px);
+
   }
 
   .choices {
