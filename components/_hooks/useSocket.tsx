@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import io, { Socket } from "socket.io-client";
+import io from "socket.io-client";
 import { useEffect, useState } from 'react'
 import { requestType } from '../../types/requestType.enum'
 import { toast } from 'react-toastify'

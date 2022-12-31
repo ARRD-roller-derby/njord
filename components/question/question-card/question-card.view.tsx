@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { QuestionCardResults } from "./question.type";
 import styles from "./question-card.module.css";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -38,7 +39,7 @@ export const QuestionCardView: React.FC<QuestionCardResults> = ({
 
 
     <div className={styles.difficulty}>
-      Difficulté :{" "}
+      Difficulté :{" "} {question.good_answers_num} - {question.bad_answers_num}
       {questionDifficulty(
         percent(
           question.good_answers_num,

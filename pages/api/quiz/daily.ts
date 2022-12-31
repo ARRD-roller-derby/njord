@@ -5,8 +5,9 @@ import { MongoDb } from '../../../db/mongo.connect'
 import Question from '../../../models/question.model'
 import Quiz from '../../../models/quiz.model'
 import RankingQuiz from '../../../models/ranking-quiz.model'
-import { QuestionDifficulty } from '../../../types/question.interface'
 import { QuizType } from '../../../types/quiz.interface'
+import { percent } from '../../../utils/percent'
+import { questionDifficulty } from '../../../utils/question-difficulty'
 import { shuffle } from '../../../utils/shuffle'
 
 export default async function quizDaily(req: NextApiRequest, res: NextApiResponse) {
@@ -16,8 +17,8 @@ export default async function quizDaily(req: NextApiRequest, res: NextApiRespons
   await MongoDb()
   // rechercher ou creer 
   const existDailyQuiz = await Quiz.findOne({
-      type: QuizType.daily,
-      day: dayjs().format('YYYY-MM-DD')
+    type: QuizType.daily,
+    day: dayjs().format('YYYY-MM-DD')
   })
 
   if (existDailyQuiz) {
@@ -29,32 +30,25 @@ export default async function quizDaily(req: NextApiRequest, res: NextApiRespons
     return res.json({ quiz: existDailyQuiz, cantPlay: !!existRanking?.end })
   }
 
-  const questions = await Question.find({ active: true }).select('_id difficulty')
+  const questions = await Question.find({ active: true }).select('_id bad_answers_num good_answers_num')
   const shuffleQuestions = shuffle<string>(questions.map(question => question._id), 4)
 
   const difficulties = questions
-    .filter((question) => shuffleQuestions.includes(question._id)).map(question => question.difficulty)
+    .filter((question) => shuffleQuestions.includes(question._id))
 
-  const difficultiesType = {
-    'very easy': 0,
-    easy: 0,
-    normal: 0,
-    hard: 0,
-    "very hard": 0
-  }
-  difficulties.forEach(difficulty => {
-    difficultiesType[difficulty] = difficultiesType[difficulty] + 1
-  })
-
-  const sortDifficulties = Object.keys(difficultiesType).map(key => {
-    return {
-      label: key,
-      count: difficultiesType[key]
-    }
-  }).sort((a, b) => b.count - a.count)
+  const questionsNum = difficulties.reduce((current: { bad: number, good: number }, state) => {
+    current.bad += state.bad_answers_num
+    current.good += state.good_answers_num
+    return current
+  }, { bad: 0, good: 0 })
 
   const quiz = await Quiz.create({
-    difficulty: sortDifficulties?.at(0)?.label || QuestionDifficulty.normal,
+    difficulty: questionDifficulty(
+      percent(
+        questionsNum.good,
+        questionsNum.good + questionsNum.bad
+      )
+    ),
     questions: shuffleQuestions,
     type: QuizType.daily,
     day: dayjs().format('YYYY-MM-DD')
