@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 5px;
 }
 
 .title {
@@ -13,4 +13,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 5px;
+  font-size: .8em;
 }

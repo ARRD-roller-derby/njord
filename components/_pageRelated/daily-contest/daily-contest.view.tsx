@@ -7,13 +7,11 @@ import styles from './daily-contest.module.css'
 import Tabs from "../../_ui/Tabs/Tabs/Tabs";
 import Tab from "../../_ui/Tabs/Tab/Tab/Tab";
 import { DailyContestRanking } from "../../daily-contest/daily-contest-ranking/daily-contest-ranking";
-import Info from "../../_ui/Info/Info";
 
 export const DailyContestView: FC<DailyContextFactoryResult> = ({ quiz, cantPlay }) => (
   <div className={styles.container}>
-
     <div className={styles.title}>Quizz du {dayjs(quiz.day).format('LL')}</div>
-    <div className={styles.difficulty}> <Info>difficulté: {quiz.difficulty}</Info></div>
+    <div className={styles.difficulty}>difficulté: {quiz.difficulty}</div>
 
     <PageActions>
       <DailyContestButton cantPlay={cantPlay} />
