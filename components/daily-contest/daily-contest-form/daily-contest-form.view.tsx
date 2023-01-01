@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 import { FC } from 'react'
 import FullscreenModale from '../../_ui/FullscreenModale/FullscreenModale'
 import { DailyContestFormProps, DailyContestFormResult } from './daily-contest-form'
@@ -14,6 +16,7 @@ export const DailyContestFormView: FC<
 
         <div className={styles.number}>{current} / {questions.length}</div>
         <div className={styles.img}>
+          <div />
           {question.img && <img src={question.img} />}
         </div>
         <div className={styles.title}>{validator.unescape(question.question)}</div>

@@ -3,6 +3,7 @@
   grid-template-rows: repeat(3, auto) 1fr auto;
   gap: 10px;
   width: 600px;
+  font-size: .8em;
   height: calc(100vh - 10px);
 }
 
@@ -17,6 +18,8 @@
 
 .number {
   text-align: center;
+  color: var(--color-tierce);
+  font-size: .8em;
 }
 
 .score {
@@ -39,7 +42,9 @@
   align-items: stretch;
   align-content: flex-start;
   justify-content: center;
-  padding: 10px 0
+  padding: 10px 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .choice {
@@ -72,12 +77,14 @@
 @media screen and (max-width: 600px) {
 
   .question {
-    width: calc(100vw - 60px);
+    flex-basis: initial;
+    width: initial;
 
   }
 
   .choices {
     flex-direction: column;
+    flex-wrap: nowrap;
     gap: 13px;
     padding: 3px;
     align-content: flex-start;
