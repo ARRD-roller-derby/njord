@@ -9,7 +9,7 @@ import SubmitButton from '../../_ui/SubmitButton/SubmitButton'
 
 //TODO affiche question ou resultat
 export const DailyContestFormView: FC<
-  DailyContestFormProps & DailyContestFormResult> = ({ closePopin, answers, nextQuestions, prevQuestions, question, selectChoice, handleSubmit, current, questions, loading, responses, percent }) => (
+  DailyContestFormProps & DailyContestFormResult> = ({ closePopin, answers, nextQuestions, prevQuestions, question, selectChoice, handleSubmit, current, questions, loading, responses, percent, canISubmit }) => (
     <FullscreenModale setClose={closePopin}>
 
       <div className={styles.question}>
@@ -36,8 +36,9 @@ export const DailyContestFormView: FC<
           </div>
         </div>
         <div className={styles.buttons}>
+
           <button onClick={prevQuestions}>précédent</button>
-          {responses ? <div className={styles.score}>Ton score : {percent}{"%"}</div> : <SubmitButton loading={loading} text="Envoyer" onClick={handleSubmit} />}
+          {responses ? <div className={styles.score}>Ton score : {percent}{"%"}</div> : <SubmitButton loading={loading} text="Envoyer" onClick={handleSubmit} disabled={!canISubmit} />}
           <button onClick={nextQuestions}>Suivant</button>
         </div>
       </div>

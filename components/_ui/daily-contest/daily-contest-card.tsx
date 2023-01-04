@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
+import dayjs from "dayjs";
 import { FC } from "react";
 import { RankingUserInterface } from "../../../types/ranking-quiz.interface";
 import userNameRender from "../../../utils/userNameRender";
 import Avatar from "../Avatar/Avatar";
 import styles from './daily-contest-card.module.css'
+
 
 interface DailycontestCardProps {
   user: RankingUserInterface
@@ -30,12 +32,14 @@ export const DailycontestCard: FC<DailycontestCardProps> = ({ user, myId, positi
     <div className={styles.positionContainer}>
       <div className={styles.position}>
         {"#"}{position}{!variant.match(regexVariantPremium) && " - "}
+        {variant.match(regexVariantPremium) && " - " + dayjs(user.ranking.end).diff(dayjs(user.ranking.start), 'seconds') + "s"}
       </div>
     </div>
 
     <div className={styles.scoreContainer}>
       <div className={styles.score}>
         {variant.match(regexVariantPremium) ? <div style={{ right: `calc(100% - ${user.ranking.percent}%)` }} className={styles.scoreBar} /> : user.ranking.percent + "%"}
+        {!variant.match(regexVariantPremium) && " / " + dayjs(user.ranking.end).diff(dayjs(user.ranking.start), 'seconds') + "s"}
       </div>
     </div>
   </div>
