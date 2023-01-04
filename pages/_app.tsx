@@ -10,6 +10,7 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
 import timezone from 'dayjs/plugin/timezone'
+import duration from 'dayjs/plugin/duration'
 import fr from 'dayjs/locale/fr'
 import { useState } from 'react'
 import { registerLocale, setDefaultLocale } from 'react-datepicker'
@@ -28,6 +29,7 @@ setDefaultLocale('fr')
 dayjs.extend(relativeTime)
 dayjs.extend(localizedFormat)
 dayjs.extend(timezone)
+dayjs.extend(duration)
 dayjs.locale(fr)
 dayjs.tz.guess()
 dayjs.tz.setDefault("Europe/Paris")

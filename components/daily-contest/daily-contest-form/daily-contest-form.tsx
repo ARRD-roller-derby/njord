@@ -26,7 +26,8 @@ export interface DailyContestFormResult {
   answers: Object,
   loading: boolean
   responses?: string[]
-  percent?: string
+  percent?: string,
+  canISubmit: boolean
 
 }
 

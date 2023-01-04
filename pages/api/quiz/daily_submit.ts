@@ -42,8 +42,13 @@ export default async function quizDailySubmit(req: NextApiRequest, res: NextApiR
   }
 
   ranking.percent = goodAnswers.length / questions.length * 100;
+
+  const diffSeconds = dayjs(ranking.end).diff(dayjs(ranking.start), 'second')
   //little score is good score
-  ranking.score = parseFloat(`${questions.length - goodAnswers.length}.${dayjs(ranking.end).diff(dayjs(ranking.start), 'second')}`)
+  ranking.score = parseFloat(`${questions.length - goodAnswers.length}.${diffSeconds}`)
+
+  me.dailyContestAvgTime = me?.dailyContestAvgTime ? me.dailyContestAvgTime + diffSeconds / 2 : diffSeconds
+  me.dailyContestAvgAccuracy = me?.dailyContestAvgTime ? me.dailyContestAvgTime + ranking.percent / 2 : ranking.percent
 
   await me.save()
   await ranking.save()

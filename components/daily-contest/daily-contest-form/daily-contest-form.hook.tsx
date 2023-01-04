@@ -1,14 +1,17 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useMemo, useState } from "react"
 import usePost from "../../_hooks/usePost"
 import { DailyContestContext } from "../../_pageRelated/daily-contest/daily-contest.context"
 import { DailyContestFormProps, DailyContestFormResult } from "./daily-contest-form"
 
-export const useDailyContestForm = ({ questions, closePopin }: DailyContestFormProps): DailyContestFormResult => {
+export const useDailyContestForm = ({ questions }: DailyContestFormProps): DailyContestFormResult => {
   const
     [index, setIndex] = useState(0),
-    [answers, setAnswers] = useState<Object>(),
+    [answers, setAnswers] = useState<Object>({}),
     ctx = useContext(DailyContestContext),
-    { data, loading, post } = usePost('quiz/daily_submit')
+    { data, loading, post } = usePost('quiz/daily_submit'),
+    canISubmit = useMemo(() => {
+      return Object.keys(answers).length === questions.length
+    }, [answers, questions])
 
   const nextQuestions = () => {
 
@@ -46,6 +49,7 @@ export const useDailyContestForm = ({ questions, closePopin }: DailyContestFormP
     handleSubmit,
     loading,
     responses: data?.responses,
-    percent: data?.percent
+    percent: data?.percent,
+    canISubmit
   }
 }

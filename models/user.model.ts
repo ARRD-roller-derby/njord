@@ -26,6 +26,8 @@ const userSchema = new Schema<UserInterface>({
   mst: Boolean,
   msp: Boolean,
   rank_card: String,
+  dailyContestAvgTime: Number,
+  dailyContestAvgAccuracy: Number,
   allergies: [String],
   profiles: [String],
   league: {

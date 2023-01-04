@@ -34,6 +34,8 @@ export const useDailyContestRanking = ({ date }): DailyContestRankingFactoryResu
     }
   }, [data])
 
+  console.log(data?.ranking)
+
   return {
     ranking: data?.ranking,
     myId: session?.user._id ?? '',

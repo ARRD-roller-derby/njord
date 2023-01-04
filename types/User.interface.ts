@@ -25,6 +25,8 @@ export interface UserInterface {
   derbyName?: string;
   mst?: boolean;
   msp?: boolean;
+  dailyContestAvgTime: number
+  dailyContestAvgAccuracy: number
   league?: {
     shortName: string;
     id: string

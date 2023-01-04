@@ -1,8 +1,8 @@
-import { ReactChild } from 'react'
+import { ReactNode } from 'react'
 import classes from './FullscreenModale.module.css'
 
 interface props {
-  readonly children: ReactChild
+  readonly children: ReactNode
   readonly setClose: Function
 }
 
