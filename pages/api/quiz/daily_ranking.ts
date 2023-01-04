@@ -24,7 +24,7 @@ export default async function quizRanking(req: NextApiRequest, res: NextApiRespo
   if (!quiz) return res.status(404).send('Quiz non trouvé')
 
   const totalParticipate = await RankingQuiz.count({ quizId: quiz._id, end: { $exists: true } })
-  const rankingResults = await RankingQuiz.find({ quizId: quiz._id, end: { $exists: true } }).skip(page > 1 ? page * perPage - perPage : 0).limit(perPage).sort({ score: 1 })
+  const rankingResults = await RankingQuiz.find({ quizId: quiz._id, end: { $exists: true } }).skip(page > 1 ? page * perPage - perPage : 0).limit(perPage).sort({ score: -1 })
   const users = await User.find({ _id: { $in: rankingResults.map(rank => rank.userId) } })
 
   const ranking = rankingResults.reduce((val, current) => {
