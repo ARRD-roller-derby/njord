@@ -26,7 +26,10 @@ export default async function generalRanking(req: NextApiRequest, res: NextApiRe
   const where = { [type]: { $exists: true } }
   const direction = type === 'dailyContestAvgAccuracy' ? -1 : 1
   const totalRanking = await User.count(where)
-  const ranking = await User.find(where).skip(page > 1 ? page * perPage - perPage : 0).select('avatar lastname name derbyName numRoster email dailyContestAvgAccuracy dailyContestAvgTime').limit(perPage).sort({ derbyName: -1, [type]: direction })
+  const ranking = await User.find(where).skip(page > 1 ? page * perPage - perPage : 0).select('avatar lastname name derbyName numRoster email dailyContestAvgAccuracy dailyContestAvgTime').limit(perPage).sort({
+    [type]: direction,
+    derbyName: 1,
+  })
 
   res.json({
     ranking,
