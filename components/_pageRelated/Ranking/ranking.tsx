@@ -8,7 +8,7 @@ import styles from './ranking.module.css'
 export const Ranking: React.FC = () => (
   <AuthentificatedLayout>
     <div className={styles.container}>
-      <h1>Classement</h1>
+      <h1 className={styles.title}>Classement</h1>
       <Gridbox>
         <Tabs defaultCurrent='Précision'>
           <Tab field='Précision' ><RankingGeneral type='percent' /></Tab>
