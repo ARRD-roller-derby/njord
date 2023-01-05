@@ -17,7 +17,7 @@ export const useRankingGeneral = ({ type }: { type: 'speed' | 'percent' }): Rank
       return acc
     }, [])
 
-    return ranks.sort((a, b) => b - a)
+    return ranks.sort((a, b) => type === 'percent' ? b - a : a - b)
   }, [data?.ranking])
   useSocketTrigger(TriggerEvents.daily_contest, reSync)
   return { ranking: data?.ranking, loading, myId: session?.user._id, podium };
