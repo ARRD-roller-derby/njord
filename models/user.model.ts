@@ -26,6 +26,8 @@ const userSchema = new Schema<UserInterface>({
   mst: Boolean,
   msp: Boolean,
   rank_card: String,
+  rank_card_percent: String,
+  rank_card_speed: String,
   dailyContestAvgTime: Number,
   dailyContestAvgAccuracy: Number,
   allergies: [String],

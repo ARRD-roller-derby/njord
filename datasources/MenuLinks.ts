@@ -28,6 +28,11 @@ export const MenuLinks: Array<MenuLinksInterface> = [
     icon: '/icons/question.svg',
   },
   {
+    href: '/classement',
+    title: 'Classement',
+    icon: '/icons/ranking.svg',
+  },
+  {
     href: '/shop',
     title: 'Boutique',
     icon: '/icons/store.svg',

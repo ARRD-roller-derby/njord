@@ -12,6 +12,7 @@ import StuffIcon from '../../public/icons/warehouse.svg'
 import NewsIcon from '../../public/icons/newspaper.svg'
 import BlockQuestionIcon from '../../public/icons/block-question.svg'
 import LinkForMobile from '../_ui/LinkForMobile/LinkForMobile'
+import RankingIcon from '../../public/icons/ranking.svg'
 
 interface props {
   goToPage: Function
@@ -27,7 +28,7 @@ export default function MenuMobileView({ isOpen, setIsOpen, goToPage, isAdmin, i
     <div className={classes.container}>
       <div className={classes.menu} data-isopen={isOpen}>
         <LinkForMobile icon={HomeIcon} label="Accueil" url='/' goToPage={goToPage} />
-        <LinkForMobile icon={CalIcon} label="Calendrier" url='/calendrier' goToPage={goToPage} />
+        <LinkForMobile icon={RankingIcon} label="Classement" url='/classement' goToPage={goToPage} />
 
         <div className={classes.button}>
           <MenuButton isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -39,6 +40,7 @@ export default function MenuMobileView({ isOpen, setIsOpen, goToPage, isAdmin, i
         <LinkForMobile icon={NewsIcon} label="News" url='/news' goToPage={goToPage} />
         {/*<LinkForMobile icon={TeamsIcon} label="Mes équipes" url='/teams' goToPage={goToPage}/>*/}
         <LinkForMobile icon={CardIdIcon} label="Mon profil" url='/profile' goToPage={goToPage} />
+        <LinkForMobile icon={CalIcon} label="Calendrier" url='/calendrier' goToPage={goToPage} />
         <LinkForMobile icon={LeagueIcon} label="Ma league" url='/league' goToPage={goToPage} />
         <LinkForMobile icon={AddressIcon} label="Mes adresses" url='/adresses' goToPage={goToPage} />
         <LinkForMobile icon={StuffIcon} label="inventaire" url='/stuff' goToPage={goToPage} />

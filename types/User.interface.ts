@@ -10,6 +10,8 @@ export interface UserInterface {
   admin?: boolean;
   admin_game?: boolean
   rank_card?: string
+  rank_card_percent?: string,
+  rank_card_speed?: string,
   emailVisibility?: string;
   phone?: string;
   phoneVisibility?: string;
