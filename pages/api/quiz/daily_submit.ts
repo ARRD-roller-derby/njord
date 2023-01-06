@@ -47,8 +47,8 @@ export default async function quizDailySubmit(req: NextApiRequest, res: NextApiR
   //little score is good score
   ranking.score = goodAnswers.length - parseFloat(`0.${diffSeconds}`)
 
-  me.dailyContestAvgTime = me?.dailyContestAvgTime ? me.dailyContestAvgTime + diffSeconds / 2 : diffSeconds
-  me.dailyContestAvgAccuracy = me?.dailyContestAvgAccuracy ? me.dailyContestAvgAccuracy + ranking.percent / 2 : ranking.percent
+  me.dailyContestAvgTime = me?.dailyContestAvgTime ? (me.dailyContestAvgTime + diffSeconds) / 2 : diffSeconds
+  me.dailyContestAvgAccuracy = me?.dailyContestAvgAccuracy ? (me.dailyContestAvgAccuracy + ranking.percent) / 2 : ranking.percent
 
   await me.save()
   await ranking.save()
