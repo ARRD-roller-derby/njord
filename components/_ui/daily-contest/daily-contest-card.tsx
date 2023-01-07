@@ -26,7 +26,7 @@ export const DailycontestCard: FC<DailycontestCardProps> = ({ user, myId, positi
 
     <div className={styles.nameContainer}>
       <div className={styles.name}>
-        {user.user?.derbyName || userNameRender(user.user)}
+        {userNameRender(user.user, true)}
       </div>
     </div>
     <div className={styles.positionContainer}>
