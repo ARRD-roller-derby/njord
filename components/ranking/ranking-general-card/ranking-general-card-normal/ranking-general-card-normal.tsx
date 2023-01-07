@@ -22,7 +22,7 @@ export const RankingGeneralCardNormal: React.FC<RankingGeneralCardNormalProps> =
 
   <div className={styles.nameContainer}>
     <div className={styles.name}>
-      {user?.derbyName || userNameRender(user, true)}
+      {userNameRender(user, true)}
     </div>
   </div>
   <div className={styles.scoreContainer}>
