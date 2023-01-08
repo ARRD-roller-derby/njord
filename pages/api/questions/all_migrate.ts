@@ -14,7 +14,7 @@ export default async function questionsAll(req: NextApiRequest, res: NextApiResp
         type: 'good',
         answer: question.good_answers
       },
-      ...question.bad_answers.map((answer: string) => ({
+      ...question?.bad_answers.map((answer: string) => ({
 
         type: 'bad',
         answer
