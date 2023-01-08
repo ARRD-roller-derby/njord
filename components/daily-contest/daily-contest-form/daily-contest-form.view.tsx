@@ -33,10 +33,10 @@ export const DailyContestFormView: FC<
                 key={choice}
                 className={styles.choice}
                 data-choice={answers?.[question._id]?.includes(choice)}
-                data-good={!!responses?.find(response => response === choice)}
+                data-good={responses?.find(response => response.id === question._id)?.answers.includes(choice)}
                 onClick={() => selectChoice(choice, question.multiChoice)}
               >
-                {validator.unescape(choice)}
+                {validator.unescape(choice || '')}
               </div>)}
           </div>
         </div>

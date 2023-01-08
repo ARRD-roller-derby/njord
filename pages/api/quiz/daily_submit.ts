@@ -78,6 +78,9 @@ export default async function quizDailySubmit(req: NextApiRequest, res: NextApiR
 
   return res.json({
     percent: ranking.percent.toFixed(0),
-    responses: questions.map(question => question.good_answers)
+    responses: questions.map(question => ({
+      id: question._id.toString(),
+      answers: question.answers.filter((answer: { type: string }) => answer.type === 'good').map((answer: { answer: string[] }) => answer.answer),
+    })),
   })
 }

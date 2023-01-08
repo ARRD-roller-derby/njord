@@ -31,7 +31,25 @@ export default async function quizDaily(req: NextApiRequest, res: NextApiRespons
     return res.json({ quiz: { difficulty: existDailyQuiz.difficulty, type: existDailyQuiz.type, day: existDailyQuiz.day, _id: existDailyQuiz._id }, cantPlay: !!existRanking?.end })
   }
 
-  const questions = await Question.find({ active: true }).select('_id bad_answers_num good_answers_num')
+
+  const oldsQuizzes = await Quiz.find({
+    type: QuizType.daily, day: {
+      $in: [
+        dayjs().subtract(4, 'day').format('YYYY-MM-DD'),
+        dayjs().subtract(3, 'day').format('YYYY-MM-DD'),
+        dayjs().subtract(2, 'day').format('YYYY-MM-DD'),
+        dayjs().subtract(1, 'day').format('YYYY-MM-DD')
+      ]
+    },
+    answser: { $exists: true, $not: { $size: 0 } },
+  }).select('questions')
+
+  const oldsQuestions = oldsQuizzes.reduce((current: string[], state) => {
+    current.push(...state.questions)
+    return current
+  }, [])
+
+  const questions = await Question.find({ active: true, _id: { $not: { $in: oldsQuestions } } }).select('_id bad_answers_num good_answers_num')
   const shuffleQuestions = shuffle<string>(questions.map(question => question._id), 4)
 
   const difficulties = questions
