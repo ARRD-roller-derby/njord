@@ -3,16 +3,14 @@ import { MongoDb } from '../../../db/mongo.connect'
 import Question from '../../../models/question.model'
 
 export default async function questionsAll(req: NextApiRequest, res: NextApiResponse) {
-
-
   await MongoDb()
 
   const questions = await Question.find()
+
   for (const question of questions) {
 
 
     if (question?.bad_answers?.length === 0) {
-      console.log(question);
       return
     }
 
@@ -21,14 +19,14 @@ export default async function questionsAll(req: NextApiRequest, res: NextApiResp
         type: 'good',
         answer: question.good_answers
       },
-      ...question?.bad_answers.map((answer: string) => ({
+      ...question?.bad_answers?.map((answer: string) => ({
 
         type: 'bad',
         answer
 
       }))
     ]
-    await question.save()
+    question.save()
   }
 
 
