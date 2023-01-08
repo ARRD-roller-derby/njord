@@ -28,7 +28,7 @@ export const RankingGeneralCardNormal: React.FC<RankingGeneralCardNormalProps> =
   <div className={styles.scoreContainer}>
     <div className={styles.score}>
       {`#${getPodiumPlace(podium, user, type)} - `}
-      {user[type === 'percent' ? 'dailyContestAvgAccuracy' : 'dailyContestAvgTime']}
+      {user[type === 'percent' ? 'dailyContestAvgAccuracy' : 'dailyContestAvgTime'].toFixed(2)}
       {type === 'percent' ? '%' : 'sec'}
     </div>
   </div>
