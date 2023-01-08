@@ -9,6 +9,11 @@ export default async function questionsAll(req: NextApiRequest, res: NextApiResp
 
   const questions = await Question.find()
   for (const question of questions) {
+
+    if (question?.bad_answers.length === 0) {
+      return
+    }
+
     question.answers = [
       {
         type: 'good',
