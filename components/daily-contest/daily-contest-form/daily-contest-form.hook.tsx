@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from "react"
+import { useContext, useMemo, useState } from "react"
 import usePost from "../../_hooks/usePost"
 import { DailyContestContext } from "../../_pageRelated/daily-contest/daily-contest.context"
 import { DailyContestFormProps, DailyContestFormResult } from "./daily-contest-form"
@@ -12,7 +12,6 @@ export const useDailyContestForm = ({ questions }: DailyContestFormProps): Daily
     canISubmit = useMemo(() => {
       return Object.keys(answers).length === questions.length
     }, [answers, questions])
-
   const nextQuestions = () => {
 
     setIndex(index >= questions.length - 1 ? 0 : index + 1)
@@ -21,13 +20,22 @@ export const useDailyContestForm = ({ questions }: DailyContestFormProps): Daily
     setIndex(index <= 0 ? questions.length - 1 : index - 1)
   }
 
-  const selectChoice = (choice: string) => {
-    setAnswers(prevState => ({
-      ...prevState,
-      [questions[index]._id]: choice
-    }))
-  }
+  const selectChoice = (choice: string, isMulti: boolean) => {
+    setAnswers(prevState => {
+      if (!isMulti) return {
+        ...prevState,
+        [questions[index]._id]: [choice]
+      }
 
+      const responses = prevState[questions[index]._id] || []
+      const isExist = responses?.includes(choice)
+
+      return {
+        ...prevState,
+        [questions[index]._id]: isExist ? responses.filter((item: string) => item !== choice) : [...responses, choice]
+      }
+    })
+  }
   const handleSubmit = () => {
 
     if (loading) return

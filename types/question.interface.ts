@@ -1,8 +1,7 @@
 export interface QuestionInterface {
   _id: string
   question: string
-  good_answers: string
-  bad_answers: string[]
+  answers: IAnswer[]
   active: boolean
   img?: string
   good_answers_num: number
@@ -11,6 +10,11 @@ export interface QuestionInterface {
   updatedAt: Date
 }
 
+export interface IAnswer {
+  type: 'good' | 'bad'
+  answer: string
+  id: string
+}
 export enum QuestionDifficulty {
   veryEasy = 'very easy',
   easy = 'easy',

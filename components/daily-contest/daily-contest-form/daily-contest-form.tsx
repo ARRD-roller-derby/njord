@@ -7,6 +7,7 @@ export type Question = {
   question: string,
   choices: string[],
   percent: number,
+  multiChoice?: boolean,
   img?: string
 }
 
@@ -19,7 +20,7 @@ export interface DailyContestFormResult {
   question: Question
   nextQuestions: () => void
   prevQuestions: () => void
-  selectChoice: (choice: string) => void
+  selectChoice: (choice: string, isMulti: boolean) => void
   handleSubmit: () => void
   total: number
   current: number

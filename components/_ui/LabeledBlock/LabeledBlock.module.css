@@ -39,6 +39,11 @@
   z-index: -1;
 }
 
+
+.title[data-warning='true'] {
+  color: var(--color-txt-error);
+}
+
 .line:after {
   content: '';
   display: block;

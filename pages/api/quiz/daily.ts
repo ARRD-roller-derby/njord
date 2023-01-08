@@ -5,6 +5,7 @@ import { MongoDb } from '../../../db/mongo.connect'
 import Question from '../../../models/question.model'
 import Quiz from '../../../models/quiz.model'
 import RankingQuiz from '../../../models/ranking-quiz.model'
+import { QuestionInterface } from '../../../types/question.interface'
 import { QuizType } from '../../../types/quiz.interface'
 import { percent } from '../../../utils/percent'
 import { questionDifficulty } from '../../../utils/question-difficulty'
@@ -27,7 +28,7 @@ export default async function quizDaily(req: NextApiRequest, res: NextApiRespons
       userId: session.user._id,
     }).select('end')
 
-    return res.json({ quiz: existDailyQuiz, cantPlay: !!existRanking?.end })
+    return res.json({ quiz: { difficulty: existDailyQuiz.difficulty, type: existDailyQuiz.type, day: existDailyQuiz.day, _id: existDailyQuiz._id }, cantPlay: !!existRanking?.end })
   }
 
   const questions = await Question.find({ active: true }).select('_id bad_answers_num good_answers_num')
@@ -54,6 +55,6 @@ export default async function quizDaily(req: NextApiRequest, res: NextApiRespons
     day: dayjs().format('YYYY-MM-DD')
   })
 
-  return res.json({ quiz, cantPlay: false })
+  return res.json({ quiz: { difficulty: quiz.difficulty, type: quiz.type, day: quiz.day, _id: quiz._id }, cantPlay: false })
 
 }

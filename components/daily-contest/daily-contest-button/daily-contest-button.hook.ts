@@ -14,7 +14,6 @@ export const useDailyContestButton = (): DailyContestButtonResult => {
       post({ contestId: contestData?.quiz._id })
     }
   }
-
   useEffect(() => {
     if (data) setIsOpenPopin(true)
   }, [data])
