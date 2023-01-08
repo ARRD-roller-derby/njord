@@ -37,7 +37,7 @@ export default async function quizDailyParticipate(req: NextApiRequest, res: Nex
     userId: session.user._id,
   })
 
-  if (existRanking.end) return res.status(403).send('Vous avez déjà participé à ce quizz')
+  if (existRanking?.end) return res.status(403).send('Vous avez déjà participé à ce quizz')
 
   if (!existRanking) {
     const ranking = await RankingQuiz.create({
