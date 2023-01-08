@@ -6,6 +6,7 @@ import Quiz from '../../../models/quiz.model'
 import validator from 'validator'
 import RankingQuiz from '../../../models/ranking-quiz.model'
 import { shuffle } from '../../../utils/shuffle'
+import { IAnswer } from '../../../types/question.interface'
 
 export default async function quizDailyParticipate(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -27,7 +28,8 @@ export default async function quizDailyParticipate(req: NextApiRequest, res: Nex
     question: question.question,
     img: question?.img,
     percent: question.good_answers_num ?? 0 / question.bad_answers_num ?? 0 * 100,
-    choices: shuffle([...question.bad_answers, question.good_answers], question.bad_answers.length + 1)
+    choices: shuffle(question.answers.map((answer: IAnswer) => answer.answer), question.answers.length + 1),
+    multiChoice: question.answers.filter((answer: IAnswer) => answer.type === "good").length > 1,
   }))
 
   const existRanking = await RankingQuiz.findOne({

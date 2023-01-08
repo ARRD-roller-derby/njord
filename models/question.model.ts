@@ -1,12 +1,18 @@
 import { Schema, model, models } from 'mongoose'
-import { QuestionInterface } from '../types/question.interface'
+import { IAnswer, QuestionInterface } from '../types/question.interface'
 
-const  questionSchema = new Schema<QuestionInterface>({
+
+const answerShema = new Schema<IAnswer>({
+  type: String,
+  id: String,
+  answer: String,
+})
+
+const questionSchema = new Schema<QuestionInterface>({
   question: String,
-  good_answers: String,
-  bad_answers: [String],
+  answers: [answerShema],
   active: Boolean,
-  img:String,
+  img: String,
   good_answers_num: Number,
   bad_answers_num: Number,
   difficulty: String,

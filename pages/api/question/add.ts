@@ -3,7 +3,7 @@ import { getSession } from "next-auth/react";
 import { MongoDb } from "../../../db/mongo.connect";
 import S3 from '../../../utils/bucket'
 import { v4 as uuidv4 } from 'uuid'
-import { QuestionDifficulty, QuestionInterface } from "../../../types/question.interface";
+import { IAnswer, QuestionDifficulty, QuestionInterface } from "../../../types/question.interface";
 import validator from 'validator'
 import Question from "../../../models/question.model";
 
@@ -15,8 +15,10 @@ export default async function questionAdd(
   if (!session?.isAdmin || !session?.admin_game) return res.status(403).send("non autorisé");
   const { body } = req
 
-  if (!body?.question || !body.good_answers ||
-    body?.bad_answers.filter((bad_answer: string) => bad_answer !== "").length < 1) {
+  console.log(body?.answers)
+
+  if (!body?.question ||
+    body?.answers.filter((answer: { type: 'good' | 'bad', answer: string }) => answer.answer !== "" && answer.type === 'good').length < 1 || body?.answers.filter((answer: { type: 'good' | 'bad', answer: string }) => answer.answer !== "" && answer.type === 'bad').length < 1) {
     return res.status(400).send("champs manquant");
   }
 
@@ -28,10 +30,12 @@ export default async function questionAdd(
 
   const question: Omit<QuestionInterface, '_id'> = {
     question: enunciated,
-    good_answers: validator.escape(req.body?.good_answers),
-    bad_answers: req.body.bad_answers
-      .filter((bad_answer: string) => bad_answer !== "")
-      .map((bad_answer: string) => validator.escape(bad_answer)),
+    answers: req.body.answers
+      .filter((answer: IAnswer) => answer.answer !== "")
+      .map((answer: IAnswer) => ({
+        ...answer,
+        answer: validator.escape(answer.answer)
+      })),
     active: true,
     updatedAt: new Date(),
     difficulty: QuestionDifficulty.normal,

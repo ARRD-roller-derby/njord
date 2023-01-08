@@ -14,15 +14,12 @@
   width: 100%;
 }
 
-.badAnswer {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px
-}
 
 .actions {
   display: flex;
   justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .file {

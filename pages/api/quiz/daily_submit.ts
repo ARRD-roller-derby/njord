@@ -30,22 +30,42 @@ export default async function quizDailySubmit(req: NextApiRequest, res: NextApiR
     },
   })
 
-  const goodAnswers = questions.filter(question => !!req.body.answers.find((answer: { id: string, answer: string }) => answer.id === question._id.toString() && answer.answer === question.good_answers))
+  const countMyGoodAnswers = req.body.answers.reduce((acc: number, { answer, id }) => {
+    //search question
+    const question = questions.find(question => question._id.toString() === id)
+
+    //extract good answers
+    const orignalGoodAnswers = question.answers.filter((orignalAnswer: { type: string }) => orignalAnswer.type === 'good')
+    //count good answers
+    const originalGoodAnswersCount = orignalGoodAnswers.length
+    //count my good answers
+    const countMyGoodAnswers = answer.filter((myAnswer: string) => orignalGoodAnswers.find((orignalAnswer: { answer: string }) => orignalAnswer.answer === myAnswer)).length
+    //if my good answers is equal to original good answers, add 1 to acc
+
+    // save logs for each question
+    if (countMyGoodAnswers === originalGoodAnswersCount) {
+      question.good_answers_num = question.good_answers_num + 1
+      return acc + 1
+    } else {
+      question.bad_answers_num = question.bad_answers_num + 1
+    }
+    question.save()
+    return acc
+  }, 0)
+
 
   const me = await User.findById(session.user._id)
+  me.wallet += countMyGoodAnswers * 10
 
-  const money = goodAnswers.length * 25
-  me.wallet += money
-
-  if (goodAnswers.length === questions.length) {
+  if (countMyGoodAnswers === questions.length * 2) {
     me.wallet += 100
   }
 
-  ranking.percent = goodAnswers.length / questions.length * 100;
+  ranking.percent = countMyGoodAnswers / questions.length * 100;
 
   const diffSeconds = dayjs(ranking.end).diff(dayjs(ranking.start), 'second')
   //little score is good score
-  ranking.score = (goodAnswers.length * 3600) - diffSeconds
+  ranking.score = (countMyGoodAnswers * 3600) - diffSeconds
 
   me.dailyContestAvgTime = me?.dailyContestAvgTime ? (me.dailyContestAvgTime + diffSeconds) / 2 : diffSeconds
   me.dailyContestAvgAccuracy = me?.dailyContestAvgAccuracy ? (me.dailyContestAvgAccuracy + ranking.percent) / 2 : ranking.percent
@@ -55,16 +75,6 @@ export default async function quizDailySubmit(req: NextApiRequest, res: NextApiR
 
   trigger('public', { type: TriggerEvents.daily_contest })
   trigger(session.user._id, { type: TriggerEvents.wallet })
-
-  questions.forEach(question => {
-    const isGood = goodAnswers.find(q => question._id.toString() === q._id.toString())
-    if (isGood) {
-      question.good_answers_num = question.good_answers_num + 1
-    } else {
-      question.bad_answers_num = question.bad_answers_num + 1
-    }
-    question.save()
-  })
 
   return res.json({
     percent: ranking.percent.toFixed(0),

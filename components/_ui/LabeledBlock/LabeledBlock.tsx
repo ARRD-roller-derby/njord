@@ -1,14 +1,17 @@
+
+import { ReactNode } from 'react'
 import classes from './LabeledBlock.module.css'
 
 interface props {
-  readonly children: JSX.Element | JSX.Element[]
-  readonly title: string
+  children: ReactNode
+  title: string
+  warning?: boolean
 }
-export default function LabeledBlock({ children, title }: props) {
+export default function LabeledBlock({ children, title, warning }: props) {
   return (
     <div className={classes.container}>
       <div className={classes.titleContainer}>
-        <h2 className={classes.title}>{title}</h2>
+        <h2 className={classes.title} data-warning={warning}>{title}</h2>
         <div className={classes.line} />
       </div>
       <div className={classes.children}>{children}</div>

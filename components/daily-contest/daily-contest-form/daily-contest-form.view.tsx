@@ -6,6 +6,7 @@ import { DailyContestFormProps, DailyContestFormResult } from './daily-contest-f
 import styles from './daily-contest-form.module.css'
 import validator from 'validator'
 import SubmitButton from '../../_ui/SubmitButton/SubmitButton'
+import Info from '../../_ui/Info/Info'
 
 //TODO affiche question ou resultat
 export const DailyContestFormView: FC<
@@ -20,6 +21,10 @@ export const DailyContestFormView: FC<
           {question.img && <img src={question.img} />}
         </div>
         <div className={styles.title}>{validator.unescape(question.question)}</div>
+        <div>
+          {question.multiChoice && <Info>{'Attention, question à choix multiple'}</Info>}
+        </div>
+
 
         <div className={styles.choicesBox}>
           <div className={styles.choices}>
@@ -27,9 +32,9 @@ export const DailyContestFormView: FC<
               <div
                 key={choice}
                 className={styles.choice}
-                data-choice={answers?.[question._id] === choice}
+                data-choice={answers?.[question._id]?.includes(choice)}
                 data-good={!!responses?.find(response => response === choice)}
-                onClick={() => selectChoice(choice)}
+                onClick={() => selectChoice(choice, question.multiChoice)}
               >
                 {validator.unescape(choice)}
               </div>)}

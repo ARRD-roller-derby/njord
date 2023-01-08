@@ -27,19 +27,15 @@ export const QuestionCardView: React.FC<QuestionCardResults> = ({
       <ReactMarkdown>{validator.unescape(question.question)}</ReactMarkdown>
     </div>
     <div className={styles.questions}>
-      <div className={styles.good}>
-        {validator.unescape(question.good_answers)}
-      </div>
-      {question.bad_answers.map((bad_answer) => (
-        <div className={styles.bad} key={bad_answer}>
-          {validator.unescape(bad_answer)}
+      {question.answers.map((answer) => (
+        <div className={styles.answer} data-good={answer.type} key={answer.id}>
+          {validator.unescape(answer.answer)}
         </div>
       ))}
     </div>
 
-
     <div className={styles.difficulty}>
-      Difficulté :{" "} {question.good_answers_num} - {question.bad_answers_num}
+      Difficulté :{" "}
       {questionDifficulty(
         percent(
           question.good_answers_num,

@@ -26,8 +26,7 @@
   align-items: stretch;
 }
 
-.good,
-.bad {
+.answer {
   display: flex;
   align-items: center;
   justify-items: center;
@@ -35,14 +34,11 @@
   border-radius: 30px;
   justify-content: center;
   padding: 5px 8px;
-}
-
-.good {
-  background: var(--color-quator);
-}
-
-.bad {
   background: var(--color-border);
+}
+
+.answer[data-good='good'] {
+  background: var(--color-quator);
 }
 
 .buttons {
