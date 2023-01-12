@@ -14,7 +14,7 @@ export const EventAttendeesSpyCountView: React.FC<EventAttendeesSpyCountResult> 
       <AutoConfirmButton
         isSpy
         text={`Voir le nombre de participant (${feature.cost} Dr.)`}
-        textConfirm="C'est parti !"
+        textConfirm="Confirmer l'achat"
         onClick={() => buy()}
       />
     </>}

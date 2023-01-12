@@ -37,7 +37,7 @@ export default function EventAttendessBuyView({
           </Info>
           <AutoConfirmButton
             text={`débloquer (${cost} Dr.)`}
-            textConfirm="C'est parti !"
+            textConfirm="Confirmer l'achat"
             onClick={() => buy()}
           />
         </>
