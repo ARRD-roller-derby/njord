@@ -39,12 +39,12 @@ export const QuestionCardView: React.FC<QuestionCardResults> = ({
       {questionDifficulty(
         percent(
           question.good_answers_num,
-          question.good_answers_num ?? 0 + question.bad_answers_num ?? 0
+          question.good_answers_num + question.bad_answers_num
         )
       )}
       {` (${percent(
         question.good_answers_num,
-        question.good_answers_num ?? 0 + question.bad_answers_num ?? 0
+        question.good_answers_num + question.bad_answers_num
       )}%)`}
     </div>
 
