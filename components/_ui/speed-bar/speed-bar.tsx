@@ -15,8 +15,6 @@ export const SpeedBar: React.FC<SpeedBarProps> = ({ speed, slower, faster }) => 
 
     <div className={styles.bar}>
       <div className={styles.speed} style={{ left: `${percentRange(faster, slower, speed)}%` }}>
-
-
         <div className={styles.marker}>
           <MarkerIcon />
         </div>
