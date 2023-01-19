@@ -8,6 +8,8 @@ import User from '../../../models/user.model'
 import dayjs from 'dayjs'
 import trigger from '../../../services/bifrost/trigger'
 import { TriggerEvents } from '../../../types/trigger-events.enum'
+import { QuestionInterface } from '../../../types/question.interface'
+import { getReadTime } from '../../../utils/get-read-time'
 
 export default async function quizDailySubmit(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -29,6 +31,17 @@ export default async function quizDailySubmit(req: NextApiRequest, res: NextApiR
       $in: req?.body?.answers.map((answer: { id: string }) => validator.escape(answer.id)),
     },
   })
+
+
+  const words = questions.reduce((acc: string[], question: QuestionInterface) => {
+    acc.push(...question.question.split(' '))
+    question.answers.forEach((answer: { answer: string }) => {
+      acc.push(...answer.answer.split(' '))
+    })
+    return acc
+  }, [])
+
+  const readTime = getReadTime(words.join(' '))
 
   const countMyGoodAnswers = req.body.answers.reduce((acc: number, { answer, id }) => {
     //search question
@@ -65,8 +78,10 @@ export default async function quizDailySubmit(req: NextApiRequest, res: NextApiR
 
   const diffSeconds = dayjs(ranking.end).diff(dayjs(ranking.start), 'second')
   //little score is good score
-  ranking.score = (countMyGoodAnswers * 3600) - diffSeconds
+  ranking.score = (countMyGoodAnswers * 3600 * readTime) - diffSeconds
 
+  console.log('diffSeconds', diffSeconds)
+  console.log('readTime', readTime)
   me.dailyContestAvgTime = me?.dailyContestAvgTime ? (me.dailyContestAvgTime + diffSeconds) / 2 : diffSeconds
   me.dailyContestAvgAccuracy = me?.dailyContestAvgAccuracy ? (me.dailyContestAvgAccuracy + ranking.percent) / 2 : ranking.percent
   me.lastDailyContest = new Date()
