@@ -8,6 +8,7 @@ const rankingQuizSchema = new Schema<RankingQuizInterface>({
   end: Date,
   percent: Number,
   score: Number,
+  speed: Number,
   answers: [String],
   updatedAt: Date,
 })

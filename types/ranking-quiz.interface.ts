@@ -9,6 +9,7 @@ export interface RankingQuizInterface {
   answers: string[]
   percent: number
   score: number
+  speed: number
   updatedAt: Date
 
 }

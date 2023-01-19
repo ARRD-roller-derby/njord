@@ -45,7 +45,7 @@ export const DailycontestCard: FC<DailycontestCardProps> = ({ user, myId, positi
     </div>
 
     <div className={styles.speedContainer}>
-      <SpeedBar speed={user.ranking.score} slower={slower} faster={faster} />
+      <SpeedBar speed={user.ranking?.speed || user.ranking.score} slower={slower} faster={faster} />
     </div>
   </div>
 )
