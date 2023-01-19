@@ -23,7 +23,7 @@ interface props {
   bureau: boolean
   coach: boolean
 }
-export default function MenuMobileView({ isOpen, setIsOpen, goToPage, isAdmin, isAdmin_game, bureau, coach }: props) {
+export default function MenuMobileView({ isOpen, setIsOpen, goToPage, isAdmin, isAdmin_game }: props) {
   return (
     <div className={classes.container}>
       <div className={classes.menu} data-isopen={isOpen}>
@@ -34,7 +34,7 @@ export default function MenuMobileView({ isOpen, setIsOpen, goToPage, isAdmin, i
           <MenuButton isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
 
-        <LinkForMobile icon={QuestionIcon} label="Concours" url='/daily-contest' goToPage={goToPage} />
+        <LinkForMobile icon={QuestionIcon} label="Défi quotidien" url='/daily-contest' goToPage={goToPage} />
         <LinkForMobile icon={StoreIcon} label="Boutique" url='/shop' goToPage={goToPage} />
 
         <LinkForMobile icon={NewsIcon} label="News" url='/news' goToPage={goToPage} />

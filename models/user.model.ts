@@ -28,6 +28,7 @@ const userSchema = new Schema<UserInterface>({
   rank_card: String,
   rank_card_percent: String,
   rank_card_speed: String,
+  lastDailyContest: Date,
   dailyContestAvgTime: Number,
   dailyContestAvgAccuracy: Number,
   allergies: [String],

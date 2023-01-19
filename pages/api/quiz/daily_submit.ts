@@ -69,6 +69,7 @@ export default async function quizDailySubmit(req: NextApiRequest, res: NextApiR
 
   me.dailyContestAvgTime = me?.dailyContestAvgTime ? (me.dailyContestAvgTime + diffSeconds) / 2 : diffSeconds
   me.dailyContestAvgAccuracy = me?.dailyContestAvgAccuracy ? (me.dailyContestAvgAccuracy + ranking.percent) / 2 : ranking.percent
+  me.lastDailyContest = new Date()
 
   await me.save()
   await ranking.save()

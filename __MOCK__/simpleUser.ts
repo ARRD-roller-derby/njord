@@ -10,6 +10,7 @@ export const simpleUser: UserInterface = {
   msp: false,
   mst: true,
   profiles: [],
+  lastDailyContest: new Date(),
   dailyContestAvgTime: 13,
   dailyContestAvgAccuracy: 50,
   league: {

@@ -24,7 +24,7 @@ export const MenuLinks: Array<MenuLinksInterface> = [
   },
   {
     href: '/daily-contest',
-    title: 'Concours journalier',
+    title: 'Défi quotidien',
     icon: '/icons/question.svg',
   },
   {
