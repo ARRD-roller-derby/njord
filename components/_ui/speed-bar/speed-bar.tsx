@@ -14,7 +14,7 @@ export const SpeedBar: React.FC<SpeedBarProps> = ({ speed, slower, faster }) => 
   slower && faster ? <div className={styles.container}>
 
     <div className={styles.bar}>
-      <div className={styles.speed} style={{ left: `${percentRange(slower, faster, speed)}%` }}>
+      <div className={styles.speed} style={{ left: `${percentRange(faster, slower, speed)}%` }}>
 
 
         <div className={styles.marker}>
