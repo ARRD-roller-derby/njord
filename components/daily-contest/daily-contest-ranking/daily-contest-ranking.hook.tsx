@@ -10,7 +10,9 @@ import { DailyContestRankingFactoryResult } from "./daily-contest-ranking"
 
 export const useDailyContestRanking = ({ date }): DailyContestRankingFactoryResult => {
   const { data, loading, reSync } = useFetch<{
-    ranking: Array<RankingUserInterface>
+    ranking: Array<RankingUserInterface>,
+    faster: number,
+    slower: number
   } & PaginationFetch>('quiz/daily_ranking', { page: 1, date }),
     [triggerRefresh] = useContext(SocketContext),
     { pagination, setTotal } = useContext(PaginationContext),
@@ -34,10 +36,10 @@ export const useDailyContestRanking = ({ date }): DailyContestRankingFactoryResu
     }
   }, [data])
 
-  console.log(data?.ranking)
-
   return {
     ranking: data?.ranking,
+    faster: data?.faster,
+    slower: data?.slower,
     myId: session?.user._id ?? '',
     loading,
     reSync,

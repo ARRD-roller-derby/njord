@@ -23,7 +23,7 @@ export const ShopContestView: FC<ShopContestResult> = ({ user, loading, buy }) =
       <div className={styles.cards}>
         {contestCardPrices.map(card => <div key={card.name}>
           <div className={styles.card} key={card.name}>
-            <DailycontestCard user={{ user, ranking }} myId={"id"} position={1} variant={card.name} />
+            <DailycontestCard user={{ user, ranking }} myId={"id"} position={1} variant={card.name} faster={10} slower={10000} />
             {user.rank_card === card.name ? <Info>Tu possèdes cette carte</Info> :
               <>           <div className={styles.price}>{card.cost} dr.</div>
                 <div className={styles.button}>

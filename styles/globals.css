@@ -559,3 +559,17 @@ label::first-letter {
   transition: opacity 200ms, transform 200ms;
   position: absolute;
 }
+
+.svg {
+  width: 100%;
+  height: auto;
+}
+
+.fa-primary {
+  fill: #836728
+}
+
+.fa-secondary {
+  fill: var(--color-tierce);
+
+}

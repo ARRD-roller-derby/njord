@@ -1,0 +1,40 @@
+.container {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  padding: 0 10px;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  gap: 3px;
+  padding: 0
+}
+
+.icon {
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.8));
+}
+
+
+.marker {
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.8));
+}
+
+
+.bar {
+  position: relative;
+  grid-column: 1/4;
+  height: 18px;
+  width: calc(100% - 25px / 2);
+}
+
+.speed {
+  position: absolute;
+}
+
+.road {
+  background: var(--color-bg);
+  height: 2px;
+}

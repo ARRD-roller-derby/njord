@@ -10,6 +10,7 @@ export interface RankingQuizInterface {
   percent: number
   score: number
   updatedAt: Date
+
 }
 
 export interface RankingUserInterface {

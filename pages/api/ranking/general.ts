@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import User from "../../../models/user.model";
 import { MongoDb } from '../../../db/mongo.connect'
+import dayjs from 'dayjs'
 
 export default async function generalRanking(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -23,7 +24,13 @@ export default async function generalRanking(req: NextApiRequest, res: NextApiRe
 
   const { type } = types.find(type => type.name === req.body.type) || types[0]
   const perPage = 50
-  const where = { [type]: { $exists: true } }
+  const where = {
+    [type]: { $exists: true },
+    $OR: [
+      { lastDay: { $exists: false } },
+      { lastDay: { $gte: dayjs().subtract(5, 'day').format('YYYY-MM-DD') } }
+    ]
+  }
   const direction = type === 'dailyContestAvgAccuracy' ? -1 : 1
   const totalRanking = await User.count(where)
   const ranking = await User.find(where).skip(page > 1 ? page * perPage - perPage : 0).select('avatar lastname name derbyName numRoster email dailyContestAvgAccuracy dailyContestAvgTime').limit(perPage).sort({
@@ -33,6 +40,8 @@ export default async function generalRanking(req: NextApiRequest, res: NextApiRe
 
   res.json({
     ranking,
+    faster: ranking[ranking.length - 1].dailyContestAvgTime,
+    slower: ranking[0].dailyContestAvgTime,
     totalPage: Math.ceil(totalRanking / perPage)
   })
 

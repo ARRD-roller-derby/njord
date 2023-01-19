@@ -80,9 +80,7 @@ export default async function quizDailySubmit(req: NextApiRequest, res: NextApiR
   //little score is good score
   ranking.score = (countMyGoodAnswers * 3600 * readTime) - diffSeconds
 
-  console.log('diffSeconds', diffSeconds)
-  console.log('readTime', readTime)
-  me.dailyContestAvgTime = me?.dailyContestAvgTime ? (me.dailyContestAvgTime + diffSeconds) / 2 : diffSeconds
+  me.dailyContestAvgTime = me?.dailyContestAvgTime ? (me.dailyContestAvgTime + ranking.score) / 2 : ranking.score
   me.dailyContestAvgAccuracy = me?.dailyContestAvgAccuracy ? (me.dailyContestAvgAccuracy + ranking.percent) / 2 : ranking.percent
   me.lastDailyContest = new Date()
 
