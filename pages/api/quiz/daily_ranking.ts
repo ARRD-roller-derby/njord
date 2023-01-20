@@ -37,8 +37,8 @@ export default async function quizRanking(req: NextApiRequest, res: NextApiRespo
 
   res.json({
     ranking,
-    faster: await RankingQuiz.find({ quizId: quiz._id, end: { $exists: true } }).select('speed').limit(1).sort({ speed: -1 }),
-    slower: await RankingQuiz.find({ quizId: quiz._id, end: { $exists: true } }).select('speed').limit(1).sort({ speed: 1 }),
+    faster: await RankingQuiz.find({ quizId: quiz._id, end: { $exists: true } }).select('speed').limit(1).sort({ speed: -1 })[0].speed || 0,
+    slower: await RankingQuiz.find({ quizId: quiz._id, end: { $exists: true } }).select('speed').limit(1).sort({ speed: 1 })[0].speed || 0,
     totalPage: Math.ceil(totalParticipate / perPage)
   })
 
