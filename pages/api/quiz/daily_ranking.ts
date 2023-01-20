@@ -37,8 +37,8 @@ export default async function quizRanking(req: NextApiRequest, res: NextApiRespo
 
   res.json({
     ranking,
-    faster: rankingResults[rankingResults.length - 1]?.score || 0,
-    slower: rankingResults[0]?.score || 0,
+    faster: rankingResults[rankingResults.length - 1]?.speed || 0,
+    slower: rankingResults[0]?.speed || 0,
     totalPage: Math.ceil(totalParticipate / perPage)
   })
 
