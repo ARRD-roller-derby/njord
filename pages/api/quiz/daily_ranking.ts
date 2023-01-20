@@ -35,10 +35,12 @@ export default async function quizRanking(req: NextApiRequest, res: NextApiRespo
     return val
   }, [])
 
+  const sortedRanking = ranking.sort((a, b) => b.ranking.speed - a.ranking.speed)
+
   res.json({
     ranking,
-    faster: rankingResults[rankingResults.length - 1]?.speed || 0,
-    slower: rankingResults[0]?.speed || 0,
+    faster: sortedRanking[rankingResults.length - 1]?.speed || 0,
+    slower: sortedRanking[0]?.speed || 0,
     totalPage: Math.ceil(totalParticipate / perPage)
   })
 
