@@ -35,10 +35,14 @@ export default async function quizRanking(req: NextApiRequest, res: NextApiRespo
     return val
   }, [])
 
+  const faster = await RankingQuiz.findOne({ quizId: quiz._id, end: { $exists: true } }).limit(1).sort({ speed: -1 }).select('speed')
+
+  const slower = await RankingQuiz.findOne({ quizId: quiz._id, end: { $exists: true } }).limit(1).sort({ speed: 1 }).select('speed')
+
   res.json({
     ranking,
-    faster: await RankingQuiz.find({ quizId: quiz._id, end: { $exists: true } }).select('speed').limit(1).sort({ speed: -1 })[0].speed || 0,
-    slower: await RankingQuiz.find({ quizId: quiz._id, end: { $exists: true } }).select('speed').limit(1).sort({ speed: 1 })[0].speed || 0,
+    faster: faster?.speed || 0,
+    slower: slower?.speed || 0,
     totalPage: Math.ceil(totalParticipate / perPage)
   })
 
