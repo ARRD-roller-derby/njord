@@ -9,7 +9,9 @@ export default async function deleteEvent(req: NextApiRequest, res: NextApiRespo
   const session = await getSession({ req })
   if (!session) return res.status(403).send('non autorisé')
 
-  if (session.user?.profiles.length === 0) return res.status(403).send('non autorisé')
+  if (!session.user?.profiles.find((profile: string) =>
+    profile.match(/bureau|coach|com|fest|orga|merch/)
+  )) return res.status(403).send('non autorisé')
   await MongoDb()
 
   const eventToDelete = await Event.findById(validator.escape(req.body.eventId))
