@@ -19,7 +19,7 @@ export const useEventsNext = (): EventsNextResult => {
 
   useEffect(() => {
     if (!ctx.loading && pagination?.currentPage <= ctx.data?.totalPage) {
-      ctx.refetch({ page: 1 })
+      ctx.refetch({ page: pagination.currentPage + 1 })
       setPage(1)
     }
   }, [pagination.currentPage])
