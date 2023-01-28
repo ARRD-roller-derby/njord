@@ -95,11 +95,11 @@ Bien que plus verbeux, chaque fichiers constituant le composant est bien plus l�
 
 ```
 Component
-  | Component.tsx (container)
-  | ComponentView.tsx (vue)
-  | useComponent.tsx (logique)
-  | Component.module.css (style scopé au composant)
-  | Component.spec.tsx (tests unitaire)
+  | component.tsx (container)
+  | component.view.tsx (vue)
+  | component.hook.tsx (logique)
+  | component.module.css (style scopé au composant)
+  | component.spec.tsx (tests unitaire)
 
 ```
 
@@ -123,7 +123,7 @@ les composants ayant des props definissent chacun leurs interfaces nommé `props
 
 _fonction dans le nom indique l'utilité du composant._
 
-container : `RefModelFonction`
+container : `refModelFonction`
 vues: `RefModelFonctionView`
 logique: `useRefModelFonction`
 
