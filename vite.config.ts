@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 
-import {configDefaults, defineConfig } from 'vitest/config'
+import { configDefaults, defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
-    globals:true,
+    globals: true,
     setupFiles: [
       './setupFiles/server.ts',
       './setupFiles/extend.ts',
@@ -16,28 +16,28 @@ export default defineConfig({
       './setupFiles/modules.mock.ts',
       './setupFiles/date.mock.ts',
       '/setupFiles/mongo-memory-server.ts'
-    
+
     ],
     coverage: {
-      reporter: ['text','html'],
-      all:true,
+      reporter: ['text', 'html'],
+      all: true,
       exclude: [
-        ...configDefaults.exclude, 
+        ...configDefaults.exclude,
         '**/e2e/*',
-      '**/.next/*',
-      '**/db/*',
-      'public/**',
-      'styles/**',
-      'pages/**/*.tsx',
-      '**/playwright.config.ts',
-      '**/tests-examples/*',
-      'types/**',
-      '**/*.ts',
-      '**/*.js'
+        '**/.next/*',
+        '**/db/*',
+        'public/**',
+        'styles/**',
+        'pages/**/*.tsx',
+        '**/playwright.config.ts',
+        '**/tests-examples/*',
+        'types/**',
+        '**/*.ts',
+        '**/*.js'
       ],
     },
     exclude: [
-      ...configDefaults.exclude, 
+      ...configDefaults.exclude,
       '**/e2e/*',
       '**/.next/*',
       '**/db/*',
@@ -47,6 +47,6 @@ export default defineConfig({
       '**/tests-examples/*',
       'types/**',
     ],
-    
+
   },
 })

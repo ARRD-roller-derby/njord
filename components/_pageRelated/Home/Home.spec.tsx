@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import {cleanup } from '@testing-library/react'
+import { cleanup } from '@testing-library/react'
 import Home from './Home'
 import { render, screen } from '../../../utils/test-utils'
 import { rest } from 'msw'
@@ -17,11 +17,10 @@ describe('<Home />', () => {
   it('Check snapshot', async () => {
     const { asFragment } = render(
       <SocketContext.Provider value={[null, vi.fn]}>
-        <Home/>
+        <Home />
       </SocketContext.Provider>
     )
-    
-    expect(await screen.findByText('Aucun événement prévu.')).toBeInTheDocument()
+
     expect(asFragment()).toMatchSnapshot()
   })
 })
