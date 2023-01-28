@@ -27,6 +27,7 @@ export interface UserInterface {
   derbyName?: string;
   mst?: boolean;
   msp?: boolean;
+  lastStressContest?: Date;
   lastDailyContest?: Date,
   dailyContestAvgTime: number
   dailyContestAvgAccuracy: number
