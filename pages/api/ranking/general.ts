@@ -28,7 +28,7 @@ export default async function generalRanking(req: NextApiRequest, res: NextApiRe
     [type]: { $exists: true },
     $OR: [
       { lastDailyContest: { $exists: false } },
-      { lastDailyContest: { $gte: dayjs().subtract(5, 'day').format('YYYY-MM-DD') } }
+      { lastDailyContest: { $gte: dayjs().subtract(5, 'day') } }
     ]
   }
   const direction = type === 'dailyContestAvgAccuracy' ? -1 : 1
