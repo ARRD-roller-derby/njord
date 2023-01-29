@@ -23,7 +23,7 @@ export default async function attendees(
   if (
     session.user.profiles.length > 0 &&
     session.user.profiles.find((profile: string) =>
-      profile.match(/coach|bureau/)
+      profile.match(/coach|bureau|orga/)
     )
   )
     return res.send("no required");
