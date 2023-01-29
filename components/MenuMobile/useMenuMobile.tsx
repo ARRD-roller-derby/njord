@@ -25,8 +25,10 @@ export default function useMenuMobile() {
     goToPage,
     isAdmin: session ? !!session.isAdmin : false,
     isAdmin_game: session ? !!session.admin_game : false,
+    //TODO faire un enum pour les profils
     bureau: getAuth('bureau'),
     coach: getAuth('coach'),
-    com: getAuth('com'),
+    com: getAuth('communication'),
+    orga: getAuth('orga'),
   }
 }

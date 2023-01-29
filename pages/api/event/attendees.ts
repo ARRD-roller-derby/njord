@@ -28,7 +28,7 @@ export default async function attendees(
   });
 
   const noProfiles = !session.user?.profiles.find((profile: string) =>
-    profile.match(/bureau|coach/)
+    profile.match(/bureau|coach|orga/)
   );
 
   if (!feature && noProfiles)
