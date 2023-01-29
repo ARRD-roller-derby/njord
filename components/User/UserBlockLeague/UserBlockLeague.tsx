@@ -37,7 +37,8 @@ export default function UserBlockLeague({ user, reSync, uri }: props) {
         editField={
           <MiniFormCreateSelect
             isMulti
-            options={['bureau', 'coach', 'communication'].map((o) => ({
+            //TODO faire un enum pour les profils
+            options={['bureau', 'coach', 'communication', 'orga', 'merchandising'].map((o) => ({
               label: o,
               value: o,
             }))}

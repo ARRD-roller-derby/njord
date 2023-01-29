@@ -140,7 +140,7 @@ export default function useCalendar({ setBetween, events }: Props) {
     isMobile,
     mobileEvents, setMobileEvents,
     isAdmin: session?.user?.profiles.find((profile: string) =>
-      profile.match(/bureau|coach|com|fest|merch|orga/)
+      profile.match(/bureau|coach|orga/)
     ),
   }
 }
