@@ -1,6 +1,7 @@
 import { Schema, model, models } from 'mongoose'
 import { AttendeesEventInterface, EventInterface } from '../types/Event.interface';
 import { adressSchema } from './adresses.model';
+import { sponsorSchema } from './sponsor.model';
 
 const attendeesSchema = new Schema<AttendeesEventInterface>({
   userId: String,
@@ -30,7 +31,8 @@ const eventSchema = new Schema<EventInterface>({
   events: [String],
   address: adressSchema,
   versus: [String],
-  updatedAt: Date
+  updatedAt: Date,
+  sponsor: sponsorSchema
 })
 
 const Event = models.events || model('events', eventSchema)

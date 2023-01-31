@@ -21,7 +21,6 @@ interface Props {
 }
 
 export default function MiniForm(props: Props) {
-
   const useProps = useMiniForm(props);
 
   return <MiniFormView {...props} {...useProps} />

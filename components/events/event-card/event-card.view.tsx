@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import { Card } from "../../_ui/card/card";
 import { EventDate } from "../event-date/event-date";
 import styles from "./event-card.module.css";
@@ -63,6 +65,14 @@ export const EventCardView: React.FC<EventCardProps & EventCardResult> = ({
               {validator.unescape(event?.description || "")}
             </ReactMarkdown>
           </div>
+          {event.sponsor && <a className={styles.sponsor} href={event.sponsor.link} target='_blank' rel="noreferrer">
+            <div >{"Sponsorisé par : "}<div className={styles.sponsorName}>{event.sponsor.name}</div></div>
+            <img className={styles.sponsorLogo} src={event.sponsor.logo} />
+            <ReactMarkdown>
+              {validator.unescape(event?.sponsor.description || "")}
+            </ReactMarkdown>
+            <button>Visiter</button>
+          </a>}
         </div>
 
         {!event.cancel && (

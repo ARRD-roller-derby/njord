@@ -9,7 +9,7 @@ import LabeledBlock from '../../_ui/LabeledBlock/LabeledBlock';
 import SubmitButton from '../../_ui/SubmitButton/SubmitButton';
 import { PollFormInput } from './poll-form-input/poll-form-input';
 import styles from './poll-form.module.css';
-import { FullscreenPopinContext } from "../../fullscreen-popin/fullscreen-popin.context";
+import { FullscreenPopinContext } from "../../fullscreen-popin/fullscreen-popin";
 
 const MarkdownEditor = dynamic(() => import('@uiw/react-md-editor'), {
   ssr: false,

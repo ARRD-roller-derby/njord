@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import 'leaflet/dist/leaflet.css'
 import 'nprogress/nprogress.css'
 import '../styles/globals.css'
+import 'cropperjs/dist/cropper.css'
 import '@uiw/react-md-editor/markdown-editor.css';
 import '@uiw/react-markdown-preview/markdown.css';
 import dayjs from 'dayjs'

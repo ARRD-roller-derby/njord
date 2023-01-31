@@ -13,6 +13,7 @@ import NewsIcon from '../../public/icons/newspaper.svg'
 import BlockQuestionIcon from '../../public/icons/block-question.svg'
 import LinkForMobile from '../_ui/LinkForMobile/LinkForMobile'
 import RankingIcon from '../../public/icons/ranking.svg'
+import SponsorIcon from '../../public/icons/sponsor.svg'
 import PollIcon from '../../public/icons/poll.svg'
 
 interface props {
@@ -47,6 +48,7 @@ export default function MenuMobileView({ isOpen, setIsOpen, goToPage, isAdmin, i
         <LinkForMobile icon={AddressIcon} label="Mes adresses" url='/adresses' goToPage={goToPage} />
         <LinkForMobile icon={StuffIcon} label="inventaire" url='/stuff' goToPage={goToPage} />
         {(isAdmin || isAdmin_game) && <LinkForMobile icon={BlockQuestionIcon} label="questions" url='/questions' goToPage={goToPage} />}
+        {(isAdmin) && <LinkForMobile icon={SponsorIcon} label="sponsors" url='/sponsors' goToPage={goToPage} />}
 
       </div>
     </div>

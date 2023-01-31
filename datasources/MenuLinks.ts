@@ -64,6 +64,12 @@ export const MenuLinks: Array<MenuLinksInterface> = [
     admin_game: true,
     admin: true
   },
+  {
+    href: '/sponsors',
+    title: 'Sponsors',
+    icon: '/icons/sponsor.svg',
+    admin: true
+  },
 
 ]
 

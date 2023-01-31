@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from "react"
+import { useContext, useEffect, useMemo, useState } from "react"
 import usePost from "../../_hooks/usePost"
 import { DailyContestContext } from "../../_pageRelated/daily-contest/daily-contest.context"
 import { DailyContestFormProps, DailyContestFormResult } from "./daily-contest-form"
@@ -43,8 +43,13 @@ export const useDailyContestForm = ({ questions }: DailyContestFormProps): Daily
       contestId: ctx?.data?.quiz._id,
       answers: Object.keys(answers).map((id: string) => ({ id, answer: answers[id] }))
     })
-
   }
+
+  useEffect(() => {
+    if (data) {
+      ctx?.reSync()
+    }
+  }, [data])
 
   return {
     question: questions[index],
