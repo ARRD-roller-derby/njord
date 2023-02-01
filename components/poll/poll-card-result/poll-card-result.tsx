@@ -13,6 +13,8 @@ import { percent } from "../../../utils/percent";
 
 export type PollCardResultProps = {
   poll: IPoll;
+  hideResult: () => void;
+  iHaveAllreadyVoted: boolean;
 }
 
 export type PollCardResultResults = {
@@ -42,7 +44,15 @@ export const usePollCardResult = ({ poll }: PollCardResultProps): PollCardResult
     }).sort((a, b) => b.votes - a.votes)
   }
     , [poll.votes]),
-    totalVotes = useMemo(() => poll.votes.length, [poll.votes])
+    totalVotes = useMemo(() => poll.votes.reduce(
+      (acc, value) => {
+        const voteMulti = acc.find(vote => vote.userId === value.userId)
+        if (!voteMulti) {
+          return [...acc, value]
+        }
+        return acc
+      }
+      , []).length, [poll.votes])
 
   const deletePoll = () => {
     postDel({ pollId: poll._id })
@@ -57,13 +67,14 @@ export const usePollCardResult = ({ poll }: PollCardResultProps): PollCardResult
   return { reSync, canPoll, deleteLoading, deletePoll, options, totalVotes };
 }
 
-export const PollCardResultView: React.FC<PollCardResultProps & PollCardResultResults> = ({ poll, canPoll, deletePoll, deleteLoading, options, totalVotes }) => (
+export const PollCardResultView: React.FC<PollCardResultProps & PollCardResultResults> = ({ poll, canPoll, deletePoll, deleteLoading, options, totalVotes, hideResult, iHaveAllreadyVoted }) => (
   <div className={styles.container}>
     <div className={styles.question}>
       <ReactMarkdown>{validator.unescape(poll.description)}</ReactMarkdown>
     </div>
     <div className={styles.infos}>
       <Info>
+        <p>{totalVotes} vote{totalVotes > 1 ? "s" : ""}</p>
         <p>Fin du sondage: {dayjs(dayjs(poll.expireAt).format("YYYY-MM-DD") +
           "T00:00.000").from(
             dayjs().format("YYYY-MM-DD") + "T00:00.000"
@@ -84,6 +95,7 @@ export const PollCardResultView: React.FC<PollCardResultProps & PollCardResultRe
     </div>
     <div className={styles.buttons} data-canpoll={canPoll}>
       {canPoll && <AutoConfirmButton text="Supprimer le sondage" textConfirm="Je confirme" onClick={deletePoll} loading={deleteLoading} />}
+      {canPoll && !iHaveAllreadyVoted && <AutoConfirmButton text="Voter" textConfirm="Je confirme" onClick={hideResult} />}
     </div>
   </div>
 )

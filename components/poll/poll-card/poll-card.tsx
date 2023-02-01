@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { IPoll, IPollOption } from "../../../types/poll.interface";
 import { PollsContext } from "../../_pageRelated/polls/polls";
 import styles from "./poll-card.module.css";
@@ -13,6 +13,7 @@ import AutoConfirmButton from "../../_ui/AutoConfirmButton/AutoConfirmButton";
 
 export type PollCardProps = {
   poll: IPoll;
+  seeResult: () => void;
 }
 
 export type PollCardResults = {
@@ -24,13 +25,23 @@ export type PollCardResults = {
   canPoll: boolean;
   deleteLoading: boolean;
   deletePoll: () => void;
+  totalVotes: number;
 }
 
 export const usePollCard = ({ poll }: PollCardProps): PollCardResults => {
   const { reSync, data: { canPoll } } = useContext(PollsContext),
     [selected, setSelected] = useState<string[]>([]),
     { loading, post, data } = usePost('poll/vote'),
-    { loading: deleteLoading, post: postDel, data: dataDel } = usePost('poll/delete')
+    { loading: deleteLoading, post: postDel, data: dataDel } = usePost('poll/delete'),
+    totalVotes = useMemo(() => poll.votes.reduce(
+      (acc, value) => {
+        const voteMulti = acc.find(vote => vote.userId === value.userId)
+        if (!voteMulti) {
+          return [...acc, value]
+        }
+        return acc
+      }
+      , []).length, [poll.votes])
 
   const handleSelect = (option: IPollOption) => {
 
@@ -59,17 +70,17 @@ export const usePollCard = ({ poll }: PollCardProps): PollCardResults => {
     }
   }, [data, dataDel])
 
-  return { reSync, selected, handleSelect, handleSubmit, loading, canPoll, deleteLoading, deletePoll };
+  return { reSync, selected, handleSelect, handleSubmit, loading, canPoll, deleteLoading, deletePoll, totalVotes };
 }
 
-export const PollCardView: React.FC<PollCardProps & PollCardResults> = ({ poll, handleSelect, selected, handleSubmit, loading, canPoll, deletePoll, deleteLoading }) => (
+export const PollCardView: React.FC<PollCardProps & PollCardResults> = ({ poll, seeResult, handleSelect, selected, handleSubmit, loading, canPoll, deletePoll, totalVotes, deleteLoading }) => (
   <div className={styles.container}>
     <div className={styles.question}>
       <ReactMarkdown>{validator.unescape(poll.description)}</ReactMarkdown>
     </div>
     <div className={styles.infos}>
       <Info>
-        <p>{poll.votes.length} vote{poll.votes.length > 1 ? "s" : ""}</p>
+        <p>{totalVotes} vote{totalVotes > 1 ? "s" : ""}</p>
         <p>Fin du sondage: {dayjs(dayjs(poll.expireAt).format("YYYY-MM-DD") +
           "T00:00.000").from(
             dayjs().format("YYYY-MM-DD") + "T00:00.000"
@@ -83,6 +94,7 @@ export const PollCardView: React.FC<PollCardProps & PollCardResults> = ({ poll, 
     </div>
     <div className={styles.buttons} data-canpoll={canPoll}>
       {canPoll && <AutoConfirmButton text="Supprimer le sondage" textConfirm="Je confirme" onClick={deletePoll} loading={deleteLoading} />}
+      {canPoll && <AutoConfirmButton text="Voir les résultats" textConfirm="Je confirme" onClick={seeResult} />}
       <SubmitButton loading={loading} text="Envoyer" onClick={handleSubmit} disabled={selected.length === 0} />
     </div>
   </div>
