@@ -18,6 +18,7 @@ import frFns from 'date-fns/locale/fr'
 import { SocketContext } from '../stores/socket.store';
 import NProgress from 'nprogress'
 import { Router } from 'next/router'
+import { MiniLoaderProvider } from '../components/mini-loader/mini-loader'
 
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
@@ -41,10 +42,12 @@ export default function App({
   const [state, setState] = useState()
 
   return (
-    <SessionProvider session={session}>
-      <SocketContext.Provider value={[state, setState]}>
-        <Component {...pageProps} />
-      </SocketContext.Provider>
-    </SessionProvider>
+    <MiniLoaderProvider>
+      <SessionProvider session={session}>
+        <SocketContext.Provider value={[state, setState]}>
+          <Component {...pageProps} />
+        </SocketContext.Provider>
+      </SessionProvider>
+    </MiniLoaderProvider>
   )
 }

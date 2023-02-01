@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import Error from '../../types/error.interface';
+import { MiniLoaderContext } from '../mini-loader/mini-loader';
 import LoaderWheel from '../_ui/LoaderWheel/LoaderWheel';
 
 interface Fetch {
@@ -11,13 +12,15 @@ interface Fetch {
   readonly post: Function
 }
 
-export default function usePost(url:string):Fetch {
+export default function usePost(url: string): Fetch {
   const [data, setData] = useState<any>(),
     [error, setError] = useState<Error>(),
-    [loading, setLoading] = useState<boolean>(false);
+    [loading, setLoading] = useState<boolean>(false),
+    [_globalLoading, setGlobalLoading] = useContext(MiniLoaderContext)
 
-  async function post(body:Object,returnMsg?:string) {
+  async function post(body: Object, returnMsg?: string) {
     setLoading(true);
+    setGlobalLoading(true)
     try {
       const { data: resData } = await toast.promise(
         axios.post(
@@ -25,27 +28,26 @@ export default function usePost(url:string):Fetch {
           body
         ),
         {
-          pending: {render:<LoaderWheel/>},
-          success:{
-            render({data}){
-              if(returnMsg) return returnMsg
-              return data.data && typeof data.data === 'string' ? data.data: 'OK ! 👌'
+          success: {
+            render({ data }) {
+              if (returnMsg) return returnMsg
+              return data.data && typeof data.data === 'string' ? data.data : 'OK !'
             }
-          } ,
+          },
           error: {
-            render({data}){
-
+            render({ data }) {
               return data?.response?.data || data.message
             }
           }
         },
-        {toastId: url}
+        { toastId: url }
       )
       setData(resData);
     } catch (e) {
       setError(e);
     }
     setLoading(false);
+    setGlobalLoading(false)
   }
 
   return {

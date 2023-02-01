@@ -105,15 +105,13 @@
 .screw {
   background: #b8b8b8;
   bottom: 35%;
-  clip-path: polygon(
-    left 35% right 35% top 35% 50% 0,
-    90% 20%,
-    100% 60%,
-    75% 100%,
-    25% 100%,
-    0 60%,
-    10% 20%
-  );
+  clip-path: polygon(left 35% right 35% top 35% 50% 0,
+      90% 20%,
+      100% 60%,
+      75% 100%,
+      25% 100%,
+      0 60%,
+      10% 20%);
 }
 
 .screw:before {
@@ -129,7 +127,14 @@
   from {
     transform: rotate(180deg) translateZ(0);
   }
+
   to {
     transform: rotate(360deg) translateZ(0);
   }
+}
+
+.center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
