@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import Error from '../../types/error.interface'
+import { MiniLoaderContext } from '../mini-loader/mini-loader'
 
 export default function useFetch<T>(
   url: string,
@@ -15,18 +16,17 @@ export default function useFetch<T>(
 } {
   const [data, setData] = useState<T>(),
     [error, setError] = useState<Error>(),
-    [inProgress, setInProgress] = useState<boolean>(false),
-    [loading, setLoading] = useState<boolean>(false)
+    [loading, setLoading] = useState<boolean>(false),
+    [globalLoading, setGlobalLoading] = useContext(MiniLoaderContext)
 
   async function handleFetch(newBody?: object, reSync?: boolean) {
-    if (inProgress) return
-    setInProgress(true)
+    if (globalLoading) return
+    setGlobalLoading(true)
     if (!reSync) setLoading(true)
     try {
       const { data: responseData } = await toast.promise(
         axios.post('/api/' + url, newBody || body),
         {
-          pending: { render: <p>{'chargement...'}</p> },
           error: {
             render({ data }) {
               return data?.response?.data || data.message || ''
@@ -40,7 +40,7 @@ export default function useFetch<T>(
       setError(e)
     }
     if (!reSync) setLoading(false)
-    setInProgress(false)
+    setGlobalLoading(false)
   }
 
   useEffect(() => {

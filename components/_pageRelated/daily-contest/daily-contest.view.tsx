@@ -10,8 +10,8 @@ import { DailyContestRanking } from "../../daily-contest/daily-contest-ranking/d
 
 export const DailyContestView: FC<DailyContextFactoryResult> = ({ quiz, cantPlay }) => (
   <div className={styles.container}>
-    <div className={styles.title}>Quizz du {dayjs(quiz.day).format('LL')}</div>
-    <div className={styles.difficulty}>difficulté: {quiz.difficulty}</div>
+    <div className={styles.title}>Quizz du {dayjs(quiz?.day).format('LL')}</div>
+    <div className={styles.difficulty}>difficulté: {quiz?.difficulty}</div>
 
     <PageActions>
       <DailyContestButton cantPlay={cantPlay} />

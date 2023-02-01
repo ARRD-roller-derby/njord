@@ -1,3 +1,4 @@
+import { LoadingBlur } from '../_ui/loading-blur/loading-blur'
 import classes from './Wallet.module.css'
 
 interface props {
@@ -5,5 +6,5 @@ interface props {
 }
 
 export default function WalletView({ wallet }: props) {
-  return <div className={classes.count}>{wallet || '...'} Dr.</div>
+  return <LoadingBlur loading={!wallet}><div className={classes.count}>{wallet || '1500'} Dr.</div></LoadingBlur>
 }

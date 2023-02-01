@@ -12,3 +12,5 @@ export default function LoaderWheel() {
     </div>
   )
 }
+
+export const LoaderWheelCenter = () => (<div className={classes.center} ><LoaderWheel /></div>)

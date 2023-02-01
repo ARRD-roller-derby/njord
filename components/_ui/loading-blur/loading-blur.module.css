@@ -1,0 +1,3 @@
+.container[data-loading="true"] {
+  filter: blur(2px);
+}
