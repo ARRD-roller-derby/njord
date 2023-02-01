@@ -5,7 +5,7 @@ import Poll from '../../../models/poll.model'
 
 export default async function questionsAll(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
-  if (!session?.isAdmin || !session?.admin_game) return res.status(403).send('non autorisé')
+  if (!session) return res.status(403).send('non autorisé')
 
   const { page } = req.body
 
