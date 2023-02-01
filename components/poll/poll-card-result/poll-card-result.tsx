@@ -64,10 +64,10 @@ export const PollCardResultView: React.FC<PollCardResultProps & PollCardResultRe
     </div>
     <div className={styles.infos}>
       <Info>
-        <p>Fin du sondage: {dayjs().from(
-          dayjs(poll.expireAt).format("YYYY-MM-DD") +
-          "T00:00.000"
-        )}</p>
+        <p>Fin du sondage: {dayjs(dayjs(poll.expireAt).format("YYYY-MM-DD") +
+          "T00:00.000").from(
+            dayjs().format("YYYY-MM-DD") + "T00:00.000"
+          )}</p>
       </Info>
     </div>
     <div className={styles.options}>

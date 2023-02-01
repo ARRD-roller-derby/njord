@@ -70,10 +70,10 @@ export const PollCardView: React.FC<PollCardProps & PollCardResults> = ({ poll, 
     <div className={styles.infos}>
       <Info>
         <p>{poll.votes.length} vote{poll.votes.length > 1 ? "s" : ""}</p>
-        <p>Fin du sondage: {dayjs().from(
-          dayjs(poll.expireAt).format("YYYY-MM-DD") +
-          "T00:00.000"
-        )}</p>
+        <p>Fin du sondage: {dayjs(dayjs(poll.expireAt).format("YYYY-MM-DD") +
+          "T00:00.000").from(
+            dayjs().format("YYYY-MM-DD") + "T00:00.000"
+          )}</p>
         {poll.multiChoice && <p>Plusieurs réponses possibles </p>}
       </Info>
     </div>
