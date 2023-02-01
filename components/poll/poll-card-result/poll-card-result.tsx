@@ -90,7 +90,7 @@ export const PollCardResultView: React.FC<PollCardResultProps & PollCardResultRe
 
         return (<div key={option.id} className={styles.option} >
           <div className={styles.optionBar} style={{ width: percentVal + "%" }} />
-          {validator.escape(option.text)} <span className={styles.result}>({option.votes} votes, {percentVal}%)</span>
+          {validator.unescape(option.text)} <span className={styles.result}>({option.votes} votes, {percentVal}%)</span>
         </div>)
       })}
 

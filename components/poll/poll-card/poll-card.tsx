@@ -90,7 +90,7 @@ export const PollCardView: React.FC<PollCardProps & PollCardResults> = ({ poll, 
     </div>
     <div className={styles.options}>
       {poll.options.map((option: IPollOption) => (
-        <div className={styles.option} key={option.id} data-good={selected.includes(option.id)} onClick={() => handleSelect(option)}>{validator.escape(option.text)}</div>))}
+        <div className={styles.option} key={option.id} data-good={selected.includes(option.id)} onClick={() => handleSelect(option)}>{validator.unescape(option.text)}</div>))}
     </div>
     <div className={styles.buttons} data-canpoll={canPoll}>
       {canPoll && <AutoConfirmButton text="Supprimer le sondage" textConfirm="Je confirme" onClick={deletePoll} loading={deleteLoading} />}
