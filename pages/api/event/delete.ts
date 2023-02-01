@@ -4,6 +4,7 @@ import { MongoDb } from '../../../db/mongo.connect'
 import validator from 'validator'
 import Event from '../../../models/event.model'
 import trigger from '../../../services/bifrost/trigger'
+import { TriggerEvents } from '../../../types/trigger-events.enum'
 
 export default async function deleteEvent(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -19,7 +20,7 @@ export default async function deleteEvent(req: NextApiRequest, res: NextApiRespo
   await eventToDelete.delete()
 
   trigger('public', {
-    type: 'event',
+    type: TriggerEvents.event,
     eventId: req.body.eventId
   })
 

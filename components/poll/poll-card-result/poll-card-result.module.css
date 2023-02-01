@@ -1,0 +1,51 @@
+.container {
+  background: var(--color-bg-dark);
+  border-radius: 10px;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 20px;
+  padding: 20px;
+  overflow: hidden;
+  border: 1px solid var(--color-arrd);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 20px 0;
+  font-size: .8em
+}
+
+
+.option {
+  text-align: left;
+  padding: 5px 0;
+  position: relative;
+}
+
+.optionBar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 5px;
+  background: var(--color-quator);
+  transition: 200ms ease-in-out;
+}
+
+.result {
+  opacity: .5;
+  font-size: .8em;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.buttons[data-canpoll="true"] {
+  justify-content: space-between;
+}

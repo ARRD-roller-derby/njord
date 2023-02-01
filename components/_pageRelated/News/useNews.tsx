@@ -3,35 +3,23 @@ import useFetch from '../../_hooks/useFetch'
 import { useSession } from 'next-auth/react'
 import { ArticleInterface } from '../../../types/article.interface'
 import { useProps } from './News.type'
-import { SocketContext } from '../../../stores/socket.store'
 import { PaginationContext } from '../../pagination/pagination.context'
 import { PaginationFetch } from '../../../types/pagination.interface'
+import { usePaginationSetter } from '../../pagination/pagination.hook'
+import { useSocketTrigger } from '../../_hooks/socket-trigger.hook'
 
 const useNews = (): useProps => {
-  const { data, loading, refetch } = useFetch<{
+  const ctx = useFetch<{
     articles: Array<ArticleInterface>
   } & PaginationFetch>('news/news', { page: 1 }),
-    [triggerRefresh] = useContext(SocketContext),
     { data: session } = useSession(),
-    { pagination, setTotal } = useContext(PaginationContext)
+    { data, loading, refetch } = ctx,
+    { pagination } = useContext(PaginationContext)
 
-  useEffect(() => {
-    if (triggerRefresh && triggerRefresh?.type === 'news') {
-      refetch({ page: pagination.currentPage })
-    }
-  }, [triggerRefresh])
-
-  useEffect(() => {
-    if (!loading && pagination?.currentPage <= data?.totalPage) {
-      refetch({ page: pagination.currentPage })
-    }
-  }, [pagination.currentPage])
-
-  useEffect(() => {
-    if (!loading && data?.totalPage) {
-      setTotal(data.totalPage)
-    }
-  }, [data])
+  usePaginationSetter(ctx)
+  useSocketTrigger('news', () => {
+    refetch({ page: pagination.currentPage })
+  })
 
   return {
     news: data?.articles,

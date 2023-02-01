@@ -7,6 +7,7 @@ import validator from 'validator'
 import User from '../../../models/user.model'
 import Event from '../../../models/event.model'
 import trigger from '../../../services/bifrost/trigger'
+import { TriggerEvents } from '../../../types/trigger-events.enum'
 
 export default async function event(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -64,7 +65,7 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
   })
 
   users.forEach(user => {
-    trigger(user._id, { type: 'event' })
+    trigger(user._id, { type: TriggerEvents.event })
   })
 
   const msg = creatableEvents.length > 1 ? `${creatableEvents.length} événement créés.` : 'événement créé.'

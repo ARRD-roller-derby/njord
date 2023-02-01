@@ -1,14 +1,14 @@
-import { useState, useContext,useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { SocketContext } from '../../stores/socket.store'
 
-export default function useNotifications(type:string){
-  const   
+export default function useNotifications(type: string) {
+  const
     [state] = useContext(SocketContext),
-    [notification, setNotification] = useState<any|null>(null)
+    [notification, setNotification] = useState<any | null>(null)
 
-    useEffect(()=>{
-      if(state && state.type === type) setNotification(state.value);
-    },[state])
+  useEffect(() => {
+    if (state && state.type === type) setNotification(state.value);
+  }, [state])
 
-    return notification
+  return notification
 }

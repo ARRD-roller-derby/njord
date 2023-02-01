@@ -16,23 +16,23 @@ interface props {
   readonly reSync: Function
 }
 
-export default function EventDetailsTab({ event, reSync }: props) {
+export default function EventDetailsTab({ event }: props) {
   return (
     <div className={classes.container}>
       <div className={classes.date}>
-      <div className={classes.day}>
-        {event?.type.match(/training|match|scrimmage|AG/) ? (
-          dayjs(event.start).format('LL')
-        ) : (
-          <div>
-            <div>{`DU ${dayjs(event.start).format('LL')}`}</div>
-            <div>{`au ${dayjs(event?.end).format('LL')}`}</div>
-          </div>
-        )}
-      </div>
-      <div className={classes.hour}>
-        {event?.hourStart} {'-'} {event?.hourEnd}
-      </div>
+        <div className={classes.day}>
+          {event?.type.match(/training|match|scrimmage|AG/) ? (
+            dayjs(event.start).format('LL')
+          ) : (
+            <div>
+              <div>{`DU ${dayjs(event.start).format('LL')}`}</div>
+              <div>{`au ${dayjs(event?.end).format('LL')}`}</div>
+            </div>
+          )}
+        </div>
+        <div className={classes.hour}>
+          {event?.hourStart} {'-'} {event?.hourEnd}
+        </div>
       </div>
       <div className={classes.box}>
         <div className={classes.main}>
@@ -51,18 +51,17 @@ export default function EventDetailsTab({ event, reSync }: props) {
           )}
           {event?.address?.city && (
             <div className={classes.address}>
-              {`${event.address.address || event.address.street || ''}, ${
-                event.address.zipcode
-              } ${event.address.city}`}
+              {`${event.address.address || event.address.street || ''}, ${event.address.zipcode
+                } ${event.address.city}`}
             </div>
           )}
-       
-            <div className={classes.actions}>
+
+          <div className={classes.actions}>
             {!event.cancel && (<>
               <EventPresence event={event} />
-              </> )}
-            </div>
-    
+            </>)}
+          </div>
+
         </div>
       </div>
     </div>
