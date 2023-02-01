@@ -21,7 +21,6 @@ import { PollCardSelector } from '../../poll/poll-card-selector/poll-card-select
 export type PollResult = {
   polls: IPoll[]
   loading: boolean
-  reSync: (body?: Object) => void
   canPoll: boolean
 }
 
@@ -33,18 +32,17 @@ export const PollsContext = createContext(null);
 // HOOK ---------------------------------------------
 export const usePolls = (): PollResult => {
   const ctx = useContext(PollsContext),
-    { data, loading, refetch } = ctx,
+    { data, loading } = ctx,
     { pagination } = useContext(PaginationContext)
 
   usePaginationSetter(ctx)
   useSocketTrigger(TriggerEvents.polls, () => {
-    ctx.refetch({ page: pagination.currentPage })
+    ctx.reSync({ page: pagination.currentPage })
   })
 
   return {
     polls: data?.polls,
     loading,
-    reSync: refetch,
     canPoll: data?.canPoll,
   }
 }
