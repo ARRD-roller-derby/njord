@@ -28,6 +28,7 @@ export type PollCardResultResults = {
     votes: number;
   }[]
   totalVotes: number;
+  totalVotesByOption: number;
 }
 
 export const usePollCardResult = ({ poll }: PollCardResultProps): PollCardResultResults => {
@@ -52,7 +53,8 @@ export const usePollCardResult = ({ poll }: PollCardResultProps): PollCardResult
         }
         return acc
       }
-      , []).length, [poll.votes])
+      , []).length, [poll.votes]),
+    totalVotesByOption = useMemo(() => options.reduce((acc, option) => acc + option.votes, 0), [options])
 
   const deletePoll = () => {
     postDel({ pollId: poll._id })
@@ -64,10 +66,10 @@ export const usePollCardResult = ({ poll }: PollCardResultProps): PollCardResult
     }
   }, [dataDel])
 
-  return { reSync, canPoll, deleteLoading, deletePoll, options, totalVotes };
+  return { reSync, canPoll, deleteLoading, deletePoll, options, totalVotes, totalVotesByOption };
 }
 
-export const PollCardResultView: React.FC<PollCardResultProps & PollCardResultResults> = ({ poll, canPoll, deletePoll, deleteLoading, options, totalVotes, hideResult, iHaveAllreadyVoted }) => (
+export const PollCardResultView: React.FC<PollCardResultProps & PollCardResultResults> = ({ poll, canPoll, deletePoll, deleteLoading, options, totalVotes, hideResult, iHaveAllreadyVoted, totalVotesByOption }) => (
   <div className={styles.container}>
     <div className={styles.question}>
       <ReactMarkdown>{validator.unescape(poll.description)}</ReactMarkdown>
@@ -84,7 +86,7 @@ export const PollCardResultView: React.FC<PollCardResultProps & PollCardResultRe
     <div className={styles.options}>
       {options.map((option) => {
 
-        const percentVal = percent(option.votes, totalVotes)
+        const percentVal = percent(option.votes, totalVotesByOption)
 
         return (<div key={option.id} className={styles.option} >
           <div className={styles.optionBar} style={{ width: percentVal + "%" }} />
