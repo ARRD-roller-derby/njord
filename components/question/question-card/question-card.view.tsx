@@ -48,8 +48,6 @@ export const QuestionCardView: React.FC<QuestionCardResults> = ({
       )}%)`}
     </div>
 
-
-
     <div className={styles.buttons}>
       <div className="button" onClick={deleteQuestion}>Supprimer la question</div>
     </div>

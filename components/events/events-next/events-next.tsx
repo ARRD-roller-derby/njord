@@ -1,4 +1,5 @@
 import { EventInterface } from "../../../types/Event.interface";
+import { PaginationFetch } from "../../../types/pagination.interface";
 import { PaginationProvider } from "../../pagination/pagination.provider";
 import useFetch from "../../_hooks/useFetch";
 import Factory from "../../_layouts/Factory/Factory";
@@ -13,7 +14,9 @@ const EventsNextFactory = Factory<unknown, EventsNextResult>(
 );
 
 export const EventsNext: React.FC = () => {
-  const ctx = useFetch<EventInterface[]>("events/next");
+  const ctx = useFetch<{
+    events: Array<EventInterface>
+  } & PaginationFetch>("events/next");
 
   return (
     <EventsNextContext.Provider value={ctx}>

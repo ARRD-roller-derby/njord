@@ -12,7 +12,7 @@ export default function eventWithPresence(
   )
   if (myPresence) {
     newEvent.presence = {
-      ...myPresence._doc,
+      ...myPresence?._doc,
       type: searchTypeOfPresence(myPresence, event.type),
     }
   } else {
@@ -20,7 +20,7 @@ export default function eventWithPresence(
       isPresent: false,
     }
   }
-  
+
   delete newEvent.attendees
 
   return newEvent

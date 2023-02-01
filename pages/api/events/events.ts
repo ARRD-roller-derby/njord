@@ -18,12 +18,14 @@ export default async function events(
   const OR = []
 
   const betweenValue = req.body?.between
-      ? req.body.between
-      : [dayjs().toISOString(), dayjs().add(1, 'month').toISOString()],
+    ? req.body.between
+    : [dayjs().toISOString(), dayjs().add(1, 'month').toISOString()];
+
+  const
     between = {
       start: {
-        $gte: validator.escape(betweenValue.at(0)),
-        $lte: validator.escape(betweenValue.at(-1)),
+        $gte: validator.escape(betweenValue[0]),
+        $lte: validator.escape(betweenValue[1]),
       },
     }
 

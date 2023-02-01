@@ -5,7 +5,7 @@ export const useSocketTrigger = (
   type: string,
   action: (msg: unknown) => void
 ) => {
-  const message = useContext(SocketContext)
+  const [message] = useContext(SocketContext)
 
   useEffect(() => {
     if (message && message?.type === type) {

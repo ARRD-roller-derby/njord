@@ -53,11 +53,17 @@ export const MenuLinks: Array<MenuLinksInterface> = [
     icon: '/icons/newspaper.svg',
   },
   {
+    href: '/sondages',
+    title: 'Sondages',
+    icon: '/icons/poll.svg',
+  },
+  {
     href: '/questions',
     title: 'Questions',
     icon: '/icons/block-question.svg',
     admin_game: true,
     admin: true
   },
+
 ]
 

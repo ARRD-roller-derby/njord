@@ -9,8 +9,6 @@ export default function usePush() {
   async function addPush(beamsClient: any) {
     if (isConnected) return;
 
-    console.log('_____________',
-      beamsClient)
     const pushClient = await beamsClient?.start();
     try {
       const isReady = pushClient.instanceId

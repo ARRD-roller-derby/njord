@@ -8,6 +8,7 @@ import eventTitleRender from '../../../utils/eventTitleRender'
 import dayjs from 'dayjs'
 import { pushNotifications } from '../../../services/pusher/pusherBeams'
 import trigger from '../../../services/bifrost/trigger'
+import { TriggerEvents } from '../../../types/trigger-events.enum'
 
 export default async function cancelEvent(
   req: NextApiRequest,
@@ -23,7 +24,7 @@ export default async function cancelEvent(
 
   const eventToCancel = await Event.findById(validator.escape(req.body.eventId))
 
-  eventToCancel.cancel = !eventToCancel.cancel
+  eventToCancel.cancel = !eventToCancel?.cancel
 
   await eventToCancel.save()
 
@@ -31,7 +32,7 @@ export default async function cancelEvent(
     eventToCancel.start
   ).format('LL')} a été annulé.`
 
-  const triggerPayload = { type: 'event', cancel: eventToCancel.cancel, eventId: eventToCancel._id }
+  const triggerPayload = { type: TriggerEvents.event, cancel: eventToCancel.cancel, eventId: eventToCancel._id }
   trigger(session.user._id, triggerPayload)
 
   eventToCancel?.attendees
@@ -44,7 +45,7 @@ export default async function cancelEvent(
   await Notification.create(
     eventToCancel.attendees.map((attendee: { userId: string }) => ({
       userId: attendee.userId,
-      type: 'event',
+      type: TriggerEvents.event,
       text,
       state: 'unread',
       url: '/calendrier',

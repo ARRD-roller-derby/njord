@@ -1,5 +1,3 @@
-import { IAnswer } from "../../../types/question.interface"
-
 export type QuestionAddFormResults = {
   onChange: (key: 'question' | 'good_answers' | 'img', value: string) => void,
   deleteAnswer: (index: string) => void,
