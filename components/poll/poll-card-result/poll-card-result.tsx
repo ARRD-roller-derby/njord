@@ -10,6 +10,7 @@ import dayjs from "dayjs";
 import usePost from "../../_hooks/usePost";
 import AutoConfirmButton from "../../_ui/AutoConfirmButton/AutoConfirmButton";
 import { percent } from "../../../utils/percent";
+import { PollCardVoteDetails } from "../poll-card-vote-details/poll-card-vote-details";
 
 export type PollCardResultProps = {
   poll: IPoll;
@@ -99,6 +100,7 @@ export const PollCardResultView: React.FC<PollCardResultProps & PollCardResultRe
       {canPoll && <AutoConfirmButton text="Supprimer le sondage" textConfirm="Je confirme" onClick={deletePoll} loading={deleteLoading} />}
       {canPoll && !iHaveAllreadyVoted && <AutoConfirmButton text="Voter" textConfirm="Je confirme" onClick={hideResult} />}
     </div>
+    <PollCardVoteDetails poll={poll} />
   </div>
 )
 
