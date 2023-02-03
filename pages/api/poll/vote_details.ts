@@ -6,13 +6,14 @@ import Poll from '../../../models/poll.model'
 import { IPollOption, IPollVote } from '../../../types/poll.interface'
 import { UserInterface } from '../../../types/User.interface'
 import { v4 as uuidv4 } from 'uuid'
+import validator from 'validator'
 
 export default async function pollVote(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
   if (!session?.user?.admin) return res.status(403).send('non autorisé')
 
   await MongoDb()
-  const poll = await Poll.findById(req.body.pollId)
+  const poll = await Poll.findById(validator.escape(req.body.pollId))
 
   if (!poll) return res.status(404).send('Sondage non trouvé')
 
