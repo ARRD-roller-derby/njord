@@ -2,16 +2,28 @@ import classes from "./Verify.module.css";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AnonymousLayout from "../../_layouts/Anonymous/Anonymous";
+import SubmitButton from "../../_ui/SubmitButton/SubmitButton";
+import usePost from "../../_hooks/usePost";
 
 export default function Verify() {
+  const [code, setCode] = useState("");
+  const { post, loading, data: url } = usePost('users/verify');
   const { push } = useRouter(),
     { data: session } = useSession();
 
   function handleRedirect() {
     push("/login");
   }
+
+  useEffect(() => {
+    console.log(url);
+    if (url) {
+      window.location.href = url;
+    }
+  }, [url]
+  )
 
   useEffect(() => {
     if (session && session.user) {
@@ -29,8 +41,17 @@ export default function Verify() {
           height={50}
         />
         <div className={classes.message}>
-          {`Vous allez recevoir un email vous permettant de vous connecter`}
+          {`Entrez le code de vérification que vous avez reçu par email.`}
         </div>
+        <form className={classes.form} onSubmit={(e) => {
+          e.preventDefault();
+
+          post({ code });
+        }}>
+          <input autoFocus type="text" value={code} onChange={(e) => setCode(e.target.value.toUpperCase().replace(' ', ''))} />
+          <SubmitButton text="Se connecter" loading={loading} />
+        </form>
+
         <button onClick={handleRedirect}>
           Retourner à la page de connexion
         </button>
