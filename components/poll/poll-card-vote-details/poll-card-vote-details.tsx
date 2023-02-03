@@ -6,6 +6,7 @@ import userNameRender from '../../../utils/userNameRender'
 import useFetch from '../../_hooks/useFetch'
 import Factory from '../../_layouts/Factory/Factory'
 import styles from './poll-card-vote-details.module.css'
+import validator from 'validator'
 
 export interface PollCardVoteDetailsProps {
   poll: IPoll
@@ -57,7 +58,7 @@ export const PollCardVoteDetailsView: React.FC<PollCardVoteDetailsProps & PollCa
       {show && <div className={styles.voters}>
         {voters.map((vote) => <div key={vote.id} className={styles.voter}>
           <div className={styles.voterName}>{userNameRender(vote.voter)}</div>
-          <div className={styles.voterVote}>{vote.vote}</div>
+          <div className={styles.voterVote}>{validator.unescape(vote.vote)}</div>
         </div>)}
       </div>}
     </div>
