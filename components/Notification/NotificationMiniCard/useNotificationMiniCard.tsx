@@ -13,11 +13,11 @@ export default function useNotificationMiniCard(
 
   function seePage() {
     read({ id: notification._id, state: 'read' })
-    router.push(notification.url)
+    window.location.pathname = notification.url
   }
-  
+
   function del() {
-    if(!loading){
+    if (!loading) {
       delNotif({ id: notification._id })
     }
   }
@@ -28,5 +28,5 @@ export default function useNotificationMiniCard(
     }
   }, [dataDel, dataRead])
 
-  return { del, seePage,loading }
+  return { del, seePage, loading }
 }
