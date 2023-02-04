@@ -9,7 +9,7 @@ export default function usePush() {
   async function addPush(beamsClient: any) {
     if (isConnected) return;
 
-    const pushClient = await beamsClient?.start();
+    const pushClient = await beamsClient?.start?.();
     try {
       const isReady = pushClient.instanceId
       if (!pushClient || !isReady) return
@@ -19,21 +19,23 @@ export default function usePush() {
       console.log("Votre navigateur bloque les notif push", e);
       return;
     }
+    const state = await beamsClient.getRegistrationState?.()
+    if (state !== 'PERMISSION_GRANTED_REGISTERED_WITH_BEAMS') return
 
     try {
-      await pushClient?.addDeviceInterest("league-public");
+      await pushClient?.addDeviceInterest?.("league-public");
     } catch (e) {
       console.log(e)
     }
     try {
-      await pushClient?.addDeviceInterest("user-" + session.user._id);
+      await pushClient?.addDeviceInterest?.("user-" + session.user._id);
     } catch (e) {
       console.log(e)
     }
 
     try {
       for (const profile of session.user?.profiles) {
-        await pushClient?.addDeviceInterest("profile-" + profile);
+        await pushClient?.addDeviceInterest?.("profile-" + profile);
       }
     } catch (e) {
       console.log(e)
@@ -41,7 +43,7 @@ export default function usePush() {
 
     if (session?.user?.league) {
       try {
-        await pushClient?.addDeviceInterest("league-" + session.user.league.id);
+        await pushClient?.addDeviceInterest?.("league-" + session.user.league.id);
       } catch (e) {
         console.log(e)
       }
