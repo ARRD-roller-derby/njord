@@ -23,13 +23,14 @@ export const useEventAttendees = ({
             (old) => old.type === searchTypeOfPresence(value, event.type)
           );
 
+          const count = value?.guestNumber ?? 1
           if (isExist) {
             const index = acc.findIndex((old) => old.type === isExist.type);
-            acc.splice(index, 1, { ...isExist, count: isExist.count + 1 });
+            acc.splice(index, 1, { ...isExist, count: isExist.count + count });
           } else {
             acc.push({
               type: searchTypeOfPresence(value, event.type),
-              count: value?.guestNumber || 1,
+              count,
             });
           }
           return acc;
