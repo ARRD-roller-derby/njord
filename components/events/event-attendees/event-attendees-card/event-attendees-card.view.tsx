@@ -21,6 +21,11 @@ export const EventAttendeesCardView: FC<
           {type}
         </div>
       )}
+      {user.guestNumber > 1 && (
+        <div className={styles.type} data-type={type}>
+          {user.guestNumber - 1} invité{user.guestNumber > 2 && 's'}
+        </div>
+      )}
     </div>
   </div>
 
