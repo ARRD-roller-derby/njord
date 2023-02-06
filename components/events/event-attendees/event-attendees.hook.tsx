@@ -29,7 +29,7 @@ export const useEventAttendees = ({
           } else {
             acc.push({
               type: searchTypeOfPresence(value, event.type),
-              count: value.guestNumber ?? 1,
+              count: value?.guestNumber || 1,
             });
           }
           return acc;
