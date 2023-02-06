@@ -4,7 +4,7 @@ import classes from './EventDetailsTab.module.css'
 import dayjs from 'dayjs'
 import validator from 'validator'
 import dynamic from 'next/dynamic'
-import EventPresence from '../EventPresence/EventPresence';
+import { EventPresence } from '../EventPresence/EventPresence';
 
 const MapForCard = dynamic(
   () => import('../../_ui/Map/MapForCard/MapForCard'),

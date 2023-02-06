@@ -1,0 +1,29 @@
+.count[data-disabled="true"] {
+  position: absolute;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.info {
+  width: 100%;
+  font-size: .7em;
+  font-style: italic;
+}
+
+
+.form {
+  display: flex;
+  gap: 10px;
+}
+
+.input {
+  max-width: 60px;
+  text-align: center;
+  font-weight: bold;
+  color: var(--color-tierce);
+  font-size: 1.1em;
+}

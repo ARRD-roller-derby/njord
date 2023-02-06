@@ -7,7 +7,7 @@ import ReactMarkdown from "react-markdown";
 import validator from "validator";
 import { EventShutter } from "../event-shutter/event-shutter";
 import { EventCardProps, EventCardResult } from "./event-card.type";
-import EventPresence from "../../Events/EventPresence/EventPresence";
+import { EventPresence } from "../../Events/EventPresence/EventPresence";
 import { Schedule } from "../../_ui/schedule/schedule";
 
 export const EventCardView: React.FC<EventCardProps & EventCardResult> = ({
@@ -67,8 +67,7 @@ export const EventCardView: React.FC<EventCardProps & EventCardResult> = ({
 
         {!event.cancel && (
           <div className={styles.presences}>
-            {" "}
-            <EventPresence event={event} />{" "}
+            <EventPresence event={event} />
           </div>
         )}
       </div>

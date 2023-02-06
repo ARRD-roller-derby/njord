@@ -17,10 +17,9 @@ export default function useFetch<T>(
   const [data, setData] = useState<T>(),
     [error, setError] = useState<Error>(),
     [loading, setLoading] = useState<boolean>(false),
-    [globalLoading, setGlobalLoading] = useContext(MiniLoaderContext)
+    [_globalLoading, setGlobalLoading] = useContext(MiniLoaderContext)
 
   async function handleFetch(newBody?: object, reSync?: boolean) {
-    if (globalLoading) return
     setGlobalLoading(true)
     if (!reSync) setLoading(true)
     try {

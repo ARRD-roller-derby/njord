@@ -5,8 +5,8 @@ export interface EventInterface {
   _id: string
   start: Date
   end: Date
-  title?:string
-  leagueId:string
+  title?: string
+  leagueId: string
   hourStart: string
   hourEnd: string
   description: string
@@ -22,18 +22,14 @@ export interface EventInterface {
   address: addressInterface
   events: Array<string>
   updatedAt: Date
-  presence?: {
-    isPresent:boolean
-    userId:string
-    type:string
-    updatedAt:Date
-  }
-  versus?:[string,string]
+  presence?: AttendeesEventInterface
+  versus?: [string, string]
 }
 
 export interface AttendeesEventInterface {
   userId: string
   type: string
+  guestNumber: number
   updatedAt: Date
   isPresent: boolean
 }

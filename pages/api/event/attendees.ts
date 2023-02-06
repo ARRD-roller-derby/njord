@@ -56,6 +56,7 @@ export default async function attendees(
         avatar: user.avatar,
         id: user._id,
         isPresent: attendee.isPresent,
+        guestNumber: attendee.guestNumber,
         type: attendee.type,
         updatedAt: attendee.updatedAt,
       };
