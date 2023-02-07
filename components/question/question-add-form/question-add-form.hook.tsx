@@ -3,7 +3,7 @@ import { QuestionAddFormForm, QuestionAddFormResults } from "./question-add-form
 import { v4 as uuidv4 } from 'uuid';
 import { getBase64 } from "../../../utils/getBase64";
 import usePost from "../../_hooks/usePost";
-import { FullscreenPopinContext } from "../../fullscreen-popin/fullscreen-popin.context";
+import { FullscreenPopinContext } from "../../fullscreen-popin/fullscreen-popin";
 import { QuestionsContext } from "../../_pageRelated/questions/question.context";
 import { toast } from "react-toastify";
 

@@ -1,5 +1,6 @@
 import { addressInterface } from './address.interface'
 import { EventType } from './EventType.enum';
+import { ISponsor } from './sponsor.interface';
 
 export interface EventInterface {
   _id: string
@@ -24,6 +25,7 @@ export interface EventInterface {
   updatedAt: Date
   presence?: AttendeesEventInterface
   versus?: [string, string]
+  sponsor?: ISponsor
 }
 
 export interface AttendeesEventInterface {

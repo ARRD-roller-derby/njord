@@ -1,0 +1,45 @@
+.container {
+  background: var(--color-bg-dark);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.logo {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.date {
+  color: var(--color-tierce);
+  font-size: 12px;
+}
+
+.content {
+  font-size: 15px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}
+
+.delete {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px
+}

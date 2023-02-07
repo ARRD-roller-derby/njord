@@ -3,4 +3,5 @@ export enum TriggerEvents {
   wallet = 'wallet',
   event = 'event',
   polls = 'polls',
+  sponsors = 'sponsors',
 }

@@ -5,7 +5,7 @@
   height: 100%;
 }
 
-.container[data-cancel="true"] > div:not(.cancel) {
+.container[data-cancel="true"]>div:not(.cancel) {
   filter: grayscale();
 }
 
@@ -61,4 +61,31 @@
   transform: rotate(45deg);
   box-shadow: 5px 0 5px rgba(0, 0, 0, 0.5);
   z-index: 1;
+}
+
+
+.sponsor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--color-txt-light);
+  background: var(--color-bg);
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sponsorName {
+  color: var(--color-tierce);
+  font-size: 16px;
+}
+
+.sponsorLogo {
+  max-width: 200px;
+}
+
+.sponsor:hover {
+  color: var(--color-txt);
 }

@@ -16,20 +16,20 @@ export default async function updateField(
 
   if (!session) return res.status(403).send('Non autorisé')
 
+  console.log(req.body.field, req.body.value)
   await MongoDb()
 
   const me = await User.findById(session.user._id),
-  //All profile can be touch event
+    //All profile can be touch event
     canIUpdateThisField = me.profiles.length > 0
 
   if (!canIUpdateThisField) return res.status(403).send('Non autorisé')
 
   const event = await Event.findById(validator.escape(req.body.id))
 
-  
-  event[req.body.field]= typeof value === 'string' ? validator.escape(req.body.value):req.body.value
+  event[req.body.field] = typeof value === 'string' ? validator.escape(req.body.value) : req.body.value
 
-  if(req.body.field === 'start' && event.type.match(/training|match|scrimmage|AG/)){
+  if (req.body.field === 'start' && event.type.match(/training|match|scrimmage|AG/)) {
     event.end = event.start
   }
   await event.save()

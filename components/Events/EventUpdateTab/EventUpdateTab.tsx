@@ -13,10 +13,12 @@ import MiniFormAddressRead from '../../MiniForm/MiniFormAddress/MiniFormAddressR
 import MiniFormSelect from "../../MiniForm/MiniFormSelect/MiniFormSelect";
 import MiniFormAddressSearch from '../../MiniForm/MiniFormAddress/MiniFormAddressSearch/MiniFormAddressEdit';
 import MiniFormItems from "../../MiniForm/MiniFormItems/MiniFormItems"
+import { MiniFormSponsor } from "../../MiniForm/miniform-sponsor/miniform-sponsor";
+import LabeledBlock from "../../_ui/LabeledBlock/LabeledBlock";
 
 interface props {
   readonly event: EventInterface;
-  readonly reSync: ()=>void;
+  readonly reSync: () => void;
   readonly uri: string;
   readonly user: UserInterface;
 }
@@ -112,7 +114,7 @@ export default function EventUpdateTab({ event, uri, reSync, user }: props) {
         uri={uri}
         model={event}
         reSync={reSync}
-        editField={<MiniFormAddressSearch withSaveAddresses/>}
+        editField={<MiniFormAddressSearch withSaveAddresses />}
         readField={<MiniFormAddressRead />}
       />
 
@@ -139,10 +141,12 @@ export default function EventUpdateTab({ event, uri, reSync, user }: props) {
         }
         readField={<MiniFormStringRead />}
       />
-
-      <MiniFormItems event={event} reSync={reSync}/>
-
-      
+      <LabeledBlock title="Items">
+        <MiniFormItems event={event} reSync={reSync} />
+      </LabeledBlock>
+      {!event.type.match(/training/) && <LabeledBlock title="Sponsor">
+        <MiniFormSponsor event={event} reSync={reSync} />
+      </LabeledBlock>}
     </div>
   );
 }

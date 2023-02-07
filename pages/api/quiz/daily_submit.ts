@@ -88,8 +88,9 @@ export default async function quizDailySubmit(req: NextApiRequest, res: NextApiR
   await me.save()
   await ranking.save()
 
-  trigger('public', { type: TriggerEvents.daily_contest })
+
   trigger(session.user._id, { type: TriggerEvents.wallet })
+  trigger('public', { type: TriggerEvents.daily_contest })
 
   return res.json({
     percent: ranking.percent.toFixed(0),
