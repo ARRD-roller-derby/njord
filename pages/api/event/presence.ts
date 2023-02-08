@@ -60,7 +60,7 @@ export default async function presence(
   event.attendees.push({
     userId: session.user._id.toString(),
     isPresent: isPresent ? true : false,
-    guestNumber: isPresent && req.body.guestNumber ? validator.escape(req.body.guestNumber.toString()) : 0,
+    guestNumber: isPresent && req.body.guestNumber ? validator.escape(req.body.guestNumber.toString()) : 1,
     updatedAt: new Date(),
   })
 
