@@ -10,7 +10,7 @@ export async function getServerSideProps({ req }) {
 
   return session
     ? {
-        redirect: { destination: '/' },
-      }
+      redirect: { destination: '/' },
+    }
     : { props: {} }
 }

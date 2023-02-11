@@ -12,7 +12,7 @@ export default async function sendVerificationRequest({
     url,
     host,
     email,
-    code: data,
+    code: data.loginCode,
   })
   return true
 }

@@ -6,8 +6,11 @@ import { useEffect, useState } from "react";
 import AnonymousLayout from "../../_layouts/Anonymous/Anonymous";
 import SubmitButton from "../../_ui/SubmitButton/SubmitButton";
 import usePost from "../../_hooks/usePost";
+import useLocalState from "../../_hooks/useLocalState";
+import { LocalStorage } from "../../../types/local-storage.enum";
 
 export default function Verify() {
+  const { localState } = useLocalState({ verify: '' }, LocalStorage.verify)
   const [code, setCode] = useState("");
   const { post, loading, data } = usePost('users/verify');
   const { push } = useRouter(),
@@ -44,7 +47,7 @@ export default function Verify() {
         </div>
         <div className={classes.form} >
           <input autoFocus type="text" value={code} onChange={(e) => setCode(e.target.value.toUpperCase().replace(' ', ''))} />
-          <SubmitButton text="Se connecter" loading={loading} onClick={() => post({ code })} />
+          <SubmitButton text="Se connecter" loading={loading} onClick={() => post({ code, token: localState?.verify })} />
         </div>
         <button onClick={handleRedirect}>
           Retourner à la page de connexion
