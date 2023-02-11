@@ -3,6 +3,8 @@ export interface ICode {
   email: string
   code: string
   url: string
+  token: string
+  verifyKey: string
   updatedAt: Date
   expiresAt: Date
 }

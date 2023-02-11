@@ -5,6 +5,8 @@ const codeSchema = new Schema<ICode>({
   code: String,
   email: String,
   url: String,
+  token: String,
+  verifyKey: String,
   expiresAt: Date,
   updatedAt: Date,
 })
