@@ -18,7 +18,6 @@ export default function Verify() {
   }
 
   useEffect(() => {
-    console.log(url);
     if (url) {
       window.location.href = url;
     }
@@ -43,15 +42,10 @@ export default function Verify() {
         <div className={classes.message}>
           {`Entrez le code de vérification que vous avez reçu par email.`}
         </div>
-        <form className={classes.form} onSubmit={(e) => {
-          e.preventDefault();
-
-          post({ code });
-        }}>
+        <div className={classes.form} >
           <input autoFocus type="text" value={code} onChange={(e) => setCode(e.target.value.toUpperCase().replace(' ', ''))} />
-          <SubmitButton text="Se connecter" loading={loading} />
-        </form>
-
+          <SubmitButton text="Se connecter" loading={loading} onClick={() => post({ code })} />
+        </div>
         <button onClick={handleRedirect}>
           Retourner à la page de connexion
         </button>
