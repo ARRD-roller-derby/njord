@@ -9,7 +9,7 @@ import usePost from "../../_hooks/usePost";
 
 export default function Verify() {
   const [code, setCode] = useState("");
-  const { post, loading, data: url } = usePost('users/verify');
+  const { post, loading, data: { url } } = usePost('users/verify');
   const { push } = useRouter(),
     { data: session } = useSession();
 

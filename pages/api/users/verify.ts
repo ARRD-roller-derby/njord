@@ -17,5 +17,5 @@ export default async function login(
   if (!code) return res.status(400).send('Code invalide')
 
   if (dayjs().isAfter(code.expiresAt)) return res.status(400).send('Code expiré')
-  return res.send(code.url)
+  return res.send({ url: code.url })
 }
