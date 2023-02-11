@@ -1,4 +1,5 @@
 import { ReactChild } from "react";
+import { ToastContainer } from "react-toastify";
 import classes from "./Anonymous.module.css";
 
 interface props {
@@ -6,5 +7,19 @@ interface props {
 }
 
 export default function AnonymousLayout({ children }: props) {
-  return <div className={classes.container}>{children}</div>;
+  return <div className={classes.container}>
+    <ToastContainer
+      draggablePercent={60}
+      position={'top-right'}
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+    />
+    {children}</div>;
 }
