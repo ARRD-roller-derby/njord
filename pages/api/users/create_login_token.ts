@@ -23,6 +23,7 @@ export default async function createLoginToken(
   if (existCode) {
     existCode.code = loginCode
     existCode.url = req.body.url
+    existCode.numberTry = 0
     existCode.verifyKey = verifyKey
     existCode.updatedAt = new Date()
     existCode.expiresAt = expiresAt
@@ -32,6 +33,7 @@ export default async function createLoginToken(
       email: validator.escape(req.body.email),
       code: loginCode,
       url: req.body.url,
+      numberTry: 0,
       verifyKey: verifyKey,
       updatedAt: new Date(),
       expiresAt: expiresAt
