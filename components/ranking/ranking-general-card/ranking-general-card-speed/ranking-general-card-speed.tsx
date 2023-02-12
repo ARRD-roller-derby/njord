@@ -3,16 +3,18 @@ import { IRankingGeneralUser } from "../../../../types/ranking-quiz.interface"
 import { getPodiumPlace } from "../../../../utils/getPodiumPlace"
 import userNameRender from "../../../../utils/userNameRender"
 import Avatar from "../../../_ui/Avatar/Avatar"
-import styles from './ranking-general-card-normal.module.css'
+import { SpeedBar } from "../../../_ui/speed-bar/speed-bar"
+import styles from './ranking-general-card-speed.module.css'
 
 interface RankingGeneralCardNormalProps {
   user: IRankingGeneralUser
   myId: string
-  type: 'percent' | 'speed'
   podium: number[]
+  faster: number
+  slower: number
 }
 
-export const RankingGeneralCardNormal: React.FC<RankingGeneralCardNormalProps> = ({ user, myId, type, podium }) => (<div className={styles.container} data-isme={myId === user._id} >
+export const RankingGeneralCardSpeed: React.FC<RankingGeneralCardNormalProps> = ({ user, myId, podium, faster, slower }) => (<div className={styles.container} data-isme={myId === user._id} >
 
   <div className={styles.avatarContainer} >
     <div className={styles.avatar}>
@@ -27,9 +29,12 @@ export const RankingGeneralCardNormal: React.FC<RankingGeneralCardNormalProps> =
   </div>
   <div className={styles.scoreContainer}>
     <div className={styles.score}>
-      {`#${getPodiumPlace(podium, user, type)} - `}
-      {user[type === 'percent' ? 'dailyContestAvgAccuracy' : 'dailyContestAvgTime'].toFixed(2)}
-      {type === 'percent' ? '%' : ' points'}
+      {`#${getPodiumPlace(podium, user, 'speed')}`}
+
     </div>
+
+  </div>
+  <div className={styles.speedContainer}>
+    <SpeedBar speed={user.dailyContestAvgTime} slower={slower} faster={faster} />
   </div>
 </div>)

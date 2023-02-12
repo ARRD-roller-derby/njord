@@ -26,22 +26,20 @@ export default async function generalRanking(req: NextApiRequest, res: NextApiRe
   const perPage = 50
   const where = {
     [type]: { $exists: true },
-    $OR: [
-      { lastDailyContest: { $exists: false } },
-      { lastDailyContest: { $gte: dayjs().subtract(5, 'day').toISOString() } }
-    ]
+    lastDailyContest: { $gte: dayjs().subtract(10, 'day').toISOString() }
   }
+
   const direction = type === 'dailyContestAvgAccuracy' ? -1 : 1
   const totalRanking = await User.count(where)
-  const ranking = await User.find(where).skip(page > 1 ? page * perPage - perPage : 0).select('avatar lastname name derbyName numRoster email dailyContestAvgAccuracy dailyContestAvgTime').limit(perPage).sort({
+  const ranking = await User.find(where).skip(page > 1 ? page * perPage - perPage : 0).select('avatar lastname name derbyName numRoster email dailyContestAvgAccuracy dailyContestAvgTime lastDailyContest').limit(perPage).sort({
     [type]: direction,
     derbyName: 1,
   })
 
   res.json({
     ranking,
-    faster: ranking[ranking.length - 1].dailyContestAvgTime,
-    slower: ranking[0].dailyContestAvgTime,
+    faster: ranking[ranking.length - 1]?.dailyContestAvgTime,
+    slower: ranking[0]?.dailyContestAvgTime,
     totalPage: Math.ceil(totalRanking / perPage)
   })
 
