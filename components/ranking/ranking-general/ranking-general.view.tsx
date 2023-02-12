@@ -4,7 +4,7 @@ import { RankingGeneralCard } from "../ranking-general-card/ranking-general-card
 import { RankingGeneralFactoryProps, RankingGeneralFactoryResult } from "./ranking-general";
 import styles from './ranking-general.module.css'
 
-export const RankingGeneralView: React.FC<RankingGeneralFactoryProps & RankingGeneralFactoryResult> = ({ loading, ranking, type, myId, podium }) => (
+export const RankingGeneralView: React.FC<RankingGeneralFactoryProps & RankingGeneralFactoryResult> = ({ loading, ranking, type, myId, podium, faster, slower }) => (
   <div className={styles.container}>
     {loading && <LoaderWheel />}
 
@@ -20,6 +20,8 @@ export const RankingGeneralView: React.FC<RankingGeneralFactoryProps & RankingGe
               type={type}
               myId={myId}
               podium={podium}
+              faster={faster}
+              slower={slower}
             />
           ))}
 

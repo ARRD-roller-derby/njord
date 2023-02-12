@@ -16,6 +16,8 @@ export interface RankingGeneralFactoryResult {
   loading: boolean,
   myId: string
   podium: number[]
+  faster: number
+  slower: number
 }
 
 const RankingGeneralFactory: React.FC<RankingGeneralFactoryProps> = Factory<unknown, RankingGeneralFactoryResult>(useRankingGeneral, RankingGeneralView);
