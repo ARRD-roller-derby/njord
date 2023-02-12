@@ -17,7 +17,16 @@ export default async function login(
   const expiresAt = dayjs().add(5, 'minute').toDate()
 
   const existCode = await Code.findOne({ email: validator.escape(req.body.email) })
-  if (!existCode) return res.status(400).send('Aucune demande de connexion en cours')
+  if (!existCode) {
+    const code = new Code({
+      email: validator.escape(req.body.email),
+      code: loginCode,
+      url: req.body.url,
+      expiresAt,
+    })
+    await code.save()
+    return res.send({ loginCode })
+  }
   existCode.code = loginCode
   existCode.url = req.body.url
   existCode.updatedAt = new Date()
