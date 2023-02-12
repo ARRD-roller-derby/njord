@@ -25,13 +25,14 @@ export default async function login(
       expiresAt,
     })
     await code.save()
-    return res.send({ loginCode })
+  } else {
+    existCode.code = loginCode
+    existCode.url = req.body.url
+    existCode.updatedAt = new Date()
+    existCode.expiresAt = expiresAt
+    await existCode.save()
   }
-  existCode.code = loginCode
-  existCode.url = req.body.url
-  existCode.updatedAt = new Date()
-  existCode.expiresAt = expiresAt
-  await existCode.save()
+
 
   return res.send({ loginCode })
 }
