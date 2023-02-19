@@ -10,12 +10,17 @@ import validator from 'validator'
 
 export default async function pollVote(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
-  if (!session?.user?.admin) return res.status(403).send('non autorisé')
+  if (!session?.user?.admin) return res.status(200).json({
+    voters: []
+  })
 
   await MongoDb()
   const poll = await Poll.findById(validator.escape(req.body.pollId))
 
-  if (!poll) return res.status(404).send('Sondage non trouvé')
+  //no trigger error toasts
+  if (!poll) return res.status(200).json({
+    voters: []
+  })
 
   const voters = await User.find({
     _id: {
