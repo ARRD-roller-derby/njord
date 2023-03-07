@@ -7,7 +7,7 @@
   position: fixed;
   right: 0;
   top: 50px;
-  z-index: 100;
+  z-index: 900;
   gap: 10px;
   background: var(--color-bg-dark);
   border-top: 1px solid var(--color-border);
