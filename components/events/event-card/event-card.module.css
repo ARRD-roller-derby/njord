@@ -37,6 +37,9 @@
 
 .description {
   font-size: 14px;
+  min-height: 150px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .address {
