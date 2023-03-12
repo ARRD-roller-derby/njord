@@ -2,6 +2,7 @@ import { useContext, useEffect, useMemo, useState } from "react"
 import usePost from "../../_hooks/usePost"
 import { DailyContestContext } from "../../_pageRelated/daily-contest/daily-contest.context"
 import { DailyContestFormProps, DailyContestFormResult } from "./daily-contest-form"
+import JSConfetti from 'js-confetti'
 
 export const useDailyContestForm = ({ questions }: DailyContestFormProps): DailyContestFormResult => {
   const
@@ -47,6 +48,14 @@ export const useDailyContestForm = ({ questions }: DailyContestFormProps): Daily
 
   useEffect(() => {
     if (data) {
+
+      if (data.percent == 100) {
+        const jsConfetti = new JSConfetti()
+        jsConfetti.addConfetti({
+          emojis: ['🪅', '⚡️', '💥', '✨', '💫', '🛼', '🎖', '🏆'],
+        })
+      }
+
       ctx?.reSync()
     }
   }, [data])
