@@ -16,6 +16,10 @@ export const contestCardPrices = [
     cost: 800
   },
   {
+    name: 'pikachu',
+    cost: 1500
+  },
+  {
     name: 'marvel',
     cost: 2000
   },

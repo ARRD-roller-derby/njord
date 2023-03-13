@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Cutive+Mono&family=Lacquer&family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Cutive+Mono&family=Lacquer&family=Rampart+One&family=Special+Elite&display=swap');
 
 .container {
   display: grid;
@@ -210,4 +210,47 @@
   100% {
     left: calc(100% + 30px)
   }
+}
+
+/* ---- PICKACHU ----*/
+.container[data-variant='pikachu'] {
+  grid-template-rows: auto 1fr auto 0;
+  grid-template-columns: 1fr repeat(2, 1fr);
+  grid-template-areas:
+    "avatar name name"
+    "position . score"
+    "speed speed speed"
+  ;
+  background: #eacd11;
+  color: #416cae;
+  border-radius: 30px;
+}
+
+.container[data-variant='pikachu'] .nameContainer {
+  font-family: 'Rampart One', cursive;
+}
+
+.container[data-variant='pikachu'] .avatarContainer {
+  justify-content: center;
+}
+
+.container[data-variant='pikachu'] .score,
+.container[data-variant='pikachu'] .position {
+  background: #d02d26;
+  color: #eacd11;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+
+.container[data-variant='pikachu'] .speedContainer {
+  background: #000000;
+  padding: 3px 10px;
+  border-radius: 20px;
 }
