@@ -1,6 +1,7 @@
 import { addressInterface } from './address.interface'
 import { EventType } from './EventType.enum';
 import { ISponsor } from './sponsor.interface';
+import { UserInterface } from './User.interface';
 
 export interface EventInterface {
   _id: string
@@ -26,6 +27,7 @@ export interface EventInterface {
   presence?: AttendeesEventInterface
   versus?: [string, string]
   sponsor?: ISponsor
+  coach?: Pick<UserInterface, 'name' | 'lastname' | 'numRoster' | 'derbyName' | 'email'>
 }
 
 export interface AttendeesEventInterface {

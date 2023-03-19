@@ -11,6 +11,7 @@ import { EventShutter } from "../event-shutter/event-shutter";
 import { EventCardProps, EventCardResult } from "./event-card.type";
 import { EventPresence } from "../../Events/EventPresence/EventPresence";
 import { Schedule } from "../../_ui/schedule/schedule";
+import { EventCoach } from "../event-coach/event-coach";
 
 export const EventCardView: React.FC<EventCardProps & EventCardResult> = ({
   event,
@@ -50,15 +51,18 @@ export const EventCardView: React.FC<EventCardProps & EventCardResult> = ({
               ).from(dayjs())}
             </div>
           </div>
-          <div className={styles.address}>
-            {event.address && (
-              <>
-                <div>{event.address.address || event.address.street}</div>
-                <div>
-                  {event.address.zipcode} {event.address.city}
-                </div>
-              </>
-            )}
+          <div className={styles.addressCoach}>
+            <EventCoach event={event} />
+            <div className={styles.address}>
+              {event.address && (
+                <>
+                  <div>{event.address.address || event.address.street}</div>
+                  <div>
+                    {event.address.zipcode} {event.address.city}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
           <div className={styles.description}>
             <ReactMarkdown>

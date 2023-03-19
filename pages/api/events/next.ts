@@ -41,9 +41,11 @@ export default async function eventsNext(
   const totalEvents = await Event.count({ $or: OR })
 
   const events = await Event.find({ $or: OR }).skip(page > 1 ? page * perPage - perPage : 0).limit(perPage).sort({ start: 1 }),
-    eventsWithPresence = events.map((event) => {
-      return eventWithPresence(session.user._id, event)
-    })
+    eventsWithPresence = []
+
+  for (const event of events) {
+    eventsWithPresence.push(await eventWithPresence(session.user._id, event))
+  }
 
   res.json({
     events: eventsWithPresence,

@@ -42,13 +42,21 @@
   overflow-y: auto;
 }
 
-.address {
+.addressCoach {
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 5px 0;
   font-size: 12px;
   color: white;
   text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.address {
+  max-width: 50%;
 }
 
 .cancel {

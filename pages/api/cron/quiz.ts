@@ -8,6 +8,5 @@ export default async function cron_quizz(req: NextApiRequest,
 
   await createDailyQuiz()
   trigger('public', { type: TriggerEvents.daily_contest })
-
   res.status(200).end('CRON QUIZZ DONE');
 }
