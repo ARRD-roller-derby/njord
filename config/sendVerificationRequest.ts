@@ -8,11 +8,12 @@ export default async function sendVerificationRequest({
   const { host, protocol } = new URL(url)
   const { data } = await axios.post(`${protocol}//${host}/api/users/login`, { email, url })
 
-  bifrost.post('/send_login_code', {
+  await bifrost.post('/send_login_code', {
     url,
     host,
     email,
     code: data.loginCode,
   })
+
   return true
 }
