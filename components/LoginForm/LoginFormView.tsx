@@ -26,7 +26,7 @@ export default function LoginFormView({
         placeholder="email"
         onChange={(e) => setEmail(e.target.value)}
       />
-      <button>Se connecter</button>
+      <button type="submit">Se connecter</button>
     </form>
   )
 }
