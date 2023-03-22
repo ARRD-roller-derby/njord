@@ -1,9 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { MongoDb } from '../../../db/mongo.connect'
-import validator from 'validator'
 import Event from '../../../models/event.model'
-import eventWithPresence from '../../../utils/eventWithPresence'
 import User from '../../../models/user.model'
 import dayjs from 'dayjs'
 import { EventInterface } from '../../../types/Event.interface'
@@ -45,6 +43,10 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
  
   DIMANCHE: 
   total: ${dimanche.length}  - presence : ${presenceDim.length} Soit : ${percent(presenceDim.length, dimanche.length)}%
+
+  ${trainings.map(e => dayjs(e.start).format('LLLL') + '\n')}
   `
+
+
   res.send(msg)
 }
