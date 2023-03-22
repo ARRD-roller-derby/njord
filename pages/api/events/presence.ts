@@ -23,14 +23,14 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
   }).select('_id cancel attendees start')
 
 
-  const mercredis = trainings.filter((event) => !!dayjs(event.start).format('LLLL').match(/mercredi|wednes/))
-  const vendredis = trainings.filter((event) => !!dayjs(event.start).format('LLLL').match(/vendre|frid/))
-  const dimanche = trainings.filter((event) => !!dayjs(event.start).format('LLLL').match(/sund|dimanche/))
+  const mercredis = [...trainings.filter((event) => !!dayjs(event.start).format('LLLL').match(/mercredi|wednes|thu|jeu/))]
+  const vendredis = [...trainings.filter((event) => !!dayjs(event.start).format('LLLL').match(/vendre|frid|sun|sam/))]
+  const dimanche = [...trainings.filter((event) => !!dayjs(event.start).format('LLLL').match(/sund|dimanche|lun|mon/))]
 
   const filterPre = (e: EventInterface) => !!e.attendees.find(ev => ev.userId === userId && ev.isPresent)
-  const presenceMerc = mercredis.filter(filterPre)
-  const presenceVen = vendredis.filter(filterPre)
-  const presenceDim = dimanche.filter(filterPre)
+  const presenceMerc = [...mercredis.filter(filterPre)]
+  const presenceVen = [...vendredis.filter(filterPre)]
+  const presenceDim = [...dimanche.filter(filterPre)]
 
   const msg = `
   ${user.name} ${user.lastname} : 
