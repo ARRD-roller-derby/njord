@@ -21,8 +21,8 @@ export default function useCalendar() {
   return {
     refetch, events: events?.sort((a: any, b: any) => {
       const
-        hourA = parseInt(a?.hourStart?.slice(0, 2) ?? 0),
-        hourB = parseInt(b?.hourStart?.slice(0, 2) ?? 0)
+        hourA = parseInt(a.hourStart?.slice(0, 2) ?? 0),
+        hourB = parseInt(b.hourStart?.slice(0, 2) ?? 0)
       return hourA - hourB
     }), setBetween
   }

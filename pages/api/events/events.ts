@@ -42,9 +42,14 @@ export default async function events(
   }
 
   const events = await Event.find({ $or: OR }),
-    eventsWithPresence = events.map((event) => {
-      return eventWithPresence(session.user._id, event)
-    })
+    eventsWithPresence = []
+
+
+  for (const event of events) {
+    eventsWithPresence.push(await eventWithPresence(session.user._id, event))
+  }
+
+  console.log(eventsWithPresence)
 
   res.json(eventsWithPresence)
 }

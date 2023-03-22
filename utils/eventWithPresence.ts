@@ -5,7 +5,7 @@ import searchTypeOfPresence from './searchTypeOfPresence'
 
 export default async function eventWithPresence(
   userId: string,
-  event: any
+  event: any,
 ): Promise<EventInterface> {
   const newEvent = { ...event._doc }
   const myPresence = newEvent.attendees.find(
@@ -27,6 +27,7 @@ export default async function eventWithPresence(
     const coachPresence = newEvent.attendees.find(
       (attendee: AttendeeInterface) => attendee.type === 'coach' && attendee.isPresent
     )
+
 
     if (coachPresence) {
       newEvent.coach = await User.findOne({ _id: coachPresence.userId }).select('email name lastname derbyName numRoster')

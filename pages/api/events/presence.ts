@@ -6,6 +6,10 @@ import User from '../../../models/user.model'
 import dayjs from 'dayjs'
 import { EventInterface } from '../../../types/Event.interface'
 import { percent } from '../../../utils/percent'
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+dayjs.extend(utc)
+dayjs.extend(timezone)
 
 export default async function event(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -23,9 +27,9 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
   }).select('_id cancel attendees start')
 
 
-  const mercredis = [...trainings.filter((event) => !!dayjs(event.start).format('LLLL').match(/mercredi|wednes|thu|jeu/))]
-  const vendredis = [...trainings.filter((event) => !!dayjs(event.start).format('LLLL').match(/vendre|frid|sun|sam/))]
-  const dimanche = [...trainings.filter((event) => !!dayjs(event.start).format('LLLL').match(/sund|dimanche|lun|mon/))]
+  const mercredis = [...trainings.filter((event) => !!dayjs.tz(event.start, "Europe/Paris").format('LLLL').match(/mercredi|wednes|thu|jeu/))]
+  const vendredis = [...trainings.filter((event) => !!dayjs.tz(event.start, "Europe/Paris").format('LLLL').match(/vendre|frid|sun|sam/))]
+  const dimanche = [...trainings.filter((event) => !!dayjs.tz(event.start, "Europe/Paris").format('LLLL').match(/sund|dimanche|lun|mon/))]
 
   const filterPre = (e: EventInterface) => !!e.attendees.find(ev => ev.userId === userId && ev.isPresent)
   const presenceMerc = [...mercredis.filter(filterPre)]
@@ -44,7 +48,7 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
   DIMANCHE: 
   total: ${dimanche.length}  - presence : ${presenceDim.length} Soit : ${percent(presenceDim.length, dimanche.length)}%
 
-  ${trainings.map(e => dayjs(e.start).format('LLLL') + '\n')}
+  ${trainings.map(e => dayjs.tz(e.start, "Europe/Paris").format('LLLL') + '\n')}
   `
 
 
