@@ -30,7 +30,7 @@ export default function EventView({ event, user, reSync, uri }: props) {
             <Tab field="participants">
               <EventAttendees event={event} />
             </Tab>
-            {event.items.length > 0 && (
+            {event.items?.length > 0 && (
               <Tab field="objets">
                 <EventItems eventId={event._id} />
               </Tab>
