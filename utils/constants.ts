@@ -1,0 +1,1 @@
+export const DISCORD_NEWS_HOOK = process.env.DISCORD_NEWS_HOOK || ''

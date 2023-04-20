@@ -8,6 +8,8 @@ import Notification from "../../../models/notification.model";
 import { pushNotifications } from "../../../services/pusher/pusherBeams";
 import { ArticleVisibility } from "../../../types/article.interface";
 import trigger from "../../../services/bifrost/trigger";
+import axios from "axios";
+import { DISCORD_NEWS_HOOK } from "../../../utils/constants";
 
 export default async function newsAdd(
   req: NextApiRequest,
@@ -34,9 +36,8 @@ export default async function newsAdd(
 
   const users = await User.find({ "league.id": session.user.league.id }),
     resumeArray = contentEscape.split(" "),
-    resume = `${resumeArray.slice(0, 100).join(" ")} ${
-      resumeArray.length > 100 ? "[...]" : ""
-    }`;
+    resume = `${resumeArray.slice(0, 100).join(" ")} ${resumeArray.length > 100 ? "[...]" : ""
+      }`;
 
   await Notification.create(
     users.map((user) => ({
@@ -57,6 +58,10 @@ export default async function newsAdd(
 
   if (visibility === ArticleVisibility.public)
     publishToInterests.push("league-public");
+
+  axios.post(DISCORD_NEWS_HOOK, {
+    content: `**${profile}** \n ${content}`
+  })
 
   pushNotifications.publishToInterests(publishToInterests, {
     web: {
