@@ -4,6 +4,19 @@
   gap: 15px;
 }
 
+.link {
+  width: 100%;
+}
+
+.link a {
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  background: var(--color-tierce);
+  font-weight: bold;
+}
+
 .loading {
   display: flex;
   align-items: center;

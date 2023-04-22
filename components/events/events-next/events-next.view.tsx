@@ -17,6 +17,9 @@ export const EventsNextView: React.FC<EventsNextResult> = ({
     );
   return (
     <div className={styles.container}>
+      <div className={styles.link}>
+        <a href={process.env.NEXT_PUBLIC_DISCORD_LINK} target="_blank" >Rejoindre le Discord</a>
+      </div>
       {data?.events?.map((event) => (
         <EventCard key={event._id} event={event} reSync={reSync} />
       ))}
