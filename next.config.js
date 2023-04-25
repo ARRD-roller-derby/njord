@@ -13,7 +13,10 @@ module.exports = withPWA(
       reactStrictMode: true,
       swcMinify: false,
       images: {
-        domains: [`${process.env.S3_BUCKET}.${process.env.S3_DOMAIN}`],
+        domains: [
+          `${process.env.S3_BUCKET}.${process.env.S3_DOMAIN}`,
+          `njord--prod.${process.env.S3_DOMAIN}`,
+        ],
       },
       pwa: {
         dest: "public",
