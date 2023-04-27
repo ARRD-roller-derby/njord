@@ -60,7 +60,7 @@ export default async function newsAdd(
     publishToInterests.push("league-public");
 
   axios.post(DISCORD_NEWS_HOOK, {
-    content: `**${profile}** \n ${content}`
+    content: `**${profile}** \n ${content}`,
   })
 
   pushNotifications.publishToInterests(publishToInterests, {

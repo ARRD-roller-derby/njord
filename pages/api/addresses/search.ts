@@ -5,23 +5,21 @@ import validator from 'validator';
 import Address from '../../../models/adresses.model';
 
 interface result {
-  address:string;
+  address: string;
   zipcode: string,
   lat: number,
   lon: number,
   city: string,
-  importance:number
+  importance: number
 }
 
 export default async function searchAddress(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
 
   if (!session) return res.status(403).send('non autorisé')
+  if (!req.body.search && !req.body.withSaveAddresses) return res.status(400).send('aucun critère de recherche')
 
-  console.log(req.body)
-  if(!req.body.search && !req.body.withSaveAddresses)return res.status(400).send('aucun critère de recherche')
-
-  if(!req.body.search && req.body.withSaveAddresses){
+  if (!req.body.search && req.body.withSaveAddresses) {
     return res.json(await Address.find({
       ownerId: session.user._id,
       $limit: 8
@@ -30,38 +28,42 @@ export default async function searchAddress(req: NextApiRequest, res: NextApiRes
 
   const search = req.body.search
   const response = [];
-  if(req.body.withSaveAddresses){
+  if (req.body.withSaveAddresses) {
     const myAdresses = await Address.find({
       ownerId: session.user._id,
-      $text:{
-        $search:search
+      $text: {
+        $search: search
       }
     }).limit(3)
     response.push(...myAdresses);
   }
 
-  try {
-    await bano.get('',{params:{
-      q:search
-    }})
-  }catch(e){
-    console.log('e',e)
+  try {
+    await bano.get('', {
+      params: {
+        q: search
+      }
+    })
+  } catch (e) {
+    console.log('e', e)
   }
 
-  const {data} = await bano.get('',{params:{
-    q:search
-  }})
+  const { data } = await bano.get('', {
+    params: {
+      q: search
+    }
+  })
 
-  if(!data && data?.features) return res.json(data)
+  if (!data && data?.features) return res.json(data)
 
-  const banoAddresses = data.features.map(({properties,geometry}):result => ({
+  const banoAddresses = data.features.map(({ properties, geometry }): result => ({
     address: properties.name,
     zipcode: properties.postcode,
     lat: geometry?.coordinates.at(),
     lon: geometry?.coordinates.at(-1),
     city: properties.city,
     importance: properties.importance
-  })).sort((a:result,b:result)=> b.importance - a.importance)
+  })).sort((a: result, b: result) => b.importance - a.importance)
 
   response.push(...banoAddresses);
 

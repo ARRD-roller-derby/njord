@@ -32,7 +32,8 @@ const eventSchema = new Schema<EventInterface>({
   address: adressSchema,
   versus: [String],
   updatedAt: Date,
-  sponsor: sponsorSchema
+  sponsor: sponsorSchema,
+  thread_id: String
 })
 
 const Event = models.events || model('events', eventSchema)

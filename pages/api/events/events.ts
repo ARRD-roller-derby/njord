@@ -49,7 +49,5 @@ export default async function events(
     eventsWithPresence.push(await eventWithPresence(session.user._id, event))
   }
 
-  console.log(eventsWithPresence)
-
   res.json(eventsWithPresence)
 }

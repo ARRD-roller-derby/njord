@@ -8,6 +8,10 @@ import User from '../../../models/user.model'
 import Event from '../../../models/event.model'
 import trigger from '../../../services/bifrost/trigger'
 import { TriggerEvents } from '../../../types/trigger-events.enum'
+import { DISCORD_EVENT_HOOK } from '../../../utils/constants'
+import axios from 'axios'
+import eventTitleRender from '../../../utils/eventTitleRender'
+import { getThreadEventName } from '../../../utils/getThreadEventName'
 
 export default async function event(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
@@ -57,7 +61,7 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
     }
   }
 
-  await Event.create(creatableEvents)
+  const events = await Event.create(creatableEvents)
 
   //Juste league's user. see to update other (guests, not public)
   const users = await User.find({
@@ -67,6 +71,27 @@ export default async function event(req: NextApiRequest, res: NextApiResponse) {
   users.forEach(user => {
     trigger(user._id, { type: TriggerEvents.event })
   })
+
+  for (const ev of events) {
+    const address = ev.address ? `*${ev.address.address || ev.address.street} - ${ev.address.zipcode} ${ev.address.city}*` : ''
+
+    const res = await axios.post(DISCORD_EVENT_HOOK, {
+      content: `*[voir sur Njörd](https://njord.arrd.fr/event${ev._id})*\n${address}\n${validator.unescape(ev.description)} 
+      `,
+      thread_name: getThreadEventName(ev)
+    }, {
+      params: {
+        wait: true
+      }
+    })
+
+    if (res.data) {
+      ev.thread_id = res.data?.id || ''
+      ev.save()
+    }
+  }
+
+
 
   const msg = creatableEvents.length > 1 ? `${creatableEvents.length} événement créés.` : 'événement créé.'
   res.send(msg)

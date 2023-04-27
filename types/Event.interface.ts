@@ -28,6 +28,7 @@ export interface EventInterface {
   versus?: [string, string]
   sponsor?: ISponsor
   coach?: Pick<UserInterface, 'name' | 'lastname' | 'numRoster' | 'derbyName' | 'email'>
+  thread_id: string
 }
 
 export interface AttendeesEventInterface {

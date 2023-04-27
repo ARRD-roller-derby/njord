@@ -15,8 +15,6 @@ export default async function questionAdd(
   if (!session?.isAdmin || !session?.admin_game) return res.status(403).send("non autorisé");
   const { body } = req
 
-  console.log(body?.answers)
-
   if (!body?.question ||
     body?.answers.filter((answer: { type: 'good' | 'bad', answer: string }) => answer.answer !== "" && answer.type === 'good').length < 1 || body?.answers.filter((answer: { type: 'good' | 'bad', answer: string }) => answer.answer !== "" && answer.type === 'bad').length < 1) {
     return res.status(400).send("champs manquant");
