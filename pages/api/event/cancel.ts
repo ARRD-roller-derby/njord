@@ -12,7 +12,7 @@ import { TriggerEvents } from '../../../types/trigger-events.enum'
 import axios from 'axios'
 import { DISCORD_EVENT_HOOK } from '../../../utils/constants'
 import { getThreadEventName } from '../../../utils/getThreadEventName'
-
+process.env.TZ = 'Europe/Paris'
 export default async function cancelEvent(
   req: NextApiRequest,
   res: NextApiResponse

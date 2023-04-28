@@ -7,7 +7,7 @@ import Event from '../../../models/event.model'
 import { DISCORD_EVENT_HOOK } from '../../../utils/constants'
 import axios from 'axios'
 import { getThreadEventName } from '../../../utils/getThreadEventName'
-
+process.env.TZ = 'Europe/Paris'
 export default async function updateField(
   req: NextApiRequest,
   res: NextApiResponse

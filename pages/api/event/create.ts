@@ -10,9 +10,8 @@ import trigger from '../../../services/bifrost/trigger'
 import { TriggerEvents } from '../../../types/trigger-events.enum'
 import { DISCORD_EVENT_HOOK } from '../../../utils/constants'
 import axios from 'axios'
-import eventTitleRender from '../../../utils/eventTitleRender'
 import { getThreadEventName } from '../../../utils/getThreadEventName'
-
+process.env.TZ = 'Europe/Paris'
 export default async function event(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
 
